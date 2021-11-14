@@ -1,9 +1,9 @@
 # Cipher
 
-*  GOOGLE DOCS meets CODECADEMY meets ZOOM
+###  GOOGLE DOCS meets CODECADEMY meets ZOOM
 
 
-== Background and Overview ==
+# Background and Overview 
 Have you ever been working with someone on a coding project, and noticed that your computer is getting very hot?
 Cipher is here to help you focus on your work without worrying about your computer crashing!
 Cipher provides an environment for developers to collaborate with one another on coding projects, while video streaming.
@@ -13,7 +13,7 @@ Cipher will allow you to:
   - collaborate with colleagues/potential employees instantly with video streaming and automatic screen sharing
 
 
-== Functionality & MVP ==
+# Functionality & MVP 
 
 1. User Authentication
 2. Collaborative text area, where all users can contribute to the same document with live updates
@@ -29,10 +29,10 @@ Cipher will allow you to:
 7. Embedded IDE and ability to compile code
 
 
-== Wireframes ==
+# Wireframes
 
 
-== Technologies & Technical Challenges ==
+# Technologies & Technical Challenges 
 
 ### Backend: MongoDB/Express 
 
@@ -41,7 +41,7 @@ Cipher will allow you to:
 
 
 
-== Group Members & Work Breakdown ==
+# Group Members & Work Breakdown 
 
 #### Madeline Wilson (Backend), Rebecca Foster (Flex), Pasan Dharmasena (Frontend), Maria Vaghani (Team Lead)
 
