@@ -50,13 +50,13 @@ Cipher will allow you to:
   - Create wireframe and work on splash page (Pasan)
   - Create basic routes (Rebecca)
       - (GET#api/documents/user/:user_id, GET#api/problems, GET#api/friends/user/:user_id)
-  - Collect information on websockets (Maria)
+  - Collect information on websockets and implement it (Maria)
 ### Day 2 
   - Implement videochat feature (Maddie)
   - Work on document index page (Pasan)
   - Work on document show page (collaborative text area) (Rebecca)
     - auto-save flash message
-  - Help anyone who needs it (?) (Maria)
+  - Work on Practice Problem Containers and components  (Maria)
   
 ### Day 3
   - Complete production README
