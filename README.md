@@ -55,6 +55,7 @@ Cipher will allow you to:
   - Implement videochat feature (Maddie)
   - Work on document index page (Pasan)
   - Work on document show page (collaborative text area) (Rebecca)
+    - auto-save flash message
   - Help anyone who needs it (?) (Maria)
   
 ### Day 3
