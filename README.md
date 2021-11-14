@@ -46,9 +46,9 @@ Cipher will allow you to:
 #### Madeline Wilson (Backend), Rebecca Foster (Flex), Pasan Dharmasena (Frontend), Maria Vaghani (Team Lead)
 
 ### Day 1 
-  - Implement state shape and user auth -#### Maddie
-  - Create wireframe and work on splash page -#### Pasan
-  - Create basic routes -#### Rebecca
+  - Implement state shape and user auth - #### Maddie
+  - Create wireframe and work on splash page - #### Pasan
+  - Create basic routes - #### Rebecca
       - (GET#api/documents/user/:user_id, GET#api/problems, GET#api/friends/user/:user_id)
 ### Day 2 
   
