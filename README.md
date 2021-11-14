@@ -34,10 +34,10 @@ Cipher will allow you to:
 
 # Technologies & Technical Challenges 
 
-### Backend: MongoDB/Express and Websocket
+#### Backend: MongoDB/Express and Websocket
 
 
-### Frontend: React/Node.js 
+#### Frontend: React/Node.js 
 
 
 
