@@ -25,7 +25,7 @@ Cipher will allow you to:
 
 
 ## Bonus Feature
-6. Possible messaging feature: Ratings, responses
+6. Possible messaging feature: ratings, responses
 7. Embedded IDE and ability to compile code
 
 
@@ -34,10 +34,10 @@ Cipher will allow you to:
 
 # Technologies & Technical Challenges 
 
-### Backend: MongoDB/Express 
+### Backend: MongoDB/Express and Websocket
 
 
-### Frontend: React/Node.js and Websocket
+### Frontend: React/Node.js 
 
 
 
@@ -46,10 +46,18 @@ Cipher will allow you to:
 #### Madeline Wilson (Backend), Rebecca Foster (Flex), Pasan Dharmasena (Frontend), Maria Vaghani (Team Lead)
 
 ### Day 1 
-  - Implement state shape and user auth - #### Maddie
-  - Create wireframe and work on splash page - #### Pasan
-  - Create basic routes - #### Rebecca
+  - Implement state shape and user auth (Maddie)
+  - Create wireframe and work on splash page (Pasan)
+  - Create basic routes (Rebecca)
       - (GET#api/documents/user/:user_id, GET#api/problems, GET#api/friends/user/:user_id)
+  - Collect information on websockets (Maria)
 ### Day 2 
+  - Implement videochat feature (Maddie)
+  - Work on document index page (Pasan)
+  - Work on document show page (collaborative text area) (Rebecca)
+  - Help anyone who needs it (?) (Maria)
   
 ### Day 3
+  - Complete production README
+  - Refine CSS
+  - Finish testing and debugging 
