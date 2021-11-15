@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
+const ObjectId = require('mongodb').ObjectId;
 
 const Document = require('../../models/Document');
 const validateDocumentInput = require('../../validation/documents')
@@ -26,7 +27,7 @@ router.post('/',
   
       const newDocument = new Document({
         body: req.body.body,
-        problem: req.problem.id
+        // problem: req.problem.id
       });
   
       newDocument.save().then(document => res.json(document));
@@ -34,23 +35,31 @@ router.post('/',
 );
 
 router.put('/:id', (req, res) => {
-    Document.updateOne({id: req.params.id}, {
-        
+    
+    const document = Document.findById(req.params.id)
+    Document.updateOne({id: document.schema.paths._id}, {  
         $set: {
             body: req.body.body,
-            problem: req.problem.id,
             date: Date.now
         },
     })
-        .then(res => {
-            const { matchedCount, modifiedCount } = result;
-            if (matchedCount && modifiedCount) {
-                console.log('successfully added a new document')
-            }
-        })
+        .then(result => {
+            
+            if (result.modifiedCount > 0) {
+                res.json('successfully updated')
+            } else {
+                res.json('nothing was modified in this document')
+            }})
         .catch(err =>
             res.status(404).json({ noDocumentFound: 'No document found with that ID' })
         );
+});
+
+router.delete('/:id', (req, res) => {
+    const document = Document.findById(req.params.id)
+    Document.remove(document)
+        .then(result => res.json(result))
+        .catch(err => res.json(err))
 });
 
 
