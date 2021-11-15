@@ -4,47 +4,52 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 
 const Document = require('../../models/Document');
+const validateDocumentInput = require('../../validation/documents')
 
-
-router.get('/', (req, res) => {
-    Document.find()
-        .sort({ date: -1 })
-        .then(documents => res.json(documents))
-        .catch(err => res.status(404).json({ noDocumentsFound: 'No documents found' }));
-});
-
-// router.get('/user/:user_id', (req, res) => {
-//     Tweet.find({user: req.params.user_id})
-//         .then(tweets => res.json(tweets))
-//         .catch(err =>
-//             res.status(404).json({ notweetsfound: 'No tweets found from that user' }
-//         )
-//     );
-// });
 
 router.get('/:id', (req, res) => {
-    Tweet.findById(req.params.id)
-        .then(tweet => res.json(tweet))
+    Document.findById(req.params.id)
+        .then(document => res.json(document))
         .catch(err =>
-            res.status(404).json({ notweetfound: 'No tweet found with that ID' })
+            res.status(404).json({ noDocumentFound: 'No document found with that ID' })
+        );
+});
+
+router.put('/:id', (req, res) => {
+    Document.updateOne({id: req.params.id}, {
+        
+        $set: {
+            body: req.body.body,
+            problem: req.problem.id,
+            date: Date.now
+        },
+    })
+        .then(res => {
+            const { matchedCount, modifiedCount } = result;
+            if (matchedCount && modifiedCount) {
+                console.log('successfully added a new document')
+            }
+        })
+        .catch(err =>
+            res.status(404).json({ noDocumentFound: 'No document found with that ID' })
         );
 });
 
 router.post('/',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-      const { errors, isValid } = validateTweetInput(req.body);
+      const { errors, isValid } = validateDocumentInput(req.body);
   
       if (!isValid) {
         return res.status(400).json(errors);
       }
   
-      const newTweet = new Tweet({
-        text: req.body.text,
-        user: req.user.id
+      const newDocument = new Document({
+        body: req.body.body,
+        problem: req.problem.id
       });
   
-      newTweet.save().then(tweet => res.json(tweet));
+      newDocument.save().then(document => res.json(document));
     }
 );
 
