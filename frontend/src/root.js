@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 // We'll create this soon
 import App from './App';
+import "./stylesheets/application.scss";
 
 const Root = ({ store }) => (
   <Provider store={ store }>
