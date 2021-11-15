@@ -15,6 +15,24 @@ router.get('/:id', (req, res) => {
         );
 });
 
+router.post('/',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+      const { errors, isValid } = validateDocumentInput(req.body);
+  
+      if (!isValid) {
+        return res.status(400).json(errors);
+      }
+  
+      const newDocument = new Document({
+        body: req.body.body,
+        problem: req.problem.id
+      });
+  
+      newDocument.save().then(document => res.json(document));
+    }
+);
+
 router.put('/:id', (req, res) => {
     Document.updateOne({id: req.params.id}, {
         
@@ -35,22 +53,5 @@ router.put('/:id', (req, res) => {
         );
 });
 
-router.post('/',
-    passport.authenticate('jwt', { session: false }),
-    (req, res) => {
-      const { errors, isValid } = validateDocumentInput(req.body);
-  
-      if (!isValid) {
-        return res.status(400).json(errors);
-      }
-  
-      const newDocument = new Document({
-        body: req.body.body,
-        problem: req.problem.id
-      });
-  
-      newDocument.save().then(document => res.json(document));
-    }
-);
 
 module.exports = router;
