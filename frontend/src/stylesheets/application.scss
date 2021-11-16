@@ -3,4 +3,6 @@
 @import "base/fonts.css";
 
 /*  Components */
-@import "./components/navbar.scss";
+@import "./components/navbar/navbar.scss";
+
+@import "./components/splash/splash.scss"

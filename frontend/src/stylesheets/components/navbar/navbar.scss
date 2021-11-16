@@ -1,0 +1,30 @@
+.navbar-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #011925;
+    position: sticky;
+    top: 0;
+}
+
+.logo{
+    font-size: 50px;
+    color: white;
+    text-shadow: 0 0 5px lightblue;
+    margin-left: 30px;
+    margin-top: 5px;
+}
+
+.nav-link-div{
+    margin-right: 30px;
+    margin-top: 10px;
+
+    .nav-link{
+        color: white;
+        background-color: blue;
+        border-radius: 3px;
+        padding: 10px 20px;
+        margin-right: 10px;
+    }
+}
