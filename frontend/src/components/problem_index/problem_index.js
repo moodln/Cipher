@@ -1,22 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-class Tweet extends React.Component {
-    // constructor(props) {
-    //   super(props);
-
-    //   this.state = {
-    //     tweets: []
-    //   }
-    // }
-
+class ProblemIndex extends React.Component {
     componentWillMount() {
-        this.props.fetchTweets();
+        this.props.fetchProblems();
     }
-
-    // componentWillReceiveProps(newState) {
-    //   this.setState({ tweets: newState.tweets });
-    // }
 
     render() {
         return (
@@ -24,16 +12,11 @@ class Tweet extends React.Component {
                 <h1>ALL PROBLEMS</h1>
                 <ul className="problem-index-section">
                 {
-                    [1, 2, 3, 4, 5, 6].map(problem => (
-                        <li key={problem}>
-                            {problem}
-                        </li>
-                    ))
-                }
-
-                {
                     this.props.problems.map(problem => (
-                        <li key={problem.id}>
+                        // li onClick should create document and group,
+                        // then this.props.history.push(`/groups/${groupId}`) to group show page
+                        <li key={problem}>
+                            <p>{problem.title}</p>
                         </li>
                     ))
                 }
@@ -45,4 +28,4 @@ class Tweet extends React.Component {
     }
 }
 
-export default withRouter(Tweet);
+export default withRouter(ProblemIndex);
