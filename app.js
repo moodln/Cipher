@@ -50,6 +50,28 @@ io.on("connection", socket => {
   })
 })
 
+
+// connect two people through socketIDs
+io.on('connection', (socket) => {
+  socket.emit('me', socket.id)
+
+  socket.on('disconnect', () => {
+    socket.broadcast.emti('callEnded')
+  })
+
+  socket.on('callUser', (data) => {
+    // the person we want to call, userToCall is passed in from frontend
+    io.to(data.userToCall).emit('callUser', {
+        signal: data.signalData, 
+        from: data.from, 
+        name: data.name})
+  })
+
+  socket.on('answerCall', (data) => { 
+    io.to(data.to).emit('callAccepted'), data.signal
+  })
+})
+
 const port = process.env.PORT || 3300;
 httpServer.listen(process.env.PORT || 3300, function () {
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
