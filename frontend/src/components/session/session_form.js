@@ -63,7 +63,7 @@ class SessionForm extends React.Component {
                 password: this.state.password,
                 password2: this.state.password2
             };
-            this.props.signup(user, this.props.history);
+            this.props.signup(user); // removed second argument this.props.history
         }
         else if (this.props.formType === "LOG IN") {
             user = {

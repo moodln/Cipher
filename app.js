@@ -18,6 +18,7 @@ const users = require("./routes/api/users");
 const groups = require("./routes/api/groups");
 const invites = require("./routes/api/invites");
 const documents = require("./routes/api/documents");
+const problems = require("./routes/api/problems");
 
 mongoose
   .connect(db, { useNewUrlParser: true })
@@ -34,6 +35,7 @@ app.use("/api/users", users);
 app.use("/api/groups", groups);
 app.use("/api/invites", invites);
 app.use("/api/documents", documents);
+app.use("/api/problems", problems);
 
 const port = process.env.PORT || 3300;
 app.listen(process.env.PORT || 3300, function () {
