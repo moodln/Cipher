@@ -3,7 +3,7 @@ const Document = require('./Document');
 const Schema = mongoose.Schema;
 
 const GroupSchema = new Schema({
-  document: [Document.schema],
+  document: Document.schema,
   users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   date: {
     type: Date,
