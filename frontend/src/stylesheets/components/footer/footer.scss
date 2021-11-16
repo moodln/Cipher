@@ -1,0 +1,39 @@
+.footer-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 200px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 30px 10%;
+    padding-top: 40px;
+    margin: 0px auto;
+    box-shadow: inset $blue-light 0px 4px 6px -5px, $blue-light 0px 2px 6px -5px;
+
+    .footer-names{
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        padding: 10px;
+
+        h2{
+            padding-top: 10px;
+        }
+    }
+
+    .footer-links{
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        padding: 10px;
+    }
+
+    .footer-summary{
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        padding: 10px;
+    }
+
+}

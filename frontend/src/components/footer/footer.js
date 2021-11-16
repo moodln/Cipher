@@ -9,7 +9,7 @@ class Footer extends React.Component {
                     <h2>Rebecca Foster</h2>
                     <h2>Madeline Wilson</h2>
                     <h2>Maria Vaghani</h2>
-                    <h2>Pasan Dharmasenar</h2>
+                    <h2>Pasan Dharmasena</h2>
                 </div>
                 <div className="footer-links">
                     <a href="#">Cipher GitHub</a>

@@ -3,17 +3,18 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: #011925;
+    background-color: $blue-darkest;
     padding-bottom: 10px;
     position: sticky;
     top: 0;
     font: $sans-serif-IBM;
+    z-index: 1;
 }
 
 .logo{
     font-size: 50px;
     color: white;
-    text-shadow: 0 0 5px lightblue;
+    text-shadow: 0 0 5px $blue-lightest;
     margin-left: 30px;
     margin-top: 5px;
 }
@@ -24,19 +25,22 @@
 
     .nav-link{
         color: white;
-        background-color: blue;
+        background-color: $blue-light;
         border-radius: 3px;
         padding: 10px 20px;
         margin-right: 10px;
     }
 
+    .nav-link:hover{
+        background-color: $blue-lightest;
+    }
     .nav-link-profile-drop{
         position: relative;
-        background-color: black;
+        background-color: $blue-darkest;
         // padding: 20px;
 
         .nav-link-profile-img-div{
-            background-color: blue;
+            background-color: $blue-light;
             width: 50px;
             height: 50px;
         }      
@@ -44,7 +48,7 @@
         .nav-dropdown-content{
             display: none;
             position: absolute;
-            background-color: #011925;
+            background-color: $blue-darkest;
             background-clip: content-box;
             min-width: 160px;
             border-radius: 3px;
@@ -52,7 +56,7 @@
             right: 0px;
             top: calc(100%);
             border-top: 5px solid transparent;
-            box-shadow: blue 0px 4px 6px -5px, blue 0px 2px 6px -5px;            
+            box-shadow: $blue-light 0px 4px 6px -5px, $blue-light 0px 2px 6px -5px;            
             
             .nav-drop-link{
                 color: white;
@@ -74,7 +78,8 @@
 }
 
 .glow{
-    box-shadow: blue 0px 4px 6px -5px;
+    background-color: $blue-darkest;
+    box-shadow: $blue-light 0px 4px 6px -5px;
     transition: all 0.3s ease-in;
 }
 
@@ -84,6 +89,6 @@
 }
 
 .nav-drop-link:hover{
-    background-color: blue;
-    text-shadow: 0 0 5px lightblue;
+    background-color: $blue-light;
+    text-shadow: 0 0 5px $blue-lightest;
 }
