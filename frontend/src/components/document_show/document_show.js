@@ -1,9 +1,8 @@
 import React from 'react';
 
-class GroupShow extends React.Component {
+class DocumentShow extends React.Component {
 
     render() {
-        debugger
         return (
             <div>
                 <h1>A GROUP</h1>
@@ -12,4 +11,4 @@ class GroupShow extends React.Component {
     }
 }
 
-export default GroupShow;
+export default DocumentShow;

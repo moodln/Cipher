@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import GroupShow from "./group_show";
+import GroupShow from "./document_show";
 // import { fetchGroup } from "../../actions/group_actions";
 // import { fetchDocument } from "../../actions/document_actions";
 
