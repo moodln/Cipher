@@ -10,10 +10,9 @@ const validateDocumentInput = require('../../validation/documents')
 
 router.get('/:id', (req, res) => {
     const document = Document.findById(req.params.id)
-        .then(result => res.json(document))
+        .then(result => res.json(result))
         .catch(err =>
-            console.log(err)
-            // res.status(404).json({ noDocumentFound: 'No document found with that ID' })
+            res.status(404).json({ noDocumentFound: 'No document found with that ID' })
         );
 });
 
@@ -37,22 +36,19 @@ router.post('/',
 
 router.put('/:id', (req, res) => {
     
-    const document = Document.findById(req.params.id)
-    Document.updateOne({id: document.schema.paths._id}, {  
+    Document.updateOne({'_id': ObjectId(req.params.id).toString()}, {  
         $set: {
             body: req.body.body
         },
     })
         .then(result => {
-            
             if (result.modifiedCount > 0) {
                 res.json('successfully updated')
             } else {
                 res.json('nothing was modified in this document')
-            }})
+        }})
         .catch(err =>
-            console.log(err)
-            // res.status(404).json({ noDocumentFound: 'No document found with that ID' })
+            res.status(404).json({ noDocumentFound: 'No document found with that ID' })
         );
 });
 
