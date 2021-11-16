@@ -20,10 +20,11 @@ $deep-blue: #011925;
 }
 
 .splash-main{
-    // background-image: -webkit-linear-gradient(top, $main-color7, $main-color7),image-url("header.jpg");
+    background-image: url("../../../assets/images/main_splash.png");
     background-size: cover;
     background-repeat: no-repeat;
-    // background-position: 0 30%;
+    background-position: 0% 60%;
+    // background-size: 100% 120%;
     width: 100%;
     background-color: $deep-blue;
     box-shadow: $blue 0px 4px 6px -5px;
