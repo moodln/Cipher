@@ -1,7 +1,5 @@
-
 import axios from 'axios';
 
-// We've been using this method in previos steps
 export const setAuthToken = token => {
   if (token) {
     axios.defaults.headers.common['Authorization'] = token;
@@ -10,10 +8,10 @@ export const setAuthToken = token => {
   }
 };
 
-export const signup = (userData) => {
-  return axios.post('/api/users/register', userData);
+export const createUser = user => {
+  return axios.post('/api/users/register', user);
 };
 
-export const login = (userData) => {
-  return axios.post('/api/users/login', userData);
+export const createSession = user => {
+  return axios.post('/api/users/login', user);
 };
