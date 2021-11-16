@@ -9,6 +9,14 @@ $deep-blue: #011925;
     flex-direction: column;
     align-items: center;
     background-color: $deep-blue;
+    // font-family: $sans-serif-IBM;
+}
+
+
+* {
+    color: #fff;
+    font-family: $sans-serif-IBM;
+    font-weight: 400;
 }
 
 .splash-main{
