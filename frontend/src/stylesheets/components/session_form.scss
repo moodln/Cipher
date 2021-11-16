@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap');
+$sans-serif-IBM: "IBM Plex Sans", sans-serif; // 400, 500
+$deep-blue: #0E1525;
+
+.session {
+    width: 100%;
+    min-height: 100vh;
+    background-color: $deep-blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    * {
+        color: #fff;
+        font-family: $sans-serif-IBM;
+        font-weight: 400;
+    }
+}
+
+.session-form {
+    width: 240px;
+    position: relative;
+    top: 250px;
+
+    h1 {
+        font-size: 20px;
+        margin-bottom: 20px;
+        font-weight: 500;
+    }
+
+    input {
+        font-size: 14px;
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 8px;
+        background-color: rgb(28, 35, 51);
+        border: 1px solid rgb(78, 85, 105);
+        cursor: default;
+
+        &:hover {
+            border-color: rgb(0, 83, 166);
+            box-shadow: 0 0 5px rgb(0, 83, 166);
+        }
+
+        &:focus {
+            border-color: rgb(1, 105, 209);
+            box-shadow: 0 0 5px rgb(0, 83, 166);
+        }        
+    }
+
+    .session-form-submit {
+        text-align: center;
+        color: rgb(218, 218, 218);
+        background-color: #0053A6;
+        transition: .4s;
+        border: none;
+        cursor: pointer;
+
+        &.demo-login {
+            color: #fff;
+            background-color: #0079F2;
+        }
+    }
+
+    .bright {
+        color: #fff;
+        background-color: #0079F2;
+    }
+
+    .session-form-errors {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 2em;
+    }
+}

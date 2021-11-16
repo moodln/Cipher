@@ -241,6 +241,10 @@ textarea {
   text-transform: inherit; /* 2 */
 }
 
+input:focus {
+  outline: none;
+}
+
 /**
  * Reset radio and checkbox appearance to preserve their look in iOS.
  */
