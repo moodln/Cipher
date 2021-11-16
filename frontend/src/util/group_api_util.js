@@ -5,7 +5,7 @@ export const fetchCurrentUserGroups = () => {
 };
 
 export const createGroupWithProblem = (problemId) => {
-  return axios.post('/api/users/groups', {headers: {problemId}});
+  return axios.post('/api/groups/', {headers: {problemId}});
 }
 
 export const fetchGroup = (groupId) => {

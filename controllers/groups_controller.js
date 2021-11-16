@@ -27,7 +27,7 @@ const createGroup = (req, res) => {
 
 const getCurrUserGroups = (req, res) => {
   // console.log(`res: `, res);
-  Group.find({ user: req.user.id}, (err, groups) => {
+  Group.find({ users: req.user.id}, (err, groups) => {
     console.log(`groups: `, groups);
     return res.json(groups)
   });
@@ -36,8 +36,11 @@ const getCurrUserGroups = (req, res) => {
 const retrieveGroup = (req, res) => {
   console.log(`req: `, req);
   Group.findById(req.params.groupId, (err, group) => {
-    console.log(`group: `, group);
-    return res.json(group)
+    if (group.users.includes(req.user.id)) {
+      return res.json(group)
+    } else {
+      return res.status(400).json({error: "You do not have access to this group"})
+    }
   });
 }
 

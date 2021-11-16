@@ -15,8 +15,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const users = require("./routes/api/users");
-// const groups = require("./routes/api/groups");
-// const invites = require("./routes/api/invites");
+const groups = require("./routes/api/groups");
+const invites = require("./routes/api/invites");
 const documents = require("./routes/api/documents");
 
 mongoose
@@ -31,8 +31,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use("/api/users", users);
-// app.use("/api/groups", groups);
-// app.use("/api/invites", invites);
+app.use("/api/groups", groups);
+app.use("/api/invites", invites);
 app.use("/api/documents", documents);
 
 const port = process.env.PORT || 3300;

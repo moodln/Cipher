@@ -1,26 +1,53 @@
-// const Group = require("../models/Group");
-
+const Invite = require("../models/Invite");
 const Group = require("../models/Group");
 
 const createInvite = (req, res) => {
-
-  const newInvite = new Invite({
-    invitee: req.headers.userId,
+  Invite.findOne({invitee: req.headers.inviteeid,
     inviter: req.user.id,
-    group: req.headers.groupId
-  })
-  newInvite.save().then( (newInvite) => {
-    res.json(newInvite);
+    group: req.headers.groupid})
+  .then( (invite) => {
+    if (invite) return res.json({error: "You have already invited them to this group"});
+    const newInvite = new Invite({
+      invitee: req.headers.inviteeid,
+      inviter: req.user.id,
+      group: req.headers.groupid
+    })
+    newInvite.save().then( (newInvite) => {
+      res.json(newInvite);
+    } )
+
   } )
 }
 
 const deleteInvite = (req, res) => {
-  Invite.findbyId(req.params.inviteId, (err, invite) => {
-    if (req.headers.response === true) {
-      Group.findById(invite.group), (err, group) => {
+  console.log(`req.params.inviteId: `, req.params.inviteId);
+  Invite.findById(req.params.inviteId, (err, invite) => {
+    
+    if (req.headers.response === "true") {
+      
+      Group.findById(invite.group, (err, group) => {
         group.users.push(req.user.id)
-      }
+        group.save();
+      })
     }
+    Invite.findByIdAndDelete(req.params.inviteId)
+    .then( () => res.json({success: true}))
+})
+
+  
+  .catch(err => console.log("error: ", err));
+}
+
+const getCurrUserInvites = (req, res) => {
+  Invite.find({ invitee: req.user.id}, (err, invites) => {
+    return res.json(invites)
+  });
+}
+
+const getCurrUserOutcomingInvites = (req, res) => {
+  // console.log(`res: `, res);
+  Invite.find({ inviter: req.user.id}, (err, invites) => {
+    return res.json(invites)
   });
 }
 
@@ -29,5 +56,7 @@ const deleteInvite = (req, res) => {
 module.exports = {
   createInvite,
   deleteInvite,
+  getCurrUserInvites,
+  getCurrUserOutcomingInvites
 }
 

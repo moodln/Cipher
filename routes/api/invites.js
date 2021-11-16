@@ -7,6 +7,6 @@ const { createInvite, deleteInvite } = require("../../controllers/invites_contro
 
 
 router.post('/', passport.authenticate('jwt', {session: false}), createInvite);
-router.get('/:inviteId', passport.authenticate('jwt', {session: false}), deleteInvite);
+router.delete('/:inviteId', passport.authenticate('jwt', {session: false}), deleteInvite);
 
 module.exports = router;

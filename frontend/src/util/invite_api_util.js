@@ -9,5 +9,5 @@ export const inviteUserToGroup = (inviteeId, groupId) => {
 }
 
 export const inviteResolution = (inviteId, response) => {
-  return axios.post('/api/users/invites', {headers: {inviteId, response}});
+  return axios.delete(`/api/invites/${inviteId}`, {headers: {response}});
 }
