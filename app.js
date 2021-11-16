@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 app.use("/api/users", users);
 app.use("/api/documents", documents);
 
-// const port = process.env.PORT || 3300;
+const port = process.env.PORT || 3300;
 app.listen(process.env.PORT || 3300, function () {
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
