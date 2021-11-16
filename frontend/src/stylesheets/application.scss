@@ -1,8 +1,9 @@
 /* Base */
-@import "base/reset.css";
-@import "base/fonts.css";
+@import "base/reset.scss";
+@import "base/fonts.scss";
 
 /*  Components */
 @import "./components/navbar/navbar.scss";
-
+@import "./components/session_form.scss";
 @import "./components/splash/splash.scss"
+
