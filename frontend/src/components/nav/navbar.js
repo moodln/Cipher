@@ -41,7 +41,7 @@ class NavBar extends React.Component {
         <div className="nav-link-div">
           <div className="nav-link-profile-drop">
             <div className="nav-link-profile-img-div">
-              <image className="nav-link-profile-img"></image>
+              <img className="nav-link-profile-img"></img>
             </div>
             <div className="nav-dropdown-content">
               <Link className="nav-drop-link" to={'/tweets'}>All Tweets</Link>
