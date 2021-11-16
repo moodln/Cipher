@@ -1,0 +1,70 @@
+.problem-index {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.problem-index-header{
+    background-image: linear-gradient(to bottom, transparent, $blue-darkest),url("../../../assets/images/problems-header.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0% 60%;
+    // background-size: 100% 120%;
+    width: 100%;
+    background-color: $blue-darkest;
+    padding-top: 50px;
+
+
+    .problem-index-header-div{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 20px auto;
+
+        .problem-intro{
+            font-size: 30px;
+            margin-bottom: 30px;
+            font-weight: 500;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px white;
+        }
+
+        .problem-index-instructions{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+            .problem-summary-item{
+                width: 20%;
+                margin: 20px 15px;
+
+                .problem-summary-item-header{
+                    font-size: 22px;
+                    font-weight: 500;
+                    padding-bottom: 10px;
+                    text-shadow: 0 0 50px white;
+                }
+
+                .problem-summary-item-subtitle{
+                    font-size: 18px;
+                    line-height: 22px;
+                }
+            }
+
+
+        }
+    }
+    
+
+
+}
+
+.problem-index-section {
+
+    li {
+        border: 2px solid orange;
+        height: 150px;
+        width: 300px;
+    }
+}
