@@ -1,9 +1,10 @@
 /* Base */
 @import "base/reset.scss";
 @import "base/fonts.scss";
+@import "base/colors.scss";
 
 /*  Components */
 @import "./components/navbar/navbar.scss";
+@import "./components/splash/splash.scss";
 @import "./components/session_form.scss";
-@import "./components/splash/splash.scss"
-
+@import "./components/problem_index.scss";

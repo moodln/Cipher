@@ -1,9 +1,7 @@
-$deep-blue: #0E1525;
-
 .session {
     width: 100%;
     min-height: 100vh;
-    background-color: $deep-blue;
+    background-color: $blue-darkest;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,33 +35,37 @@ $deep-blue: #0E1525;
         cursor: default;
 
         &:hover {
-            border-color: rgb(0, 83, 166);
-            box-shadow: 0 0 5px rgb(0, 83, 166);
+            // border-color: rgb(0, 83, 166);
+            border-color: $blue-light;
+            // box-shadow: 0 0 5px rgb(0, 83, 166);
+            box-shadow: 0 0 5px $blue-light;
         }
 
         &:focus {
-            border-color: rgb(1, 105, 209);
-            box-shadow: 0 0 5px rgb(0, 83, 166);
+            // border-color: rgb(1, 105, 209);
+            border-color: $blue-lightest;
+            // box-shadow: 0 0 5px rgb(0, 83, 166);
+            box-shadow: 0 0 5px $blue-light;
         }        
     }
 
     .session-form-submit {
         text-align: center;
         color: rgb(218, 218, 218);
-        background-color: #0053A6;
+        background-color: $blue-light;
         transition: .4s;
         border: none;
         cursor: pointer;
 
         &.demo-login {
             color: #fff;
-            background-color: #0079F2;
+            background-color: $blue-lightest;
         }
     }
 
     .bright {
         color: #fff;
-        background-color: #0079F2;
+        background-color: $blue-lightest;
     }
 
     .session-form-errors {
