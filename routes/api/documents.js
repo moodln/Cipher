@@ -27,7 +27,7 @@ router.post('/',
   
       const newDocument = new Document({
         body: req.body.body,
-        // problem: req.problem.id
+        // problem: req.body.problem.id
       });
   
       newDocument.save().then(document => res.json(document));
@@ -54,9 +54,11 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const document = Document.findById(req.params.id)
-    Document.remove(document)
-        .then(result => res.json(result))
-        .catch(err => res.json(err))
+    Document.deleteOne( { "_id" : ObjectId(req.params.id).toString() } )
+    .then(result => res.json(result))
+    .catch(err => 
+        res.json(err)
+    )
 });
 
 
