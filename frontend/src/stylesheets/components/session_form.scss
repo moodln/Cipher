@@ -1,9 +1,14 @@
-$deep-blue: #0E1525;
+$blue-dark: #0E1525;
+$blue-medium: #0B0055;
+$blue-light: #00017A;
+$orange-dark: #F95D1D;
+$orange-medium: #FC6D1C;
+$orange-light: #FE780E;
 
 .session {
     width: 100%;
     min-height: 100vh;
-    background-color: $deep-blue;
+    background-color: $blue-dark;
     display: flex;
     flex-direction: column;
     align-items: center;

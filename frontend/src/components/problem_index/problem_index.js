@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 class ProblemIndex extends React.Component {
     componentWillMount() {
-        this.props.fetchProblems();
+        // this.props.fetchProblems();
     }
 
     render() {
@@ -11,7 +11,7 @@ class ProblemIndex extends React.Component {
             <div className="problem-index container">
                 <h1>ALL PROBLEMS</h1>
                 <ul className="problem-index-section">
-                {
+                {/* {
                     this.props.problems.map(problem => (
                         // li onClick should create document and group,
                         // then this.props.history.push(`/groups/${groupId}`) to group show page
@@ -19,7 +19,7 @@ class ProblemIndex extends React.Component {
                             <p>{problem.title}</p>
                         </li>
                     ))
-                }
+                } */}
                 </ul>
 
 
