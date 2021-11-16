@@ -15,16 +15,16 @@ class Splash extends React.Component {
                 </section>
                 <section className="splash-summary">
                     <div className="splash-summary-item">
-                        <h2 className="splash-summary-item-header">Thing 1</h2>
-                        <h4 className="splash-summary-item-subtitle">Let's do thing 1</h4>
+                        <h2 className="splash-summary-item-header">Code</h2>
+                        <h4 className="splash-summary-item-subtitle">Choose from a selection of 100+ practice problems</h4>
                     </div>
                     <div className="splash-summary-item">
-                        <h2 className="splash-summary-item-header">Thing 2</h2>
-                        <h4 className="splash-summary-item-subtitle">Let's do thing 2</h4>
+                        <h2 className="splash-summary-item-header">Collaborate</h2>
+                        <h4 className="splash-summary-item-subtitle">Build strong connections with other developers using our video chat feature</h4>
                     </div>
                     <div className="splash-summary-item">
-                        <h2 className="splash-summary-item-header">Thing 3</h2>
-                        <h4 className="splash-summary-item-subtitle">Let's do thing 3</h4>
+                        <h2 className="splash-summary-item-header">Cultivate</h2>
+                        <h4 className="splash-summary-item-subtitle">Practice your algorithmic skills in a collaborative coding environment</h4>
                     </div>
                 </section>
                 <section className="splash-signup">
@@ -36,7 +36,7 @@ class Splash extends React.Component {
                 <section className="splash-features">
                     <div className="splash-features-item">
                         <div className="splash-features-item-img-div left" >
-                            <image></image>
+                            <img></img>
                         </div>
                         <div className="splash-features-item-description right">
                             <h2>Feature 1</h2>
@@ -49,12 +49,12 @@ class Splash extends React.Component {
                             <h4>description of feature 2</h4>
                         </div>
                         <div className="splash-features-item-img-div right" >
-                            <image></image>
+                            <img></img>
                         </div>
                     </div>
                     <div className="splash-features-item">
                         <div className="splash-features-item-img-div left" >
-                            <image></image>
+                            <img></img>
                         </div>
                         <div className="splash-features-item-description right">
                             <h2>Feature 3</h2>

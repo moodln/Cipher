@@ -63,6 +63,7 @@ $deep-blue: #011925;
 
     .splash-summary-item{
         width: 35%;
+        height: 200px;
         display:flex;
         flex-direction: column;
         justify-content: center;
@@ -84,6 +85,7 @@ $deep-blue: #011925;
             margin-top: 5px;
             color: $blue;
             font-weight: 600;
+            text-align: center;
         }
     }
 }
