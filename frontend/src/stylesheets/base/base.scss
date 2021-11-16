@@ -1,3 +1,16 @@
-.container{
-    width: 100vw;
+// .container{
+//     width: 100%;   
+// }
+
+#root {
+    background-color: $blue-darkest;
+}
+
+.page-container{
+    position: relative;
+    min-height: 100vh;
+}
+
+.main-content{
+    padding-bottom: 200px;
 }
