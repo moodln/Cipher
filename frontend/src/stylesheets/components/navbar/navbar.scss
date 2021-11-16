@@ -33,7 +33,7 @@
     .nav-link-profile-drop{
         position: relative;
         background-color: black;
-        
+        // padding: 20px;
 
         .nav-link-profile-img-div{
             background-color: blue;
@@ -45,11 +45,13 @@
             display: none;
             position: absolute;
             background-color: #011925;
+            background-clip: content-box;
             min-width: 160px;
             border-radius: 3px;
             z-index: 1;
             right: 0px;
-            top: calc(100% + 5px);
+            top: calc(100%);
+            border-top: 5px solid transparent;
             box-shadow: blue 0px 4px 6px -5px, blue 0px 2px 6px -5px;            
             
             .nav-drop-link{
@@ -59,9 +61,12 @@
                 display: block;
                 text-align: left;                
             }
-        }
-
-        .nav-link-profile-img-div:hover + .nav-dropdown-content{
+        }        
+    }
+    
+    .nav-link-profile-drop:hover {
+       
+        .nav-dropdown-content{
             display: flex;
             flex-direction: column;
         }
