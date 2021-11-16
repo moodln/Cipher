@@ -32,10 +32,10 @@ class NavBar extends React.Component {
   //     hover: !this.state.hover
   //   });
   // }
+  // const appear = this.state.hover ? "nav-dropdown-content appear" : "nav-dropdown-content";
 
   // Selectively render links dependent on whether the user is logged in
   getLinks() {
-    // const appear = this.state.hover ? "nav-dropdown-content appear" : "nav-dropdown-content";
     if (this.props.loggedIn) {
       return (
         <div className="nav-link-div">
