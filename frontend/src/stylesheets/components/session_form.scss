@@ -35,16 +35,12 @@
         cursor: default;
 
         &:hover {
-            // border-color: rgb(0, 83, 166);
             border-color: $blue-light;
-            // box-shadow: 0 0 5px rgb(0, 83, 166);
             box-shadow: 0 0 5px $blue-light;
         }
 
         &:focus {
-            // border-color: rgb(1, 105, 209);
             border-color: $blue-lightest;
-            // box-shadow: 0 0 5px rgb(0, 83, 166);
             box-shadow: 0 0 5px $blue-light;
         }        
     }
