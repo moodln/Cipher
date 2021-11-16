@@ -52,13 +52,21 @@ Cipher will allow you to:
       - (GET#api/documents/user/:user_id, GET#api/problems, GET#api/friends/user/:user_id)
   - Collect information on websockets and implement it (Maria)
 ### Day 2 
-  - Implement videochat feature (Maddie)
-  - Work on document index page (Pasan)
+  - Test deployment to Heroku (All)
+  - Finish problems routes, implement videochat feature (Maddie)
+  - Work on problems index page, go through all components and make sure colors match (Pasan)
   - Work on document show page (collaborative text area) (Rebecca)
     - auto-save flash message
-  - Work on Practice Problem Containers and components  (Maria)
-  
+  - Wrap up invites routes, work on Practice Problem containers and components (Maria)
+
 ### Day 3
-  - Complete production README
-  - Refine CSS
-  - Finish testing and debugging 
+  - Finish videochat feature (Maddie)
+  - Monaco editor for document show page (Rebecca)
+  - Work on sidebar and dashboard component (links to problems and documents, etc) (Pasan, Rebecca)
+  - Work on navbar notifications for invites (Maria)
+
+### Day 4
+  - Complete production README (Maddie)
+  - Refine CSS (Pasan, Rebecca)
+  - Finish testing and debugging (Maria)
+  - Heroku deployment (All)
