@@ -1,7 +1,8 @@
-# [Cipher](https://cipher-mern.herokuapp.com/#/)
+# Cipher
 
 ###  GOOGLE DOCS meets CODECADEMY meets ZOOM
 
+[live site](https://cipher-mern.herokuapp.com/#/)
 
 
 # Background and Overview 
