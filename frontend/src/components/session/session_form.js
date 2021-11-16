@@ -1,7 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-// import { LOG_IN } from "./login_form_container";
-// import { SIGN_UP } from "./signup_form_container";
 
 class SessionForm extends React.Component {
     constructor(props) {
