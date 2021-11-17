@@ -37,7 +37,20 @@ app.use("/api/invites", invites);
 app.use("/api/documents", documents);
 app.use("/api/problems", problems);
 
+const httpServer = require("http").createServer(app);
+const io = require("socket.io")(httpServer);
+
+io.on("connection", socket => {
+  console.log("User online");
+
+  // if server receives event with name "canvas-data", 
+  // message will be broadcast to all other connected users
+  socket.on("canvas-data", data => {
+    socket.broadcast.emit("canvas-data", data);
+  })
+})
+
 const port = process.env.PORT || 3300;
-app.listen(process.env.PORT || 3300, function () {
+httpServer.listen(process.env.PORT || 3300, function () {
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
