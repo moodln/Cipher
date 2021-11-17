@@ -1,93 +1,69 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
-// import * as CodeMirror from "codemirror";
-import * as monaco from "monaco-editor";
-// monaco.init().then(monaco => console.log(monaco.KeyCode));
+import Editor from "@monaco-editor/react";
 
-
-class Editor extends React.Component {
-    // Pass URL of server to connect client to server:
-    socket = io("http://localhost:3300");
-
-    constructor(props) {
-        super(props);
-        // this.state = { body: this.props.document.body };
-        this.state = { body: ["// Your code goes here...\n"].join('\n') };
-
-        this.socket.on("connect", () => {
+function EditorShow() {
+    const socket = io("http://localhost:3300");
+    socket.on("connect", () => {
             console.log("You have successfully connected");
-        })
+    })
 
-        this.handleChange = this.handleChange.bind(this);
+    const editorRef = useRef(null);
+    const [body, setBody] = useState("// Your code goes here...\n");
+
+    // Code to receive event:
+    let timeout;
+    socket.on("editor-data", incomingData => {
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            if (incomingData !== body) {
+                setBody(incomingData);
+            }
+        }, 750);
+    })
+
+    function handleEditorDidMount(editor, monaco) {
+        editorRef.current = editor;
     }
 
-    // update(field) {
-    //     return event => {
-    //         this.setState({ [field]: event.target.value }, () => {
-    //             // Code to emit event:
-    //             const data = this.state.body;
-    //             this.socket.emit("editor-data", data);
-    //         });
-    //     }
-    // }
+    useEffect(() => {
+        if (editorRef.current) {
+            if (editorRef.current.getValue() !== body) {
+                const cursorPosition = editorRef.current.getPosition();
+                editorRef.current.setValue(body);
+                editorRef.current.setPosition(cursorPosition);
+            }
+            socket.emit("editor-data", body);
+        }
+    }, [body, socket, editorRef]);
 
-    componentDidMount() {
-        //     const textarea = document.querySelector(".editor-textarea");
-        //     this.codeMirror = CodeMirror.fromTextArea(textarea);
-        //     this.codeMirror.on("change", event => {
-        //         const data = this.state.body;
-        //         this.socket.emit("editor-data", data);
-        //     })
-        this.editor = monaco.editor.create(document.querySelector(".editor"), {
-            value: this.state.body,
-            language: "javascript",
-            theme: "vs-dark",
-            minimap: { enabled: false },
-            fontSize: "16px"
-        });
-        
-        this.editor.getModel().onDidChangeContent(event => {
-            this.handleChange();
-        });
-        
-        // Code to receive event:
-        this.socket.on("editor-data", data => {
-            // const textarea = document.querySelector(".editor-textarea");
-            // textarea.innerHTML = data;
-            if (this.timeout) clearTimeout(this.timeout);
-            this.timeout = setTimeout(() => {
-                if (data !== this.state.body) {
-                    this.setState({ body: data, status: "RECEIVING" }, () => {
-                        // const cursorPosition = this.editor.getPosition();
-                        this.editor.getModel().setValue(data);
-                        // this.editor.setPosition(cursorPosition);
-                    })
-                }
-            }, 1000);
-        })
-    }
-
-    handleChange() {
-        const data = this.editor.getValue();
-        if (data !== this.state.body) {
-            this.setState({ body: data, status: "SENDING" }, () => {
-                const data = this.state.body;
-                this.socket.emit("editor-data", data);
-            });
+    function handleEditorChange() {
+        const data = editorRef.current.getValue();
+        if (data !== body) {
+            setBody(data);
         }
     }
 
-    render() {
-        return (
-            <div className="editor" style={{"width": "800px", "height": "600px", "border": "1px solid red"}}>
-                {/* <textarea
-                    className="editor-textarea"
-                    onChange={this.update("body")}
-                    value={this.state.body}
-                    style={{ "backgroundColor": "white", "width": "300px", "height": "300px", "color": "black" }}></textarea> */}
-            </div>
-        )
+    const options = {
+        minimap: { enabled: false },
+        fontSize: "16px",
+        letterSpacing: "1em"
     }
+    
+    return (
+        <div>
+            <Editor
+                className="editor"
+                height="600px"
+                width="800px"
+                defaultLanguage="javascript"
+                defaultValue={body}
+                theme="vs-dark"
+                options={options}
+                onMount={handleEditorDidMount}
+                onChange={handleEditorChange} />
+        </div>
+    );
 }
 
-export default Editor;
+export default EditorShow;
