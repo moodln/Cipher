@@ -1,5 +1,6 @@
 const Group = require("../models/Group");
 const Problem = require("../models/Problem");
+const User = require("../models/User");
 
 const createGroup = (req, res) => {
 
@@ -26,15 +27,37 @@ const createGroup = (req, res) => {
 }
 
 const getCurrUserGroups = (req, res) => {
-  // console.log(`res: `, res);
-  Group.find({ users: req.user.id}, (err, groups) => {
-    console.log(`groups: `, groups);
-    return res.json(groups)
-  });
+  let allUsersId = [];
+  const usersById = {};
+
+  
+  Group.find({ users: [req.user.id]}, (err, groups) => {
+    if (err) throw err;
+    const groupsById = {};
+
+    Object.values(groups).forEach(group => {
+      groupsById[group.id] = group;
+      allUsersId = allUsersId.concat(group.users);
+    });
+
+    const allGroupsId = Object.values(groups).map((group) => {
+      return group.id
+    });
+    
+    
+    User.find({ "_id": { $in: allUsersId} }, (err, usersResult) => {
+      if (err) throw err;
+      usersResult.forEach(user => {
+        
+        usersById[user.id] = user;
+      });
+      res.json({groupsById, allGroupsId, allUsersId, usersById})
+    })
+  })
+  .catch(err => console.log("errors: ", err));
 }
 
 const retrieveGroup = (req, res) => {
-  console.log(`req: `, req);
   Group.findById(req.params.groupId, (err, group) => {
     if (group.users.includes(req.user.id)) {
       return res.json(group)
