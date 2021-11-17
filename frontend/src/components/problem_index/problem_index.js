@@ -32,7 +32,7 @@ class ProblemIndex extends React.Component {
     }
 
     render() {
-        if (this.props.problems.length === 0) {
+        if (!this.props.problems) {
             return null;
         }
         console.log(this.props);
