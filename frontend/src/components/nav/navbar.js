@@ -9,12 +9,15 @@ class NavBar extends React.Component {
     // };
     this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
+    this.handleClickSignup = this.handleClickSignup.bind(this);
+    this.handleClickLogin = this.handleClickLogin.bind(this);
     // this.handleHover = this.handleHover.bind(this);
   }
 
   logoutUser(e) {
     e.preventDefault();
-    this.props.logout();
+    this.props.logout()
+    this.props.history.push("/");
   }
 
   componentDidMount() {
@@ -25,6 +28,24 @@ class NavBar extends React.Component {
         document.querySelector(".navbar-section").className = "navbar-section container";
       }
     })
+  }
+
+  handleClickSignup() {
+    if (this.props.location.pathname === "/register") {
+      this.props.history.replace("/register");
+    }
+    else {
+      this.props.history.push("/register");
+    }
+  }
+
+  handleClickLogin() {
+    if (this.props.location.pathname === "/login") {
+      this.props.history.replace("/login");
+    }
+    else {
+      this.props.history.push("/login");
+    }
   }
 
   // handleHover() {
@@ -46,9 +67,9 @@ class NavBar extends React.Component {
               </svg>
             </div>
             <div className="nav-dropdown-content">
-              <Link className="nav-drop-link" to={'/tweets'}>All Tweets</Link>
-              <Link className="nav-drop-link" to={'/dashboard'}>Dashboard</Link>
-              <Link className="nav-drop-link" to={'/new_tweet'}>Write a Tweet</Link>
+              <Link className="nav-drop-link" to='/tweets'>All Tweets</Link>
+              <Link className="nav-drop-link" to='/dashboard'>Dashboard</Link>
+              <Link className="nav-drop-link" to='/new_tweet'>Write a Tweet</Link>
               <button className="nav-drop-link" onClick={this.logoutUser}>Logout</button>
             </div>
           </div>
@@ -57,8 +78,10 @@ class NavBar extends React.Component {
     } else {
       return (
         <div className="nav-link-div">
-          <Link className="nav-link" to={'/signup'}>Signup</Link>
-          <Link className="nav-link" to={'/login'}>Login</Link>
+          <button className="nav-link" onClick={this.handleClickSignup}>Signup</button>
+          <button className="nav-link" onClick={this.handleClickLogin}>Login</button>
+          {/* <Link className="nav-link" to={'/register'}>Signup</Link> */}
+          {/* <Link className="nav-link" to={'/login'}>Login</Link> */}
         </div>
       );
     }

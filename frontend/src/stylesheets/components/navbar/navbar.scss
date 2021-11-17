@@ -22,6 +22,7 @@
 .nav-link-div{
     margin-right: 30px;
     margin-top: 10px;
+    display: flex;
 
     .nav-link{
         color: white;
@@ -29,6 +30,7 @@
         border-radius: 3px;
         padding: 10px 20px;
         margin-right: 10px;
+        height: 100%;
     }
 
     .nav-link:hover{

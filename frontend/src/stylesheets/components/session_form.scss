@@ -70,3 +70,9 @@
         line-height: 2em;
     }
 }
+
+@media all and (min-width: 1600px) {
+    .session-form {
+        transform: scale(2);
+    }
+}

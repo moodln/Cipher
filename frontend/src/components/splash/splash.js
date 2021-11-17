@@ -8,8 +8,8 @@ class Splash extends React.Component {
             <div className="splash-section container">
                 <section className="splash-main">
                     <div className="splash-main-info-container">
-                        <h1 className="splash-main-header">Come together and Code</h1>
-                        <h4 className="splash-main-subtitle">Work with friends </h4>
+                        <h1 className="splash-main-header">Come Together to Code</h1>
+                        <h4 className="splash-main-subtitle">Everything you need in a collaborative coding environment</h4>
                         <Link to="/register" className="splash-code-btn">CODE</Link>
                     </div>
                 </section>
@@ -39,14 +39,36 @@ class Splash extends React.Component {
                             <img></img>
                         </div>
                         <div className="splash-features-item-description right">
-                            <h2>Feature 1</h2>
-                            <h4>description of feature 1</h4>
+                            <h2>Integrated coding environment</h2>
+                            <h4>
+                                Choose a practice problem from your home page
+                                to automatically open a new document where you
+                                can begin practicing your JavaScript skills with
+                                our integrated Monaco Editor. With the use of web sockets, multiple
+                                users can edit the same document, sending and
+                                receiving live updates as they and their
+                                collaborators type.
+                            </h4>
+                            <br></br>
+                            <h4>
+                                Save your work, close your browser, and step
+                                away from your computer. When you come back,
+                                you can access all the problems you have
+                                edited from your dashboard.
+                            </h4>
                         </div>
                     </div>
                     <div className="splash-features-item">
                         <div className="splash-features-item-description left">
-                            <h2>Feature 2</h2>
-                            <h4>description of feature 2</h4>
+                            <h2>Live video</h2>
+                            <h4>
+                                Collaborative code requires communication, and
+                                communication requires face-to-face interaction.
+                                Again with the use of websockets, send a video
+                                request to a friend, giving them the option to
+                                accept your incoming call and begin viewing your
+                                lovely face.
+                            </h4>
                         </div>
                         <div className="splash-features-item-img-div right" >
                             <img></img>
@@ -57,8 +79,13 @@ class Splash extends React.Component {
                             <img></img>
                         </div>
                         <div className="splash-features-item-description right">
-                            <h2>Feature 3</h2>
-                            <h4>description of feature 3</h4>
+                            <h2>Groups & friends</h2>
+                            <h4>Browse from a list of users to
+                                invite other developers to join your group. When
+                                they accept your invitation, you can begin
+                                working together immediately. Create as many
+                                groups with as many collaborators as you want.
+                            </h4>
                         </div>
                     </div>
                 </section>
