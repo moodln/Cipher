@@ -2,21 +2,30 @@ const Invite = require("../models/Invite");
 const Group = require("../models/Group");
 
 const createInvite = (req, res) => {
-  Invite.findOne({invitee: req.headers.inviteeid,
+  
+  Invite.findOne(
+    {invitee: req.body.headers.inviteeId,
     inviter: req.user.id,
-    group: req.headers.groupid})
-  .then( (invite) => {
-    if (invite) return res.json({error: "You have already invited them to this group"});
-    const newInvite = new Invite({
-      invitee: req.headers.inviteeid,
-      inviter: req.user.id,
-      group: req.headers.groupid
+    group: req.body.headers.groupId},
+    (err, invite) => {
+      console.log(`invite: `, invite);
+      
+      if (invite) return res.json({error: "You have already invited them to this group"});
+      
+      const newInvite = new Invite({
+        invitee: req.body.headers.inviteeId,
+        inviter: req.user.id,
+        group: req.body.headers.groupId
+      })
+      newInvite.save().then( (newInvite) => {
+        
+        res.json(newInvite);
+      } )
     })
-    newInvite.save().then( (newInvite) => {
-      res.json(newInvite);
-    } )
 
-  } )
+
+
+  
 }
 
 const deleteInvite = (req, res) => {

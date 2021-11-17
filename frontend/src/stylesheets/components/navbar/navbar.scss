@@ -42,10 +42,22 @@
         // padding: 20px;
 
         .nav-link-profile-img-div{
-            background-color: $blue-light;
+            // background-color: $blue-light;
+            box-sizing: border-box;
+            // border: 2px solid $blue-light;
             width: 50px;
             height: 50px;
-        }      
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            svg{
+                height: 40px;
+                width: 40px;
+                fill: white;
+            }
+        }
+        
         
         .nav-dropdown-content{
             display: none;
@@ -75,6 +87,15 @@
         .nav-dropdown-content{
             display: flex;
             flex-direction: column;
+        }
+        .nav-link-profile-img-div{
+            border:2px solid ;
+
+            svg{
+                height: 40px;
+                width: 40px;
+                fill: $blue-lightest;
+            }
         }
     }
 }
