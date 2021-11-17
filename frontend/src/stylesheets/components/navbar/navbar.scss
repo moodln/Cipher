@@ -1,4 +1,4 @@
-.navbar-section{
+.navbar-section {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -11,20 +11,20 @@
     z-index: 1;
 }
 
-.logo{
+.logo {
     font-size: 50px;
     color: white;
-    text-shadow: 0 0 5px $blue-lightest;
+    text-shadow: 0 0 10px $blue-lightest;
     margin-left: 30px;
     margin-top: 5px;
 }
 
-.nav-link-div{
+.nav-link-div {
     margin-right: 30px;
     margin-top: 10px;
     display: flex;
 
-    .nav-link{
+    .nav-link {
         color: white;
         background-color: $blue-light;
         border-radius: 3px;
@@ -33,33 +33,36 @@
         height: 100%;
     }
 
-    .nav-link:hover{
+    .nav-link:hover {
         background-color: $blue-lightest;
     }
-    .nav-link-profile-drop{
+    .nav-link-profile-drop {
         position: relative;
         background-color: $blue-darkest;
         // padding: 20px;
 
-        .nav-link-profile-img-div{
+        .nav-link-profile-img-div {
             // background-color: $blue-light;
             box-sizing: border-box;
-            // border: 2px solid $blue-light;
+            border: 2px solid transparent;
             width: 50px;
             height: 50px;
             display: flex;
             justify-content: center;
             align-items: center;
+            cursor: pointer;
+            transition: border-color .2s;
 
-            svg{
+            svg {
                 height: 40px;
                 width: 40px;
                 fill: white;
+                transition: fill .2s;
             }
         }
         
         
-        .nav-dropdown-content{
+        .nav-dropdown-content {
             display: none;
             position: absolute;
             background-color: $blue-darkest;
@@ -72,7 +75,7 @@
             border-top: 5px solid transparent;
             box-shadow: $blue-light 0px 4px 6px -5px, $blue-light 0px 2px 6px -5px;            
             
-            .nav-drop-link{
+            .nav-drop-link {
                 color: white;
                 padding: 12px 16px;
                 text-decoration: none;
@@ -84,14 +87,14 @@
     
     .nav-link-profile-drop:hover {
        
-        .nav-dropdown-content{
+        .nav-dropdown-content {
             display: flex;
             flex-direction: column;
         }
-        .nav-link-profile-img-div{
-            border:2px solid $blue-lightest;
+        .nav-link-profile-img-div {
+            border: 2px solid $blue-lightest;
 
-            svg{
+            svg {
                 height: 40px;
                 width: 40px;
                 fill: $blue-lightest;
@@ -100,18 +103,18 @@
     }
 }
 
-.glow{
+.glow {
     background-color: $blue-darkest;
     box-shadow: $blue-light 0px 4px 6px -5px;
     transition: all 0.3s ease-in;
 }
 
-.appear{
+.appear {
     display: flex;
     flex-direction: column;
 }
 
-.nav-drop-link:hover{
+.nav-drop-link:hover {
     background-color: $blue-light;
     text-shadow: 0 0 5px $blue-lightest;
 }
