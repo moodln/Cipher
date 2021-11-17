@@ -1,16 +1,17 @@
 import { connect } from "react-redux";
-// import { fetchProblems } from "../../actions/problem_actions";
+import { fetchAllProblems } from "../../actions/problem_actions";
 import ProblemIndex from "./problem_index";
 
 const mSTP = state => {
+    // debugger
     return {
-        // problems: Object.values(state.problems.all)
+        problems: Object.values(state.entities.problems)
     }
 };
 
 const mDTP = dispatch => {
     return {
-        // fetchProblems: () => dispatch(fetchProblems())
+        fetchProblems: () => dispatch(fetchAllProblems())
     }
 };
 

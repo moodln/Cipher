@@ -2,17 +2,24 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 class ProblemIndex extends React.Component {
-    componentWillMount() {
-        // this.props.fetchProblems();
+    componentDidMount() {
+        this.props.fetchProblems();
     }
 
+    // componentWillMount() {
+    //     this.props.fetchProblems();
+    // }
+
     render() {
+        if (this.props.problems.length === 0) {
+            return null;
+        }
         return (
             <div className="problem-index container">
                 <section className="problem-index-header">
                     <div className="problem-index-header-div">
                         <div className="problem-intro">
-                            <h1>Solve problems at your own page or with friends</h1>
+                            <h1>Solve problems at your own pace or with friends</h1>
                         </div>
                         <section className="problem-index-instructions">
                             <div className="problem-summary-item">
@@ -31,18 +38,24 @@ class ProblemIndex extends React.Component {
                     </div>
                 </section>
                 <section className="problem-index-problems-section">
-                    <h1>ALL PROBLEMS</h1>
-                    <ul className="problem-index-problems-list">
-                        {/* {
-                    this.props.problems.map(problem => (
-                        // li onClick should create document and group,
-                        // then this.props.history.push(`/groups/${groupId}`) to group show page
-                        <li key={problem}>
-                            <p>{problem.title}</p>
-                        </li>
-                    ))
-                } */}
-                    </ul>
+
+                    <div className="problem-index-problems-list-div">
+                        <div className="problem-index-problems-header-div">
+                            <h1>ALL PROBLEMS</h1>
+                        </div>
+                        <ul className="problem-index-problems-list">
+                            {
+                                this.props.problems[0].map(problem => (
+                                    // li onClick should create document and group,
+                                    // then this.props.history.push(`/groups/${groupId}`) to group show page
+                                    <li className="problem-card" key={problem}>
+                                        <p>{problem.title}</p>
+                                        <p>Open</p>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
                 </section>
             </div>
         )

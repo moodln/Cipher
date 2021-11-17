@@ -2,6 +2,7 @@
     display: flex;
     width: 100%;
     flex-direction: column;
+    height: 100%;
 }
 
 .problem-index-header{
@@ -51,20 +52,67 @@
                     line-height: 22px;
                 }
             }
-
-
         }
     }
+}
+
+.problem-index-problems-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+
+    .problem-index-problems-header-div{        
+
+        h1{
+            margin: 20px auto;
+            padding: 30px;
+            font-size: 25px;          
+        }
+        
+    }
+   
+
+    .problem-index-problems-list-div{
+        width:80%;
+        max-width: 1020px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 70px;
+
+        .problem-index-problems-list{
+            flex-wrap: wrap;
+            display: flex;
+    
+    
+            .problem-card {
+                flex: 1 0 33%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 150px;
+                min-height: 150px;
+                width: 100%;
+                max-width: 310px;
+                padding: 30px;
+                margin: 15px;
+                border: 1px solid $orange-light;
+                background-color: $blue-darkest;
+                border-radius: 3px;
+                // box-shadow: 0 0px 0px $orange-light;
+                transition: all 0.2s ease-in;
+            }
+        }
+    }    
+}
     
 
 
-}
+  .problem-card:hover { 
+      transform: translate(4px, -4px);
+      box-shadow: -4px 4px 5px $orange-light;      
+  }
 
-.problem-index-section {
-
-    li {
-        border: 2px solid orange;
-        height: 150px;
-        width: 300px;
-    }
-}
