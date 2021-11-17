@@ -24,7 +24,7 @@ const App = () => (
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
 
         <ProtectedRoute exact path="/problems" component={ProblemIndexContainer} />
-        {/* <ProtectedRoute exact path="/groups/:groupId" component={GroupShowContainer} /> */}
+        <ProtectedRoute exact path="/groups/:groupId" component={GroupShowContainer} />
         <ProtectedRoute exact path="/dashboard" component={DashboardContainer} />
         {/* <ProtectedRoute exact path="/document/:documentId" component={DocumentShowContainer} /> */}
         {/* <ProtectedRoute exact path="/new_tweet" component={TweetComposeContainer} /> */}
