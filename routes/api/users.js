@@ -5,7 +5,7 @@ const { getCurrUserGroups } = require("../../controllers/groups_controller");
 const { getCurrUserInvites, getCurrUserOutcomingInvites } = require("../../controllers/invites_controller");
 
 
-const { registerUser, loginUser, currentUser } = require("../../controllers/users_controller");
+const { registerUser, loginUser, currentUser, searchForUsersToInvite } = require("../../controllers/users_controller");
 
 
 router.post('/register', registerUser);
@@ -16,5 +16,6 @@ router.post('/current', passport.authenticate('jwt', {session: false}), currentU
 router.get("/groups", passport.authenticate('jwt', {session: false}), getCurrUserGroups)
 router.get("/invites", passport.authenticate('jwt', {session: false}), getCurrUserInvites)
 router.get("/sent_invites", passport.authenticate('jwt', {session: false}), getCurrUserOutcomingInvites)
+router.get("/invite_user_search", passport.authenticate('jwt', {session: false}), searchForUsersToInvite)
 
 module.exports = router;
