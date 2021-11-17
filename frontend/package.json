@@ -22,7 +22,8 @@
     "sharedb": "^2.1.0",
     "simple-peer": "^9.11.0",
     "socket.io-client": "^4.3.2",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "webrtc-adapter": "^8.1.0"
   },
   "scripts": {
     "start": "NODE_ENV=production node_modules/react-scripts/bin/react-scripts.js start",

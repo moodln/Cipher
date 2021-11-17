@@ -1,6 +1,6 @@
-.video-container .video{
+.video-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 300px);
+    grid-template-columns: repeat(auto-fill, 400px);
     grid-auto-rows: 300px;
 }
 
@@ -9,4 +9,5 @@ video {
     height: 100%;
     object-fit: cover;
     z-index: 100;
+    filter: hue-rotate(180deg) saturate(200%);
 }
