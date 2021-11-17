@@ -8,11 +8,11 @@ class GroupIndex extends Component {
     super(props);
 
     this.state = {
-        groups: []
+      groups: []
     }
   }
   componentDidMount() {
-      this.props.fetchUserGroups();
+    this.props.fetchUserGroups();
   }
 
   // componentDidUpdate(newState) {
@@ -24,14 +24,16 @@ class GroupIndex extends Component {
       return (<div>You did not join any groups yet!</div>)
     } else {
       return (
-        <div>
-          <h2>Groups:</h2>
-          <ul>
-          {
-            this.props.groups.map(group => (
-              <GroupIndexBadgeContainer key={group["_id"]} group={group}/>
-            ))
-          }
+        <div className="problem-index-problems-section">
+          <div className="problem-index-problems-header-div">
+            <h1>Groups:</h1>
+          </div>
+          <ul className="problem-index-problems-list">
+            {
+              this.props.groups.map(group => (
+                <GroupIndexBadgeContainer key={group["_id"]} group={group} />
+              ))
+            }
           </ul>
         </div>
       );
@@ -41,7 +43,7 @@ class GroupIndex extends Component {
 
 
 const mapStateToProps = (state) => {
-  
+
   return {
     groups: Object.values(state.entities.groups.byId),
   }

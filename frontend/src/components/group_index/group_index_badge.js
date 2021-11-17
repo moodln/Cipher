@@ -15,9 +15,9 @@ class GroupIndexBadge extends Component {
 
   render() {
     const { group } = this.props;
-    
+
     return (
-      <li>
+      <li className="problem-card">
        <ul>
          {
          this.props.participants.map(user => {
@@ -40,7 +40,7 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = {
-  
+
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupIndexBadge))
