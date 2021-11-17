@@ -12,14 +12,11 @@ import DashboardContainer from './profile/dashboard';
 // import TweetComposeContainer from './problem_index/tweet_compose_container';
 import Splash from "./splash/splash";
 import Footer from "./footer/footer";
-import GroupShowDummy from "./group_show_dummy";
-
 
 const App = () => (
   <div className="page-container">
     <div className="main-content">
       <NavBarContainer />
-      {/* <GroupShowDummy /> */}
       <Switch>
         <Route exact path="/" component={Splash} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
