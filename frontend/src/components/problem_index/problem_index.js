@@ -67,24 +67,26 @@ class ProblemIndex extends React.Component {
                             <div className="problem-index-problems-header-div">
                                 <h1>ALL PROBLEMS</h1>
                             </div>
-                            <ul className="problem-index-problems-list">
-                                {
-                                    this.props.problems.map(problem => {
+                            <div className="problem-index-problems-div">
+                                <ul className="problem-index-problems-list">
+                                    {
+                                        this.props.problems.map(problem => {
 
-                                        // li onClick should create document and group,
-                                        // then this.props.history.push(`/ groups / ${ groupId }`) to group show page
-                                        const problemId = problem._id;
-                                        // console.log(problemId)
-                                        return (
-                                            <li className="problem-card" key={problem._id} onClick={() => this.makeGroup(problem._id)}>
-                                                <p className="problem-name">{problem.title}</p>
-                                                <p>{problem._id}</p>
-                                                <p className="problem-link">Open</p>
-                                            </li>
-                                        )
-                                    })
-                                }
-                            </ul>
+                                            // li onClick should create document and group,
+                                            // then this.props.history.push(`/ groups / ${ groupId }`) to group show page
+                                            const problemId = problem._id;
+                                            // console.log(problemId)
+                                            return (
+                                                <li className="problem-card" key={problem._id} onClick={() => this.makeGroup(problem._id)}>
+                                                    <p className="problem-name">{problem.title}</p>
+                                                    <p>{problem._id}</p>
+                                                    <p className="problem-link">Open</p>
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                </ul>
+                            </div>
                         </div>
                     </section >
                 </div >

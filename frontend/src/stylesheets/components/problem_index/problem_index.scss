@@ -83,37 +83,48 @@
         justify-content: center;
         margin-bottom: 70px;
 
-        .problem-index-problems-list{
-            flex-wrap: wrap;
+        .problem-index-problems-div{
             display: flex;
-    
-    
-            .problem-card {
-                flex: 1 0 33%;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            .problem-index-problems-list{
+                flex-wrap: wrap;
                 display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                height: 150px;
-                min-height: 150px;
-                width: 100%;
-                max-width: 310px;
-                padding: 30px;
-                margin: 15px;
-                border: 1px solid $orange-light;
-                background-color: $blue-darkest;
-                border-radius: 3px;
-                // box-shadow: 0 0px 0px $orange-light;
-                transition: all 0.2s ease-in;
-
-                .problem-name{
-                    font-size: 20px;
-
+                // flex-direction: row;
+                justify-content: center;
+        
+        
+                .problem-card {
+                    flex: 1 0 33%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    height: 150px;
+                    min-height: 150px;
+                    width: 100%;
+                    max-width: 310px;
+                    padding: 30px;
+                    margin: 15px;
+                    border: 1px solid $orange-light;
+                    background-color: $blue-darkest;
+                    border-radius: 3px;
+                    // box-shadow: 0 0px 0px $orange-light;
+                    transition: all 0.2s ease-in;
+    
+                    .problem-name{
+                        font-size: 20px;
+    
+                    }
+    
+                    .problem-link{
+                        font-size: 14px;
+                    }
                 }
 
-                .problem-link{
-                    font-size: 14px;
-                }
-            }
+        }
+        
         }
     }    
 }
