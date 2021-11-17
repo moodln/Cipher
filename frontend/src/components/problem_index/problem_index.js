@@ -2,6 +2,11 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 class ProblemIndex extends React.Component {
+    constructor(props) {
+        super(props);
+        // this.state = this.props.document;
+        this.makeGroup = this.makeGroup.bind(this);
+    }
     componentDidMount() {
         this.props.fetchProblems();
     }
@@ -10,10 +15,26 @@ class ProblemIndex extends React.Component {
     //     this.props.fetchProblems();
     // }
 
+    makeGroup(problem) {
+        // this.setState({ problem: problem.id })
+        // let document = this.state;
+        // console.log(document);
+        // const group = {
+        //     document: document,
+        //     users: [this.props.currentUser.id]
+        // }
+        //make a new document, then make a new group??
+
+        console.log(problem);
+        this.props.createGroupWithProblem(problem.id)
+            .then(groupResponse => this.props.history.push(`/groups/${groupResponse.id}`))
+    }
+
     render() {
         if (this.props.problems.length === 0) {
             return null;
         }
+        console.log(this.props);
         return (
             <div className="problem-index container">
                 <section className="problem-index-header">
@@ -47,17 +68,18 @@ class ProblemIndex extends React.Component {
                             {
                                 this.props.problems[0].map(problem => (
                                     // li onClick should create document and group,
-                                    // then this.props.history.push(`/groups/${groupId}`) to group show page
-                                    <li className="problem-card" key={problem}>
+                                    // then this.props.history.push(`/ groups / ${ groupId }`) to group show page
+                                    <li className="problem-card" key={problem._id} onClick={({ problem }) => this.makeGroup({ problem })}>
                                         <p className="problem-name">{problem.title}</p>
-                                        <p>Open</p>
+                                        <p>{problem._id}</p>
+                                        <p className="problem-link">Open</p>
                                     </li>
                                 ))
                             }
                         </ul>
                     </div>
-                </section>
-            </div>
+                </section >
+            </div >
         )
     }
 }
