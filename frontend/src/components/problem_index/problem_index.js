@@ -49,7 +49,7 @@ class ProblemIndex extends React.Component {
                                     // li onClick should create document and group,
                                     // then this.props.history.push(`/groups/${groupId}`) to group show page
                                     <li className="problem-card" key={problem}>
-                                        <p>{problem.title}</p>
+                                        <p className="problem-name">{problem.title}</p>
                                         <p>Open</p>
                                     </li>
                                 ))
