@@ -9,6 +9,7 @@ import MainPage from './main/main_page';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import ProfileContainer from './profile/profile_container';
+import Video from './video_stream/video';
 // import TweetComposeContainer from './problem_index/tweet_compose_container';
 import Splash from "./splash/splash";
 import Footer from "./footer/footer";
@@ -18,6 +19,7 @@ const App = () => (
   <div className="page-container">
     <div className="main-content">
       <NavBarContainer />
+      <Video/>
       <Switch>
         <AuthRoute exact path="/" component={Splash} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
@@ -25,7 +27,7 @@ const App = () => (
 
         <ProtectedRoute exact path="/problems" component={ProblemIndexContainer} />
         <ProtectedRoute exact path="/document/:documentId" component={DocumentShowContainer} />
-        <ProtectedRoute exact path="/profile" component={ProfileContainer} />
+        <ProtectedRoute exact path="/profile" component={ProfileContainer} /> 
         {/* <ProtectedRoute exact path="/new_tweet" component={TweetComposeContainer} /> */}
       </Switch>
     </div>
