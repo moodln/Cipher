@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState} from 'react';
 // use to copy Id
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-// peer to peer connection
+// import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 
 import io from 'socket.io-client';
 
@@ -9,9 +9,13 @@ const socket = io.connect('http://localhost:3300')
 
 
 function Video() {
-    const  Peer = require('simple-peer');
+    // peer to peer connection
+    const Peer = require('simple-peer');
+
+    // construct initial state
     const [ myId, setMyId ] = useState('')
     const [ stream, setStream ] = useState()
+    const [ remoteStream, setRemoteStream ] = useState()
     const [ receivingCall, setReceivingCall ] = useState(false)
     const [ caller, setCaller ] = useState('')
     const [ callerSignal, setCallerSignal ] = useState()
@@ -20,6 +24,7 @@ function Video() {
     const [ callEnded, setCallEnded ] = useState(false)
     const [ name, setName ] = useState('')
 
+    // we use useRef so that we can attach to html element 'ref' later
     // reference video
     const myVideo = useRef()
     const oppositeVideo = useRef()
@@ -28,15 +33,17 @@ function Video() {
 
     // set everything on initial load
     useEffect(() => {
-        // will ask for permission to use webcam
+        // will ask for permission to use webcam, then return the video stream in an object
         navigator.mediaDevices.getUserMedia({ video: true, audio: true})
             .then(stream => {
+                console.log(stream)
+                // add stream to state
                 setStream(stream)
                 // set reference to video to stream coming in from webcam
                 myVideo.current.srcObject = stream
             })
 
-            socket.on('me', (id) => {
+            socket.on('myId', (id) => {
                 // grab id from backend and set it to frontend id
                 setMyId(id)
             })
@@ -66,9 +73,10 @@ function Video() {
             })
         })
 
-        peer.on('stream', (stream) => {
-            oppositeVideo.current.srcObject = stream 
-        })
+        // peer.on('stream', (stream) => {
+        //     console.log(stream)
+        //     oppositeVideo.current.srcObject = stream 
+        // })
 
         socket.on('callaccepted', (signal) => {
             setCallAccepted(true)
@@ -91,6 +99,7 @@ function Video() {
         })
 
         peer.on('stream', (stream) => {
+            console.log(stream)
             oppositeVideo.current.srcObject = stream
         })
 
@@ -108,22 +117,21 @@ function Video() {
         <div className='video-container'>
             <div className='video' >
                 {/* terniary for return statement */}
-                {stream && <video playsInline muted ref={myVideo} autoPlay  style={{width: '300px', zIndex: 2}}/>}
+                {stream && <video playsInline muted ref={myVideo} autoPlay  />}
             </div>
-            <div>
+            <div className='video'>
                 {callAccepted && !callEnded ? 
-                <video playsInline ref={oppositeVideo} autoPlay/> : null }
+                <video playsInline muted ref={oppositeVideo} autoPlay /> : null }
             </div>
             <input type="text" 
                 value={name} 
+                style={{background: 'white', color: 'black'}}
                 onChange={e => setName(e.currentTarget.value)} />
             <input type="text" 
                 value={idToCall} 
-                style={{background: 'white'}}
+                style={{background: 'white', color: 'black'}}
                 onChange={e => setIdToCall(e.currentTarget.value)} />
-            <CopyToClipboard text={myId}>
-                    <button>copyId</button>
-            </CopyToClipboard>
+            <textarea name={myId} value={myId}id="" cols="30" rows="10"></textarea>
             <div>
                 {callAccepted && !callEnded ? (
                     <button onClick={leaveCall}>end call</button>
