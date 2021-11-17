@@ -37,7 +37,7 @@ class Sidebar extends React.Component {
                         </button>
                         <div className="sidebar-menu">
                             {
-                                this.props.problems[0].map(problem => {
+                                this.props.problems.map(problem => {
 
                                     const problemId = problem._id
                                     return (
@@ -57,7 +57,7 @@ class Sidebar extends React.Component {
                         </button>
                         <div className="sidebar-menu">
                             {
-                                this.props.problems[0].map(problem => {
+                                this.props.problems.map(problem => {
 
                                     const problemId = problem._id
                                     return (
@@ -77,7 +77,7 @@ class Sidebar extends React.Component {
                         </button>
                         <div className="sidebar-menu">
                             {
-                                this.props.problems[0].map(problem => {
+                                this.props.problems.map(problem => {
 
                                     const problemId = problem._id
                                     return (

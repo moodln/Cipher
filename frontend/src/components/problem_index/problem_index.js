@@ -25,7 +25,7 @@ class ProblemIndex extends React.Component {
         //     users: [this.props.currentUser.id]
         // }
         //make a new document, then make a new group??
-        console.log(problemId);
+        // console.log(problemId);
         this.props.createGroupWithProblem(problemId)
             .then(groupResponse => console.log("worked"))
         // his.props.history.push(`/groups/${groupResponse.id}`)
@@ -69,7 +69,7 @@ class ProblemIndex extends React.Component {
                             </div>
                             <ul className="problem-index-problems-list">
                                 {
-                                    this.props.problems[0].map(problem => {
+                                    this.props.problems.map(problem => {
 
                                         // li onClick should create document and group,
                                         // then this.props.history.push(`/ groups / ${ groupId }`) to group show page
