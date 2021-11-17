@@ -1,8 +1,9 @@
 import React from "react";
 import io from "socket.io-client";
 // import * as CodeMirror from "codemirror";
-import { Controlled } from "react-codemirror2-react-17";
 import * as monaco from "monaco-editor";
+// monaco.init().then(monaco => console.log(monaco.KeyCode));
+
 
 class Editor extends React.Component {
     // Pass URL of server to connect client to server:
@@ -41,7 +42,8 @@ class Editor extends React.Component {
             value: this.state.body,
             language: "javascript",
             theme: "vs-dark",
-            minimap: { enabled: false }
+            minimap: { enabled: false },
+            fontSize: "16px"
         });
         
         this.editor.getModel().onDidChangeContent(event => {
