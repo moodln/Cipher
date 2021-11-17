@@ -94,14 +94,31 @@ const loginUser = (req, res) => {
 const currentUser = (req, res, next) => {
     
   return res.json({
-      id: req.user.id,
-      handle: req.user.handle,
-      email: req.user.email
+    id: req.user.id,
+    handle: req.user.handle,
+    email: req.user.email
+  });
+}
+
+const searchForUsersToInvite = (req, res) => {
+  
+  User.find({_id: {"$nin": req.headers.usersingroup}}, (err, users) => {
+    
+    const usersById = {};
+    
+    Object.values(users).forEach(user => {
+      usersById[user.id] = user;
     });
-  }
+
+    let allUsersId = Object.keys(usersById)
+    res.json({usersById, allUsersId})
+    
+  });
+}
 
 module.exports = {
   registerUser,
   loginUser,
-  currentUser
+  currentUser,
+  searchForUsersToInvite
 }

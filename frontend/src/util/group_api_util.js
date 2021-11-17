@@ -9,5 +9,7 @@ export const createGroupWithProblem = (problemId) => {
 }
 
 export const fetchGroup = (groupId) => {
+  console.log(`groupId: `, groupId);
+  
   return axios.get(`/api/groups/${groupId}`);
 }
