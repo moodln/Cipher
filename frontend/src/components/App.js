@@ -3,7 +3,6 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Switch } from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
 
-import Editor from "./editor";
 import ProblemIndexContainer from './problem_index/problem_index_container';
 import DocumentShowContainer from './document_show/document_show_container';
 import MainPage from './main/main_page';
@@ -19,7 +18,6 @@ const App = () => (
   <div className="page-container">
     <div className="main-content">
       <NavBarContainer />
-      <Editor />
       <Switch>
         <AuthRoute exact path="/" component={Splash} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
