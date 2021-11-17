@@ -37,17 +37,28 @@ app.use("/api/invites", invites);
 app.use("/api/documents", documents);
 app.use("/api/problems", problems);
 
-const httpServer = require("http").createServer(app);
-const io = require("socket.io")(httpServer);
+const http = require("http")
+const httpServer = http.createServer(app);
+// const io = require("socket.io")(httpServer);
+const io = require("socket.io")(httpServer, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"]
+    }
+});
 
 io.on("connection", socket => {
   console.log("User online");
 
   // if server receives event with name "canvas-data", 
   // message will be broadcast to all other connected users
-  socket.on("canvas-data", data => {
-    socket.broadcast.emit("canvas-data", data);
+  socket.on("editor-data", data => {
+    socket.broadcast.emit("editor-data", data);
   })
+
+  // socket.on("disconnect", () => {
+  //   console.log("User has disconnected");
+  // })
 })
 
 const port = process.env.PORT || 3300;
