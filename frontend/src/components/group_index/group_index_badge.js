@@ -5,18 +5,20 @@ import { selectGroupParticipants } from '../../selectors/users_selectors';
 class GroupIndexBadge extends Component {
   render() {
     const { group } = this.props;
-    
+
     return (
-      <li>
-       <ul>
-         {
-         this.props.participants.map(user => {
-           return (
-            <li key={user["_id"]}>{user.handle}</li>
-            )
-           })
-         }
-       </ul>
+      <li className="problem-card">
+        <ul>
+          {
+            this.props.participants.map(user => {
+              return (
+                <li key={user["_id"]}>
+                  <p>{user.handle}</p>
+                </li>
+              )
+            })
+          }
+        </ul>
       </li>
     )
   }
@@ -27,7 +29,7 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = {
-  
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupIndexBadge)
