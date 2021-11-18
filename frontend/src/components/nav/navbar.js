@@ -11,6 +11,7 @@ class NavBar extends React.Component {
     this.getLinks = this.getLinks.bind(this);
     this.handleClickSignup = this.handleClickSignup.bind(this);
     this.handleClickLogin = this.handleClickLogin.bind(this);
+    this.handleClickLogo = this.handleClickLogo.bind(this);
     // this.handleHover = this.handleHover.bind(this);
   }
 
@@ -45,6 +46,15 @@ class NavBar extends React.Component {
     }
     else {
       this.props.history.push("/login");
+    }
+  }
+
+  handleClickLogo() {
+    if (this.props.location.pathname === "/") {
+      this.props.history.replace("/");
+    }
+    else {
+      this.props.history.push("/");
     }
   }
 
@@ -90,7 +100,8 @@ class NavBar extends React.Component {
   render() {
     return (
       <section className="navbar-section container">
-        <Link className="logo" to="/">CIPHER</Link>
+        <button className="logo" onClick={this.handleClickLogo}>CIPHER</button>
+        {/* <Link className="logo" to="/">CIPHER</Link> */}
         {this.getLinks()}
       </section>
     );
