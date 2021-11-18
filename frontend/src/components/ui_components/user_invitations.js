@@ -11,21 +11,27 @@ class UserInvitations extends Component {
   }
 
   render() {
+    const numberOfInvites = this.props.invites.length > 1 ? 
+    <p>You have {this.props.invites.length} pending invites!</p> : 
+    <p>You have {this.props.invites.length} pending invite!</p>
     if (this.props.invites.length === 0) {
       return (
-        <div>
-          You do not have any notifications yet!
+        <div className='no-notifications-message'>
+          <p>You do not have any notifications yet!</p>
         </div>
       )
     }
     return (
-      <ul className="">
-        {
-          this.props.invites.map(invite => (
-            <InviteManagerBadgeContainer key={invite._id} invite={invite} />
-          ))
-        }
-      </ul>
+      <div>
+        {numberOfInvites}
+        <ul>
+          {
+            this.props.invites.map(invite => (
+              <InviteManagerBadgeContainer key={invite._id} invite={invite} />
+            ))
+          }
+        </ul>
+      </div>
     )
   }
 }
