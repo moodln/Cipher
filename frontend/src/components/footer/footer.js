@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import FooterAuthorsInfo from "./footer_authors_info";
+import portraitMadeline from "../../assets/images/portrait_madeline.png";
+import portraitMaria from "../../assets/images/portrait_maria.jpg";
 import portraitRebecca from "../../assets/images/portrait_rebecca.jpg";
 import portraitPasan from "../../assets/images/portrait_pasan.jpeg";
 
@@ -11,28 +12,28 @@ class Footer extends React.Component {
                 <div className="footer-authors-container">
                     <div className="footer-authors">
                         <div className="footer-portraits">
-                            <img src={portraitPasan} />
+                            <img src={portraitMadeline} style={{ bottom: "-11px" }} />
                         </div>
                         <FooterAuthorsInfo name={"Madeline Wilson"}/>
                     </div>
 
                     <div className="footer-authors">
                         <div className="footer-portraits">
-                            <img src={portraitRebecca} />
+                            <img src={portraitMaria} style={{ bottom: "-32px", left: "-2px" }} />
                         </div>
                         <FooterAuthorsInfo name={"Maria Vaghani"} />
                     </div>
 
                     <div className="footer-authors">
                         <div className="footer-portraits">
-                            <img src={portraitPasan} />
+                            <img src={portraitPasan} style={{ bottom: "-36px" }} />
                         </div>
                         <FooterAuthorsInfo name={"Pasan Dharmasena"} />
                     </div>
 
                     <div className="footer-authors">
                         <div className="footer-portraits">
-                            <img src={portraitRebecca} />
+                            <img src={portraitRebecca} style={{ bottom: "-32px" }} />
                         </div>
                         <FooterAuthorsInfo name={"Rebecca Foster"} />
                     </div>
