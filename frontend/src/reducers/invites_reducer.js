@@ -35,6 +35,7 @@ export const InvitesReducer = (state = _nullState, action) => {
       nextState.allIds = nextState.allIds.concat(action.invitesCollection.allInvitesId);
       return nextState;
     case REMOVE_INVITE:
+      
       delete nextState.byId[action.inviteId];
       nextState.allIds = Object.keys(nextState.byId);
       return nextState;

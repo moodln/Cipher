@@ -20,9 +20,6 @@ export const GroupsReducer = (state = _nullState, action) => {
       });
       nextState.allIds = Object.keys(nextState.byId);
       return nextState;
-      // nextState.byId = action.groupsCollection.groupsById;
-      // nextState.allIds = action.groupsCollection.allGroupsId;
-      // return nextState;
     case RECEIVE_GROUP:
       
       nextState.byId[action.groupCollection.groupsById._id] = action.groupCollection.groupsById;
@@ -39,8 +36,13 @@ export const GroupsReducer = (state = _nullState, action) => {
 
       return nextState;
     case REMOVE_INVITE:
-      console.log(`action: `, action);
-      
+      if (action.resolutionCollection.groupsById) {
+        Object.values(action.resolutionCollection.groupsById).forEach(group => {
+        nextState.byId[group._id] = group;
+        
+      });
+      nextState.allIds = Object.keys(nextState.byId);
+    }
       return nextState;
     default:
       return state;
