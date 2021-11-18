@@ -13,7 +13,9 @@ export class UserNotiifcations extends Component {
   
 
   render() {
+    
     const displayListOfNotifications = this.state.displayUserInvites ? <UserInvitationsContainer /> : ""
+    
     return (
       <div onClick={ () => this.setState({displayUserInvites: !this.state.displayUserInvites}) }>
         <div className='notification-badge'>
@@ -23,7 +25,7 @@ export class UserNotiifcations extends Component {
             </svg>
           </div>
           <div className='notification-dropdown'>
-            {displayListOfNotifications}
+            <UserInvitationsContainer />
           </div>
         </div>
       </div>

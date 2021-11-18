@@ -13,13 +13,13 @@ class UserInvitations extends Component {
   render() {
     if (this.props.invites.length === 0) {
       return (
-        <div>
-          You do not have any notifications yet!
+        <div className='no-notifications-message'>
+          <p>You do not have any notifications yet!</p>
         </div>
       )
     }
     return (
-      <ul className="">
+      <ul className="notification-list">
         {
           this.props.invites.map(invite => (
             <InviteManagerBadgeContainer key={invite._id} invite={invite} />

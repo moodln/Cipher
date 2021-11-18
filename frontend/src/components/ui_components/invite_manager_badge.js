@@ -4,9 +4,12 @@ import { inviteResolution } from '../../actions/invite_actions'
 
 class InviteManagerBadge extends Component {
   render() {
+    console.log(this.props.group)
     return (
       <div>
-        {this.props.group}
+        <div className="group-title">
+          {this.props.group}
+        </div>
         <button onClick={ () => this.props.acceptInvite(this.props.invite._id) }>
           Accept
         </button>
@@ -19,7 +22,7 @@ class InviteManagerBadge extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  group: state.entities.groups.byId[ownProps.invite.group]._id
+  group: state.entities.groups.byId[ownProps.invite.group].title
 })
 
 const mapDispatchToProps = dispatch => ({
