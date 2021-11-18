@@ -4,7 +4,6 @@ import { createUserGroupWithProblem } from "../../actions/group_actions"
 import Sidebar from "./sidebar";
 
 const mSTP = state => {
-    // debugger
     return {
         problems: Object.values(state.entities.problems.byId),
         currentUser: state.session.user
