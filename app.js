@@ -44,11 +44,8 @@ const io = require('socket.io')(httpServer, {
         methods: ['GET', 'POST' ]
     } 
 })
-let connectedUsers = [];
 io.on("connection", socket => {
   console.log("User online");
-  connectedUsers.push(socket.id);
-  socket.broadcast.emit('currentUsers', {userIds: connectedUsers});
 
   // if server receives event with name "canvas-data", 
   // message will be broadcast to all other connected users
@@ -56,32 +53,27 @@ io.on("connection", socket => {
     socket.broadcast.emit("canvas-data", data);
   })
 
-  // socket.on('join', (data) => {
-  //   socket.join(data.username)
-  // })
+  socket.emit('localUser', socket.id);
 
-  // grab socked id and apply it to client-side
-  // socket.emit('localId', socket.id)
+  socket.on('makeCall', ({remoteUser, signalData, from}) => {
+    io.to(remoteUser).emit('makeCall', {
+      signal: signalData,
+      from: from
+    })
+  })
 
-  // socket.on('call', (data) => {
-  //   // the person we want to call, userToCall is passed in from frontend
-  //   io.to(data.toUsername).emit('call', {
-  //       signal: data.signalData, 
-  //       from: data.from, 
-  //       name: data.name})
-  // })
-
-
-  // socket.on('answer', (data) => { 
-  //   io.to(data.to).emit('callAccepted', data.signal)
-  // })
+  socket.on('answer', (data) =>{
+    // socket.broadcat.emit('updateMedia', {
+    //   type: data.type,
+    //   media: data.media
+    // })
+    io.to(data.to).emit('answer', data.signal)
+  })
 
   socket.on('disconnect', () => {
-    console.log('user disconnected')
-    connectedUsers = connectedUsers.filter(user => user !==socket.id);
-    socket.broadcast.emit('currentUsers', {userIds: connectedUsers});
     socket.broadcast.emit('callEnded')
   })
+
 })
 
 

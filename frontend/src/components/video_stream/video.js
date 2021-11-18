@@ -167,96 +167,113 @@ function Video() {
 
     const socket = io.connect('http://localhost:3300')
     const Peer = require('simple-peer');
-    const [localId, setLocalId] = useState();
-    const [signal, setSignal] = useState();
-    const [caller, setCaller] = useState('');
-    const [receivingCall, setReceivingCall] = useState(false);
-    const [name, setName] = useState();
+
+    const [ localUser, setLocalUser ] = useState();
+    const [ call, setCall ] = useState({});
+    const [ accepted, setAccepted ] = useState(false);
+    const [ stream, setStream ] = useState();
+    const [ ended, setEnded ] = useState(false);
+    const [ remoteId, setRemoteId ] = useState();
+
     const localVideo = useRef();
     const remoteVideo = useRef();
-
-    let selectedUser;
-
-    const onUpdateUserList = ({ userIds }) => {
-    const usersList = document.querySelector('#usersList');
-    const usersToDisplay = userIds.filter(id => id !== socket.id);
-    usersList.innerHTML = '';
-    
-    usersToDisplay.forEach(user => {
-        const userItem = document.createElement('div');
-        userItem.innerHTML = user;
-        userItem.className = 'user-item';
-        
-        userItem.addEventListener('click', () => {
-        selectedUser = user;
-        });
-        usersList.appendChild(userItem);
-    });
-    };
-
-    socket.on('currentUsers', onUpdateUserList);
-
-    const peerToPeerConnection = () => {
-        return new RTCPeerConnection({
-            iceServers: [
-                {
-                    urls: 'stun:stun.stunprotocol.org'
-                }
-            ]
-        });
-    };
-    const peer = peerToPeerConnection();
-    
+    const connectionRef = useRef();
 
     useEffect(() => {
-        navigator.mediaDevices.getUserMedia(
-            {
-                audio: {
-                    echoCancellation: true
-                }, 
-                video: true
-            })
+        navigator.mediaDevices.getUserMedia({audio: true, video: true})
             .then(stream => {
+                setStream(stream);
                 localVideo.current.srcObject = stream;
-                stream.getTracks().forEach(track => peer.addTrack(track, stream))
-            })
-            .catch(err => {
-                console.log(err)
             })
 
-            socket.on('connect', () => {
-                socket.emit('join', {
-                    // x
-                })
+        socket.on('localUser', id => {
+            setLocalUser(id)
+        })
+
+        socket.on('makeCall', ({from, signal}) => {
+            setCall({
+                receivingCall: true, 
+                from, 
+                signal
             })
+        })
+    }, []);
 
-            socket.on('localId', (id) => {
-                // grab id from backend and set it to frontend id
-                setLocalId(id)
+    const makeCall = (id) => {
+        const peer = new Peer({
+            initiator: true, 
+            trickle: false, 
+            stream: stream
+        })
+
+        peer.on('signal', data => {
+            socket.emit('makeCall', {
+                remoteUser: id, 
+                signalData: data, 
+                from: localUser,
             })
+        })
 
-            socket.on('call', (data) => {
-                setSignal(data.signal)
-                setCaller(data.from)
-                setName(data.name)
-                setReceivingCall(true)
+        peer.on('stream', currentStream => {
+            remoteVideo.current.srcObject = currentStream;
+        })
+
+        socket.on('answer', signal => {
+            setAccepted(true);
+            peer.signal(signal)
+        })
+
+        connectionRef.current = peer;
+    }
+
+    const answer = () => {
+        setAccepted(true);
+
+        const peer = new Peer({
+            initiator: false,
+            trickle: false, 
+            stream: stream
+        })
+
+        peer.on('signal', data => {
+            socket.emit('answer', {
+                signal: data, 
+                to: call.from
             })
+        })
 
+        peer.on('stream', (currentStream) => {
+            remoteVideo.current.srcObject = currentStream;
+        })
 
-    }, [])
-    const otherVideo = (data) => {
-        const otherUser = new Peer();
+        peer.signal(call.signal);
+
+        connectionRef.current = peer;
+    }
+
+    const endCall = () => {
+        setEnded(true);
+        connectionRef.current.destroy();
+        window.location.reload();
     }
     
     
     return (
         <div className="video-container">
-            <div className='userId'>My user id: {socket.id}</div>
+            <div className='userId'>My user id: {localUser}</div>
             <video className='localVideo' playsInline muted ref={localVideo} autoPlay ></video>
-            <video className='remoteVideo' playsInline ref={remoteVideo} autoPlay ></video>
+            <input type="text" value={remoteId} onSubmit={(e) => setRemoteId(e.target.value)}/>
+            
+            {accepted && !ended ? (
+                <div>
+                    <video className='remoteVideo' playsInline ref={remoteVideo} autoPlay ></video>
+                    <button onClick={endCall}>end call</button>
+                </div>)
+             :
             <div>
-                <button className='call'>call</button>
-            </div>
+                <button onClick={makeCall(remoteId)}>call</button>
+                <button onClick={answer}>answer</button>  
+            </div>}
         </div>
     )
     
