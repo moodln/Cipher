@@ -35,7 +35,7 @@ const getCurrUserGroups = (req, res) => {
   const usersById = {};
 
   
-  Group.find({ users: [req.user.id]}, (err, groups) => {
+  Group.find({ users: req.user.id}, (err, groups) => {
     if (err) throw err;
     const groupsById = {};
 

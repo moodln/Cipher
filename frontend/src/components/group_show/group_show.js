@@ -27,9 +27,7 @@ class GroupShow extends Component {
          {
          this.props.participants.map(user => {
           return (
-            <li key={user["_id"]} 
-            
-            >
+            <li key={user["_id"]}>
               {user.email}
             </li>
           )
