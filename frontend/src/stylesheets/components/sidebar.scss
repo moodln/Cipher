@@ -79,8 +79,8 @@
                     transition: all 0.2s ease-in;   
                 }
             }
-
-            .sidebar-section:hover{
+//:hover
+            .sidebar-section:hover {
 
                 .sidebar-button{
                     transform: translate(2px, -2px);
@@ -124,12 +124,13 @@
                 left: calc(80%);
                 pointer-events: all;
             }
-
-            .sidebar-menu:hover{
+//:hover
+            .sidebar-menu:hover {
                 opacity: 1;
                 z-index: 3 !important;
                 left: calc(80%);
                 pointer-events: all;
+                top: 61px;
             }
 
             .sidebar-list-item:hover{

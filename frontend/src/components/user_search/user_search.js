@@ -30,7 +30,7 @@ class UserSearch extends Component {
             <li className="user-search-dropdown-item"
               key={user["_id"]}
               onClick={() => this.inviteCollaborator(user._id)}>
-              {user.handle}
+              {user.email}
             </li>
             )
            })
