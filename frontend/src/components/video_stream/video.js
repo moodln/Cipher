@@ -262,7 +262,7 @@ function Video() {
         <div className="video-container">
             <div className='userId'>My user id: {localUser}</div>
             <video className='localVideo' playsInline muted ref={localVideo} autoPlay ></video>
-            <input type="text" value={remoteId} onSubmit={(e) => setRemoteId(e.target.value)}/>
+            <input type="text" value={remoteId} onChange={(e) => setRemoteId(e.target.value)}/>
             
             {accepted && !ended ? (
                 <div>
