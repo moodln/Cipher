@@ -47,4 +47,4 @@ const mapDispatchToProps = {
 
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupIndexBadge))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupIndexBadge));

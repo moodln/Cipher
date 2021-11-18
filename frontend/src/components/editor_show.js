@@ -50,7 +50,7 @@ function EditorShow() {
     }
     
     return (
-        <div>
+        <div className="editor-container">
             <Editor
                 className="editor"
                 defaultLanguage="javascript"

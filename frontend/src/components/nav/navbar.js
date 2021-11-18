@@ -79,7 +79,6 @@ class NavBar extends React.Component {
               </svg>
             </div>
             <div className="nav-dropdown-content">
-              <Link className="nav-drop-link" to='/tweets'>All Tweets</Link>
               <Link className="nav-drop-link" to='/dashboard'>Dashboard</Link>
               <Link className="nav-drop-link" to='/new_tweet'>Write a Tweet</Link>
               <button className="nav-drop-link" onClick={this.logoutUser}>Logout</button>
