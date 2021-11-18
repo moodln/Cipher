@@ -70,12 +70,14 @@ class GroupShow extends Component {
           <div className="group-show-cams">
             <div className="cams">
             </div>
-          </div>
-          <div className="save-btn-div">
-            <button className="save-btn">SAVE</button>
+            <div className="save-btn-div">
+              <button className="group-save-btn save-btn">SAVE</button>
+              <button className="group-save-btn leave-btn" onClick={this.exitFromGroupAndGoToProblemsPage}>
+                LEAVE GROUP
+              </button>
+            </div>
           </div>
         </div>
-
       </div>
     )
   }
