@@ -1,4 +1,5 @@
 import { RECEIVE_DOCUMENT, REMOVE_DOCUMENT } from "../actions/document_actions";
+import { RECEIVE_GROUP_AFTER_EXIT } from "../actions/group_actions";
 
 const _nullState = {
   byId: {},
@@ -19,13 +20,9 @@ const DocumentsReducer = (oldState = _nullState, action) => {
             nextState.allIds = Object.keys(nextState.byId);
             return nextState;
         case RECEIVE_GROUP_AFTER_EXIT:
-            if (action.group.groupResult) {
-                
-                nextState.byId[action.group.groupResult._id] = action.group.groupResult;
-                
-            };
-            if (action.group.deletedGroup) {
-                delete nextState.byId[action.group.deletedGroup]
+            
+            if (action.group.deletedDocId) {
+                delete nextState.byId[action.group.deletedDocId]
             }
             nextState.allIds = Object.keys(nextState.byId);
             
