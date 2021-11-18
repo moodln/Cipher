@@ -9,14 +9,14 @@ class GroupIndexBadge extends Component {
     this.goToGroupShowPage = this.goToGroupShowPage.bind(this);
   }
 
-//   shouldComponentUpdate(nextProps, nextState) {
+  // shouldComponentUpdate(nextProps, nextState) {
 
-//   // Typical usage (don't forget to compare props):
-//   if (this.props.participants.length !== prevProps.participants.length) {
-//     console.log('list changed ');
-    
-//   }
-// }
+  //   // Typical usage (don't forget to compare props):
+  //   if (this.props.participants.length !== prevProps.participants.length) {
+  //     console.log('list changed ');
+      
+  //   }
+  // }
 
   goToGroupShowPage() {
     this.props.history.push({ pathname: `/groups/${this.props.group._id}` })
@@ -26,19 +26,8 @@ class GroupIndexBadge extends Component {
     const { group } = this.props;
 
     return (
-      <li className="problem-card">
-       <ul>
-         {
-         this.props.participants.map(user => {
-           return (
-            <li key={user._id} onClick={this.goToGroupShowPage}
-            >
-              {user.handle}
-            </li>
-            )
-           })
-         }
-       </ul>
+      <li className="problem-card" onClick={this.goToGroupShowPage}>
+       {group.title}
       </li>
     )
   }
@@ -52,4 +41,4 @@ const mapDispatchToProps = {
 
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupIndexBadge))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupIndexBadge));

@@ -11,6 +11,13 @@ class UserInvitations extends Component {
   }
 
   render() {
+    if (this.props.invites.length === 0) {
+      return (
+        <div>
+          You do not have any notifications yet!
+        </div>
+      )
+    }
     return (
       <ul className="">
         {
