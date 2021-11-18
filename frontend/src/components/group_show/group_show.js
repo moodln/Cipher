@@ -83,4 +83,4 @@ const mapDispatchToProps = (dispatch) => ({
     updateDocument: document => dispatch(updateDocument(document))
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupShow))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupShow));
