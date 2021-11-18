@@ -29,7 +29,7 @@ class GroupShow extends Component {
   render() {
     if (!this.props.group) return null;
     if (!this.props.problem) return null;
-    if (!this.props.document) return null;
+    // if (!this.props.document) return null;
     const { group, problem } = this.props;
     return (
       <div className="page-with-sidebar">
