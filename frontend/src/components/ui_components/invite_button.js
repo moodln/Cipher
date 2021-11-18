@@ -15,6 +15,7 @@ class InviteButton extends Component {
       <div>
         <UserSearchContainer 
           participants={this.props.participants}
+          invitedUsers={this.props.invitedUsers}
           groupId={this.props.groupId}
           />
       </div>
