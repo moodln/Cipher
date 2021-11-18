@@ -8,9 +8,7 @@ class GroupIndex extends Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   groups: []
-    // }
+
   }
   componentDidMount() {
     
