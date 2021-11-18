@@ -39,6 +39,7 @@
     .nav-link-profile-drop {
         position: relative;
         background-color: $blue-darkest;
+        transition: all 0.2s ease-in;
         // padding: 20px;
 
         .nav-link-profile-img-div {
@@ -51,36 +52,43 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            transition: border-color .2s;
+            transition: all 0.2s ease-in;
 
             svg {
                 height: 40px;
                 width: 40px;
                 fill: white;
-                transition: fill .2s;
+                transition: all 0.2s ease-in;
             }
         }
         
         
         .nav-dropdown-content {
-            display: none;
+            display: flex;
+            flex-direction: column;
             position: absolute;
             background-color: $blue-darkest;
             background-clip: content-box;
             min-width: 160px;
             border-radius: 3px;
-            z-index: 1;
+            z-index: -1;
             right: 0px;
             top: calc(100%);
             border-top: 5px solid transparent;
             box-shadow: $blue-light 0px 4px 6px -5px, $blue-light 0px 2px 6px -5px;            
-            
+            transform: scaleY(0.5) translateY(-20px);
+            opacity: 0;
+            pointer-events: none;
+            transform-origin: top;
+            transition: all 0.3s ease-in;
+
             .nav-drop-link {
                 color: white;
                 padding: 12px 16px;
                 text-decoration: none;
                 display: block;
-                text-align: left;                
+                text-align: left;   
+                transition: all 0.2s ease-in;             
             }
         }        
     }
@@ -88,9 +96,12 @@
     .nav-link-profile-drop:hover {
        
         .nav-dropdown-content {
-            display: flex;
-            flex-direction: column;
+            z-index: 1;
+            opacity: 1;
+            pointer-events: all;
+            transform: scaleY(1) translateY(0px);
         }
+
         .nav-link-profile-img-div {
             border: 2px solid $blue-lightest;
 
@@ -115,6 +126,7 @@
 }
 
 .nav-drop-link:hover {
-    background-color: $blue-light;
+    // background-color: $blue-light;
     text-shadow: 0 0 5px $blue-lightest;
+    box-shadow: inset 0px 0 9px -2px $blue-light; 
 }
