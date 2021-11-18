@@ -3,6 +3,7 @@ import * as GroupsApiUtil from "../util/group_api_util";
 export const RECEIVE_USER_GROUPS = 'RECEIVE_USER_GROUPS';
 export const RECEIVE_GROUP = 'RECEIVE_GROUP';
 export const RECEIVE_USER_GROUP = 'RECEIVE_USER_GROUP';
+export const RECEIVE_GROUP_AFTER_EXIT = 'RECEIVE_GROUP_AFTER_EXIT';
 
 export const receiveUserGroups = (groupsCollection) => {
   return {
@@ -25,6 +26,13 @@ export const receiveUserGroup = (group) => {
   }
 }
 
+export const receiveGroupAfterExit = (group) => {
+  return {
+    type: RECEIVE_GROUP_AFTER_EXIT,
+    group
+  }
+}
+
 export const fetchCurrentUserGroups = () => dispatch => {
   return GroupsApiUtil.fetchCurrentUserGroups()
     .then(groupsResponse => {
@@ -43,6 +51,15 @@ export const fetchGroup = (groupId) => dispatch => {
   .then( groupResponse => {
     
     return dispatch(receiveGroup(groupResponse.data))
+  })
+}
+
+export const removeCurrentUserFromGroup = (groupId) => dispatch => {
+  return GroupsApiUtil.removeCurrentUserFromGroup(groupId)
+  .then( groupResponse => {
+    console.log(`groupResponse: `, groupResponse);
+    
+    return dispatch(receiveGroupAfterExit(groupResponse.data))
   })
 }
 

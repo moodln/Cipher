@@ -1,4 +1,4 @@
-import { RECEIVE_GROUP, RECEIVE_USER_GROUPS } from "../actions/group_actions";
+import { RECEIVE_GROUP, RECEIVE_GROUP_AFTER_EXIT, RECEIVE_USER_GROUPS } from "../actions/group_actions";
 import { RECEIVE_INVITES, REMOVE_INVITE } from "../actions/invite_actions";
 
 const _nullState = {
@@ -43,6 +43,19 @@ export const GroupsReducer = (state = _nullState, action) => {
       });
       nextState.allIds = Object.keys(nextState.byId);
     }
+      return nextState;
+
+    case RECEIVE_GROUP_AFTER_EXIT:
+      if (action.group.groupResult) {
+        
+        nextState.byId[action.group.groupResult._id] = action.group.groupResult;
+        
+      };
+      if (action.group.deletedGroup) {
+        delete nextState.byId[action.group.deletedGroup]
+      }
+      nextState.allIds = Object.keys(nextState.byId);
+    
       return nextState;
     default:
       return state;
