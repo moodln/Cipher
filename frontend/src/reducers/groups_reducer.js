@@ -14,9 +14,15 @@ export const GroupsReducer = (state = _nullState, action) => {
   switch (action.type) {
 
     case RECEIVE_USER_GROUPS:
-      nextState.byId = action.groupsCollection.groupsById;
-      nextState.allIds = action.groupsCollection.allGroupsId;
+      Object.values(action.groupsCollection.groupsById).forEach(group => {
+        nextState.byId[group._id] = group;
+        
+      });
+      nextState.allIds = nextState.allIds.concat(action.groupsCollection.allGroupsId);
       return nextState;
+      // nextState.byId = action.groupsCollection.groupsById;
+      // nextState.allIds = action.groupsCollection.allGroupsId;
+      // return nextState;
     case RECEIVE_GROUP:
       
       nextState.byId[action.groupCollection.groupsById._id] = action.groupCollection.groupsById;

@@ -13,12 +13,17 @@ class GroupIndex extends Component {
     // }
   }
   componentDidMount() {
+    console.log('Mounting!!!');
+    
     this.props.fetchUserGroups();
   }
 
-  // componentDidUpdate(newState) {
-  //     this.setState({ groups: newState.groups });
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.groups.length !== this.props.groups.length) {
+      console.log('changed length');
+      
+    }
+  }
 
   render() {
     if (this.props.groups.length === 0) {
