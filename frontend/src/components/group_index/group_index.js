@@ -19,6 +19,8 @@ class GroupIndex extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log('checking');
+    
     if (prevProps.groups.length !== this.props.groups.length) {
       console.log('changed length');
       
