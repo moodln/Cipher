@@ -108,9 +108,34 @@ const retrieveGroup = (req, res) => {
   });
 }
 
+// "==============================================================================="
+// "==============================================================================="
+
+const removeUserFromGroup = (req, res) => {
+  Group.findById(req.params.groupId, (err, groupResult) => {
+    const index = groupResult.users.indexOf(req.user.id);
+    if (index > -1) {
+      groupResult.users.splice(index, 1);
+    }
+    
+    groupResult.save();
+    if (groupResult.users.length === 0) {
+      Invite.deleteMany({group: req.params.groupId}, (err, result) => {
+        Group.deleteOne({_id: req.params.groupId}, (err, result) => {
+          res.json({deletedGroup: req.params.groupId})
+        })
+      })
+    } else {
+      console.log(`groupResult right before sending to frontend: `, groupResult);
+      res.json({groupResult});
+    }
+  })
+}
+
 
 module.exports = {
   createGroup,
   getCurrUserGroups,
-  retrieveGroup
+  retrieveGroup,
+  removeUserFromGroup
 }

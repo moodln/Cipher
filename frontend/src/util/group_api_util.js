@@ -8,6 +8,10 @@ export const createGroupWithProblem = (problemId) => {
   return axios.post('/api/groups/', { headers: { problemId } });
 }
 
+export const removeCurrentUserFromGroup = (groupId) => {
+  return axios.delete(`/api/users/${groupId}`);
+}
+
 export const fetchGroup = (groupId) => {
   // console.log(`groupId: `, groupId);
 
