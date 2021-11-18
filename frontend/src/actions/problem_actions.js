@@ -15,7 +15,7 @@ const receiveProblem = problem => ({
 
 export const fetchAllProblems = () => dispatch => (
     ProblemApiUtil.fetchAllProblems()
-        .then(problems => dispatch(receiveAllProblems(problems)))
+        .then(problemsResponse => dispatch(receiveAllProblems(problemsResponse.data)))
 );
 
 export const fetchProblem = problemId => dispatch => (

@@ -17,6 +17,7 @@ export const GroupsReducer = (state = _nullState, action) => {
       nextState.allIds = action.groupsCollection.allGroupsId;
       return nextState;
     case RECEIVE_GROUP:
+      console.log(`action: `, action);
       
       nextState.byId[action.groupCollection.groupsById._id] = action.groupCollection.groupsById;
       nextState.allIds = nextState.allIds.concat(action.groupCollection.allGroupsId);

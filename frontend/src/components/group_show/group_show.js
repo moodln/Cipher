@@ -58,6 +58,7 @@ class GroupShow extends Component {
 const mapStateToProps = (state, ownProps) => {
   const groupId = ownProps.match.params.groupId;
   if (Object.values(state.entities.groups.byId).length === 0) return {};
+  if (Object.values(state.entities.problems.byId).length === 0) return {};
   // console.log(`state.entities.groups.byId: `, state.entities.groups.byId[groupId].document.problem);
   
   const problemId = state.entities.groups.byId[groupId].document.problem;

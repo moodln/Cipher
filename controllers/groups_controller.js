@@ -5,7 +5,7 @@ const Invite = require("../models/Invite");
 
 const createGroup = (req, res) => {
 
-  Problem.findById(req.headers.problemid, (err, reqProblem) => {
+  Problem.findById(req.body.headers.problemId, (err, reqProblem) => {
     
     const newDocument = new Document({
       body: "hey-hey",
@@ -80,14 +80,12 @@ const retrieveGroup = (req, res) => {
           
           Invite.find({group: groupsById.id}, (err, invitesResult) => {
             const invitesById = {};
-            console.log(`invitesResult: `, invitesResult);
             
             invitesResult.forEach(invite => {
               
               invitesById[invite.id] = invite;
             });
             const allInvitesId = Object.keys(invitesById);
-            console.log(`invitesById: `, invitesById);
             
             return res.json({groupsById, allGroupsId, problemsById, allProblemsId, usersById, allUsersId, invitesById, allInvitesId})
           })
