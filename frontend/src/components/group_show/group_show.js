@@ -20,16 +20,14 @@ class GroupShow extends Component {
     const {group, problem} = this.props;
     return (
       <div>
-        <InviteButtonContainer groupId={this.props.group._id} participants={group.users} invitedUsers={this.props.invitedUsers}/>
+        <InviteButtonContainer groupId={this.props.group._id} participants={group.users} invitedUsers={this.props.invitedUsers.allIds}/>
         <h1>{this.props.problem.body}</h1>
         <h1>Participants:</h1>
         <ul>
          {
          this.props.participants.map(user => {
           return (
-            <li key={user["_id"]} 
-            
-            >
+            <li key={user["_id"]}>
               {user.email}
             </li>
           )

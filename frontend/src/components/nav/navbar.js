@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import UserNotiifcationsContainer from '../ui_components/user_notiifcations';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -70,6 +71,7 @@ class NavBar extends React.Component {
     if (this.props.loggedIn) {
       return (
         <div className="nav-link-div">
+          <UserNotiifcationsContainer />
           <div className="nav-link-profile-drop">
             <div className="nav-link-profile-img-div">
               <svg className="nav-link-profile-img bi bi-person" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { inviteUserToGroup } from '../../actions/invite_actions';
 import { fetchUsersToInvite } from '../../actions/user_actions';
+import { selectUsersToInvite } from '../../selectors/users_selectors';
 
 class UserSearch extends Component {
 
@@ -42,8 +43,8 @@ class UserSearch extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  usersToInvite: Object.values(state.entities.users.byId)
+const mapStateToProps = (state, ownProps) => ({
+  usersToInvite: selectUsersToInvite(Object.values(state.entities.users.byId), ownProps.participants, ownProps.invitedUsers)
 })
 
 const mapDispatchToProps = (dispatch) => ({

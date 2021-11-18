@@ -23,14 +23,15 @@ const createInvite = (req, res) => {
       } )
     })
 
-
-
-  
 }
+
+// ===============================================================================
+// ===============================================================================
 
 const deleteInvite = (req, res) => {
   console.log(`req.params.inviteId: `, req.params.inviteId);
   Invite.findById(req.params.inviteId, (err, invite) => {
+    console.log(`req.headers: `, req.headers);
     
     if (req.headers.response === "true") {
       
@@ -47,11 +48,40 @@ const deleteInvite = (req, res) => {
   .catch(err => console.log("error: ", err));
 }
 
+
+// ===============================================================================
+// ===============================================================================
+
 const getCurrUserInvites = (req, res) => {
-  Invite.find({ invitee: req.user.id}, (err, invites) => {
-    return res.json(invites)
+  Invite.find({ invitee: req.user.id}, (err, invitesResult) => {
+    const invitesById = {};
+      
+      invitesResult.forEach(invite => {
+        
+        invitesById[invite.id] = invite;
+      });
+      const allInvitesId = Object.keys(invitesById);
+
+      const groupsToFetch = Object.values(invitesById).map((invite) => {
+        return invite.group
+      });
+      Group.find({ "_id": { $in: groupsToFetch} }, (err, groupsResult) => {
+        const groupsById = {};
+      
+        groupsResult.forEach(group => {
+          
+          groupsById[group.id] = group;
+        });
+        const allGroupsId = Object.keys(groupsById);
+        
+        return res.json({invitesById, allInvitesId, groupsById, allGroupsId})
+      })
   });
 }
+
+
+// ===============================================================================
+// ===============================================================================
 
 const getCurrUserOutcomingInvites = (req, res) => {
   // console.log(`res: `, res);
