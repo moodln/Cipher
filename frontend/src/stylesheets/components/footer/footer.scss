@@ -1,43 +1,177 @@
-.footer-section{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    height: 200px;
-    position: absolute;
+.footer-section {
     bottom: 0;
     width: 100%;
-    padding: 30px 10%;
+    padding: 30px 6% 20px;
     padding-top: 40px;
     margin: 0px auto;
     box-shadow: inset $blue-light 0px 4px 6px -5px, $blue-light 0px 2px 6px -5px;
 
-    .footer-names{
-        display: flex;
-        flex-direction: column;
-        width: 20%;
-        padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-        h2{
-            padding-top: 10px;
+    .footer-summary {
+        width: 60%;
+        margin: 20px 0;
 
-            &:hover {
-                color: $orange-dark;
-            }
+        // display: flex;
+        // gap: 10px;
+
+        p {
+            font-size: 18px;
+            text-align: center;
+            line-height: 1.4em;
+            letter-spacing: .03em;
+            text-shadow: 0 0 16px $blue-lightest;
+            // padding: 10px;
+            // border-radius: 4px;
+            // border: 2px solid $blue-light;
         }
     }
 
-    .footer-links{
-        display: flex;
-        flex-direction: column;
-        width: 20%;
-        padding: 10px;
+    h4 {
+        font-size: 14px;
+        color: rgb(174, 174, 174);
+        margin-top: 20px;
     }
-
-    .footer-summary{
-        display: flex;
-        flex-direction: column;
-        width: 60%;
-        padding: 10px;
-    }
-
 }
+
+.footer-authors-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 100%;
+
+    .footer-authors {
+        display: flex;
+        width: fit-content;
+        gap: 16px;
+
+        .footer-portraits {
+            border-radius: 3px;
+            height: 80px;
+            width: 80px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid $blue-light;
+            box-shadow: 0 0 5px $blue-light;
+
+            img {
+                width: 120%;
+                height: auto;
+                object-fit: cover;
+                position: absolute;
+                bottom: -40px;
+                left: -8px;
+            }
+        }
+    }  
+}
+
+.footer-authors-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    p {
+        font-weight: 500;
+    }
+
+    .footer-authors-info-link {
+        display: flex;
+        align-items: center;
+        width: fit-content;
+
+        .footer-icons {
+            height: 20px;
+            margin-right: 10px;
+
+            svg {
+                fill: $blue-lightest;
+                height: 100%;
+            }
+        }
+
+        a:hover {
+            color: $orange-dark;
+        }
+    }
+}
+
+@media all and (max-width: 1000px) {
+    .footer-authors-info {
+        display: none;
+    }
+}
+
+// .footer-section {
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: center;
+
+    // height: 200px;
+    // position: absolute;
+
+    // bottom: 0;
+    // width: 100%;
+    // padding: 30px 10%;
+    // padding-top: 40px;
+    // margin: 0px auto;
+    // box-shadow: inset $blue-light 0px 4px 6px -5px, $blue-light 0px 2px 6px -5px;
+
+//     .footer-portraits {
+//         border-radius: 5px;
+//         height: 100px;
+//         width: 100px;
+//         overflow: hidden;
+//         position: relative;
+//         border: 2px solid red;
+
+//         img {
+//             width: 120%;
+//             height: auto;
+//             object-fit: cover;
+//             position: absolute;
+//             bottom: -40px;
+//             left: -8px;
+//         }
+//     }
+
+//     .footer-icons {
+//         height: 30px;
+
+//         svg {
+//             fill: $blue-lightest;
+//             height: 100%;
+//         }
+//     }
+
+//     .footer-names {
+//         display: flex;
+//         flex-direction: column;
+//         width: 20%;
+//         padding: 10px;
+
+//         h2 {
+//             padding-top: 10px;
+
+//             &:hover {
+//                 color: $orange-dark;
+//             }
+//         }
+//     }
+
+//     .footer-links {
+//         display: flex;
+//         flex-direction: column;
+//         width: 20%;
+//         padding: 10px;
+//     }
+
+//     .footer-summary {
+//         display: flex;
+//         flex-direction: column;
+//         width: 60%;
+//         padding: 10px;
+//     }
+// }
