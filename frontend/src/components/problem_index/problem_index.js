@@ -19,11 +19,11 @@ class ProblemIndex extends React.Component {
             .then(groupResponse => {
                 
                 this.props.history.push(`/groups/${groupResponse.data._id}`)
-                
             })
     }
 
     render() {
+        // debugger
         if (!this.props.problems) {
             return null;
         }
@@ -65,7 +65,7 @@ class ProblemIndex extends React.Component {
 
                                             // li onClick should create document and group,
                                             // then this.props.history.push(`/ groups / ${ groupId }`) to group show page
-                                            // const problemId = problem._id;
+                                            const problemId = problem._id;
                                             // console.log(problemId)
                                             return (
                                                 <li className="problem-card" key={problem._id} onClick={() => this.makeGroup(problem._id)}>

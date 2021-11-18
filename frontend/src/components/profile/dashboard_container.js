@@ -1,6 +1,6 @@
 // import { connect } from 'react-redux';
 // import { fetchUserTweets } from '../../actions/tweet_actions';
-// import Profile from './dashboard';
+// import Dashboard from './dashboard';
 
 // const mapStateToProps = (state) => {
 //   return {
