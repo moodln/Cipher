@@ -1,7 +1,8 @@
 .group-show {
     background-color: $blue-darkest;
-    height: 100vh;
+    height: calc(100vh - 72px);
     min-width: 700px;
+    display: flex;
 
     li {
         text-transform: capitalize;
@@ -9,34 +10,29 @@
 }
 
 .group-show-bar {
-    border: 1px solid red;
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
 
+    width: 20%;
+
     .invite-button {
+        width: 100%;
         position: relative;
+        display: flex;
+        justify-content: center;
+        padding: 20px 0;
 
         button:hover {
             color: $orange-dark;
         }
     }
 
-    .group-show-bar-participants, .group-show-bar-invited {
-        display: flex;
-        flex-direction: column;
-    }
-}
-
-.group-show-main {
-    border: 1px solid red;
-    display: grid;
-    grid-template-columns: 20% 60% 20%;
-    height: 100%;
-
     .group-show-main-problem {
         display: flex;
         flex-direction: column;
         padding: 10px;
+        margin-bottom: 40px;
 
         h1 {
             font-size: 22px;
@@ -44,33 +40,60 @@
         }
 
         p {
-            font-size: 18px;
+            font-size: 16px;
+        }
+    }
+
+    .group-show-bar-participants, .group-show-bar-invited {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+
+        h1 {
+            font-size: 20px;
+        }
+
+        ul {
+            height: 100px;
+            overflow-y: scroll;
+
+            li {
+                font-size: 16px;
+            }
         }
     }
 }
 
+.group-show-main {
+    // display: grid;
+    // grid-template-columns: 20% 60% 20%;
+    height: 100%;
+    width: 60%;
+}
+
 
 .editor-container {
-    // padding: 30px;
-    // height: 400px;
+    height: 100%;
+    // width: 50%;
 
     .editor {
-        // height: 80vh;
-        // width: 100%;
-        background-color: red;
+        // height: 100%;
+        // width: 50%;
     }
 }
 
 
 .user-search {
     height: 300px;
-    min-width: 200px;
+    min-width: 100px;
+    width: 90%;
     position: absolute;
-    top: 22px;
-    left: 0;
-    z-index: 30;
+    top: 100%;
+    left: 5%;
+    z-index: 0;
     padding: 10px 16px 10px 10px;
     background-color: $blue-darkest;
+    border: 1px solid $orange-light;
     overflow-y: scroll;
 
     // &::-webkit-scrollbar {
@@ -89,4 +112,32 @@
             }
         }
     }
+}
+
+.user-search::-webkit-scrollbar {
+width: 0.25em;
+}
+   
+.user-search::-webkit-scrollbar-track {
+box-shadow: inset 0 0 6px transparent;
+}
+   
+.user-search::-webkit-scrollbar-thumb {
+border-radius: 3px;
+background-color: $orange-light;
+box-shadow: -7px 0 9px -5px $orange-light;
+}
+
+.participants-list::-webkit-scrollbar {
+width: 0.25em;
+}
+   
+.participants-list::-webkit-scrollbar-track {
+box-shadow: inset 0 0 6px transparent;
+}
+   
+.participants-list::-webkit-scrollbar-thumb {
+border-radius: 3px;
+background-color: $orange-light;
+box-shadow: -7px 0 9px -5px $orange-light;
 }

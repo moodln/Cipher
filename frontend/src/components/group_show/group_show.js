@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { fetchGroup } from '../../actions/group_actions';
 import { selectGroupParticipants, selectUsersInvitedToGroup } from '../../selectors/users_selectors';
 import EditorShow from '../editor_show';
+import SidebarContainer from "../sidebar/sidebar_container";
 
 
 import InviteButtonContainer from '../ui_components/invite_button'
@@ -21,37 +22,40 @@ class GroupShow extends Component {
         const { group, problem } = this.props;
 
         return (
-            <div className="group-show">
-                <div className="group-show-bar">
-                    <InviteButtonContainer groupId={this.props.group._id}
-                        participants={group.users}
-                        invitedUsers={this.props.invitedUsers.allIds} />
-                    <div className="group-show-bar-participants">
-                        <h1>Participants:</h1>
-                        <ul>
-                            {
-                                this.props.participants.map(user => <li key={user["_id"]}>{user.handle}</li>)
-                            }
-                        </ul>
+            <div className="page-with-sidebar">
+                <SidebarContainer />
+                <div className="group-show">
+                    <div className="group-show-bar">
+                        <InviteButtonContainer groupId={this.props.group._id}
+                            participants={group.users}
+                            invitedUsers={this.props.invitedUsers.allIds} />
+                        <div className="group-show-main-problem">
+                            <h1>{this.props.problem.title}</h1>
+                            <p>{this.props.problem.body}</p>
+                        </div>
+                        <div className="group-show-bar-participants">
+                            <h1>Participants:</h1>
+                            <ul className="participants-list">
+                                {
+                                    this.props.participants.map(user => <li key={user["_id"]}>{user.handle}</li>)
+                                }
+                            </ul>
+                        </div>
+                        {/* <div className="group-show-bar-invited">
+                            <h1>Invited Users:</h1>
+                            <ul className="group-show-bar-invited">
+                                {
+                                    Object.values(this.props.invitedUsers.byId).map(user => <li key={user["_id"]}>{user.handle}</li>)
+                                }
+                            </ul>
+                        </div> */}
                     </div>
-                    <div className="group-show-bar-invited">
-                        <h1>Invited Users:</h1>
-                        <ul className="group-show-bar-invited">
-                            {
-                                Object.values(this.props.invitedUsers.byId).map(user => <li key={user["_id"]}>{user.handle}</li>)
-                            }
-                        </ul>
-                    </div>
-                </div>
 
-                <div className="group-show-main">
-                    <div className="group-show-main-problem">
-                        <h1>{this.props.problem.title}</h1>
-                        <p>{this.props.problem.body}</p>
+                    <div className="group-show-main">
+                        <EditorShow />
                     </div>
-                    <EditorShow />
-                </div>
 
+                </div>
             </div>
         )
     }

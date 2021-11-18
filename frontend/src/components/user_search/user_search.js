@@ -18,9 +18,7 @@ class UserSearch extends Component {
   render() {
     if(this.props.usersToInvite.length === 0){
       return (
-      <div>
-        Fetching users for you!
-      </div>
+      null
     )
     }
     return (
