@@ -36,7 +36,7 @@
                 justify-content: center;
                 align-items: center;
                 transition: all 0.3s ease-in;  
-                z-index: 1;
+                z-index: 6 !important;
 
                 svg{
                     height: 30px;
@@ -58,7 +58,7 @@
                 padding-right: 0;
                 width: 240px;
                 min-width: 160px;
-                z-index: -1;
+                z-index: -1 !important;
                 left: calc(50%);
                 top: 0;
                 opacity: 0;
@@ -93,7 +93,7 @@
                 }
                 .sidebar-menu{
                     opacity: 1;
-                    z-index: 0;
+                    z-index: 3 !important;
                     left: calc(80%);
                     pointer-events: all;
                 }
@@ -120,14 +120,14 @@
 
             .sidebar-button:hover + .sidebar-menu{
                 opacity: 1;
-                z-index: 0;
+                z-index: 3 !important;
                 left: calc(80%);
                 pointer-events: all;
             }
 
             .sidebar-menu:hover{
                 opacity: 1;
-                z-index: 0;
+                z-index: 3 !important;
                 left: calc(80%);
                 pointer-events: all;
             }
