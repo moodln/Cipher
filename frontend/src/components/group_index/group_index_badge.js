@@ -9,16 +9,6 @@ class GroupIndexBadge extends Component {
     this.goToGroupShowPage = this.goToGroupShowPage.bind(this);
   }
 
-<<<<<<< HEAD
-//   shouldComponentUpdate(nextProps, nextState) {
-
-//   // Typical usage (don't forget to compare props):
-//   if (this.props.participants.length !== prevProps.participants.length) {
-//     console.log('list changed ');
-    
-//   }
-// }
-=======
   // shouldComponentUpdate(nextProps, nextState) {
 
   //   // Typical usage (don't forget to compare props):
@@ -27,7 +17,6 @@ class GroupIndexBadge extends Component {
 
   //   }
   // }
->>>>>>> 26fad35be246b681ed0c137d28fb09ae7983418d
 
   goToGroupShowPage() {
     this.props.history.push({ pathname: `/groups/${this.props.group._id}` })
