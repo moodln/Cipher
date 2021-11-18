@@ -33,27 +33,26 @@ class GroupShow extends Component {
     return (
       <div className="page-with-sidebar">
         <SidebarContainer />
-        <div className="group-show">
-          {/* <button onClick={this.exitFromGroupAndGoToProblemsPage}>
-                    Exit from Group
-                  </button> */}
-          <div className="group-show-bar">
-            <InviteButtonContainer groupId={this.props.group._id}
-              participants={group.users}
-              invitedUsers={this.props.invitedUsers.allIds} />
-            <div className="group-show-main-problem">
-              <h1>{this.props.problem.title}</h1>
-              <p>{this.props.problem.body}</p>
-            </div>
-            <div className="group-show-bar-participants">
-              <h1>Participants:</h1>
-              <ul className="participants-list">
-                {
-                  this.props.participants.map(user => <li key={user["_id"]}>{user.handle}</li>)
-                }
-              </ul>
-            </div>
-            {/* <div className="group-show-bar-invited">
+        <div className="group-show-container">
+          <h1>{this.props.group.title}</h1>
+          <div className="group-show">
+            <div className="group-show-bar">
+              <InviteButtonContainer groupId={this.props.group._id}
+                participants={group.users}
+                invitedUsers={this.props.invitedUsers.allIds} />
+              <div className="group-show-main-problem">
+                <h1>{this.props.problem.title}</h1>
+                <p>{this.props.problem.body}</p>
+              </div>
+              <div className="group-show-bar-participants">
+                <h1>Participants:</h1>
+                <ul className="participants-list">
+                  {
+                    this.props.participants.map(user => <li key={user["_id"]}>{user.handle}</li>)
+                  }
+                </ul>
+              </div>
+              {/* <div className="group-show-bar-invited">
                             <h1>Invited Users:</h1>
                             <ul className="group-show-bar-invited">
                                 {
@@ -61,19 +60,20 @@ class GroupShow extends Component {
                                 }
                             </ul>
                         </div> */}
-          </div>
-
-          <div className="group-show-main">
-            <EditorShow />
-          </div>
-          <div className="group-show-cams">
-            <div className="cams">
             </div>
-            <div className="save-btn-div">
-              <button className="group-save-btn save-btn">SAVE</button>
-              <button className="group-save-btn leave-btn" onClick={this.exitFromGroupAndGoToProblemsPage}>
-                LEAVE GROUP
-              </button>
+
+            <div className="group-show-main">
+              <EditorShow />
+            </div>
+            <div className="group-show-cams">
+              <div className="cams">
+              </div>
+              <div className="save-btn-div">
+                <button className="group-save-btn save-btn">SAVE</button>
+                <button className="group-save-btn leave-btn" onClick={this.exitFromGroupAndGoToProblemsPage}>
+                  LEAVE GROUP
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -1,6 +1,17 @@
+.group-show-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    h1{
+        margin:10px;
+        font-size: 30px;
+        text-shadow: 0 0 10px $blue-light;
+    }
+}
 .group-show {
     background-color: $blue-darkest;
-    height: calc(100vh - 72px);
+    height: calc(100vh - 112px);
     // min-width: 700px;
     width: 100%;
     display: flex;
@@ -86,8 +97,8 @@
     // display: grid;
     // grid-template-columns: 20% 60% 20%;
     height: 100%;
-    width: 60%;
-    max-width: 1800px;
+    width: 70%;
+    max-width: 2200px;
 
     .editor-container {
         height: 100%;
