@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
 
+
 class Sidebar extends React.Component {
     constructor(props) {
         super(props);
@@ -10,6 +11,7 @@ class Sidebar extends React.Component {
 
     componentDidMount() {
         this.props.fetchProblems();
+        this.props.fetchUserGroups();
 
         // window.addEventListener("scroll", () => {
         //     if (window.scrollY > 10) {
@@ -31,10 +33,11 @@ class Sidebar extends React.Component {
     }
 
     render() {
+        
         if (!this.props.problems) {
             return null;
         }
-
+        console.log(this.props)
         return (
             <div className="sidebar-container container">
                 <div className="sidebar-section-div">
@@ -58,7 +61,7 @@ class Sidebar extends React.Component {
                             }
                         </div>
                     </div>
-                    <div className="sidebar-section">
+                    {/* <div className="sidebar-section">
                         <button className="sidebar-button">
                             <svg className="problems-svg bi bi-files" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                                 <path d="M13 0H6a2 2 0 0 0-2 2 2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 13V4a2 2 0 0 0-2-2H5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zM3 4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z" />
@@ -77,7 +80,7 @@ class Sidebar extends React.Component {
                                 })
                             }
                         </div>
-                    </div>
+                    </div> */}
                     <div className="sidebar-section">
                         <button className="sidebar-button">
                             <svg className="problems-svg bi bi-people" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
@@ -86,12 +89,13 @@ class Sidebar extends React.Component {
                         </button>
                         <div className="sidebar-menu">
                             {
-                                this.props.problems.map(problem => {
+                                this.props.groups.map(group => {
 
-                                    const problemId = problem._id
+                                    
                                     return (
-                                        <div className="sidebar-list-item" key={problem._id}>
-                                            <p>{problem.title}</p>
+                                        <div className="sidebar-list-item" key={group._id}>
+                                            <p>{group.title}</p>
+                                            <Link to={`/groups/${group._id}`}>go</Link>
                                         </div>
                                     )
                                 })
