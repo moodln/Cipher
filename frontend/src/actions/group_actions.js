@@ -35,7 +35,7 @@ export const fetchCurrentUserGroups = () => dispatch => {
 
 export const createUserGroupWithProblem = (problemId) => dispatch => {
   return GroupsApiUtil.createGroupWithProblem(problemId)
-    .then(groupResponse => dispatch(receiveUserGroup(groupResponse)))
+    // .then(groupResponse => dispatch(receiveUserGroup(groupResponse.data)))
 }
 
 export const fetchGroup = (groupId) => dispatch => {

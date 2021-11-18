@@ -18,12 +18,14 @@
     background-image: url("../../../assets/images/main_splash4C.png");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: 0% 60%;
+    // background-position: 0% 60%;
+    background-position: top center;
     // background-size: 100% 120%;
-    width: 100%;
+    min-width: 100%;
     background-color: $blue-darkest;
     box-shadow: $blue-lightest 0px 4px 6px -5px;
     padding-top: 40px;
+    position: relative;
 
     .splash-main-info-container{
         display:flex;
@@ -53,13 +55,14 @@
     flex-direction: row;
     width: 75%;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     margin: 30px 0;
     padding: 50px 0;
 
     .splash-summary-item{
         width: 35%;
-        min-height: 170px;
+        // min-height: 170px;
+        height: 170px;
         display:flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -77,9 +80,9 @@
         }
 
         .splash-summary-item-subtitle{
-            font-size: 20px;
+            font-size: 18px;
             margin-top: 5px;
-            color: $blue-light;
+            color: $blue-lightest;
             font-weight: 600;
             text-align: center;
         }
@@ -118,21 +121,25 @@
     margin-top: 60px;
 
     .splash-features-item{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        padding: 60px 0;
-        width: 100%;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        // display: flex;
+        // flex-direction: row;
+        // justify-content: center;
+        // padding: 60px 0;
+        // width: 100%;
 
         .splash-features-item-img-div{
-            width: 400px;
-            height: 400px;
+            // width: 400px;
+            // height: 400px;
             background-color: $blue-lightest;
         }
-        .right{
+
+        .right {
             margin-left: 60px;
         }
-        .left{
+
+        .left {
             margin-right: 60px;
         }
 
@@ -140,7 +147,6 @@
             display:flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
 
             h2{
                 color: white;
@@ -148,13 +154,16 @@
                 font-weight: 700;
                 padding-bottom: 10px;
                 text-shadow: 0 0 10px $blue-light;
+                text-align: center;
             }
 
             h4{
-                font-size: 20px;
+                font-size: 18px;
                 color: white;
                 padding: 5px 0;
                 margin-bottom: 5px;
+                line-height: 1.4em;
+                text-align: center;
             }
         }
     }
@@ -162,7 +171,7 @@
 
 
 .splash-code-btn{
-    background-color: $blue-light;
+    background-color: $blue-lightest;
     color: white;
     padding: 15px 30px;
     border-radius: 3px;

@@ -7,12 +7,11 @@ import ProblemIndexContainer from './problem_index/problem_index_container';
 import GroupShowContainer from './group_show/group_show';
 // import MainPage from './main/main_page';
 import LoginFormContainer from './session/login_form_container';
-import SignupFormContainer from './session/signup_form_container';
+import RegisterFormContainer from './session/register_form_container';
 import DashboardContainer from './profile/dashboard';
 // import TweetComposeContainer from './problem_index/tweet_compose_container';
 import Splash from "./splash/splash";
 import Footer from "./footer/footer";
-
 
 const App = () => (
   <div className="page-container">
@@ -21,7 +20,7 @@ const App = () => (
       <Switch>
         <AuthRoute exact path="/" component={Splash} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
-        <AuthRoute exact path="/signup" component={SignupFormContainer} />
+        <AuthRoute exact path="/register" component={RegisterFormContainer} />
 
         <ProtectedRoute exact path="/problems" component={ProblemIndexContainer} />
         <ProtectedRoute exact path="/groups/:groupId" component={GroupShowContainer} />

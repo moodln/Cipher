@@ -10,13 +10,13 @@ class Sidebar extends React.Component {
     componentDidMount() {
         this.props.fetchProblems();
 
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 10) {
-                document.querySelector(".sidebar-section-div").className = "sidebar-section-div side-glow";
-            } else {
-                document.querySelector(".sidebar-section-div").className = "sidebar-section-div";
-            }
-        })
+        // window.addEventListener("scroll", () => {
+        //     if (window.scrollY > 10) {
+        //         document.querySelector(".sidebar-section-div").className = "sidebar-section-div side-glow";
+        //     } else {
+        //         document.querySelector(".sidebar-section-div").className = "sidebar-section-div";
+        //     }
+        // })
 
     }
 
