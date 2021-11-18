@@ -12,15 +12,12 @@ class ProblemIndex extends React.Component {
         this.props.fetchProblems();
     }
 
-    // componentWillMount() {
-    //     this.props.fetchProblems();
-    // }
 
     makeGroup(problemId) {
-        console.log(`problemId: `, problemId);
+        
         this.props.createGroupWithProblem(problemId)
             .then(groupResponse => {
-                console.log(`groupResponse: `, groupResponse);
+                
                 this.props.history.push(`/groups/${groupResponse.data._id}`)
             })
     }
@@ -30,7 +27,6 @@ class ProblemIndex extends React.Component {
         if (!this.props.problems) {
             return null;
         }
-        // console.log(this.props);
         return (
             <div className="page-with-sidebar">
                 <SidebarContainer />

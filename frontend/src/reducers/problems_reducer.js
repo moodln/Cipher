@@ -12,7 +12,6 @@ const problemsReducer = (oldState = _nullState, action) => {
 
     switch (action.type) {
         case RECEIVE_ALL_PROBLEMS:
-            console.log(`action: `, action);
             
             nextState.byId = action.problems.problemsById;
             nextState.allIds = action.problems.allProblemsId
@@ -21,8 +20,6 @@ const problemsReducer = (oldState = _nullState, action) => {
             nextState[action.problem.id] = action.problem;
             return nextState;
         case RECEIVE_GROUP:
-            console.log(`action.groupCollection.problemsById._id: `, action.groupCollection.problemsById._id);
-            console.log(`nextState.byId: `, nextState.byId);
             
             nextState.byId[action.groupCollection.problemsById._id] = action.groupCollection.problemsById;
             nextState.allIds = nextState.allIds.concat(action.groupCollection.allProblemsId);
