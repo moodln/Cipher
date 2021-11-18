@@ -19,7 +19,7 @@ class InviteManagerBadge extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  group: state.entities.groups.byId[ownProps.invite.group]._id
+  group: state.entities.groups.byId[ownProps.invite.group].title
 })
 
 const mapDispatchToProps = dispatch => ({

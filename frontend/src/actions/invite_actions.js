@@ -19,10 +19,11 @@ export const receiveInvites = (invitesCollection) => {
   }
 }
 
-export const removeInvite = (inviteId) => {
+export const removeInvite = (inviteId, resolutionCollection) => {
   return {
     type: REMOVE_INVITE,
-    inviteId
+    inviteId,
+    resolutionCollection
   }
 }
 
@@ -37,7 +38,6 @@ export const inviteUserToGroup = (inviteeId, groupId) => dispatch => {
 export const fetchCurrentUserInvites = () => dispatch => {
   return InviteApiUtil.fetchCurrentUserInvites()
   .then( invitesResponse => {
-    console.log(`invitesResponse: `, invitesResponse);
     
     return dispatch(receiveInvites(invitesResponse.data))
   })
@@ -46,9 +46,8 @@ export const fetchCurrentUserInvites = () => dispatch => {
 export const inviteResolution = (inviteId, response) => dispatch => {
   return InviteApiUtil.inviteResolution(inviteId, response)
   .then( (resolutionResponse) => {
-    console.log(`resolutionResponse: `, resolutionResponse);
     
-    return dispatch(removeInvite(inviteId))
+    return dispatch(removeInvite(inviteId, resolutionResponse.data))
   })
 }
 
