@@ -42,7 +42,7 @@ const httpServer = http.createServer(app);
 // const io = require("socket.io")(httpServer);
 const io = require("socket.io")(httpServer, {
   cors: {
-    origin: "http://localhost:3000",
+    origins: ["http://localhost:3000", "https://cipher-mern.herokuapp.com/"],
     methods: ["GET", "POST"]
     }
 });
