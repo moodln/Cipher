@@ -5,7 +5,7 @@ import { fetchGroup, removeCurrentUserFromGroup } from '../../actions/group_acti
 import { selectGroupParticipants, selectUsersInvitedToGroup } from '../../selectors/users_selectors';
 import EditorShow from '../editor_show';
 import SidebarContainer from "../sidebar/sidebar_container";
-
+import { fetchDocument, updateDocument } from '../../actions/document_actions';
 
 import InviteButtonContainer from '../ui_components/invite_button'
 
@@ -15,10 +15,9 @@ class GroupShow extends Component {
     this.exitFromGroupAndGoToProblemsPage = this.exitFromGroupAndGoToProblemsPage.bind(this);
   }
   
-
   componentDidMount() {
-
       this.props.fetchGroup(this.props.match.params.groupId)
+      // this.props.fetchDocument(this.props.group.document._id);
   }
 
   exitFromGroupAndGoToProblemsPage(e) {
@@ -30,6 +29,7 @@ class GroupShow extends Component {
     render() {
         if (!this.props.group) return null;
         if (!this.props.problem) return null;
+        debugger
         const { group, problem } = this.props;
         return (
             <div className="page-with-sidebar">
@@ -65,7 +65,7 @@ class GroupShow extends Component {
                     </div>
 
                     <div className="group-show-main">
-                        <EditorShow />
+                        <EditorShow updateDocument={this.props.updateDocument} />
                     </div>
 
                 </div>
@@ -91,8 +91,10 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchGroup: (groupId) => dispatch(fetchGroup(groupId)),
-  exitFromGroup: (groupId) => dispatch(removeCurrentUserFromGroup(groupId))
+    fetchGroup: (groupId) => dispatch(fetchGroup(groupId)),
+    fetchDocument: documentId => dispatch(fetchDocument(documentId)),
+    updateDocument: document => dispatch(updateDocument(document)),
+    exitFromGroup: (groupId) => dispatch(removeCurrentUserFromGroup(groupId))
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupShow))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupShow));
