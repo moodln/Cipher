@@ -109,21 +109,47 @@
                     margin: 15px;
                     border: 1px solid $orange-light;
                     background-color: $blue-darkest;
-                    border-radius: 3px;
+                    border-radius: 4px;
                     // box-shadow: 0 0px 0px $orange-light;
                     transition: all 0.2s ease-in;
     
                     .problem-name{
                         font-size: 20px;
-    
+                        text-shadow: 0 0 5px $blue-lightest;    
                     }
-    
-                    .problem-link{
-                        font-size: 14px;
-                    }
-                }
 
-        }
+                
+
+                    .problem-body{
+                        width: 230px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        height: 40px;
+                        padding: 10px 0;                        
+                    }
+                    
+                    .problem-link-div{
+                        display:flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+
+                        .problem-link{
+                            font-size: 14px;
+                            border: 1px solid $orange-light;
+                            padding: 3px 5px;
+                            border-radius: 3px;  
+                            transition: all 0.2s ease-in;  
+                        }
+
+                        .problem-link:hover{
+                            color: $orange-light;
+                        }
+
+                    }
+                   
+                }
+            }
         
         }
     }    

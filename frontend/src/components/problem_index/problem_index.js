@@ -79,8 +79,11 @@ class ProblemIndex extends React.Component {
                                             return (
                                                 <li className="problem-card" key={problem._id} onClick={() => this.makeGroup(problem._id)}>
                                                     <p className="problem-name">{problem.title}</p>
-                                                    <p>{problem._id}</p>
-                                                    <p className="problem-link">Open</p>
+
+                                                    <p className="problem-body">{problem.body}</p>
+                                                    <div className="problem-link-div">
+                                                        <button className="problem-link">OPEN</button>
+                                                    </div>
                                                 </li>
                                             )
                                         })
