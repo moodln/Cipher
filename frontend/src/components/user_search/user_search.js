@@ -18,21 +18,19 @@ class UserSearch extends Component {
   render() {
     if(this.props.usersToInvite.length === 0){
       return (
-      <div>
-        Fetching users for you!
-      </div>
+      null
     )
     }
     return (
-      <div>
-        <ul>
+      <div className="user-search">
+        <ul className="user-search-dropdown">
          {
          this.props.usersToInvite.map(user => {
            return (
-            <li key={user["_id"]} 
-            onClick={ () => this.inviteCollaborator(user._id) }
-            >
-              {user.email}
+            <li className="user-search-dropdown-item"
+              key={user["_id"]}
+              onClick={() => this.inviteCollaborator(user._id)}>
+              {user.handle}
             </li>
             )
            })

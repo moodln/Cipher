@@ -1,0 +1,136 @@
+.notification-badge {
+    height: 50px;
+    width: 82px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: $blue-darkest;
+    transition: all 0.2s ease-in;
+   
+    svg {
+        margin: 5px;
+        height: 35px;
+        width: 35px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: all 0.2s ease-in;
+    }
+
+    
+
+}
+
+.notification-dropdown { 
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: $blue-darkest;
+    background-clip: content-box;
+    min-width: 160px;
+    border-radius: 3px;
+    z-index: -1;
+    right: 0px;
+    top: calc(100%);
+    border-top: 5px solid transparent;
+    box-shadow: $blue-light 0px 4px 6px -5px, $blue-light 0px 2px 6px -5px;            
+    transform: scaleY(0.5) translateY(-20px);
+    opacity: 0;
+    pointer-events: none;
+    transform-origin: top;
+    transition: all 0.3s ease-in;
+}
+
+.notification-badge:hover {
+    .notification-dropdown {
+        z-index: 1;
+        opacity: 1;
+        pointer-events: all;
+        transform: scaleY(1) translateY(0px);
+
+
+    }
+
+    .notification-img {
+        border: 2px solid $blue-lightest;
+
+        svg {
+            margin: 5px;
+            height: 35px;
+            width: 35px;
+            fill: $blue-lightest;
+        }
+    }
+
+}
+
+
+.notification-dropdown {
+
+    p {
+            text-align: center;
+            margin-bottom: 4px;
+            font-size: 14px;
+    }
+
+    .no-notifications-message {
+        padding: 10px;
+        font-size: 13px;
+        
+
+        p {
+            margin: 3px;
+            letter-spacing: 1.5px;
+            line-height: 1.6;
+        }
+    }
+
+    .notification-list {
+        display: flex;
+        justify-content: space-between;
+        width: 300px;
+        font-size: 14px;
+        padding: 10px;
+
+        .group-title {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 4px;
+        }
+
+        .buttons {
+            display: flex;
+
+            .button-styling {
+                margin: 4px;
+                border: 0.5px solid $blue-light;
+                border-radius: 3px;
+                padding: 4px;
+                font-size: 12px;
+                transition: all 0.3s ease-in;
+        }
+             
+
+        }
+
+        .button-styling:hover {
+            margin: 4px;
+            border: 0.5px solid $blue-lightest;
+            border-radius: 3px;
+            padding: 4px;
+            font-size: 12px;
+            background-color: $blue-darkest;
+            box-shadow: $blue-light 0px 4px 6px -5px;
+            transition: all 0.3s ease-in;
+            font-stretch: semi-expanded;
+        }
+
+
+
+    }
+}
+
+
+

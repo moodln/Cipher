@@ -27,7 +27,7 @@ export const removeCurrentUser = () => ({
 
 export const signup = user => dispatch => (
     SessionApiUtil.createUser(user)
-        .then(() => dispatch(receiveCurrentUser()),
+        .then(user => dispatch(receiveCurrentUser(user)),
         errors => dispatch(receiveErrors(errors.response.data)))
 );
 

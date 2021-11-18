@@ -24,7 +24,7 @@ class GroupIndexBadge extends Component {
 
   render() {
     const { group } = this.props;
-    console.log(group);
+    // console.log(group);
     return (
       <li className="problem-card" onClick={this.goToGroupShowPage}>
         <p className="problem-name">{group.title}</p>
@@ -47,4 +47,4 @@ const mapDispatchToProps = {
 
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupIndexBadge))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupIndexBadge));

@@ -16,8 +16,7 @@ class InviteButton extends Component {
         <UserSearchContainer 
           participants={this.props.participants}
           invitedUsers={this.props.invitedUsers}
-          groupId={this.props.groupId}
-          />
+          groupId={this.props.groupId} />
       </div>
     )
   }
@@ -26,7 +25,7 @@ class InviteButton extends Component {
     const searchUserDisplay = this.state.searchUserMode ? this.renderUserSearch() : "";
     const buttonDisplay = this.state.searchUserMode ? "Close User Selector" : "Invite a Collaborator";
     return (
-      <div>
+      <div className="invite-button">
         <button onClick={() => {this.setState({searchUserMode: !this.state.searchUserMode})} }>
           {buttonDisplay}
         </button>
