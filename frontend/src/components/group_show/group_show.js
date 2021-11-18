@@ -1,17 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchGroup } from '../../actions/group_actions';
+import { fetchGroup, removeCurrentUserFromGroup } from '../../actions/group_actions';
 import { selectGroupParticipants, selectUsersInvitedToGroup } from '../../selectors/users_selectors';
 
 
 import InviteButtonContainer from '../ui_components/invite_button'
 
 class GroupShow extends Component {
+  constructor(props) {
+    super(props);
+    this.exitFromGroupAndGoToProblemsPage = this.exitFromGroupAndGoToProblemsPage.bind(this);
+  }
+  
 
   componentDidMount() {
     
     this.props.fetchGroup(this.props.match.params.groupId)
+  }
+
+  exitFromGroupAndGoToProblemsPage(e) {
+    e.preventDefault();
+    this.props.exitFromGroup(this.props.match.params.groupId)
+    this.props.history.push("/problems");
   }
   
   render() {
@@ -20,6 +31,9 @@ class GroupShow extends Component {
     const {group, problem} = this.props;
     return (
       <div>
+        <button onClick={this.exitFromGroupAndGoToProblemsPage}>
+          Exit from Group
+        </button>
         <InviteButtonContainer groupId={this.props.group._id} participants={group.users} invitedUsers={this.props.invitedUsers.allIds}/>
         <h1>{this.props.problem.body}</h1>
         <h1>Participants:</h1>
@@ -68,7 +82,8 @@ const mapStateToProps = (state, ownProps) => {
 }}
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchGroup: (groupId) => dispatch(fetchGroup(groupId))
+  fetchGroup: (groupId) => dispatch(fetchGroup(groupId)),
+  exitFromGroup: (groupId) => dispatch(removeCurrentUserFromGroup(groupId))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupShow))

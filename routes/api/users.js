@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require('passport');
-const { getCurrUserGroups } = require("../../controllers/groups_controller");
+const { getCurrUserGroups, removeUserFromGroup } = require("../../controllers/groups_controller");
 const { getCurrUserInvites, getCurrUserOutcomingInvites } = require("../../controllers/invites_controller");
 
 
@@ -17,5 +17,6 @@ router.get("/groups", passport.authenticate('jwt', {session: false}), getCurrUse
 router.get("/invites", passport.authenticate('jwt', {session: false}), getCurrUserInvites)
 router.get("/sent_invites", passport.authenticate('jwt', {session: false}), getCurrUserOutcomingInvites)
 router.get("/invite_user_search", passport.authenticate('jwt', {session: false}), searchForUsersToInvite)
+router.delete('/:groupId', passport.authenticate('jwt', {session: false}), removeUserFromGroup);
 
 module.exports = router;
