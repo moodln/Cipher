@@ -8,7 +8,16 @@ const Problem = require('../../models/Problem');
 
 router.get('/', (req, res) => {
     Problem.find({})
-        .then(result => res.json(result))
+        .then(problemResult => {
+            const problemsById = {};
+            
+            problemResult.forEach(problem => {
+              
+              problemsById[problem.id] = problem;
+            });
+            const allProblemsId = Object.keys(problemsById);
+            res.json({problemsById, allProblemsId})
+        })
         .catch(err =>
             res.status(404).json({ noProblemFound: 'No problems available' })
         );
