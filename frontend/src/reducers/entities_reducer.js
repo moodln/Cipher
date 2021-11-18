@@ -3,12 +3,14 @@ import { GroupsReducer } from "./groups_reducer";
 import { InvitesReducer } from "./invites_reducer";
 import problemsReducer from "./problems_reducer";
 import { UsersReducer } from "./users_reducer";
+import DocumentsReducer from "./documents_reducer";
 
 const entitiesReducer = combineReducers({
     problems: problemsReducer,
     groups: GroupsReducer,
     users: UsersReducer,
-    invites: InvitesReducer
+    invites: InvitesReducer,
+    documents: DocumentsReducer
 });
 
 export default entitiesReducer;
