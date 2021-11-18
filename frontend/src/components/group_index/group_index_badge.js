@@ -18,18 +18,16 @@ class GroupIndexBadge extends Component {
 
     return (
       <li className="problem-card">
-       <ul>
-         {
-         this.props.participants.map(user => {
-           return (
-            <li key={user["_id"]} onClick={this.goToGroupShowPage}
-            >
-              {user.handle}
-            </li>
+        {
+          this.props.participants.map(user => {
+            return (
+              <div key={user["_id"]} onClick={this.goToGroupShowPage}
+              >
+                <p className="problem-name">{user.handle}</p>
+              </div>
             )
-           })
-         }
-       </ul>
+          })
+        }
       </li>
     )
   }

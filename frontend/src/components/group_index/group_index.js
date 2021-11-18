@@ -24,18 +24,20 @@ class GroupIndex extends Component {
       return (<div>You did not join any groups yet!</div>)
     } else {
       return (
-        <div className="problem-index-problems-section">
+        <section className="problem-index-problems-section">
           <div className="problem-index-problems-header-div">
-            <h1>Groups:</h1>
+            <h1>Your Groups:</h1>
           </div>
-          <ul className="problem-index-problems-list">
-            {
-              this.props.groups.map(group => (
-                <GroupIndexBadgeContainer key={group["_id"]} group={group} />
-              ))
-            }
-          </ul>
-        </div>
+          <div className="problem-index-problems-div">
+            <ul className="problem-index-problems-list">
+              {
+                this.props.groups.map(group => (
+                  <GroupIndexBadgeContainer key={group["_id"]} group={group} />
+                ))
+              }
+            </ul>
+          </div>
+        </section>
       );
     }
   }

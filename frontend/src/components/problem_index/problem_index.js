@@ -27,21 +27,22 @@ class ProblemIndex extends React.Component {
         //make a new document, then make a new group??
         // console.log(problemId);
         console.log(`problemId: `, problemId);
-        
+
         this.props.createGroupWithProblem(problemId)
             .then(groupResponse => {
                 console.log(`groupResponse: `, groupResponse);
-                
+
                 this.props.history.push(`/groups/${groupResponse.data._id}`)
-                
+
             })
     }
 
     render() {
+        // debugger
         if (!this.props.problems) {
             return null;
         }
-        console.log(this.props);
+        // console.log(this.props);
         return (
             <div className="page-with-sidebar">
                 <SidebarContainer />

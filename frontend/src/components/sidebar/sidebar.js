@@ -21,11 +21,12 @@ class Sidebar extends React.Component {
     }
 
     render() {
+        // debugger
         if (!this.props.problems) {
             return null;
         }
 
-
+        console.log("this is the sidebar")
         return (
             <div className="sidebar-container container">
                 <div className="sidebar-section-div">

@@ -5,7 +5,7 @@ import Sidebar from "./sidebar";
 const mSTP = state => {
     // debugger
     return {
-        problems: state.entities.problems.data,
+        problems: Object.values(state.entities.problems.byId),
         // currentUser: state.session.user
     }
 };
