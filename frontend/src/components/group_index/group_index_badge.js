@@ -9,14 +9,14 @@ class GroupIndexBadge extends Component {
     this.goToGroupShowPage = this.goToGroupShowPage.bind(this);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+//   shouldComponentUpdate(nextProps, nextState) {
 
-  // Typical usage (don't forget to compare props):
-  if (this.props.participants.length !== prevProps.participants.length) {
-    console.log('list changed ');
+//   // Typical usage (don't forget to compare props):
+//   if (this.props.participants.length !== prevProps.participants.length) {
+//     console.log('list changed ');
     
-  }
-}
+//   }
+// }
 
   goToGroupShowPage() {
     this.props.history.push({ pathname: `/groups/${this.props.group._id}` })
