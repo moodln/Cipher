@@ -1,0 +1,30 @@
+.group-show-dummy {
+    border: 2px solid red;
+    height: 100vh;
+    
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+
+    * {
+        color: #fff;
+    }
+}
+
+.group-show-dummy-editor-container {
+    // padding: 30px;
+    height: 400px;
+
+    .editor {
+        height: 80vh;
+        width: 100%;
+        background-color: red;
+    }
+}
+
+// <div className="group-show-dummy">
+//     <div></div>
+//     <div className="group-show-dummy-editor-container">
+//         <EditorShow />
+//     </div>
+//     <div></div>
+// </div>
