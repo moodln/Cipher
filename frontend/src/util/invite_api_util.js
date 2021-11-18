@@ -5,10 +5,10 @@ export const fetchCurrentUserInvites = () => {
 };
 
 export const inviteUserToGroup = (inviteeId, groupId) => {
-  console.log(`inviteeId: `, inviteeId);
-  return axios.post('/api/invites/', {headers: {inviteeId, groupId}});
+  // console.log(`inviteeId: `, inviteeId);
+  return axios.post('/api/invites/', { headers: { inviteeId, groupId } });
 }
 
 export const inviteResolution = (inviteId, response) => {
-  return axios.delete(`/api/invites/${inviteId}`, {headers: {response}});
+  return axios.delete(`/api/invites/${inviteId}`, { headers: { response } });
 }

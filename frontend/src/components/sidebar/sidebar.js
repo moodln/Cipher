@@ -22,21 +22,19 @@ class Sidebar extends React.Component {
     }
 
     makeGroup(problemId) {
-        console.log(`problemId: `, problemId);
+        // console.log(`problemId: `, problemId);
         this.props.createGroupWithProblem(problemId)
             .then(groupResponse => {
-                console.log(`groupResponse: `, groupResponse);
+                // console.log(`groupResponse: `, groupResponse);
                 this.props.history.push(`/groups/${groupResponse.data._id}`)
             })
     }
 
     render() {
-        // debugger
         if (!this.props.problems) {
             return null;
         }
 
-        console.log("this is the sidebar")
         return (
             <div className="sidebar-container container">
                 <div className="sidebar-section-div">

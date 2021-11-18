@@ -5,7 +5,7 @@ import Editor from "@monaco-editor/react";
 function EditorShow() {
     const socket = io("http://localhost:3300");
     socket.on("connect", () => {
-            console.log("You have successfully connected");
+        // console.log("You have successfully connected");
     })
 
     const editorRef = useRef(null);
@@ -48,7 +48,7 @@ function EditorShow() {
         fontSize: "16px",
         letterSpacing: "1em"
     }
-    
+
     return (
         <div className="editor-container">
             <Editor

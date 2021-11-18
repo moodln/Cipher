@@ -14,16 +14,15 @@ class ProblemIndex extends React.Component {
 
 
     makeGroup(problemId) {
-        
+
         this.props.createGroupWithProblem(problemId)
             .then(groupResponse => {
-                
+
                 this.props.history.push(`/groups/${groupResponse.data._id}`)
             })
     }
 
     render() {
-        // debugger
         if (!this.props.problems) {
             return null;
         }
