@@ -11,37 +11,39 @@ import InviteButtonContainer from '../ui_components/invite_button'
 
 class GroupShow extends Component {
 
-    componentDidMount() {
+  componentDidMount() {
 
-        this.props.fetchGroup(this.props.match.params.groupId)
-    }
+    this.props.fetchGroup(this.props.match.params.groupId)
+  }
 
-    render() {
-        if (!this.props.group) return null;
-        if (!this.props.problem) return null;
-        const { group, problem } = this.props;
+  render() {
+    if (!this.props.group) return null;
+    if (!this.props.problem) return null;
+    const { group, problem } = this.props;
 
-        return (
-            <div className="page-with-sidebar">
-                <SidebarContainer />
-                <div className="group-show">
-                    <div className="group-show-bar">
-                        <InviteButtonContainer groupId={this.props.group._id}
-                            participants={group.users}
-                            invitedUsers={this.props.invitedUsers.allIds} />
-                        <div className="group-show-main-problem">
-                            <h1>{this.props.problem.title}</h1>
-                            <p>{this.props.problem.body}</p>
-                        </div>
-                        <div className="group-show-bar-participants">
-                            <h1>Participants:</h1>
-                            <ul className="participants-list">
-                                {
-                                    this.props.participants.map(user => <li key={user["_id"]}>{user.handle}</li>)
-                                }
-                            </ul>
-                        </div>
-                        {/* <div className="group-show-bar-invited">
+    return (
+      <div className="page-with-sidebar">
+        <SidebarContainer />
+        <div className="group-show">
+          <div className="group-show-bar">
+            <InviteButtonContainer
+              groupId={this.props.group._id}
+              participants={group.users}
+              invitedUsers={this.props.invitedUsers.allIds}
+            />
+            <div className="group-show-main-problem">
+              <h1>{this.props.problem.title}</h1>
+              <p>{this.props.problem.body}</p>
+            </div>
+            <div className="group-show-bar-participants">
+              <h1>Participants:</h1>
+              <ul className="participants-list">
+                {
+                  this.props.participants.map(user => <li key={user["_id"]}>{user.handle}</li>)
+                }
+              </ul>
+            </div>
+            {/* <div className="group-show-bar-invited">
                             <h1>Invited Users:</h1>
                             <ul className="group-show-bar-invited">
                                 {
@@ -49,35 +51,43 @@ class GroupShow extends Component {
                                 }
                             </ul>
                         </div> */}
-                    </div>
+          </div>
 
-                    <div className="group-show-main">
-                        <EditorShow />
-                    </div>
+          <div className="group-show-main">
+            <EditorShow />
+          </div>
+          <div className="group-show-cams">
+            <div className="cams">
 
-                </div>
             </div>
-        )
-    }
+            <div className="save-btn-div">
+              <button className="save-btn">SAVE</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const groupId = ownProps.match.params.groupId;
-    if (Object.values(state.entities.groups.byId).length === 0) return {};
-    if (Object.values(state.entities.problems.byId).length === 0) return {};
-    // console.log(`state.entities.groups.byId: `, state.entities.groups.byId[groupId].document.problem);
+  const groupId = ownProps.match.params.groupId;
+  if (Object.values(state.entities.groups.byId).length === 0) return {};
+  if (Object.values(state.entities.problems.byId).length === 0) return {};
+  // console.log(`state.entities.groups.byId: `, state.entities.groups.byId[groupId].document.problem);
 
-    const problemId = state.entities.groups.byId[groupId].document.problem;
-    return {
-        group: state.entities.groups.byId[groupId],
-        problem: state.entities.problems.byId[problemId],
-        participants: selectGroupParticipants(state.entities.users.byId, state.entities.groups.byId[groupId].users),
-        invitedUsers: selectUsersInvitedToGroup(state.entities.users.byId, state.entities.invites.byId, groupId)
-    }
+  const problemId = state.entities.groups.byId[groupId].document.problem;
+  return {
+    group: state.entities.groups.byId[groupId],
+    problem: state.entities.problems.byId[problemId],
+    participants: selectGroupParticipants(state.entities.users.byId, state.entities.groups.byId[groupId].users),
+    invitedUsers: selectUsersInvitedToGroup(state.entities.users.byId, state.entities.invites.byId, groupId)
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchGroup: (groupId) => dispatch(fetchGroup(groupId))
+  fetchGroup: (groupId) => dispatch(fetchGroup(groupId))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupShow))

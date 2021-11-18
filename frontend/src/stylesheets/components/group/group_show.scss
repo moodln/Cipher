@@ -22,9 +22,20 @@
         display: flex;
         justify-content: center;
         padding: 20px 0;
+        z-index: 0 !important;
+
+        button{
+            border: 1px solid $orange-light;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: all 0.2s ease-in;
+            background-color: orange;
+            z-index: 0 !important;
+        }
 
         button:hover {
-            color: $orange-dark;
+            color: $orange-light;
+            // box-shadow: ;
         }
     }
 
