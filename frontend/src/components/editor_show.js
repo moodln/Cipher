@@ -45,7 +45,6 @@ function EditorShow() {
     }
 
     const options = {
-        minimap: { enabled: false },
         fontSize: "16px",
         letterSpacing: "1em"
     }
@@ -54,11 +53,9 @@ function EditorShow() {
         <div>
             <Editor
                 className="editor"
-                height="600px"
-                width="800px"
                 defaultLanguage="javascript"
                 defaultValue={body}
-                theme="vs-dark"
+                // theme="vs-dark"
                 options={options}
                 onMount={handleEditorDidMount}
                 onChange={handleEditorChange} />
