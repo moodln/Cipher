@@ -4,7 +4,7 @@ const User = require("../models/User");
 const Invite = require("../models/Invite");
 
 const createGroup = (req, res) => {
-
+  
   Problem.findById(req.body.headers.problemId, (err, reqProblem) => {
     
     const newDocument = new Document({
@@ -17,6 +17,7 @@ const createGroup = (req, res) => {
       const newGroup = new Group({
         document: newDocument,
         users: [req.user.id],
+        title: `${reqProblem.title} by ${req.user.handle}`
       })
       newGroup.save()
       .then( (newGroup) => {
