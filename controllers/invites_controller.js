@@ -38,10 +38,19 @@ const deleteInvite = (req, res) => {
       Group.findById(invite.group, (err, group) => {
         group.users.push(req.user.id)
         group.save();
+        const groupsById = {};
+        groupsById[group.id] = group
+          
+        const allGroupsId = Object.keys(groupsById);
+        Invite.findByIdAndDelete(req.params.inviteId)
+      .then( () => res.json({groupsById, allGroupsId}))
+
       })
+    } else {
+      Invite.findByIdAndDelete(req.params.inviteId)
+      .then( () => res.json({success: true}))
+
     }
-    Invite.findByIdAndDelete(req.params.inviteId)
-    .then( () => res.json({success: true}))
 })
 
   

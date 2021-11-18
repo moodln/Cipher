@@ -1,5 +1,5 @@
 import { RECEIVE_GROUP, RECEIVE_USER_GROUPS } from "../actions/group_actions";
-import { RECEIVE_INVITES } from "../actions/invite_actions";
+import { RECEIVE_INVITES, REMOVE_INVITE } from "../actions/invite_actions";
 
 const _nullState = {
   byId: {},
@@ -14,13 +14,20 @@ export const GroupsReducer = (state = _nullState, action) => {
   switch (action.type) {
 
     case RECEIVE_USER_GROUPS:
-      nextState.byId = action.groupsCollection.groupsById;
-      nextState.allIds = action.groupsCollection.allGroupsId;
+      Object.values(action.groupsCollection.groupsById).forEach(group => {
+        nextState.byId[group._id] = group;
+        
+      });
+      nextState.allIds = Object.keys(nextState.byId);
       return nextState;
+      // nextState.byId = action.groupsCollection.groupsById;
+      // nextState.allIds = action.groupsCollection.allGroupsId;
+      // return nextState;
     case RECEIVE_GROUP:
       
       nextState.byId[action.groupCollection.groupsById._id] = action.groupCollection.groupsById;
-      nextState.allIds = nextState.allIds.concat(action.groupCollection.allGroupsId);
+      nextState.allIds = Object.keys(nextState.byId);
+
       return nextState;
 
     case RECEIVE_INVITES:
@@ -28,7 +35,12 @@ export const GroupsReducer = (state = _nullState, action) => {
         nextState.byId[group._id] = group;
         
       });
-      nextState.allIds = nextState.allIds.concat(action.invitesCollection.allGroupsId);
+      nextState.allIds = Object.keys(nextState.byId);
+
+      return nextState;
+    case REMOVE_INVITE:
+      console.log(`action: `, action);
+      
       return nextState;
     default:
       return state;

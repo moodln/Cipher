@@ -1,7 +1,6 @@
 .page-with-sidebar{
     display: flex;
-    flex-direction: row;
-   
+    flex-direction: row;   
 }
 
 .sidebar-container{
@@ -83,7 +82,6 @@
 
             .sidebar-section:hover{
 
-
                 .sidebar-button{
                     transform: translate(2px, -2px);
                     border: 1px solid $orange-light;
@@ -142,25 +140,22 @@
   
 }
 
-
-
 .side-glow{
     background-color: $blue-darkest;
     box-shadow: $orange-light 5px 0px 6px -5px;
     transition: all 0.5s ease-in;
 }
 
-
 .sidebar-menu::-webkit-scrollbar {
-    width: 0.25em;
-  }
+width: 0.25em;
+}
    
-  .sidebar-menu::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px transparent;
-  }
+.sidebar-menu::-webkit-scrollbar-track {
+box-shadow: inset 0 0 6px transparent;
+}
    
-  .sidebar-menu::-webkit-scrollbar-thumb {
-    border-radius: 3px;
-    background-color: $orange-light;
-    box-shadow: -7px 0 9px -5px $orange-light;
-  }
+.sidebar-menu::-webkit-scrollbar-thumb {
+border-radius: 3px;
+background-color: $orange-light;
+box-shadow: -7px 0 9px -5px $orange-light;
+}

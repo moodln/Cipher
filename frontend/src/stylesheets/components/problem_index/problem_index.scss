@@ -6,10 +6,10 @@
 }
 
 .problem-index-header{
-    background-image: linear-gradient(to bottom, transparent, $blue-darkest),url("../../../assets/images/problems-header.jpg");
+    background-image: linear-gradient(to bottom, transparent, $blue-darkest),url("../../../assets/images/2nd_main3.png");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: 0% 60%;
+    background-position: 0% 83%;
     // background-size: 100% 120%;
     width: 100%;
     background-color: $blue-darkest;
@@ -105,7 +105,7 @@
                     min-height: 150px;
                     width: 100%;
                     max-width: 310px;
-                    padding: 30px;
+                    padding: 27px;
                     margin: 15px;
                     border: 1px solid $orange-light;
                     background-color: $blue-darkest;
@@ -114,7 +114,7 @@
                     transition: all 0.2s ease-in;
     
                     .problem-name{
-                        font-size: 20px;
+                        font-size: 19px;
                         text-shadow: 0 0 5px $blue-lightest;    
                     }
 
@@ -145,12 +145,9 @@
                         .problem-link:hover{
                             color: $orange-light;
                         }
-
-                    }
-                   
+                    }                   
                 }
             }
-        
         }
     }    
 }

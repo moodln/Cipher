@@ -9,6 +9,7 @@ class GroupIndexBadge extends Component {
     this.goToGroupShowPage = this.goToGroupShowPage.bind(this);
   }
 
+<<<<<<< HEAD
 //   shouldComponentUpdate(nextProps, nextState) {
 
 //   // Typical usage (don't forget to compare props):
@@ -17,6 +18,16 @@ class GroupIndexBadge extends Component {
     
 //   }
 // }
+=======
+  // shouldComponentUpdate(nextProps, nextState) {
+
+  //   // Typical usage (don't forget to compare props):
+  //   if (this.props.participants.length !== prevProps.participants.length) {
+  //     console.log('list changed ');
+
+  //   }
+  // }
+>>>>>>> 26fad35be246b681ed0c137d28fb09ae7983418d
 
   goToGroupShowPage() {
     this.props.history.push({ pathname: `/groups/${this.props.group._id}` })
@@ -24,21 +35,16 @@ class GroupIndexBadge extends Component {
 
   render() {
     const { group } = this.props;
-
+    console.log(group);
     return (
-      <li className="problem-card">
-       <ul>
-         {
-         this.props.participants.map(user => {
-           return (
-            <li key={user._id} onClick={this.goToGroupShowPage}
-            >
-              {user.handle}
-            </li>
-            )
-           })
-         }
-       </ul>
+      <li className="problem-card" onClick={this.goToGroupShowPage}>
+        <p className="problem-name">{group.title}</p>
+        <p className="group-participants">Number of Participants:
+          <span> {group.users.length}</span>
+        </p>
+        <div className="problem-link-div">
+          <button className="problem-link">OPEN</button>
+        </div>
       </li>
     )
   }
