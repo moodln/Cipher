@@ -2,6 +2,7 @@ const Group = require("../models/Group");
 const Problem = require("../models/Problem");
 const User = require("../models/User");
 const Invite = require("../models/Invite");
+const Document = require("../models/Document");
 
 const createGroup = (req, res) => {
   
@@ -121,8 +122,12 @@ const removeUserFromGroup = (req, res) => {
     groupResult.save();
     if (groupResult.users.length === 0) {
       Invite.deleteMany({group: req.params.groupId}, (err, result) => {
-        Group.deleteOne({_id: req.params.groupId}, (err, result) => {
-          res.json({deletedGroup: req.params.groupId})
+        const deletedDocId = groupResult.document._id;
+        Document.deleteOne({_id: deletedDocId}, (err, resultDoc) => {
+          Group.deleteOne({_id: req.params.groupId}, (err, result) => {
+            res.json({deletedGroup: req.params.groupId, deletedDocId: deletedDocId})
+          })
+
         })
       })
     } else {
