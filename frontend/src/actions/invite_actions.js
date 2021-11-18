@@ -1,4 +1,5 @@
 import * as InviteApiUtil from "../util/invite_api_util"
+import { receiveGroup } from "./group_actions";
 
 export const RECEIVE_INVITE = 'RECEIVE_INVITE';
 export const RECEIVE_INVITES = 'RECEIVE_INVITES';
@@ -44,7 +45,8 @@ export const fetchCurrentUserInvites = () => dispatch => {
 
 export const inviteResolution = (inviteId, response) => dispatch => {
   return InviteApiUtil.inviteResolution(inviteId, response)
-  .then( () => {
+  .then( (resolutionResponse) => {
+    console.log(`resolutionResponse: `, resolutionResponse);
     
     return dispatch(removeInvite(inviteId))
   })

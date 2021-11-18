@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import graphic1 from "../../assets/images/graphic_1B.png";
+import graphic2 from "../../assets/images/graphic_1.png";
+import graphic3 from "../../assets/images/graphic_2.png";
 
 class Splash extends React.Component {
 
@@ -36,7 +39,7 @@ class Splash extends React.Component {
                 <section className="splash-features">
                     <div className="splash-features-item">
                         <div className="splash-features-item-img-div left" >
-                            <img></img>
+                            <img src={graphic2} />
                         </div>
                         <div className="splash-features-item-description right">
                             <h2>Integrated coding environment</h2>
@@ -71,12 +74,12 @@ class Splash extends React.Component {
                             </h4>
                         </div>
                         <div className="splash-features-item-img-div right" >
-                            <img></img>
+                            <img src={graphic3} />
                         </div>
                     </div>
                     <div className="splash-features-item">
                         <div className="splash-features-item-img-div left" >
-                            <img></img>
+                            <img src={graphic1} />
                         </div>
                         <div className="splash-features-item-description right">
                             <h2>Groups & friends</h2>
