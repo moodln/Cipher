@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchGroup } from '../../actions/group_actions';
+import { fetchGroup, removeCurrentUserFromGroup } from '../../actions/group_actions';
 import { selectGroupParticipants, selectUsersInvitedToGroup } from '../../selectors/users_selectors';
 import EditorShow from '../editor_show';
 import SidebarContainer from "../sidebar/sidebar_container";
@@ -10,21 +10,34 @@ import SidebarContainer from "../sidebar/sidebar_container";
 import InviteButtonContainer from '../ui_components/invite_button'
 
 class GroupShow extends Component {
+  constructor(props) {
+    super(props);
+    this.exitFromGroupAndGoToProblemsPage = this.exitFromGroupAndGoToProblemsPage.bind(this);
+  }
+  
 
-    componentDidMount() {
+  componentDidMount() {
 
-        this.props.fetchGroup(this.props.match.params.groupId)
-    }
+      this.props.fetchGroup(this.props.match.params.groupId)
+  }
+
+  exitFromGroupAndGoToProblemsPage(e) {
+    e.preventDefault();
+    this.props.exitFromGroup(this.props.match.params.groupId)
+    this.props.history.push("/problems");
+  }
 
     render() {
         if (!this.props.group) return null;
         if (!this.props.problem) return null;
         const { group, problem } = this.props;
-
         return (
             <div className="page-with-sidebar">
                 <SidebarContainer />
                 <div className="group-show">
+                  {/* <button onClick={this.exitFromGroupAndGoToProblemsPage}>
+                    Exit from Group
+                  </button> */}
                     <div className="group-show-bar">
                         <InviteButtonContainer groupId={this.props.group._id}
                             participants={group.users}
@@ -56,6 +69,7 @@ class GroupShow extends Component {
                     </div>
 
                 </div>
+                
             </div>
         )
     }
@@ -77,7 +91,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchGroup: (groupId) => dispatch(fetchGroup(groupId))
+  fetchGroup: (groupId) => dispatch(fetchGroup(groupId)),
+  exitFromGroup: (groupId) => dispatch(removeCurrentUserFromGroup(groupId))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupShow))
