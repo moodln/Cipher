@@ -5,6 +5,10 @@ import SidebarContainer from "../sidebar/sidebar_container";
 
 
 class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className="page-with-sidebar">
@@ -13,7 +17,7 @@ class Dashboard extends React.Component {
           <section className="problem-index-header">
             <div className="problem-index-header-div">
               <div className="problem-intro">
-                <h1>Welcome!</h1>
+                <h1>Welcome, {this.props.currentUser.handle}</h1>
               </div>
             </div>
           </section>
@@ -25,7 +29,7 @@ class Dashboard extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-
+  currentUser: state.session.user
 });
 
 const mapDispatchToProps = dispatch => ({

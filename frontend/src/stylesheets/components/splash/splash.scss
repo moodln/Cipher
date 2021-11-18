@@ -95,6 +95,7 @@
     justify-content: center;
     width: 100%;
     padding: 30px;
+    margin-bottom: 30px;
 
     .splash-signup-content{
         display: flex;
@@ -117,36 +118,39 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
-    margin-top: 60px;
+    width: 70%;
+    margin-top: 30px;
 
     .splash-features-item{
         display: grid;
         grid-template-columns: 50% 50%;
-        // display: flex;
-        // flex-direction: row;
-        // justify-content: center;
-        // padding: 60px 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 60px 0;
         // width: 100%;
 
         .splash-features-item-img-div{
-            // width: 400px;
-            // height: 400px;
-            background-color: $blue-lightest;
+            // background-color: $blue-lightest;
+            img{
+                width: 400px;
+                height: 400px; 
+            }
         }
 
         .right {
-            margin-left: 60px;
+            margin-left: 50px;
         }
 
         .left {
-            margin-right: 60px;
+            margin-right: 50px;
         }
 
         .splash-features-item-description{
             display:flex;
             flex-direction: column;
             justify-content: center;
+            width: 40%;
 
             h2{
                 color: white;

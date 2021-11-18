@@ -17,31 +17,20 @@ class ProblemIndex extends React.Component {
     // }
 
     makeGroup(problemId) {
-        // this.setState({ problem: problem.id })
-        // let document = this.state;
-        // console.log(document);
-        // const group = {
-        //     document: document,
-        //     users: [this.props.currentUser.id]
-        // }
-        //make a new document, then make a new group??
-        // console.log(problemId);
         console.log(`problemId: `, problemId);
-        
         this.props.createGroupWithProblem(problemId)
             .then(groupResponse => {
                 console.log(`groupResponse: `, groupResponse);
-                
                 this.props.history.push(`/groups/${groupResponse.data._id}`)
-                
             })
     }
 
     render() {
+        // debugger
         if (!this.props.problems) {
             return null;
         }
-        console.log(this.props);
+        // console.log(this.props);
         return (
             <div className="page-with-sidebar">
                 <SidebarContainer />
@@ -80,7 +69,7 @@ class ProblemIndex extends React.Component {
 
                                             // li onClick should create document and group,
                                             // then this.props.history.push(`/ groups / ${ groupId }`) to group show page
-                                            // const problemId = problem._id;
+                                            const problemId = problem._id;
                                             // console.log(problemId)
                                             return (
                                                 <li className="problem-card" key={problem._id} onClick={() => this.makeGroup(problem._id)}>
