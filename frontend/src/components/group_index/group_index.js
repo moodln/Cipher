@@ -14,34 +14,46 @@ class GroupIndex extends Component {
   }
   componentDidMount() {
     console.log('Mounting!!!');
-    
+
     this.props.fetchUserGroups();
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.groups.length !== this.props.groups.length) {
       console.log('changed length');
-      
+
     }
   }
 
   render() {
     if (this.props.groups.length === 0) {
-      return (<div>You did not join any groups yet!</div>)
+      return (
+        <section className="problem-index-problems-section">
+          <div className="problem-index-problems-list-div">
+            <div className="problem-index-problems-header-div">
+              <h1>You have not joined or created any groups yet!</h1>
+            </div>
+          </div>
+        </section>
+      )
     } else {
       return (
         <section className="problem-index-problems-section">
-          <div className="problem-index-problems-header-div">
-            <h1>Your Groups:</h1>
-          </div>
-          <div className="problem-index-problems-div">
-            <ul className="problem-index-problems-list">
-              {
-                this.props.groups.map(group => (
-                  <GroupIndexBadgeContainer key={group["_id"]} group={group} />
-                ))
-              }
-            </ul>
+          <div className="problem-index-problems-list-div">
+            <div className="problem-index-problems-header-div">
+              <h1>Your Groups:</h1>
+            </div>
+            <div className="problem-index-problems-div">
+              <ul className="problem-index-problems-list">
+                {
+                  this.props.groups.map(group => {
+                    return (
+                      <GroupIndexBadgeContainer key={group["_id"]} group={group} />
+                    )
+                  })
+                }
+              </ul>
+            </div>
           </div>
         </section>
       );

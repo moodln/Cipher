@@ -24,10 +24,16 @@ class GroupIndexBadge extends Component {
 
   render() {
     const { group } = this.props;
-
+    console.log(group);
     return (
       <li className="problem-card" onClick={this.goToGroupShowPage}>
-        {group.title}
+        <p className="problem-name">{group.title}</p>
+        <p className="group-participants">Number of Participants:
+          <span> {group.users.length}</span>
+        </p>
+        <div className="problem-link-div">
+          <button className="problem-link">OPEN</button>
+        </div>
       </li>
     )
   }

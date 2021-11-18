@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { withRouter } from 'react-router-dom';
 
 class Sidebar extends React.Component {
     constructor(props) {
         super(props);
+        this.makeGroup = this.makeGroup.bind(this);
     }
 
     componentDidMount() {
@@ -18,6 +19,15 @@ class Sidebar extends React.Component {
         //     }
         // })
 
+    }
+
+    makeGroup(problemId) {
+        console.log(`problemId: `, problemId);
+        this.props.createGroupWithProblem(problemId)
+            .then(groupResponse => {
+                console.log(`groupResponse: `, groupResponse);
+                this.props.history.push(`/groups/${groupResponse.data._id}`)
+            })
     }
 
     render() {
@@ -42,7 +52,7 @@ class Sidebar extends React.Component {
 
                                     const problemId = problem._id
                                     return (
-                                        <div className="sidebar-list-item" key={problem._id}>
+                                        <div className="sidebar-list-item" key={problem._id} onClick={() => this.makeGroup(problem._id)}>
                                             <p>{problem.title}</p>
                                         </div>
                                     )
@@ -97,4 +107,4 @@ class Sidebar extends React.Component {
 
 }
 
-export default Sidebar;
+export default withRouter(Sidebar);
