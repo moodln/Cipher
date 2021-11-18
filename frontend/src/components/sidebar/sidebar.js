@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
 
+
 class Sidebar extends React.Component {
     constructor(props) {
         super(props);
@@ -10,6 +11,7 @@ class Sidebar extends React.Component {
 
     componentDidMount() {
         this.props.fetchProblems();
+        this.props.fetchUserGroups();
 
         // window.addEventListener("scroll", () => {
         //     if (window.scrollY > 10) {
@@ -31,10 +33,11 @@ class Sidebar extends React.Component {
     }
 
     render() {
+        
         if (!this.props.problems) {
             return null;
         }
-
+        console.log(this.props)
         return (
             <div className="sidebar-container container">
                 <div className="sidebar-section-div">
@@ -86,12 +89,13 @@ class Sidebar extends React.Component {
                         </button>
                         <div className="sidebar-menu">
                             {
-                                this.props.problems.map(problem => {
+                                this.props.groups.map(group => {
 
-                                    const problemId = problem._id
+                                    
                                     return (
-                                        <div className="sidebar-list-item" key={problem._id}>
-                                            <p>{problem.title}</p>
+                                        <div className="sidebar-list-item" key={group._id}>
+                                            <p>{group.title}</p>
+                                            <Link to={`/groups/${group._id}`}>go</Link>
                                         </div>
                                     )
                                 })
