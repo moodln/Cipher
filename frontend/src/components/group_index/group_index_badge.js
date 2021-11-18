@@ -9,6 +9,15 @@ class GroupIndexBadge extends Component {
     this.goToGroupShowPage = this.goToGroupShowPage.bind(this);
   }
 
+  // shouldComponentUpdate(nextProps, nextState) {
+
+  //   // Typical usage (don't forget to compare props):
+  //   if (this.props.participants.length !== prevProps.participants.length) {
+  //     console.log('list changed ');
+
+  //   }
+  // }
+
   goToGroupShowPage() {
     this.props.history.push({ pathname: `/groups/${this.props.group._id}` })
   }
@@ -17,17 +26,8 @@ class GroupIndexBadge extends Component {
     const { group } = this.props;
 
     return (
-      <li className="problem-card">
-        {
-          this.props.participants.map(user => {
-            return (
-              <div key={user["_id"]} onClick={this.goToGroupShowPage}
-              >
-                <p className="problem-name">{user.handle}</p>
-              </div>
-            )
-          })
-        }
+      <li className="problem-card" onClick={this.goToGroupShowPage}>
+        {group.title}
       </li>
     )
   }

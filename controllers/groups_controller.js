@@ -4,7 +4,7 @@ const User = require("../models/User");
 const Invite = require("../models/Invite");
 
 const createGroup = (req, res) => {
-
+  
   Problem.findById(req.body.headers.problemId, (err, reqProblem) => {
     
     const newDocument = new Document({
@@ -17,6 +17,7 @@ const createGroup = (req, res) => {
       const newGroup = new Group({
         document: newDocument,
         users: [req.user.id],
+        title: `${reqProblem.title} by ${req.user.handle}`
       })
       newGroup.save()
       .then( (newGroup) => {
@@ -27,12 +28,15 @@ const createGroup = (req, res) => {
   })
 }
 
+// "==============================================================================="
+// "==============================================================================="
+
 const getCurrUserGroups = (req, res) => {
   let allUsersId = [];
   const usersById = {};
 
   
-  Group.find({ users: [req.user.id]}, (err, groups) => {
+  Group.find({ users: req.user.id}, (err, groups) => {
     if (err) throw err;
     const groupsById = {};
 
@@ -58,6 +62,9 @@ const getCurrUserGroups = (req, res) => {
   .catch(err => console.log("errors: ", err));
 }
 
+// "==============================================================================="
+// "==============================================================================="
+
 const retrieveGroup = (req, res) => {
   const usersById = {};
 
@@ -68,24 +75,28 @@ const retrieveGroup = (req, res) => {
       
       Problem.findById(groupsById.document.problem, (err, problem) => {
         const problemsById =  problem;
-        let allProblemsId = [problem._id]
-
-        User.find({ "_id": { $in: groupsById.users} }, (err, usersResult) => {
-          usersResult.forEach(user => {
+        let allProblemsId = [problem._id];
         
-            usersById[user.id] = user;
-          });
-          const allUsersId = Object.keys(usersById)
-          console.log(`groupsById._id: `, groupsById.id);
+        Invite.find({group: groupsById.id}, (err, invitesResult) => {
+          const invitesById = {};
           
-          Invite.find({group: groupsById.id}, (err, invitesResult) => {
-            const invitesById = {};
+          invitesResult.forEach(invite => {
             
-            invitesResult.forEach(invite => {
-              
-              invitesById[invite.id] = invite;
+            invitesById[invite.id] = invite;
+          });
+          const allInvitesId = Object.keys(invitesById);
+
+          const invitedUsersToFetch = Object.values(invitesById).map((invite) => {
+            return invite.invitee
+          });
+          
+          User.find({ "_id": { $in: groupsById.users.concat(invitedUsersToFetch)} }, (err, usersResult) => {
+            usersResult.forEach(user => {
+          
+              usersById[user.id] = user;
             });
-            const allInvitesId = Object.keys(invitesById);
+            const allUsersId = Object.keys(usersById)
+          
             
             return res.json({groupsById, allGroupsId, problemsById, allProblemsId, usersById, allUsersId, invitesById, allInvitesId})
           })
