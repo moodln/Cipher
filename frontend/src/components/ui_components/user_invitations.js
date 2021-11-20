@@ -6,9 +6,7 @@ import InviteManagerBadgeContainer from './invite_manager_badge';
 
 class UserInvitations extends Component {
 
-  componentDidMount(){
-    this.props.fetchUserInvites();
-  }
+
 
   render() {
     const numberOfInvites = this.props.invites.length > 1 ? 
@@ -41,7 +39,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchUserInvites: () => dispatch(fetchCurrentUserInvites())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserInvitations)

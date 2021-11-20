@@ -64,13 +64,19 @@ class GroupShow extends Component {
             </div>
 
             <div className="group-show-main">
-              <EditorShow />
+              <EditorShow 
+                updateDocument={this.props.updateDocument}
+                document={this.props.group.document}
+                groupId={this.props.group._id}
+                />
             </div>
             <div className="group-show-cams">
               <div className="cams">
               </div>
               <div className="save-btn-div">
-                <button className="group-save-btn save-btn">SAVE</button>
+                {/* <button className="group-save-btn save-btn"
+                
+                >SAVE</button> */}
                 <button className="group-save-btn leave-btn" onClick={this.exitFromGroupAndGoToProblemsPage}>
                   LEAVE GROUP
                 </button>
@@ -87,6 +93,7 @@ const mapStateToProps = (state, ownProps) => {
   const groupId = ownProps.match.params.groupId;
   if (Object.values(state.entities.groups.byId).length === 0) return {};
   if (Object.values(state.entities.problems.byId).length === 0) return {};
+  if (!state.entities.groups.byId[groupId]) return {}
   // console.log(`state.entities.groups.byId: `, state.entities.groups.byId[groupId].document.problem);
 
   const problemId = state.entities.groups.byId[groupId].document.problem;
@@ -98,10 +105,10 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchGroup: (groupId) => dispatch(fetchGroup(groupId)),
   fetchDocument: documentId => dispatch(fetchDocument(documentId)),
-  updateDocument: document => dispatch(updateDocument(document)),
+  updateDocument: (document, newBody, groupId) => dispatch(updateDocument(document, newBody, groupId)),
   exitFromGroup: (groupId) => dispatch(removeCurrentUserFromGroup(groupId))
 })
 

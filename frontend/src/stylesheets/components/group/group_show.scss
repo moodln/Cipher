@@ -99,11 +99,11 @@
     height: 100%;
     width: 70%;
     max-width: 2200px;
+    // margin-bottom: 300px;
 
     .editor-container {
-        height: 100%;
+        height: 92%;
         // width: 50%;
-    
         .editor {
             // height: 100%;
             // width: 50%;
@@ -121,7 +121,7 @@
     .cams{
         height: 90%;
     }
-
+}
     .save-btn-div{
         display: flex;
         flex-direction: row;
@@ -152,7 +152,7 @@
         }
 
     }
-}
+
 
 
 
