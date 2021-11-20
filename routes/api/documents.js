@@ -35,15 +35,24 @@ router.post('/',
 );
 
 router.put('/:id', (req, res) => {
+    console.log(`req: `, req);
     
     Document.updateOne({'_id': ObjectId(req.params.id).toString()}, {  
         $set: {
-            body: req.body.body
+            body: req.body.newBody
         },
     })
         .then(result => {
             if (result.modifiedCount > 0) {
-                res.json('successfully updated')
+                Document.findById(req.params.id, (err, documentResult) => {
+                    Group.findById( req.body.groupId, (err, groupResult) => {
+                        groupResult.document = documentResult;
+                        groupResult.save();
+                        console.log(`groupResult: `, groupResult);
+                        
+                        res.json({documentResult, groupResult})
+                    })
+                })
             } else {
                 res.json('nothing was modified in this document')
         }})

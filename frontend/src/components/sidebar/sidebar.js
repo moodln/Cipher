@@ -37,7 +37,7 @@ class Sidebar extends React.Component {
         if (!this.props.problems) {
             return null;
         }
-        console.log(this.props)
+        // console.log(this.props)
         return (
             <div className="sidebar-container container">
                 <div className="sidebar-section-div">

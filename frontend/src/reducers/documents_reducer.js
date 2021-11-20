@@ -12,7 +12,8 @@ const DocumentsReducer = (oldState = _nullState, action) => {
 
     switch (action.type) {
         case RECEIVE_DOCUMENT:
-            nextState.byId[action.document.id] = action.document;
+            
+            nextState.byId[action.document._id] = action.document;
             nextState.allIds = Object.keys(nextState.byId);
             return nextState;
         case REMOVE_DOCUMENT:

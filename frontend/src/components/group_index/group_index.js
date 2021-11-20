@@ -11,6 +11,7 @@ class GroupIndex extends Component {
 
   }
   componentDidMount() {
+    console.log('mounting!!');
     
     this.props.fetchUserGroups();
   }

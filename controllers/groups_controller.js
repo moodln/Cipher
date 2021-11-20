@@ -9,7 +9,7 @@ const createGroup = (req, res) => {
   Problem.findById(req.body.headers.problemId, (err, reqProblem) => {
     
     const newDocument = new Document({
-      body: "hey-hey",
+      body: "// Your code goes here",
       problem: reqProblem.id,
     })
     newDocument.save()
@@ -38,7 +38,7 @@ const getCurrUserGroups = (req, res) => {
 
   
   Group.find({ users: req.user.id}, (err, groups) => {
-    if (err) throw err;
+    if (err) console.log(`error in getCurrUserGroups: `, err);
     const groupsById = {};
 
     Object.values(groups).forEach(group => {
@@ -109,8 +109,8 @@ const retrieveGroup = (req, res) => {
   });
 }
 
-// "==============================================================================="
-// "==============================================================================="
+// ===============================================================================
+// ===============================================================================
 
 const removeUserFromGroup = (req, res) => {
   Group.findById(req.params.groupId, (err, groupResult) => {

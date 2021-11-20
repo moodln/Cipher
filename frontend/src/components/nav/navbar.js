@@ -24,7 +24,7 @@ class NavBar extends React.Component {
 
   componentDidMount() {
     window.addEventListener("scroll", () => {
-      debugger
+      // debugger
       if (window.scrollY > 40) {
         document.querySelector(".navbar-section").className = "navbar-section container glow";
       } else {

@@ -8,8 +8,8 @@ export const createDocument = data => {
   return axios.post('/api/documents/', data)
 };
 
-export const updateDocument = (id, data) => {
-    return axios.put(`/api/documents/${id}`, data)
+export const updateDocument = (document, newBody, groupId) => {
+    return axios.put(`/api/documents/${document._id}`, { newBody, groupId })
 };
 
 export const removeDocument = id => {
