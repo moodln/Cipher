@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
-import { selectGroupParticipants } from '../../selectors/users_selectors';
+import { selectGroupParticipants } from '../../selectors/users_selector';
 
 class GroupIndexBadge extends Component {
   constructor(props) {
