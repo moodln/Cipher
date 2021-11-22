@@ -37,9 +37,8 @@ app.use("/api/invites", invites);
 app.use("/api/documents", documents);
 app.use("/api/problems", problems);
 
-const http = require("http")
+const http = require("http");
 const httpServer = http.createServer(app);
-// const io = require("socket.io")(httpServer);
 const io = require("socket.io")(httpServer, {
   cors: {
     origins: ["http://localhost:3000", "https://cipher-mern.herokuapp.com/"],
@@ -50,15 +49,11 @@ const io = require("socket.io")(httpServer, {
 io.on("connection", socket => {
   console.log("User online");
 
-  // if server receives event with name "canvas-data", 
+  // if server receives event with name "editor-data", 
   // message will be broadcast to all other connected users
   socket.on("editor-data", data => {
     socket.broadcast.emit("editor-data", data);
   })
-
-  // socket.on("disconnect", () => {
-  //   console.log("User has disconnected");
-  // })
 })
 
 const port = process.env.PORT || 3300;
