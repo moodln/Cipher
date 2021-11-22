@@ -1,4 +1,4 @@
-import * as DocumentApiUtil from "../util/document_util";
+import * as DocumentApiUtil from "../util/document_api_util";
 
 export const RECEIVE_DOCUMENT = "RECEIVE_DOCUMENT";
 export const REMOVE_DOCUMENT = "REMOVE_DOCUMENT";
@@ -33,10 +33,12 @@ export const deleteDocument = documentId => dispatch => {
 export const updateDocument = (document, newBody, groupId) => dispatch => {
     DocumentApiUtil.updateDocument(document, newBody, groupId)
         .then(documentResponse => {
-            console.log(`documentResponse: `, documentResponse);
             if (documentResponse.data.documentResult) {
-
-                dispatch(receiveDocument(documentResponse.data.documentResult, documentResponse.data.groupResult, groupId))
+                dispatch(receiveDocument(
+                    documentResponse.data.documentResult,
+                    documentResponse.data.groupResult,
+                    groupId
+                ))
             }
         })
 };
