@@ -58,15 +58,15 @@ class GroupShow extends React.Component {
                         </div>
 
                         <div className="group-show-main">
-                            <EditorShow
-                                updateDocument={this.props.updateDocument}
+                            <EditorShow updateDocument={this.props.updateDocument}
                                 document={this.props.group.document}
-                                groupId={this.props.group._id}
-                            />
+                                groupId={this.props.group._id} />
                         </div>
                         <div className="group-show-cams">
-                            <div className="cams">
-                            </div>
+                            <InviteButton groupId={this.props.group._id}
+                                participants={group.users}
+                                invitedUsers={this.props.invitedUsers.allIds} />
+                            <div className="cams"></div>
                             <div className="save-btn-div">
                                 <button className="group-save-btn leave-btn"
                                     onClick={this.exitFromGroupAndGoToProblemsPage}>

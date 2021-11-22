@@ -6,7 +6,7 @@
 
 
 # Background and Overview 
-Have you ever been working with someone on a coding project, and noticed that your computer is getting very hot?
+Have you ever been working with someone on a coding project, and noticed that your computer is running into overdrive?
 Cipher is here to help you focus on your work without worrying about your computer crashing!
 Cipher provides an environment for developers to collaborate with one another on coding projects, while video streaming.
 Cipher will allow you to: 
@@ -30,8 +30,6 @@ Cipher will allow you to:
 6. Possible messaging feature: ratings, responses
 7. Embedded IDE and ability to compile code
 
-
-# Wireframes
 
 
 # Technologies & Technical Challenges 
