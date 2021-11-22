@@ -39,7 +39,7 @@ class Splash extends React.Component {
                 <section className="splash-features">
                     <div className="splash-features-item">
                         <div className="splash-features-item-img-div left" >
-                            <img src={graphic1} />
+                            <img src={graphic1} alt="Coding graphic" />
                         </div>
                         <div className="splash-features-item-description right">
                             <h2>Integrated coding environment</h2>
@@ -74,12 +74,12 @@ class Splash extends React.Component {
                             </h4>
                         </div>
                         <div className="splash-features-item-img-div right" >
-                            <img src={graphic2} />
+                            <img src={graphic2} alt="Video graphic" />
                         </div>
                     </div>
                     <div className="splash-features-item">
                         <div className="splash-features-item-img-div left" >
-                            <img src={graphic3} />
+                            <img src={graphic3} alt="Groups and friends graphic" />
                         </div>
                         <div className="splash-features-item-description right">
                             <h2>Groups & friends</h2>
