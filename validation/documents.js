@@ -1,13 +1,13 @@
-const Validator = require('validator');
-const validText = require('./valid-text');
+const Validator = require("validator");
+const validText = require("./valid-text");
 
 module.exports = function validateDocumentInput(data) {
   let errors = {};
 
-  data.body = validText(data.body) ? data.body : '';
+  data.body = validText(data.body) ? data.body : "";
 
   if (Validator.isEmpty(data.body)) {
-    errors.body = 'you cannot save a blank document';
+    errors.body = "you cannot save a blank document";
   }
 
   return {
