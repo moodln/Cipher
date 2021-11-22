@@ -4,15 +4,14 @@ import { RECEIVE_ALL_PROBLEMS, RECEIVE_PROBLEM } from "../actions/problem_action
 const _nullState = {
   byId: {},
   allIds: []
-}
+};
 
-const problemsReducer = (oldState = _nullState, action) => {
+const ProblemsReducer = (oldState = _nullState, action) => {
     Object.freeze(oldState);
     let nextState = Object.assign({}, oldState);
 
     switch (action.type) {
         case RECEIVE_ALL_PROBLEMS:
-            
             nextState.byId = action.problems.problemsById;
             nextState.allIds = action.problems.allProblemsId
             return nextState;
@@ -20,7 +19,6 @@ const problemsReducer = (oldState = _nullState, action) => {
             nextState[action.problem.id] = action.problem;
             return nextState;
         case RECEIVE_GROUP:
-            
             nextState.byId[action.groupCollection.problemsById._id] = action.groupCollection.problemsById;
             nextState.allIds = nextState.allIds.concat(action.groupCollection.allProblemsId);
             return nextState;
@@ -29,4 +27,4 @@ const problemsReducer = (oldState = _nullState, action) => {
     }
 };
 
-export default problemsReducer;
+export default ProblemsReducer;
