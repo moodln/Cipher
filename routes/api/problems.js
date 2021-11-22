@@ -1,12 +1,10 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
+const Problem = require("../../models/Problem");
 
-const Problem = require('../../models/Problem');
-
-
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
     Problem.find({})
         .then(problemResult => {
             const problemsById = {};
@@ -19,15 +17,17 @@ router.get('/', (req, res) => {
             res.json({problemsById, allProblemsId})
         })
         .catch(err =>
-            res.status(404).json({ noProblemFound: 'No problems available' })
+            res.status(404).json({ noProblemFound: "No problems available" })
         );
 });
 
-router.get('/:id', (req, res) => {
+router.get("/:id", (req, res) => {
     const document = Problem.findById(req.params.id)
         .then(result => res.json(result))
         .catch(err =>
-            res.status(404).json({ noProblemFound: 'No problem found with that ID' })
+            res.status(404).json({
+                noProblemFound: "No problem found with that ID"
+            })
         );
 });
 
