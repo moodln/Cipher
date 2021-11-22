@@ -30,29 +30,29 @@
     max-width: 400px;
     min-width: 200px;
 
-    .invite-button {
-        width: 100%;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        padding: 20px 0;
-        z-index: 0 !important;
+    // .invite-button {
+    //     width: 100%;
+    //     position: relative;
+    //     display: flex;
+    //     justify-content: center;
+    //     padding: 20px 0;
+    //     z-index: 0 !important;
 
-        button{
-            position: relative;
-            border: 1px solid $orange-light;
-            padding: 10px 20px;
-            border-radius: 4px;
-            transition: all 0.2s ease-in;
-            // background-color: orange;
-            z-index: 0 !important;
-        }
+    //     button{
+    //         position: relative;
+    //         border: 1px solid $orange-light;
+    //         padding: 10px 20px;
+    //         border-radius: 4px;
+    //         transition: all 0.2s ease-in;
+    //         // background-color: orange;
+    //         z-index: 0 !important;
+    //     }
 
-        button:hover {
-            color: $orange-light;
-            // box-shadow: ;
-        }
-    }
+    //     button:hover {
+    //         color: $orange-light;
+    //         // box-shadow: ;
+    //     }
+    // }
 
     .group-show-main-problem {
         display: flex;
@@ -118,8 +118,33 @@
     max-width: 300px;
     min-width: 100px;
 
+    .invite-button {
+        width: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        padding: 20px 0;
+        z-index: 0 !important;
+
+        button{
+            position: relative;
+            border: 1px solid $orange-light;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: all 0.2s ease-in;
+            // background-color: orange;
+            z-index: 0 !important;
+        }
+
+        button:hover {
+            color: $orange-light;
+            // box-shadow: ;
+        }
+    }
+
     .cams{
         height: 90%;
+        max-height: 1015px;
     }
 }
     .save-btn-div{
@@ -179,6 +204,7 @@
         .user-search-dropdown-item {
             text-transform: capitalize;
             padding: 3px 0;
+            overflow-x: hidden;
 
             &:hover {
                 color: $orange-dark;
