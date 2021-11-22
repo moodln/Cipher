@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchGroup, removeCurrentUserFromGroup } from '../../actions/group_actions';
-import { selectGroupParticipants, selectUsersInvitedToGroup } from '../../selectors/users_selectors';
+import { selectGroupParticipants, selectUsersInvitedToGroup } from '../../selectors/users_selector';
 import EditorShow from '../editor_show';
 import SidebarContainer from "../sidebar/sidebar_container";
 import { fetchDocument, updateDocument } from '../../actions/document_actions';
@@ -17,7 +17,6 @@ class GroupShow extends Component {
 
   componentDidMount() {
     this.props.fetchGroup(this.props.match.params.groupId)
-    // this.props.fetchDocument(this.props.group.document._id);
   }
 
   exitFromGroupAndGoToProblemsPage(e) {
@@ -29,8 +28,8 @@ class GroupShow extends Component {
   render() {
     if (!this.props.group) return null;
     if (!this.props.problem) return null;
-    // if (!this.props.document) return null;
-    const { group, problem } = this.props;
+    const { group } = this.props;
+
     return (
       <div className="page-with-sidebar">
         <SidebarContainer />
@@ -42,7 +41,7 @@ class GroupShow extends Component {
                 participants={group.users}
                 invitedUsers={this.props.invitedUsers.allIds} />
               <div className="group-show-main-problem">
-                <h1>{this.props.problem.title}</h1>
+                <h2 className="group-show-main-problem-title">{this.props.problem.title}</h2>
                 <p>{this.props.problem.body}</p>
               </div>
               <div className="group-show-bar-participants">
@@ -53,14 +52,6 @@ class GroupShow extends Component {
                   }
                 </ul>
               </div>
-              {/* <div className="group-show-bar-invited">
-                            <h1>Invited Users:</h1>
-                            <ul className="group-show-bar-invited">
-                                {
-                                    Object.values(this.props.invitedUsers.byId).map(user => <li key={user["_id"]}>{user.handle}</li>)
-                                }
-                            </ul>
-                        </div> */}
             </div>
 
             <div className="group-show-main">
@@ -74,10 +65,8 @@ class GroupShow extends Component {
               <div className="cams">
               </div>
               <div className="save-btn-div">
-                {/* <button className="group-save-btn save-btn"
-                
-                >SAVE</button> */}
-                <button className="group-save-btn leave-btn" onClick={this.exitFromGroupAndGoToProblemsPage}>
+                <button className="group-save-btn leave-btn"
+                  onClick={this.exitFromGroupAndGoToProblemsPage}>
                   LEAVE GROUP
                 </button>
               </div>
@@ -93,8 +82,7 @@ const mapStateToProps = (state, ownProps) => {
   const groupId = ownProps.match.params.groupId;
   if (Object.values(state.entities.groups.byId).length === 0) return {};
   if (Object.values(state.entities.problems.byId).length === 0) return {};
-  if (!state.entities.groups.byId[groupId]) return {}
-  // console.log(`state.entities.groups.byId: `, state.entities.groups.byId[groupId].document.problem);
+  if (!state.entities.groups.byId[groupId]) return {};
 
   const problemId = state.entities.groups.byId[groupId].document.problem;
   return {
@@ -108,7 +96,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchGroup: (groupId) => dispatch(fetchGroup(groupId)),
   fetchDocument: documentId => dispatch(fetchDocument(documentId)),
-  updateDocument: (document, newBody, groupId) => dispatch(updateDocument(document, newBody, groupId)),
+  updateDocument: (document, newBody, groupId) => dispatch(
+    updateDocument(document, newBody, groupId)
+  ),
   exitFromGroup: (groupId) => dispatch(removeCurrentUserFromGroup(groupId))
 })
 
