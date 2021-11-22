@@ -1,4 +1,4 @@
-import * as ProblemApiUtil from "../util/problem_util";
+import * as ProblemApiUtil from "../util/problem_api_util";
 
 export const RECEIVE_ALL_PROBLEMS = "RECEIVE_ALL_PROBLEMS";
 export const RECEIVE_PROBLEM = "RECEIVE_PROBLEM";
