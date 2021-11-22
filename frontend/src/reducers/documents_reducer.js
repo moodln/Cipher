@@ -4,7 +4,7 @@ import { RECEIVE_GROUP_AFTER_EXIT } from "../actions/group_actions";
 const _nullState = {
     byId: {},
     allIds: []
-}
+};
 
 const DocumentsReducer = (oldState = _nullState, action) => {
     Object.freeze(oldState);
@@ -12,7 +12,6 @@ const DocumentsReducer = (oldState = _nullState, action) => {
 
     switch (action.type) {
         case RECEIVE_DOCUMENT:
-            
             nextState.byId[action.document._id] = action.document;
             nextState.allIds = Object.keys(nextState.byId);
             return nextState;

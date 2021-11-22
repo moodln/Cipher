@@ -5,20 +5,21 @@ import { selectGroupsWhereCurrentUserParticipant } from '../../selectors/groups_
 import { fetchCurrentUserGroups } from '../../actions/group_actions';
 import Sidebar from "./sidebar";
 
-const mSTP = state => {
-    return {
+const mSTP = state => ({
         problems: Object.values(state.entities.problems.byId),
         currentUser: state.session.user,
-        groups: selectGroupsWhereCurrentUserParticipant(Object.values(state.entities.groups.byId), state.session.user.id)
-    }
-};
+        groups: selectGroupsWhereCurrentUserParticipant(
+            Object.values(state.entities.groups.byId),
+            state.session.user.id
+        )
+});
 
-const mDTP = dispatch => {
-    return {
+const mDTP = dispatch => ({
         fetchProblems: () => dispatch(fetchAllProblems()),
-        createGroupWithProblem: (problemId) => dispatch(createUserGroupWithProblem(problemId)),
-        fetchUserGroups: () => dispatch(fetchCurrentUserGroups())    
-    }
-};
+        createGroupWithProblem: (problemId) => (
+            dispatch(createUserGroupWithProblem(problemId))
+        ),
+        fetchUserGroups: () => dispatch(fetchCurrentUserGroups())
+});
 
 export default connect(mSTP, mDTP)(Sidebar);

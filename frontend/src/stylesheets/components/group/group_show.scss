@@ -1,10 +1,10 @@
-.group-show-container{
+.group-show-container {
     display: flex;
     flex-direction: column;
     width: 100%;
 
-    h1{
-        margin:10px;
+    h1 {
+        margin: 10px;
         font-size: 30px;
         text-shadow: 0 0 10px $blue-light;
     }
@@ -12,7 +12,6 @@
 .group-show {
     background-color: $blue-darkest;
     height: calc(100vh - 112px);
-    // min-width: 700px;
     width: 100%;
     display: flex;
 
@@ -60,7 +59,7 @@
         padding: 10px;
         margin-bottom: 40px;
 
-        h1 {
+        .group-show-main-problem-title {
             font-size: 24px;
             font-weight: 500;
             margin-bottom: 10px;
@@ -94,20 +93,12 @@
 }
 
 .group-show-main {
-    // display: grid;
-    // grid-template-columns: 20% 60% 20%;
     height: 100%;
     width: 70%;
     max-width: 2200px;
-    // margin-bottom: 300px;
 
     .editor-container {
         height: 92%;
-        // width: 50%;
-        .editor {
-            // height: 100%;
-            // width: 50%;
-        }
     } 
 }
 
@@ -147,40 +138,37 @@
         max-height: 1015px;
     }
 }
-    .save-btn-div{
-        display: flex;
-        flex-direction: row;
-        justify-content:space-evenly;
-        padding: 10px;
 
-        .group-save-btn{
-            border-radius: 4px;
-            padding: 10px 20px;
-            transition: all 0.2s ease-in;
-        }
-        .save-btn{
-            border: 1px solid #20a542;
-        }
+.save-btn-div {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    padding: 10px;
 
-        .leave-btn{
-            border: 1px solid $orange-light;
-        }
-        .save-btn:hover{
-            transform: translate(2px, -2px);
-            border: 1px solid #20a542;
-            box-shadow: -2px 2px 5px #20a542, inset 0px 0 9px 0px #20a542; 
-        }
-        .leave-btn:hover{
-            transform: translate(2px, -2px);
-            border: 1px solid $orange-light;
-            box-shadow: -2px 2px 5px $orange-light, inset 0px 0 9px 0px $orange-light;
-        }
-
+    .group-save-btn {
+        border-radius: 4px;
+        padding: 10px 20px;
+        transition: all 0.2s ease-in;
+    }
+    .save-btn {
+        border: 1px solid #20a542;
     }
 
+    .leave-btn {
+        border: 1px solid $orange-light;
+    }
+    .save-btn:hover {
+        transform: translate(2px, -2px);
+        border: 1px solid #20a542;
+        box-shadow: -2px 2px 5px #20a542, inset 0px 0 9px 0px #20a542; 
+    }
+    .leave-btn:hover {
+        transform: translate(2px, -2px);
+        border: 1px solid $orange-light;
+        box-shadow: -2px 2px 5px $orange-light, inset 0px 0 9px 0px $orange-light;
+    }
 
-
-
+}
 
 .user-search {
     height: 300px;
@@ -194,10 +182,6 @@
     background-color: $blue-darkest;
     border: 1px solid $orange-light;
     overflow-y: scroll;
-
-    // &::-webkit-scrollbar {
-    //     display: none;
-    // }
 
     .user-search-dropdown {
         z-index: 0 !important;
@@ -215,29 +199,29 @@
 }
 
 .user-search::-webkit-scrollbar {
-width: 0.25em;
+    width: 0.25em;
 }
    
 .user-search::-webkit-scrollbar-track {
-box-shadow: inset 0 0 6px transparent;
+    box-shadow: inset 0 0 6px transparent;
 }
    
 .user-search::-webkit-scrollbar-thumb {
-border-radius: 3px;
-background-color: $orange-light;
-box-shadow: -7px 0 9px -5px $orange-light;
+    border-radius: 3px;
+    background-color: $orange-light;
+    box-shadow: -7px 0 9px -5px $orange-light;
 }
 
 .participants-list::-webkit-scrollbar {
-width: 0.25em;
+    width: 0.25em;
 }
    
 .participants-list::-webkit-scrollbar-track {
-box-shadow: inset 0 0 6px transparent;
+    box-shadow: inset 0 0 6px transparent;
 }
    
 .participants-list::-webkit-scrollbar-thumb {
-border-radius: 3px;
-background-color: $orange-light;
-box-shadow: -7px 0 9px -5px $orange-light;
+    border-radius: 3px;
+    background-color: $orange-light;
+    box-shadow: -7px 0 9px -5px $orange-light;
 }

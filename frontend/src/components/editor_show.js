@@ -4,12 +4,11 @@ import Editor from "@monaco-editor/react";
 
 function EditorShow(props) {
     const socket = io("http://localhost:3300");
-    socket.on("connect", () => {
-        // console.log("You have successfully connected");
-    })
+    // socket.on("connect", () => {
+    //     console.log("You have successfully connected");
+    // })
 
     const editorRef = useRef(null);
-    // const [body, setBody] = useState("// Your code goes here...\n");
     const [body, setBody] = useState(props.document.body);
 
     // Code to receive event:
@@ -24,9 +23,7 @@ function EditorShow(props) {
     })
 
     function handleEditorDidMount(editor, monaco) {
-        editorRef.current = editor;
-        // const initialVal = props.document.body;
-        
+        editorRef.current = editor;        
     }
 
     useEffect(() => {
@@ -49,16 +46,13 @@ function EditorShow(props) {
     }
 
     function saveDocument () {
-        console.log('saving');
-        console.log(`props.document: `, props.document);
-        console.log(`body: `, body);
-        props.updateDocument(props.document, body, props.groupId)
+        props.updateDocument(props.document, body, props.groupId);
     }
 
     const options = {
         fontSize: "16px",
         letterSpacing: "1em"
-    }
+    };
 
     return (
         <div className="editor-container">
@@ -72,14 +66,10 @@ function EditorShow(props) {
                 onChange={handleEditorChange} />
             <div className="save-btn-div">
                 <button className="group-save-btn save-btn"
-                onClick={saveDocument}
-                >
-                    Save
-                </button>
+                    onClick={saveDocument}>Save</button>
             </div>
-            
         </div>
-    );
+    )
 }
 
 export default EditorShow;

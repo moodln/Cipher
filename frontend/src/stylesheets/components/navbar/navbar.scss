@@ -80,7 +80,7 @@
             opacity: 0;
             pointer-events: none;
             transform-origin: top;
-            transition: all 0.3s ease-in;
+            transition: all 0.3s ease;
 
             .nav-drop-link {
                 color: white;
@@ -126,7 +126,6 @@
 }
 
 .nav-drop-link:hover {
-    // background-color: $blue-light;
     text-shadow: 0 0 5px $blue-lightest;
     box-shadow: inset 0px 0 9px -2px $blue-light; 
 }
