@@ -1,105 +1,117 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { fetchGroup, removeCurrentUserFromGroup } from '../../actions/group_actions';
-import { selectGroupParticipants, selectUsersInvitedToGroup } from '../../selectors/users_selector';
-import EditorShow from '../editor_show';
+import React from "react"
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { fetchGroup, removeCurrentUserFromGroup } from "../../actions/group_actions";
+import { selectGroupParticipants, selectUsersInvitedToGroup } from "../../selectors/users_selector";
+import EditorShow from "../editor_show";
 import SidebarContainer from "../sidebar/sidebar_container";
-import { fetchDocument, updateDocument } from '../../actions/document_actions';
+import { fetchDocument, updateDocument } from "../../actions/document_actions";
+import InviteButton from "../ui_components/invite_button";
 
-import InviteButtonContainer from '../ui_components/invite_button'
+class GroupShow extends React.Component {
+    constructor(props) {
+        super(props);
+        this.exitFromGroupAndGoToProblemsPage = this.exitFromGroupAndGoToProblemsPage.bind(this);
+    }
 
-class GroupShow extends Component {
-  constructor(props) {
-    super(props);
-    this.exitFromGroupAndGoToProblemsPage = this.exitFromGroupAndGoToProblemsPage.bind(this);
-  }
+    componentDidMount() {
+        this.props.fetchGroup(this.props.match.params.groupId)
+    }
 
-  componentDidMount() {
-    this.props.fetchGroup(this.props.match.params.groupId)
-  }
+    exitFromGroupAndGoToProblemsPage(e) {
+        e.preventDefault();
+        this.props.exitFromGroup(this.props.match.params.groupId)
+        this.props.history.push("/problems");
+    }
 
-  exitFromGroupAndGoToProblemsPage(e) {
-    e.preventDefault();
-    this.props.exitFromGroup(this.props.match.params.groupId)
-    this.props.history.push("/problems");
-  }
+    render() {
+        if (!this.props.group) return null;
+        if (!this.props.problem) return null;
+        const { group } = this.props;
 
-  render() {
-    if (!this.props.group) return null;
-    if (!this.props.problem) return null;
-    const { group } = this.props;
+        return (
+            <div className="page-with-sidebar">
+                <SidebarContainer />
+                <div className="group-show-container">
+                    <h1>{this.props.group.title}</h1>
+                    <div className="group-show">
+                        <div className="group-show-bar">
+                            <InviteButton groupId={this.props.group._id}
+                                participants={group.users}
+                                invitedUsers={this.props.invitedUsers.allIds} />
+                            <div className="group-show-main-problem">
+                                <h2 className="group-show-main-problem-title">
+                                    {this.props.problem.title}
+                                </h2>
+                                <p>{this.props.problem.body}</p>
+                            </div>
+                            <div className="group-show-bar-participants">
+                                <h1>Participants:</h1>
+                                <ul className="participants-list">
+                                    {
+                                        this.props.participants.map(user => (
+                                            <li key={user["_id"]}>{user.handle}</li>
+                                        ))
+                                    }
+                                </ul>
+                            </div>
+                        </div>
 
-    return (
-      <div className="page-with-sidebar">
-        <SidebarContainer />
-        <div className="group-show-container">
-          <h1>{this.props.group.title}</h1>
-          <div className="group-show">
-            <div className="group-show-bar">
-              <InviteButtonContainer groupId={this.props.group._id}
-                participants={group.users}
-                invitedUsers={this.props.invitedUsers.allIds} />
-              <div className="group-show-main-problem">
-                <h2 className="group-show-main-problem-title">{this.props.problem.title}</h2>
-                <p>{this.props.problem.body}</p>
-              </div>
-              <div className="group-show-bar-participants">
-                <h1>Participants:</h1>
-                <ul className="participants-list">
-                  {
-                    this.props.participants.map(user => <li key={user["_id"]}>{user.handle}</li>)
-                  }
-                </ul>
-              </div>
+                        <div className="group-show-main">
+                            <EditorShow
+                                updateDocument={this.props.updateDocument}
+                                document={this.props.group.document}
+                                groupId={this.props.group._id}
+                            />
+                        </div>
+                        <div className="group-show-cams">
+                            <div className="cams">
+                            </div>
+                            <div className="save-btn-div">
+                                <button className="group-save-btn leave-btn"
+                                    onClick={this.exitFromGroupAndGoToProblemsPage}>
+                                    LEAVE GROUP
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div className="group-show-main">
-              <EditorShow 
-                updateDocument={this.props.updateDocument}
-                document={this.props.group.document}
-                groupId={this.props.group._id}
-                />
-            </div>
-            <div className="group-show-cams">
-              <div className="cams">
-              </div>
-              <div className="save-btn-div">
-                <button className="group-save-btn leave-btn"
-                  onClick={this.exitFromGroupAndGoToProblemsPage}>
-                  LEAVE GROUP
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
+        )
+    }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const groupId = ownProps.match.params.groupId;
-  if (Object.values(state.entities.groups.byId).length === 0) return {};
-  if (Object.values(state.entities.problems.byId).length === 0) return {};
-  if (!state.entities.groups.byId[groupId]) return {};
+    const groupId = ownProps.match.params.groupId;
+    if (Object.values(state.entities.groups.byId).length === 0) return {};
+    if (Object.values(state.entities.problems.byId).length === 0) return {};
+    if (!state.entities.groups.byId[groupId]) return {};
 
-  const problemId = state.entities.groups.byId[groupId].document.problem;
-  return {
-    group: state.entities.groups.byId[groupId],
-    problem: state.entities.problems.byId[problemId],
-    participants: selectGroupParticipants(state.entities.users.byId, state.entities.groups.byId[groupId].users),
-    invitedUsers: selectUsersInvitedToGroup(state.entities.users.byId, state.entities.invites.byId, groupId)
-  }
+    const problemId = state.entities.groups.byId[groupId].document.problem;
+    return {
+        group: state.entities.groups.byId[groupId],
+        problem: state.entities.problems.byId[problemId],
+        participants: selectGroupParticipants(
+            state.entities.users.byId,
+            state.entities.groups.byId[groupId].users
+        ),
+        invitedUsers: selectUsersInvitedToGroup(
+            state.entities.users.byId,
+            state.entities.invites.byId,
+            groupId
+        )
+    }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  fetchGroup: (groupId) => dispatch(fetchGroup(groupId)),
-  fetchDocument: documentId => dispatch(fetchDocument(documentId)),
-  updateDocument: (document, newBody, groupId) => dispatch(
-    updateDocument(document, newBody, groupId)
-  ),
-  exitFromGroup: (groupId) => dispatch(removeCurrentUserFromGroup(groupId))
-})
+const mapDispatchToProps = dispatch => ({
+    fetchGroup: (groupId) => dispatch(fetchGroup(groupId)),
+    fetchDocument: documentId => dispatch(fetchDocument(documentId)),
+    updateDocument: (document, newBody, groupId) => dispatch(
+        updateDocument(document, newBody, groupId)
+    ),
+    exitFromGroup: (groupId) => dispatch(removeCurrentUserFromGroup(groupId))
+});
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupShow));
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(GroupShow)
+);

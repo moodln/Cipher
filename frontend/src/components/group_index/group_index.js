@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { fetchCurrentUserGroups } from '../../actions/group_actions';
-import { selectGroupsWhereCurrentUserParticipant } from '../../selectors/groups_selector';
-import GroupIndexBadgeContainer from './group_index_badge';
+import React from "react"
+import { connect } from "react-redux"
+import { fetchCurrentUserGroups } from "../../actions/group_actions";
+import { selectGroupsWhereCurrentUserParticipant } from "../../selectors/groups_selector";
+import GroupIndexBadgeContainer from "./group_index_badge";
 
-class GroupIndex extends Component {
+class GroupIndex extends React.Component {
     componentDidMount() {
         this.props.fetchUserGroups();
     }
@@ -47,10 +47,10 @@ class GroupIndex extends Component {
 }
 
 const mapStateToProps = state => ({
-        groups: selectGroupsWhereCurrentUserParticipant(
-            Object.values(state.entities.groups.byId),
-            state.session.user.id
-        )
+    groups: selectGroupsWhereCurrentUserParticipant(
+        Object.values(state.entities.groups.byId),
+        state.session.user.id
+    )
 });
 
 const mapDispatchToProps = dispatch => ({

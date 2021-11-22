@@ -1,6 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import GroupIndexContainer from '../group_index/group_index';
+import React from "react";
+import { connect } from "react-redux";
+import GroupIndexContainer from "../group_index/group_index";
 import SidebarContainer from "../sidebar/sidebar_container";
 
 const Dashboard = props => (
@@ -19,7 +19,7 @@ const Dashboard = props => (
     </div>
 )
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     currentUser: state.session.user
 });
 

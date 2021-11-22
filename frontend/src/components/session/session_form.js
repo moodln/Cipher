@@ -125,7 +125,9 @@ class SessionForm extends React.Component {
                         ) : null
                     }
 
-                    <input className="session-form-submit" type="submit" value="Submit" />
+                    <input className="session-form-submit"
+                        type="submit"
+                        value="Submit" />
                     <input className="session-form-submit demo-login" 
                         type="button"
                         value="Demo Login"
