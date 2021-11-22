@@ -5,25 +5,24 @@
     height: 100%;
 }
 
-.problem-index-header{
+.problem-index-header {
     background-image: linear-gradient(to bottom, transparent, $blue-darkest),url("../../../assets/images/2nd_main3.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 0% 83%;
-    // background-size: 100% 120%;
     width: 100%;
     background-color: $blue-darkest;
     padding-top: 50px;
 
 
-    .problem-index-header-div{
+    .problem-index-header-div {
         display:flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         margin: 20px auto;
 
-        .problem-intro{
+        .problem-intro {
             font-size: 30px;
             margin-bottom: 30px;
             font-weight: 500;
@@ -31,25 +30,26 @@
             text-shadow: 0 0 20px white;
         }
 
-        .problem-index-instructions{
+        .problem-index-instructions {
             display: flex;
             flex-direction: row;
             justify-content: center;
 
-            .problem-summary-item{
+            .problem-summary-item {
                 width: 20%;
                 margin: 20px 15px;
 
-                .problem-summary-item-header{
+                .problem-summary-item-header {
                     font-size: 22px;
                     font-weight: 500;
                     padding-bottom: 10px;
                     text-shadow: 0 0 50px white;
                 }
 
-                .problem-summary-item-subtitle{
-                    font-size: 18px;
+                .problem-summary-item-subtitle {
+                    font-size: 15px;
                     line-height: 22px;
+                    color: rgb(211, 211, 211);
                 }
             }
         }
@@ -63,18 +63,17 @@
     width: 100%;
     margin-top: 30px;
 
-    .problem-index-problems-header-div{        
+    .problem-index-problems-header-div {        
 
-        h1{
+        h1 {
             margin: 20px auto;
             padding: 30px;
             font-size: 25px;          
         }
         
     }
-   
 
-    .problem-index-problems-list-div{
+    .problem-index-problems-list-div {
         width:80%;
         max-width: 1020px;
         margin: auto;
@@ -83,16 +82,15 @@
         justify-content: center;
         margin-bottom: 70px;
 
-        .problem-index-problems-div{
+        .problem-index-problems-div {
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: center;
 
-            .problem-index-problems-list{
+            .problem-index-problems-list {
                 flex-wrap: wrap;
                 display: flex;
-                // flex-direction: row;
                 justify-content: center;
         
         
@@ -110,15 +108,14 @@
                     border: 1px solid $orange-light;
                     background-color: $blue-darkest;
                     border-radius: 4px;
-                    // box-shadow: 0 0px 0px $orange-light;
                     transition: all 0.2s ease-in;
 
-                    .problem-name{
+                    .problem-name {
                         font-size: 19px;
                         text-shadow: 0 0 5px $blue-lightest;    
                     }
 
-                    .problem-body{
+                    .problem-body {
                         width: 230px;
                         overflow: hidden;
                         white-space: nowrap;
@@ -127,12 +124,12 @@
                         padding: 10px 0;                        
                     }
                     
-                    .problem-link-div{
+                    .problem-link-div {
                         display:flex;
                         flex-direction: row;
                         justify-content: flex-start;
 
-                        .problem-link{
+                        .problem-link {
                             font-size: 14px;
                             border: 1px solid $orange-light;
                             padding: 3px 5px;
@@ -140,7 +137,7 @@
                             transition: all 0.2s ease-in;  
                         }
 
-                        .problem-link:hover{
+                        .problem-link:hover {
                             color: $orange-light;
                         }
                     }                   
@@ -149,12 +146,9 @@
         }
     }    
 }
-    
 
-
-  .problem-card:hover { 
-      transform: translate(4px, -4px);
-      box-shadow: -4px 4px 5px $orange-light;
-      cursor: pointer;  
-  }
-
+.problem-card:hover { 
+    transform: translate(4px, -4px);
+    box-shadow: -4px 4px 5px $orange-light;
+    cursor: pointer;  
+}
