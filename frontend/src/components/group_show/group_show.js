@@ -38,9 +38,6 @@ class GroupShow extends Component {
           <h1>{this.props.group.title}</h1>
           <div className="group-show">
             <div className="group-show-bar">
-              <InviteButtonContainer groupId={this.props.group._id}
-                participants={group.users}
-                invitedUsers={this.props.invitedUsers.allIds} />
               <div className="group-show-main-problem">
                 <h1>{this.props.problem.title}</h1>
                 <p>{this.props.problem.body}</p>
@@ -64,13 +61,16 @@ class GroupShow extends Component {
             </div>
 
             <div className="group-show-main">
-              <EditorShow 
+              <EditorShow
                 updateDocument={this.props.updateDocument}
                 document={this.props.group.document}
                 groupId={this.props.group._id}
-                />
+              />
             </div>
             <div className="group-show-cams">
+              <InviteButtonContainer groupId={this.props.group._id}
+                participants={group.users}
+                invitedUsers={this.props.invitedUsers.allIds} />
               <div className="cams">
               </div>
               <div className="save-btn-div">
