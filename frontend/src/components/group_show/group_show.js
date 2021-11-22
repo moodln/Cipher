@@ -36,9 +36,6 @@ class GroupShow extends React.Component {
           <h1>{this.props.group.title}</h1>
           <div className="group-show">
             <div className="group-show-bar">
-              {/* <InviteButton groupId={this.props.group._id}
-                participants={group.users}
-                invitedUsers={this.props.invitedUsers.allIds} /> */}
               <div className="group-show-main-problem">
                 <h2 className="group-show-main-problem-title">
                   {this.props.problem.title}
