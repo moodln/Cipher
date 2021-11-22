@@ -17,7 +17,7 @@
 .session-form {
     width: 240px;
     position: relative;
-    top: 250px;
+    top: 20vh;
 
     h1 {
         font-size: 20px;
@@ -73,6 +73,6 @@
 
 @media all and (min-width: 1600px) {
     .session-form {
-        transform: scale(1.3);
+        transform: scale(1.1);
     }
 }
