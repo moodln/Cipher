@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { inviteUserToGroup } from '../../actions/invite_actions';
 import { fetchUsersToInvite } from '../../actions/user_actions';
-import { selectUsersToInvite } from '../../selectors/users_selectors';
+import { selectUsersToInvite } from '../../selectors/users_selector';
 
 class UserSearch extends Component {
 
