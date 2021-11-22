@@ -12,28 +12,32 @@ class Footer extends React.Component {
                 <div className="footer-authors-container">
                     <div className="footer-authors">
                         <div className="footer-portraits">
-                            <img src={portraitMadeline} style={{ bottom: "-11px" }} />
+                            <img src={portraitMadeline} style={{ bottom: "-11px" }}
+                                alt="Photograph of Madeline Wilson" />
                         </div>
                         <FooterAuthorsInfo name={"Madeline Wilson"}/>
                     </div>
 
                     <div className="footer-authors">
                         <div className="footer-portraits">
-                            <img src={portraitMaria} style={{ bottom: "-32px", left: "-2px" }} />
+                            <img src={portraitMaria} style={{ bottom: "-32px", left: "-2px" }}
+                                alt="Photograph of Maria Vaghani" />
                         </div>
                         <FooterAuthorsInfo name={"Maria Vaghani"} />
                     </div>
 
                     <div className="footer-authors">
                         <div className="footer-portraits">
-                            <img src={portraitPasan} style={{ bottom: "-36px" }} />
+                            <img src={portraitPasan} style={{ bottom: "-36px" }}
+                                alt="Photograph of Pasan Dharmasena" />
                         </div>
                         <FooterAuthorsInfo name={"Pasan Dharmasena"} />
                     </div>
 
                     <div className="footer-authors">
                         <div className="footer-portraits">
-                            <img src={portraitRebecca} style={{ bottom: "-32px" }} />
+                            <img src={portraitRebecca} style={{ bottom: "-32px" }}
+                                alt="Photograph of Rebecca Foster" />
                         </div>
                         <FooterAuthorsInfo name={"Rebecca Foster"} />
                     </div>
