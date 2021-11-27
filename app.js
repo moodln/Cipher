@@ -40,23 +40,36 @@ app.use("/api/problems", problems);
 const http = require("http");
 const httpServer = http.createServer(app);
 const io = require("socket.io")(httpServer, {
-  cors: {
-    origins: ["http://localhost:3000", "https://cipher-mern.herokuapp.com/"],
-    methods: ["GET", "POST"]
+    cors: {
+    origins: "*:*",//["http://localhost:3000", "https://cipher-mern.herokuapp.com/"],
+    methods: ["GET", "POST"],
+    
     }
 });
 
+// const { ExpressPeerServer } = require("peer");
+// const peerServer = ExpressPeerServer(httpServer, {
+// debug: true,
+// });
+// app.use("/peerjs", peerServer);
+
 io.on("connection", socket => {
-  console.log("User online");
+  // console.log("User online");
 
   // if server receives event with name "editor-data", 
   // message will be broadcast to all other connected users
   socket.on("editor-data", data => {
     socket.broadcast.emit("editor-data", data);
   })
-})
+  // socket.on("join-room", (groupId, userId) => {
+  //   socket.join(groupId);
+  //   console.log('joined groupß');
+    
+  //   socket.to(groupId).broadcast.emit("user-connected", userId);
+  // });
+});
 
 const port = process.env.PORT || 3300;
-httpServer.listen(process.env.PORT || 3300, function () {
+httpServer.listen(port, function () {
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
