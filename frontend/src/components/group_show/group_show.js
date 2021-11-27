@@ -65,7 +65,7 @@ class GroupShow extends React.Component {
                 participants={group.users}
                 invitedUsers={this.props.invitedUsers.allIds} />
               <div className="cams">
-                <VideoStreamContainer />
+                {/* <VideoStreamContainer /> */}
               </div>
               <div className="save-btn-div">
                 <button className="group-save-btn leave-btn"
