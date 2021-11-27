@@ -2,14 +2,16 @@ import React, { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 import Editor from "@monaco-editor/react";
 
-function EditorShow(props) {
+function EditorShow() {
+    
     const socket = io("http://localhost:3300");
-    // socket.on("connect", () => {
-    //     console.log("You have successfully connected");
-    // })
+    // const socket = io("*");
+    socket.on("connect", () => {
+        // console.log("You have successfully connected");
+    })
 
     const editorRef = useRef(null);
-    const [body, setBody] = useState(props.document.body);
+    const [body, setBody] = useState("// Your code goes here...\n");
 
     // Code to receive event:
     let timeout;
@@ -23,7 +25,7 @@ function EditorShow(props) {
     })
 
     function handleEditorDidMount(editor, monaco) {
-        editorRef.current = editor;        
+        editorRef.current = editor;
     }
 
     useEffect(() => {
@@ -41,18 +43,13 @@ function EditorShow(props) {
         const data = editorRef.current.getValue();
         if (data !== body) {
             setBody(data);
-            
         }
-    }
-
-    function saveDocument () {
-        props.updateDocument(props.document, body, props.groupId);
     }
 
     const options = {
         fontSize: "16px",
         letterSpacing: "1em"
-    };
+    }
 
     return (
         <div className="editor-container">
@@ -64,12 +61,8 @@ function EditorShow(props) {
                 options={options}
                 onMount={handleEditorDidMount}
                 onChange={handleEditorChange} />
-            <div className="save-btn-div">
-                <button className="group-save-btn save-btn"
-                    onClick={saveDocument}>Save</button>
-            </div>
         </div>
-    )
+    );
 }
 
 export default EditorShow;

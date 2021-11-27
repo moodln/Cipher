@@ -7,6 +7,7 @@ import EditorShow from "../editor_show";
 import SidebarContainer from "../sidebar/sidebar_container";
 import { fetchDocument, updateDocument } from "../../actions/document_actions";
 import InviteButton from "../ui_components/invite_button";
+import VideoStreamContainer from "../video/video_stream";
 
 class GroupShow extends React.Component {
   constructor(props) {
@@ -63,7 +64,10 @@ class GroupShow extends React.Component {
               <InviteButton groupId={this.props.group._id}
                 participants={group.users}
                 invitedUsers={this.props.invitedUsers.allIds} />
-              <div className="cams"></div>
+              <div className="cams">
+                {/* <VideoStreamContainer /> */}
+
+              </div>
               <div className="save-btn-div">
                 <button className="group-save-btn leave-btn"
                   onClick={this.exitFromGroupAndGoToProblemsPage}>
