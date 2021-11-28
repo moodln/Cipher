@@ -19,11 +19,6 @@ class VideoStream extends Component {
     console.log('unmounting');
     this.socket.emit("user-disconnected", {userId: this.props.userId, streamId: this.myVideoStream.id})
 
-    // let newVideos = Object.assign({}, this.state.videos)
-    // delete newVideos[this.props.userId];
-    // this.setState({
-    //   videos: newVideos
-    // })
     console.log(`this.state.videos in unmount: `, this.state.videos);
     
     console.log(`this.state.peers: `, this.state.peers);
@@ -39,30 +34,19 @@ class VideoStream extends Component {
       port: port,
     });
     this.videoGrid = document.getElementById("video-grid");
-    // const myVideo = document.createElement("video");
-    
-    // myVideo.muted = true;
-    // this.peers = {};
     navigator.mediaDevices.getUserMedia({
         audio: true,
         video: true,
     })
     .then((stream) => {
-      // this.myVideoStream = stream;
       this.myVideoStream = stream;
       console.log('going to add own video');
       
       this.addVideoStream(null, stream, this.props.userId);
-      // let newVideos = Object.assign({}, this.state.videos)
-      // newVideos[this.props.userId] = myVideoStream;
-      // this.setState({
-      //   videos: newVideos
-      // })
       this.peer.on("call", (call) => {
         console.log('in call');
         
         call.answer(stream);
-        // const video = document.createElement("video");
         call.on("stream", (userVideoStream) => {
           console.log('in stream');
           

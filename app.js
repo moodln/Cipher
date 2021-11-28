@@ -77,17 +77,6 @@ io.on("connection", socket => {
     
     socket.broadcast.to(data.groupId).emit("user-connected", data);
   });
-  // socket.on("disconnect", (data) => {
-  //   console.log('emitted disconnected user');
-  //   console.log(`data in disconnect: `, data);
-    
-  //   if (data === "ping timeout") {
-      
-  //     socket.broadcast.emit("user-disconnected", data.id);
-  //     console.log(`user disconnected: `, data);
-  //   }
-  
-  // })
   socket.on("user-disconnected", data => {
     console.log('user disconnected');
     console.log(`data in user disconnect: `, data);
