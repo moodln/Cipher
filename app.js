@@ -25,6 +25,12 @@ mongoose
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use(passport.initialize());
 require('./config/passport')(passport);
 
@@ -37,39 +43,68 @@ app.use("/api/invites", invites);
 app.use("/api/documents", documents);
 app.use("/api/problems", problems);
 
+const { ExpressPeerServer } = require("peer");
 const http = require("http");
 const httpServer = http.createServer(app);
 const io = require("socket.io")(httpServer, {
     cors: {
-    origins: "*:*",//["http://localhost:3000", "https://cipher-mern.herokuapp.com/"],
+    origins: "*:*",//["http://localhost:3000"],// "https://cipher-mern.herokuapp.com/"],//"*:*"
     methods: ["GET", "POST"],
-    
     }
 });
+const peerServer = ExpressPeerServer(httpServer, {
+  debug: true,
+  // path: "/"
+});
+app.use("/peerjs", peerServer);
 
-// const { ExpressPeerServer } = require("peer");
-// const peerServer = ExpressPeerServer(httpServer, {
-// debug: true,
-// });
-// app.use("/peerjs", peerServer);
+
 
 io.on("connection", socket => {
-  // console.log("User online");
-
+  
   // if server receives event with name "editor-data", 
   // message will be broadcast to all other connected users
+  
   socket.on("editor-data", data => {
+    console.log(`data: `, data);
+    
+    // socket.join(data.groupId);
     socket.broadcast.emit("editor-data", data);
   })
-  // socket.on("join-room", (groupId, userId) => {
-  //   socket.join(groupId);
-  //   console.log('joined groupß');
+  socket.on("join-room", (data) => {
     
-  //   socket.to(groupId).broadcast.emit("user-connected", userId);
-  // });
+    socket.join(data.groupId);
+    
+    socket.broadcast.to(data.groupId).emit("user-connected", data);
+  });
+  // socket.on("disconnect", (data) => {
+  //   console.log('emitted disconnected user');
+  //   console.log(`data in disconnect: `, data);
+    
+  //   if (data === "ping timeout") {
+      
+  //     socket.broadcast.emit("user-disconnected", data.id);
+  //     console.log(`user disconnected: `, data);
+  //   }
+  
+  // })
+  socket.on("user-disconnected", data => {
+    console.log('user disconnected');
+    console.log(`data in user disconnect: `, data);
+    
+    socket.broadcast.emit("user-disconnected", data);
+
+    
+  })
 });
 
-const port = process.env.PORT || 3300;
+
+
+
+
+const port = process.env.PORT || 3500;
 httpServer.listen(port, function () {
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
+
+

@@ -3,10 +3,14 @@ import io from "socket.io-client";
 import Editor from "@monaco-editor/react";
 
 function EditorShow(props) {
-    const socket = io("http://localhost:3300");
+    
+    let socket = io("http://localhost:3500");
     // socket.on("connect", () => {
     //     console.log("You have successfully connected");
     // })
+    window.onbeforeunload = (event) => {
+        socket.close();
+    }
 
     const editorRef = useRef(null);
     const [body, setBody] = useState(props.document.body);
@@ -14,12 +18,20 @@ function EditorShow(props) {
     // Code to receive event:
     let timeout;
     socket.on("editor-data", incomingData => {
-        if (timeout) clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            if (incomingData !== body) {
-                setBody(incomingData);
-            }
-        }, 750);
+        if(incomingData.userId !== props.userId) {
+            console.log(`incomingData: `, incomingData);
+            
+            if (timeout) clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                
+                if (incomingData.body !== body ) {
+                    // console.log(`incomingData.body: `, incomingData.body);
+                    // console.log(`body: `, body);
+                    
+                    setBody(incomingData.body);
+                }
+            }, 750);
+        }
     })
 
     function handleEditorDidMount(editor, monaco) {
@@ -27,20 +39,31 @@ function EditorShow(props) {
     }
 
     useEffect(() => {
+        
         if (editorRef.current) {
+            
             if (editorRef.current.getValue() !== body) {
                 const cursorPosition = editorRef.current.getPosition();
                 editorRef.current.setValue(body);
                 editorRef.current.setPosition(cursorPosition);
             }
-            socket.emit("editor-data", body);
+            console.log('going to EMIT body: ', body);
+            socket.emit("editor-data", {body, userId: props.userId, groupId: props.groupId});
         }
     }, [body, socket, editorRef]);
 
-    function handleEditorChange() {
+    function handleEditorChange(e) {
+        // setBody(e);
         const data = editorRef.current.getValue();
+        // console.log(`data in handle change: `, data);
+        // console.log(`body: `, body);
+        
         if (data !== body) {
             setBody(data);
+            // console.log('going to EMIT body: ', body);
+
+            // socket.emit("editor-data", {body, userId: props.userId, groupId: props.groupId});
+
             
         }
     }

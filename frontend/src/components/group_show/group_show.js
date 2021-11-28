@@ -58,14 +58,15 @@ class GroupShow extends React.Component {
             <div className="group-show-main">
               <EditorShow updateDocument={this.props.updateDocument}
                 document={this.props.group.document}
-                groupId={this.props.group._id} />
+                groupId={this.props.group._id}
+                userId={this.props.currentUserId} />
             </div>
             <div className="group-show-cams">
               <InviteButton groupId={this.props.group._id}
                 participants={group.users}
                 invitedUsers={this.props.invitedUsers.allIds} />
               <div className="cams">
-                {/* <VideoStreamContainer /> */}
+                <VideoStreamContainer groupId={this.props.group._id} userId={this.props.currentUserId}/>
               </div>
               <div className="save-btn-div">
                 <button className="group-save-btn leave-btn"
@@ -99,7 +100,8 @@ const mapStateToProps = (state, ownProps) => {
       state.entities.users.byId,
       state.entities.invites.byId,
       groupId
-    )
+    ),
+    currentUserId: state.session.user.id
   }
 }
 
