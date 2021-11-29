@@ -47,9 +47,10 @@ class UserSearch extends React.Component {
                             console.log(user.email.slice(0, idx))
                             if (this.state.query === '') {
                                 return user;
-                            } else if (user.email.slice(0, idx).toLowerCase().includes(this.state.query.toLowerCase)) {
+                            } else if (user.email.slice(0, idx).toLowerCase().includes(this.state.query.toLowerCase())) {
                                 console.log(this.state.query)
                                 console.log(user.email)
+                                console.log('inside conditional')
                                 return user;
                             }
                         }).map(user => (
