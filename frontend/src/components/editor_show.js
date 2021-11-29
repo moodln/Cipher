@@ -4,7 +4,7 @@ import Editor from "@monaco-editor/react";
 
 function EditorShow(props) {
     
-    let socket = io("http://localhost:3500");
+    let socket = io();
     // socket.on("connect", () => {
     //     console.log("You have successfully connected");
     // })
