@@ -17,7 +17,7 @@ class VideoStream extends Component {
   }
   componentWillUnmount() {
     console.log('unmounting');
-    this.socket.emit("user-disconnected", { userId: this.props.userId, streamId: this.myVideoStream.id })
+    this.socket.emit("user-disconnected", { userId: this.props.userId, streamId: this.myVideoStream.id, groupId: this.props.groupId })
 
     console.log(`this.state.videos in unmount: `, this.state.videos);
 
@@ -154,7 +154,7 @@ class VideoStream extends Component {
             let newVideos = this.state.videos;
             newVideos = newVideos.filter(streamInState => streamInState.id !== this.myVideoStream.id);
             this.setState({ videos: newVideos })
-            this.socket.emit("user-disconnected", { userId: this.props.userId, streamId: this.myVideoStream.id })
+            this.socket.emit("user-disconnected", { userId: this.props.userId, streamId: this.myVideoStream.id, groupId: this.props.groupId })
             // this.socket.emit("user-muted-video", {userId: this.props.userId, streamId: this.myVideoStream.id})
           }
         });
