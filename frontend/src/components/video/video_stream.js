@@ -64,6 +64,15 @@ class VideoStream extends Component {
           this.connectToNewUser(data.id, stream, data.userId);
         }
       });
+      this.socket.on("user-muted-video", (data) => {
+        console.log('in user-connected');
+        if (data.userId === this.props.userId) {
+
+          this.connectToNewUser(data.id, this.myVideoStream, data.userId);
+        } else {
+          this.connectToNewUser(data.id, stream, data.userId);
+        }
+      });
       this.socket.on("user-disconnected", (data) => {
         console.log('in user disconnected');
         console.log(`userId disconnecting: `, data.userId);
@@ -94,7 +103,6 @@ class VideoStream extends Component {
     console.log(`this.myVideoStream connecting to new user: `, this.myVideoStream);
     
     const call = this.peer.call(id, stream);
-    // const video = document.createElement("video");
     call.on("stream", (userVideoStream) => {
       console.log('in stream newuser');
       this.addVideoStream(null, userVideoStream, userId);
