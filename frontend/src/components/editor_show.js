@@ -36,10 +36,13 @@ function EditorShow(props) {
 
     function handleEditorDidMount(editor, monaco) {
         editorRef.current = editor;
-        setInterval(() => {
-            console.log('going to EMIT body: ', body);
-            socket.emit("editor-data", { body, userId: props.userId, groupId: props.groupId });
-        }, 2000);
+        if (editorRef.current) {
+            setInterval(() => {
+                const newBody = editorRef.current.getValue()
+                console.log('going to EMIT body: ', newBody);
+                socket.emit("editor-data", { body: newBody, userId: props.userId, groupId: props.groupId });
+            }, 2000);
+        }
     }
 
     useEffect(() => {
