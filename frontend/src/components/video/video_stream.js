@@ -30,8 +30,8 @@ class VideoStream extends Component {
     this.socket = io();
     this.peer = new Peer(undefined, {
       path: "/peerjs",
-      host: "/",
-      port: port,
+      host: "https://cipher-mern.herokuapp.com/",
+      port: 443,
     });
     this.videoGrid = document.getElementById("video-grid");
     navigator.mediaDevices.getUserMedia({
