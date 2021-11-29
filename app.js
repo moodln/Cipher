@@ -4,6 +4,8 @@ const db = require('./config/keys').mongoURI;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 const path = require('path');
 
@@ -36,6 +38,22 @@ app.use("/api/groups", groups);
 app.use("/api/invites", invites);
 app.use("/api/documents", documents);
 app.use("/api/problems", problems);
+
+// initialize firebase with firestore credentials
+const firebaseConfig = {
+  apiKey: "AIzaSyA9eq5Qf5mwu18VGWRf3BsdJ0CpSxDLpw4",
+  authDomain: "cipher-10559.firebaseapp.com",
+  projectId: "cipher-10559",
+  storageBucket: "cipher-10559.appspot.com",
+  messagingSenderId: "630764971828",
+  appId: "1:630764971828:web:121351f1f3babd43fee761",
+  measurementId: "G-2LE2N5NM41"
+};
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+const firestore = firebase.firestore();
 
 const http = require("http")
 const httpServer = http.createServer(app);
