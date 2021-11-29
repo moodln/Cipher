@@ -27,7 +27,7 @@ class VideoStream extends Component {
   
   componentDidMount() {
     let port = process.env.PORT || 3500;
-    this.socket = io("http://localhost:3500");
+    this.socket = io();
     this.peer = new Peer(undefined, {
       path: "/peerjs",
       host: "/",
@@ -35,7 +35,7 @@ class VideoStream extends Component {
     });
     this.videoGrid = document.getElementById("video-grid");
     navigator.mediaDevices.getUserMedia({
-        audio: true,
+        audio: false,
         video: true,
     })
     .then((stream) => {
