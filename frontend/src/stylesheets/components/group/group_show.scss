@@ -113,7 +113,8 @@
         width: 100%;
         position: relative;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
         padding: 20px 0;
         z-index: 0 !important;
 
@@ -130,6 +131,15 @@
         button:hover {
             color: $orange-light;
             // box-shadow: ;
+        }
+
+        .invite-search {
+            
+            input {
+                background: white;
+                padding: 10px;
+                color: black;
+            }
         }
     }
 
