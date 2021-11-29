@@ -47,43 +47,43 @@ const { ExpressPeerServer } = require("peer");
 const http = require("http");
 const httpServer = http.createServer(app);
 const io = require("socket.io")(httpServer, {
-    cors: {
+  cors: {
     origins: ["http://localhost:3000", "https://cipher-mern.herokuapp.com/"],//"*:*"
     methods: ["GET", "POST"],
-    }
+  }
 });
 const peerServer = ExpressPeerServer(httpServer, {
   debug: true,
-  path: "https://cipher-mern.herokuapp.com/"
+  path: "https://cipher-mern.herokuapp.com"
 });
 app.use("/peerjs", peerServer);
 
 
 
 io.on("connection", socket => {
-  
+
   // if server receives event with name "editor-data", 
   // message will be broadcast to all other connected users
-  
+
   socket.on("editor-data", data => {
     console.log(`data: `, data);
-    
+
     // socket.join(data.groupId);
     socket.broadcast.emit("editor-data", data);
   })
   socket.on("join-room", (data) => {
-    
+
     socket.join(data.groupId);
-    
+
     socket.broadcast.to(data.groupId).emit("user-connected", data);
   });
   socket.on("user-disconnected", data => {
     console.log('user disconnected');
     console.log(`data in user disconnect: `, data);
-    
+
     socket.broadcast.emit("user-disconnected", data);
 
-    
+
   })
 });
 
