@@ -18,8 +18,9 @@ function EditorShow(props) {
     // Code to receive event:
     let timeout;
     socket.on("editor-data", incomingData => {
+        console.log(`incomingData: `, incomingData);
         if (incomingData.userId !== props.userId) {
-            console.log(`incomingData: `, incomingData);
+
 
             // if (timeout) clearTimeout(timeout);
             // timeout = setTimeout(() => {
@@ -37,11 +38,11 @@ function EditorShow(props) {
     function handleEditorDidMount(editor, monaco) {
         editorRef.current = editor;
         if (editorRef.current) {
-            setInterval(() => {
-                const newBody = editorRef.current.getValue()
-                console.log('going to EMIT body: ', newBody);
-                socket.emit("editor-data", { body: newBody, userId: props.userId, groupId: props.groupId });
-            }, 2000);
+            // setInterval(() => {
+            const newBody = editorRef.current.getValue()
+            console.log('going to EMIT body: ', newBody);
+            socket.emit("editor-data", { body: newBody, userId: props.userId, groupId: props.groupId });
+            // }, 2000);
         }
     }
 
@@ -57,7 +58,7 @@ function EditorShow(props) {
             // console.log('going to EMIT body: ', body);
             // socket.emit("editor-data", {body, userId: props.userId, groupId: props.groupId});
         }
-    }, [body, socket, editorRef]);
+    }, [body]);
 
     function handleEditorChange(e) {
         // setBody(e);
@@ -70,7 +71,9 @@ function EditorShow(props) {
             // console.log('going to EMIT body: ', body);
 
             // socket.emit("editor-data", {body, userId: props.userId, groupId: props.groupId});
-
+            const newBody = editorRef.current.getValue()
+            console.log('going to EMIT body: ', newBody);
+            socket.emit("editor-data", { body: newBody, userId: props.userId, groupId: props.groupId });
 
         }
     }
