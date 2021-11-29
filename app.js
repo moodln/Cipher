@@ -54,7 +54,7 @@ const io = require("socket.io")(httpServer, {
 });
 const peerServer = ExpressPeerServer(httpServer, {
   debug: true,
-  path: "https://cipher-mern.herokuapp.com"
+  path: "/"
 });
 app.use("/peerjs", peerServer);
 
