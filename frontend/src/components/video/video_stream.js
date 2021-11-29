@@ -145,6 +145,7 @@ class VideoStream extends Component {
             newVideos = newVideos.filter(streamInState => streamInState.id !== this.myVideoStream.id);
             this.setState({videos: newVideos})
             this.socket.emit("user-disconnected", {userId: this.props.userId, streamId: this.myVideoStream.id})
+            // this.socket.emit("user-muted-video", {userId: this.props.userId, streamId: this.myVideoStream.id})
           }
         });
       }
