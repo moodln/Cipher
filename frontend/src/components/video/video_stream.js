@@ -30,7 +30,7 @@ class VideoStream extends Component {
     this.socket = io();
     this.peer = new Peer(undefined, {
       path: "/",
-      host: "https://cipher-mern.herokuapp.com/",
+      host: "https://cipher-mern.herokuapp.com",
       port: 443,
       secure: true,
     });
