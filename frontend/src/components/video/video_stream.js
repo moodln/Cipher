@@ -33,6 +33,7 @@ class VideoStream extends Component {
       host: "cipher-mern.herokuapp.com",
       port: 443,
       secure: true,
+      debug: 3,
     });
     this.videoGrid = document.getElementById("video-grid");
     navigator.mediaDevices.getUserMedia({
