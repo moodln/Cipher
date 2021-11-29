@@ -115,7 +115,7 @@
         display: flex;
         justify-content: center;
         padding: 20px 0;
-        z-index: 0 !important;
+        z-index: 20 !important;
 
         button{
             position: relative;
@@ -124,7 +124,7 @@
             border-radius: 4px;
             transition: all 0.2s ease-in;
             // background-color: orange;
-            z-index: 0 !important;
+            z-index: 20 !important;
         }
 
         button:hover {
@@ -136,6 +136,7 @@
     .cams{
         height: 90%;
         max-height: 1015px;
+        z-index: 0;
     }
 }
 
@@ -177,14 +178,14 @@
     position: absolute;
     top: 100%;
     left: 5%;
-    z-index: 0 !important;
+    z-index: 20 !important;
     padding: 10px 16px 10px 10px;
     background-color: $blue-darkest;
     border: 1px solid $orange-light;
     overflow-y: scroll;
 
     .user-search-dropdown {
-        z-index: 0 !important;
+        z-index: 20 !important;
         .user-search-dropdown-item {
             text-transform: capitalize;
             padding: 3px 0;

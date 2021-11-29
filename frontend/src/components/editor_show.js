@@ -54,6 +54,9 @@ function EditorShow(props) {
                 const cursorPosition = editorRef.current.getPosition();
                 editorRef.current.setValue(body);
                 editorRef.current.setPosition(cursorPosition);
+                const newBody = editorRef.current.getValue()
+                console.log('going to EMIT body: ', newBody);
+                socket.emit("editor-data", { body: newBody, userId: props.userId, groupId: props.groupId });
             }
             // console.log('going to EMIT body: ', body);
             // socket.emit("editor-data", {body, userId: props.userId, groupId: props.groupId});
@@ -71,9 +74,6 @@ function EditorShow(props) {
             // console.log('going to EMIT body: ', body);
 
             // socket.emit("editor-data", {body, userId: props.userId, groupId: props.groupId});
-            const newBody = editorRef.current.getValue()
-            console.log('going to EMIT body: ', newBody);
-            socket.emit("editor-data", { body: newBody, userId: props.userId, groupId: props.groupId });
 
         }
     }
