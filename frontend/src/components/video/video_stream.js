@@ -28,7 +28,7 @@ class VideoStream extends Component {
   componentDidMount() {
     let port = process.env.PORT || 3500;
     this.socket = io();
-    this.peer = new Peer(undefined, {
+    this.peer = new Peer({
       path: "/",
       host: "cipher-mern.herokuapp.com",
       port: 443,
