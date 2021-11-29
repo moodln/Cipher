@@ -42,11 +42,12 @@ class UserSearch extends React.Component {
                 <ul className="user-search-dropdown">
                     {
                         this.props.usersToInvite.filter(user => {
-                            let idx = this.state.query.length
-                            console.log(user.email[idx])
+                            let idx = (user.email.length - this.state.query.length) * -1
+                            console.log(idx)
+                            console.log(user.email.slice(0, idx))
                             if (this.state.query === '') {
                                 return user;
-                            } else if (user.email[idx].toLowerCase().includes(this.state.query.toLowerCase)) {
+                            } else if (user.email.slice(0, idx).toLowerCase().includes(this.state.query.toLowerCase)) {
                                 console.log(this.state.query)
                                 console.log(user.email)
                                 return user;
