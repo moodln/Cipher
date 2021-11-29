@@ -54,6 +54,9 @@ function EditorShow(props) {
         letterSpacing: "1em"
     };
 
+    function leaveGroup() {
+        props.leaveGroup()
+    }
     return (
         <div className="editor-container">
             <Editor
