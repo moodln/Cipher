@@ -106,7 +106,7 @@ class About extends React.Component {
                                 <div className="splash-features-item-description left">
                                     {/* <h2>Live video</h2> */}
                                     <h4>
-                                        If you receive an invitation from someone, you'll be notified here
+                                        If you receive an invitation to collaborate with someone, you'll be notified here
                                     </h4>
                                     <br></br>
                                 </div>
@@ -125,7 +125,7 @@ class About extends React.Component {
                                     </h4>
                                     <br></br>
                                     <h4>
-                                        You can also select your groups from the side bar
+                                        These can also be found in the side bar
                                     </h4>
                                 </div>
                             </div>
