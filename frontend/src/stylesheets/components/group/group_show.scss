@@ -152,11 +152,20 @@
                 background: white;
                 padding: 10px;
                 color: black;
-                margin: 7px 10px;
+                margin: 6px 7px;
                 width: 90%;
                 height: 1.5em;
                 border-radius: 2px;
             }
+        }
+
+        .collaborator-message {
+            font-size: 12px;
+            text-align: center;
+            margin-bottom: 4px;
+            font-style: italic;
+            color: rgb(236, 204, 162);
+            letter-spacing: .6px;
         }
     }
 
