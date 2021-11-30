@@ -22,6 +22,9 @@ class UserSearch extends React.Component {
 
     inviteCollaborator(inviteeId) {
         this.props.inviteUser(inviteeId, this.props.groupId)
+        this.setState({
+            query: ''
+        })
     }
 
     updateQuery(e) {
@@ -29,31 +32,25 @@ class UserSearch extends React.Component {
         this.setState({
             query: e.currentTarget.value
         })
-        // console.log(this.state.query)
     }
 
     findAssociatedUsers(usersToInvite) {
         let filteredUsers = []
         this.props.associatedGroups.forEach(group => {
-            // debugger
             group.users.forEach(user => {
-                // debugger
                 let associatedUser = usersToInvite.filter(invitee => invitee._id === user)
                 if (associatedUser.length > 0) {
                     filteredUsers.push(associatedUser)
                 }
-                
-                // debugger
             })
         })
 
         let flag = {};
         let associatedUsers = [];
         filteredUsers.forEach(user => {
-            // debugger
             if (!flag[user[0]._id]) {
                 flag[user[0]._id] = true;
-                associatedUsers.push(user)
+                associatedUsers.push(user[0])
             }
         })
 
@@ -62,27 +59,31 @@ class UserSearch extends React.Component {
 
     render() {
         if (this.props.usersToInvite.length === 0) return null;
-        let associatedUsers = this.findAssociatedUsers(this.props.usersToInvite)
-        console.log(associatedUsers);
+        let associatedUsers = this.findAssociatedUsers(this.props.usersToInvite);
+        let users = this.state.query === '' ? associatedUsers : this.props.usersToInvite;
+        let message = users.length > associatedUsers.length ? '' : 'recent collaborators';
+
         return (
             <div>
             <div className='invite-search'>
-                    <input type="text" placeholder='search' value={this.state.query} onChange={this.updateQuery} />
+                <input type="text" 
+                    placeholder='search' 
+                    value={this.state.query} 
+                    onChange={this.updateQuery} />
             </div>
             <div className="user-search">
+                <div className='collaborator-message'>
+                    {message}
+                </div>
                 <ul className="user-search-dropdown">
                     
                     {
-                        this.props.usersToInvite.filter(user => {
+                        users.filter(user => {
                             let idx = (user.email.length - this.state.query.length) * -1
-                            console.log(idx)
-                            console.log(user.email.slice(0, idx))
+                            
                             if (this.state.query === '') {
                                 return user;
                             } else if (user.email.slice(0, idx).toLowerCase().includes(this.state.query.toLowerCase())) {
-                                console.log(this.state.query)
-                                console.log(user.email)
-                                console.log('inside conditional')
                                 return user;
                             }
                         }).map(user => (

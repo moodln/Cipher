@@ -23,7 +23,7 @@ function EditorShow(props) {
     })
 
     function handleEditorDidMount(editor, monaco) {
-        editorRef.current = editor;        
+        editorRef.current = editor;
     }
 
     useEffect(() => {
@@ -41,11 +41,11 @@ function EditorShow(props) {
         const data = editorRef.current.getValue();
         if (data !== body) {
             setBody(data);
-            
+
         }
     }
 
-    function saveDocument () {
+    function saveDocument() {
         props.updateDocument(props.document, body, props.groupId);
     }
 
@@ -54,6 +54,9 @@ function EditorShow(props) {
         letterSpacing: "1em"
     };
 
+    function leaveGroup() {
+        props.leaveGroup()
+    }
     return (
         <div className="editor-container">
             <Editor
@@ -67,6 +70,10 @@ function EditorShow(props) {
             <div className="save-btn-div">
                 <button className="group-save-btn save-btn"
                     onClick={saveDocument}>Save</button>
+                <button className="group-save-btn leave-btn"
+                    onClick={leaveGroup}>
+                    LEAVE GROUP
+                </button>
             </div>
         </div>
     )
