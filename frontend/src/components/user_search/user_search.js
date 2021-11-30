@@ -77,9 +77,9 @@ class UserSearch extends React.Component {
                     onChange={this.updateQuery} />
             </div>
             <div className="user-search">
-                            <div className='collaborator-message'>
-                {message}
-            </div>
+                <div className='collaborator-message'>
+                    {message}
+                </div>
                 <ul className="user-search-dropdown">
                     
                     {

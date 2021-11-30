@@ -152,7 +152,7 @@
                 background: white;
                 padding: 10px;
                 color: black;
-                margin: 6px 7px;
+                margin: 6px 8px;
                 width: 90%;
                 height: 1.5em;
                 border-radius: 2px;
@@ -166,6 +166,8 @@
             font-style: italic;
             color: rgb(236, 204, 162);
             letter-spacing: .6px;
+            position: sticky;
+            left: 7px;
         }
     }
 
@@ -208,17 +210,19 @@
 }
 
 .user-search {
-    height: 300px;
+    max-height: 300px;
     min-width: 100px;
     width: 90%;
     position: absolute;
     // top: 100%;
-    left: 6%;
+    left: 5%;
     z-index: 0 !important;
-    padding: 10px 16px 10px 10px;
+    padding: 10px 16px 10px 5px;
     background-color: $blue-darkest;
     border: 1px solid $orange-light;
+    border-radius: 2px;
     overflow-y: scroll;
+
     
 
     .user-search-dropdown {
@@ -234,10 +238,15 @@
             }
         }
     }
+
+    li {
+        width: 200px;
+    }
 }
 
 .user-search::-webkit-scrollbar {
     width: 0.25em;
+    height: 0.25em;
 }
    
 .user-search::-webkit-scrollbar-track {
