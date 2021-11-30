@@ -109,6 +109,9 @@
         .editor-container {
             height: 92%;
             transition: height 0.5s ease-in;
+            border: 1px solid $orange-light;
+            border-radius: 10px;
+            overflow: hidden;
         } 
     }
 }
@@ -314,10 +317,12 @@
             .editor-container{
                 display: flex;
                 flex-direction: column-reverse;
+                border: 1px solid $orange-light;
             }
 
             .editor-container section{
                 height: 90% !important;
+                border: 1px solid $orange-light;
             }
         }
     }

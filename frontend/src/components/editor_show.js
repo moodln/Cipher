@@ -63,7 +63,7 @@ function EditorShow(props) {
                 className="editor"
                 defaultLanguage="javascript"
                 defaultValue={body}
-                // theme="vs-dark"
+                theme="vs-dark"
                 options={options}
                 onMount={handleEditorDidMount}
                 onChange={handleEditorChange} />
