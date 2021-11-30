@@ -7,15 +7,26 @@ class InviteButton extends React.Component {
         this.state = {
             searchUserMode: false
         }
+ 
+    }
+
+    updateQuery(e) {
+        e.preventDefault();
+        this.setState({
+            query: e.target.value
+        })
     }
 
     renderUserSearch() {
         return (
             <div>
-                <UserSearchContainer
-                    participants={this.props.participants}
-                    invitedUsers={this.props.invitedUsers}
-                    groupId={this.props.groupId} />
+                <div>
+                    <UserSearchContainer
+                        participants={this.props.participants}
+                        invitedUsers={this.props.invitedUsers}
+                        groupId={this.props.groupId}
+                        query={this.state.query} />
+                </div>
             </div>
         );
     }
@@ -28,7 +39,9 @@ class InviteButton extends React.Component {
                 <button onClick={() => { this.setState({ searchUserMode: !this.state.searchUserMode }) }}>
                     {buttonDisplay}
                 </button>
+                
                 {searchUserDisplay}
+                
             </div>
         )
     }
