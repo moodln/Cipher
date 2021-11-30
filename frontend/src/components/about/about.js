@@ -69,7 +69,7 @@ class About extends React.Component {
                                 <div className="splash-features-item-description right">
                                     {/* <h2>Integrated coding environment</h2> */}
                                     <h4>
-                                        First, sign up and make an account or log in
+                                        First, log in or sign up and make an account
                                     </h4>
                                 </div>
                             </div>
@@ -77,11 +77,11 @@ class About extends React.Component {
                                 <div className="splash-features-item-description left">
                                     {/* <h2>Live video</h2> */}
                                     <h4>
-                                        Pick a problem to get started/ make a group
+                                        Pick a problem to get started - problems are displayed on the home page and in the sidebar
                                     </h4>
                                     <br></br>
                                     <h4>
-                                        Choose from the problems page or from the side bar
+                                        Selecting a problem automatically creates a group
                                     </h4>
                                 </div>
                                 <div className="splash-features-item-img-div right" >
@@ -94,7 +94,7 @@ class About extends React.Component {
                                 </div>
                                 <div className="splash-features-item-description right">
                                     {/* <h2>Groups & friends</h2> */}
-                                    <h4>Work through the problem on your own or invite other collaborators
+                                    <h4>Work through the problem on your own, or choose to invite collaborators
                                     </h4>
                                     <br></br>
                                     <h4>
@@ -121,7 +121,7 @@ class About extends React.Component {
                                 <div className="splash-features-item-description right">
                                     {/* <h2>Groups & friends</h2> */}
                                     <h4>
-                                        To work on previously saved problems/ groups, go to your dashboard
+                                        Your dashboard holds all previously saved problems & groups
                                     </h4>
                                     <br></br>
                                     <h4>
