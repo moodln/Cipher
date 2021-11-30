@@ -74,15 +74,23 @@ io.on("connection", socket => {
   socket.on("join-room", (data) => {
 
     socket.join(data.groupId);
-
+    
     socket.broadcast.to(data.groupId).emit("user-connected", data);
   });
+
+  socket.on("send-peer-data", (data) => {
+
+    // socket.join(data.groupId);
+    console.log('sending peer data');
+    
+    socket.broadcast.emit("send-peer-data", data);
+  });
+
   socket.on("user-disconnected", data => {
     console.log('user disconnected');
     console.log(`data in user disconnect: `, data);
-
     socket.broadcast.to(data.groupId).emit("user-disconnected", data);
-
+    socket.leave(data.groupId)
 
   })
 });
