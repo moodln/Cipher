@@ -19,7 +19,7 @@ class GroupShow extends React.Component {
   }
 
   exitFromGroupAndGoToProblemsPage(e) {
-    e.preventDefault();
+    // e.preventDefault();
     this.props.exitFromGroup(this.props.match.params.groupId)
     this.props.history.push("/problems");
   }
@@ -35,29 +35,32 @@ class GroupShow extends React.Component {
         <div className="group-show-container">
           <h1>{this.props.group.title}</h1>
           <div className="group-show">
-            <div className="group-show-bar">
-              <div className="group-show-main-problem">
-                <h2 className="group-show-main-problem-title">
-                  {this.props.problem.title}
-                </h2>
-                <p>{this.props.problem.body}</p>
+            <div className="group-bar-main">
+              <div className="group-show-bar">
+                <div className="group-show-main-problem">
+                  <h2 className="group-show-main-problem-title">
+                    {this.props.problem.title}
+                  </h2>
+                  <p>{this.props.problem.body}</p>
+                </div>
+                <div className="group-show-bar-participants">
+                  <h1>Participants:</h1>
+                  <ul className="participants-list">
+                    {
+                      this.props.participants.map(user => (
+                        <li key={user["_id"]}>{user.handle}</li>
+                      ))
+                    }
+                  </ul>
+                </div>
               </div>
-              <div className="group-show-bar-participants">
-                <h1>Participants:</h1>
-                <ul className="participants-list">
-                  {
-                    this.props.participants.map(user => (
-                      <li key={user["_id"]}>{user.handle}</li>
-                    ))
-                  }
-                </ul>
-              </div>
-            </div>
 
-            <div className="group-show-main">
-              <EditorShow updateDocument={this.props.updateDocument}
-                document={this.props.group.document}
-                groupId={this.props.group._id} />
+              <div className="group-show-main">
+                <EditorShow updateDocument={this.props.updateDocument}
+                  document={this.props.group.document}
+                  groupId={this.props.group._id}
+                  leaveGroup={this.exitFromGroupAndGoToProblemsPage} />
+              </div>
             </div>
             <div className="group-show-cams">
               <InviteButton groupId={this.props.group._id}
@@ -65,10 +68,10 @@ class GroupShow extends React.Component {
                 invitedUsers={this.props.invitedUsers.allIds} />
               <div className="cams"></div>
               <div className="save-btn-div">
-                <button className="group-save-btn leave-btn"
+                {/* <button className="group-save-btn leave-btn"
                   onClick={this.exitFromGroupAndGoToProblemsPage}>
                   LEAVE GROUP
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
