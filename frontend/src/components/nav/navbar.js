@@ -83,9 +83,6 @@ class NavBar extends React.Component {
                         </div>
 
                         <div className="nav-dropdown-content">
-                            {/* <Link className="nav-drop-link" to="/dashboard">
-                                Dashboard
-                            </Link> */}
                             <button className="nav-drop-link"
                                 onClick={this.handleClickDashboard}>Dashboard</button>
                             <button className="nav-drop-link"
