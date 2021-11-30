@@ -30,7 +30,7 @@ class ProblemIndex extends React.Component {
                     <section className="problem-index-header">
                         <div className="problem-index-header-div">
                             <div className="problem-intro">
-                                <h1>Solve problems at your own pace or with friends</h1>
+                                <h1>Cultivate your coding skills through collaboration</h1>
                             </div>
                             <section className="problem-index-instructions">
                                 <div className="problem-summary-item">
