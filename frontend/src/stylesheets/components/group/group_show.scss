@@ -14,10 +14,6 @@
     height: calc(100vh - 112px);
     width: 100%;
     display: flex;
-
-    li {
-        text-transform: capitalize;
-    }
 }
 
 .group-show-bar {
@@ -204,8 +200,8 @@
 
     .user-search-dropdown {
         z-index: 0 !important;
+
         .user-search-dropdown-item {
-            text-transform: capitalize;
             padding: 3px 0;
             overflow-x: hidden;
 
