@@ -26,7 +26,7 @@ class GroupIndex extends React.Component {
                 <section className="problem-index-problems-section">
                     <div className="problem-index-problems-list-div">
                         <div className="problem-index-problems-header-div">
-                            <h1>Your Groups:</h1>
+                            <h1>Your Groups</h1>
                         </div>
                         <div className="problem-index-problems-div">
                             <ul className="problem-index-problems-list">
@@ -50,8 +50,10 @@ const mapStateToProps = state => ({
     groups: selectGroupsWhereCurrentUserParticipant(
         Object.values(state.entities.groups.byId),
         state.session.user.id
-    )
+    ),
+    userIds: Object.values(state.entities.users.byId)
 });
+
 
 const mapDispatchToProps = dispatch => ({
     fetchUserGroups: () => dispatch(fetchCurrentUserGroups())

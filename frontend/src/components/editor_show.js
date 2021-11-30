@@ -74,7 +74,6 @@ function EditorShow(props) {
             // console.log('going to EMIT body: ', body);
 
             // socket.emit("editor-data", {body, userId: props.userId, groupId: props.groupId});
-
         }
     }
 
@@ -87,19 +86,26 @@ function EditorShow(props) {
         letterSpacing: "1em"
     };
 
+    function leaveGroup() {
+        props.leaveGroup()
+    }
     return (
         <div className="editor-container">
             <Editor
                 className="editor"
                 defaultLanguage="javascript"
                 defaultValue={body}
-                // theme="vs-dark"
+                theme="vs-dark"
                 options={options}
                 onMount={handleEditorDidMount}
                 onChange={handleEditorChange} />
             <div className="save-btn-div">
                 <button className="group-save-btn save-btn"
                     onClick={saveDocument}>Save</button>
+                <button className="group-save-btn leave-btn"
+                    onClick={leaveGroup}>
+                    LEAVE GROUP
+                </button>
             </div>
         </div>
     )

@@ -20,7 +20,7 @@ class GroupShow extends React.Component {
   }
 
   exitFromGroupAndGoToProblemsPage(e) {
-    e.preventDefault();
+    // e.preventDefault();
     this.props.exitFromGroup(this.props.match.params.groupId)
     this.props.history.push("/problems");
   }
@@ -29,31 +29,35 @@ class GroupShow extends React.Component {
     if (!this.props.group) return null;
     if (!this.props.problem) return null;
     const { group } = this.props;
+    
 
     return (
       <div className="page-with-sidebar">
         <SidebarContainer />
         <div className="group-show-container">
           <h1>{this.props.group.title}</h1>
+          <span>Created: {new Date(this.props.problem.date).toDateString()}</span>
           <div className="group-show">
-            <div className="group-show-bar">
-              <div className="group-show-main-problem">
-                <h2 className="group-show-main-problem-title">
-                  {this.props.problem.title}
-                </h2>
-                <p>{this.props.problem.body}</p>
+            <div className="group-bar-main">
+              <div className="group-show-bar">
+                <div className="group-show-main-problem">
+                  <h2 className="group-show-main-problem-title">
+                    {this.props.problem.title}
+                  </h2>
+                  <p>{this.props.problem.body}</p>
+                
+                </div>
+                <div className="group-show-bar-participants">
+                  <h1>Participants:</h1>
+                  <ul className="participants-list">
+                    {
+                      this.props.participants.map(user => (
+                        <li key={user["_id"]}>{user.handle}</li>
+                      ))
+                    }
+                  </ul>
+                </div>
               </div>
-              <div className="group-show-bar-participants">
-                <h1>Participants:</h1>
-                <ul className="participants-list">
-                  {
-                    this.props.participants.map(user => (
-                      <li key={user["_id"]}>{user.handle}</li>
-                    ))
-                  }
-                </ul>
-              </div>
-            </div>
 
             <div className="group-show-main">
               <EditorShow updateDocument={this.props.updateDocument}
@@ -69,10 +73,10 @@ class GroupShow extends React.Component {
                 <VideoStreamContainer groupId={this.props.group._id} userId={this.props.currentUserId} participants={this.props.participants}/>
               </div>
               <div className="save-btn-div">
-                <button className="group-save-btn leave-btn"
+                {/* <button className="group-save-btn leave-btn"
                   onClick={this.exitFromGroupAndGoToProblemsPage}>
                   LEAVE GROUP
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
