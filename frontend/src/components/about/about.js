@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SidebarContainer from "../sidebar/sidebar_container";
+import login from "../../assets/images/login.png";
+import allProbs from "../../assets/images/all_probsB.png";
+import pending from "../../assets/images/pending.png";
+import dashboard from "../../assets/images/dashboardB.png";
 
 class About extends React.Component {
     constructor(props) {
@@ -64,7 +68,7 @@ class About extends React.Component {
                         <section className="splash-features">
                             <div className="splash-features-item">
                                 <div className="splash-features-item-img-div left" >
-                                    {/* <img src={graphic1} alt="Coding graphic" /> */}
+                                    <img src={login} alt="Coding graphic" />
                                 </div>
                                 <div className="splash-features-item-description right">
                                     {/* <h2>Integrated coding environment</h2> */}
@@ -85,7 +89,7 @@ class About extends React.Component {
                                     </h4>
                                 </div>
                                 <div className="splash-features-item-img-div right" >
-                                    {/* <img src={graphic2} alt="Video graphic" /> */}
+                                    <img src={allProbs} alt="Video graphic" />
                                 </div>
                             </div>
                             <div className="splash-features-item">
@@ -111,12 +115,12 @@ class About extends React.Component {
                                     <br></br>
                                 </div>
                                 <div className="splash-features-item-img-div right" >
-                                    {/* <img src={graphic2} alt="Video graphic" /> */}
+                                    <img src={pending} alt="Video graphic" />
                                 </div>
                             </div>
                             <div className="splash-features-item">
                                 <div className="splash-features-item-img-div left" >
-                                    {/* <img src={graphic3} alt="Groups and friends graphic" /> */}
+                                    <img src={dashboard} alt="Groups and friends graphic" />
                                 </div>
                                 <div className="splash-features-item-description right">
                                     {/* <h2>Groups & friends</h2> */}
