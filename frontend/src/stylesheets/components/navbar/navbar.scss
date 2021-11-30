@@ -40,6 +40,9 @@
         position: relative;
         background-color: $blue-darkest;
         transition: all 0.2s ease-in;
+        display: flex;
+        justify-content: center;
+        width: 82px;
         // padding: 20px;
 
         .nav-link-profile-img-div {

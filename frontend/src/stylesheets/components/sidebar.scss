@@ -66,7 +66,8 @@
                 pointer-events: none;
                 transition: all 0.2s ease-in;  
     
-                .sidebar-list-item{
+                .sidebar-list-item {
+                    cursor: pointer;
                     color: white;
                     padding: 12px 16px;
                     margin: 5px 0;
@@ -77,9 +78,19 @@
                     box-shadow: inset 0px 0px 0px $orange-light;  
                     box-sizing: border-box;
                     transition: all 0.2s ease-in;   
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+                    a:hover {
+                        cursor: pointer;
+                    }
+
+
                 }
             }
-//:hover
+
             .sidebar-section:hover {
 
                 .sidebar-button{
@@ -96,6 +107,7 @@
                     z-index: 3 !important;
                     left: calc(80%);
                     pointer-events: all;
+
                 }
             }
             .sidebar-button:hover{
@@ -106,6 +118,7 @@
                 svg{
                     fill: $orange-light;                    
                 }
+
             }
             
             .sidebar-button:focus{
@@ -116,6 +129,7 @@
                 svg{
                     fill: $orange-light;                    
                 }
+
             }
 
             .sidebar-button:hover + .sidebar-menu{
@@ -123,14 +137,41 @@
                 z-index: 3 !important;
                 left: calc(80%);
                 pointer-events: all;
+
+                .problem-search {
+                    background: white;
+                    border-radius: 2px;
+                    width: 90%;
+                    margin: 10px;
+
+                    input {
+                        padding: 3px 10px;
+                        color: black;
+                    }
+                }
+
             }
-//:hover
+
             .sidebar-menu:hover {
                 opacity: 1;
                 z-index: 3 !important;
                 left: calc(80%);
                 pointer-events: all;
                 top: 0;
+
+                .problem-search {
+                    cursor: pointer;
+                    background: white;
+                    border-radius: 2px;
+                    width: 90%;
+                    margin: 10px;
+                    
+                    input {
+                        padding: 3px 10px;
+                        color: black;
+                    }
+                }
+
             }
 
             .sidebar-list-item:hover{

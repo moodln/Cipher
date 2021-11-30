@@ -1,6 +1,6 @@
 import React from "react";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
-import { Switch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import NavBarContainer from "./nav/navbar_container";
 import ProblemIndexContainer from "./problem_index/problem_index_container";
 import GroupShowContainer from "./group_show/group_show";
@@ -9,6 +9,7 @@ import RegisterFormContainer from "./session/register_form_container";
 import DashboardContainer from "./profile/dashboard";
 import Splash from "./splash/splash";
 import Footer from "./footer/footer";
+import AboutContainer from "./about/about_container";
 
 const App = () => (
   <div className="page-container">
@@ -22,6 +23,8 @@ const App = () => (
         <ProtectedRoute exact path="/problems" component={ProblemIndexContainer} />
         <ProtectedRoute exact path="/groups/:groupId" component={GroupShowContainer} />
         <ProtectedRoute exact path="/dashboard" component={DashboardContainer} />
+
+        <Route exact path="/about" component={AboutContainer} />
       </Switch>
     </div>
     <Footer />

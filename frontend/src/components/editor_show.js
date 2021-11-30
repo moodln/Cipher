@@ -37,13 +37,6 @@ function EditorShow(props) {
 
     function handleEditorDidMount(editor, monaco) {
         editorRef.current = editor;
-        if (editorRef.current) {
-            // setInterval(() => {
-            const newBody = editorRef.current.getValue()
-            console.log('going to EMIT body: ', newBody);
-            socket.emit("editor-data", { body: newBody, userId: props.userId, groupId: props.groupId });
-            // }, 2000);
-        }
     }
 
     useEffect(() => {
@@ -71,9 +64,6 @@ function EditorShow(props) {
 
         if (data !== body) {
             setBody(data);
-            // console.log('going to EMIT body: ', body);
-
-            // socket.emit("editor-data", {body, userId: props.userId, groupId: props.groupId});
 
         }
     }
@@ -87,19 +77,26 @@ function EditorShow(props) {
         letterSpacing: "1em"
     };
 
+    function leaveGroup() {
+        props.leaveGroup()
+    }
     return (
         <div className="editor-container">
             <Editor
                 className="editor"
                 defaultLanguage="javascript"
                 defaultValue={body}
-                // theme="vs-dark"
+                theme="vs-dark"
                 options={options}
                 onMount={handleEditorDidMount}
                 onChange={handleEditorChange} />
             <div className="save-btn-div">
                 <button className="group-save-btn save-btn"
                     onClick={saveDocument}>Save</button>
+                <button className="group-save-btn leave-btn"
+                    onClick={leaveGroup}>
+                    LEAVE GROUP
+                </button>
             </div>
         </div>
     )

@@ -22,7 +22,7 @@ class ProblemIndex extends React.Component {
 
     render() {
         if (!this.props.problems) return null;
-
+        
         return (
             <div className="page-with-sidebar">
                 <SidebarContainer />
@@ -30,7 +30,7 @@ class ProblemIndex extends React.Component {
                     <section className="problem-index-header">
                         <div className="problem-index-header-div">
                             <div className="problem-intro">
-                                <h1>Solve problems at your own pace or with friends</h1>
+                                <h1>Cultivate your coding skills through collaboration</h1>
                             </div>
                             <section className="problem-index-instructions">
                                 <div className="problem-summary-item">
@@ -64,7 +64,7 @@ class ProblemIndex extends React.Component {
 
                         <div className="problem-index-problems-list-div">
                             <div className="problem-index-problems-header-div">
-                                <h1>ALL PROBLEMS</h1>
+                                <h1>Problems</h1>
                             </div>
                             <div className="problem-index-problems-div">
                                 <ul className="problem-index-problems-list">
