@@ -1,12 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
+import user_search from "../user_search/user_search";
 
 
 class Sidebar extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            query: ''
+        }
         this.makeGroup = this.makeGroup.bind(this);
+        this.updateQuery = this.updateQuery.bind(this);
     }
 
     componentDidMount() {
@@ -28,6 +33,13 @@ class Sidebar extends React.Component {
                 this.props.history.push(`/groups/${groupResponse.data._id}`)
             })
     }
+    
+    updateQuery(e) {
+        e.preventDefault();
+        this.setState({
+            query: e.currentTarget.value
+        })
+    }
 
     render() {
         if (!this.props.problems) return null;
@@ -44,8 +56,19 @@ class Sidebar extends React.Component {
                             </svg>
                         </button>
                         <div className="sidebar-menu">
+                            <div className='invite-search'>
+                                <input type="text" placeholder='search' value={this.state.query} onChange={this.updateQuery} />
+                            </div>
                             {
-                                this.props.problems.map(problem => {
+                                this.props.problems.filter(problem => {
+                                    let idx = (problem.title.length - this.state.query.length) * -1
+
+                                    if (this.state.query === '') {
+                                        return problem;
+                                    } else if (problem.title.slice(0, idx).toLowerCase().includes(this.state.query.toLowerCase())) {
+                                        return problem;
+                                    }
+                                }).map(problem => {
                                     return (
                                         <div className="sidebar-list-item"
                                             key={problem._id}
