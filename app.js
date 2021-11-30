@@ -52,11 +52,12 @@ io.on("connection", socket => {
   // if server receives event with name "editor-data", 
   // message will be broadcast to all other connected users
   socket.on("editor-data", data => {
+    debugger
     socket.broadcast.emit("editor-data", data);
   })
 })
 
 const port = process.env.PORT || 3300;
-httpServer.listen(process.env.PORT || 3300, function () {
+httpServer.listen(port, function () {
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });

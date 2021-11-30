@@ -12,13 +12,17 @@ function EditorShow(props) {
     const [body, setBody] = useState(props.document.body);
 
     // Code to receive event:
-    let timeout;
+    let incomingTimeout;
     socket.on("editor-data", incomingData => {
-        console.log(`Incoming: ${incomingData}`)
-        if (timeout) clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            if (incomingData !== body) {
-                setBody(incomingData);
+        console.log(`Incoming: ${incomingData.body}`);
+
+        if (incomingData.userId === props.userId) return;
+        if (incomingData.body === editorRef.current.getValue()) return;
+
+        if (incomingTimeout) clearTimeout(incomingTimeout);
+        incomingTimeout = setTimeout(() => {
+            if (incomingData.body !== body) {
+                setBody(incomingData.body);
             }
         }, 750);
     })
@@ -34,16 +38,23 @@ function EditorShow(props) {
                 editorRef.current.setValue(body);
                 editorRef.current.setPosition(cursorPosition);
             }
-            console.log(`Outgoing: ${body}`)
-            socket.emit("editor-data", { body, userId: props.userId, groupId: props.groupId });
+
+            return () => {
+            }
         }
     }, [body, socket, editorRef]);
 
+    let outgoingTimeout;
     function handleEditorChange() {
         const data = editorRef.current.getValue();
-        if (data !== body) {
-            setBody(data);
-        }
+        if (data === body) return;
+
+        setBody(data);
+        if (outgoingTimeout) clearTimeout(outgoingTimeout);
+        outgoingTimeout = setTimeout(() => {
+            console.log(`Outgoing: ${body}`);
+            socket.emit("editor-data", { body: data, userId: props.userId, groupId: props.groupId });
+        }, 750);
     }
 
     function saveDocument() {
