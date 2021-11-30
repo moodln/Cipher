@@ -5,10 +5,10 @@
 ###  GOOGLE DOCS meets CODECADEMY meets ZOOM
 
 ### Table of Contents
-- Overview
-- Technologies
-- Core Features & Technical Challenges
-- Future Directions
+- [Overview](#overview)
+- [Technologies](#technologies)
+- [Core Features & Technical Challenges](#core-features-&-technical-challenges)
+- [Future Directions](#future-directions)
 
 # Overview
 Cipher is a MERN stack web application where developers can collaborate with one another on coding projects over video chat. It was inspired by our desire to practice the driver/navigator roles from a shared code editing environment while viewing the faces of the people we're collaborating with.
