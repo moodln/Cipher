@@ -12,6 +12,7 @@ class NavBar extends React.Component {
         this.handleClickLogin = this.handleClickLogin.bind(this);
         this.handleClickAbout = this.handleClickAbout.bind(this);
         this.handleClickLogo = this.handleClickLogo.bind(this);
+        this.handleClickDashboard = this.handleClickDashboard.bind(this);
     }
 
     logoutUser(e) {
@@ -66,6 +67,15 @@ class NavBar extends React.Component {
         }
     }
 
+    handleClickDashboard() {
+        if (this.props.location.pathname === "/dashboard") {
+            this.props.history.replace("/dashboard");
+        }
+        else {
+            this.props.history.push("/dashboard");
+        }
+    }
+
     getLinks() {
         if (this.props.loggedIn) {
             return (
@@ -91,9 +101,8 @@ class NavBar extends React.Component {
                         </div>
 
                         <div className="nav-dropdown-content">
-                            <Link className="nav-drop-link" to="/dashboard">
-                                Dashboard
-                            </Link>
+                            <button className="nav-drop-link"
+                                onClick={this.handleClickDashboard}>Dashboard</button>
                             <button className="nav-drop-link"
                                 onClick={this.logoutUser}>Logout</button>
                         </div>

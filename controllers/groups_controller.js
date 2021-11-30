@@ -7,7 +7,7 @@ const Document = require("../models/Document");
 const createGroup = (req, res) => {
     Problem.findById(req.body.headers.problemId, (err, reqProblem) => {
         const newDocument = new Document({
-            body: "// Your code goes here",
+            body: "// Your code goes here...",
             problem: reqProblem.id
         });
 

@@ -22,6 +22,9 @@ class UserSearch extends React.Component {
 
     inviteCollaborator(inviteeId) {
         this.props.inviteUser(inviteeId, this.props.groupId)
+        this.setState({
+            query: ''
+        })
     }
 
     updateQuery(e) {
@@ -29,28 +32,22 @@ class UserSearch extends React.Component {
         this.setState({
             query: e.currentTarget.value
         })
-        // console.log(this.state.query)
     }
 
     findAssociatedUsers(usersToInvite) {
         let filteredUsers = []
         this.props.associatedGroups.forEach(group => {
-            // debugger
             group.users.forEach(user => {
-                // debugger
                 let associatedUser = usersToInvite.filter(invitee => invitee._id === user)
                 if (associatedUser.length > 0) {
                     filteredUsers.push(associatedUser)
                 }
-                
-                // debugger
             })
         })
 
         let flag = {};
         let associatedUsers = [];
         filteredUsers.forEach(user => {
-            // debugger
             if (!flag[user[0]._id]) {
                 flag[user[0]._id] = true;
                 associatedUsers.push(user[0])
@@ -65,8 +62,6 @@ class UserSearch extends React.Component {
         let associatedUsers = this.findAssociatedUsers(this.props.usersToInvite);
         let users = this.state.query === '' ? associatedUsers : this.props.usersToInvite;
         let message = users.length > associatedUsers.length ? '' : 'recent collaborators';
-        // console.log(users)
-        // console.log(this.props.usersToInvite)
 
         return (
             <div>
@@ -85,16 +80,10 @@ class UserSearch extends React.Component {
                     {
                         users.filter(user => {
                             let idx = (user.email.length - this.state.query.length) * -1
-                            // console.log(idx)
-                            // console.log(user.email.slice(0, idx))
-                            console.log('query', this.state.query)
+                            
                             if (this.state.query === '') {
-                                // console.log(associatedUsers);
                                 return user;
                             } else if (user.email.slice(0, idx).toLowerCase().includes(this.state.query.toLowerCase())) {
-                                console.log(this.state.query)
-                                console.log(user.email)
-                                console.log('inside conditional')
                                 return user;
                             }
                         }).map(user => (
