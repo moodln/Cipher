@@ -12,6 +12,7 @@ class UserSearch extends React.Component {
         }
 
         this.updateQuery = this.updateQuery.bind(this);
+        this.findAssociatedUsers = this.findAssociatedUsers.bind(this);
     }
 
     componentDidMount() {
@@ -31,15 +32,46 @@ class UserSearch extends React.Component {
         // console.log(this.state.query)
     }
 
+    findAssociatedUsers(usersToInvite) {
+        let filteredUsers = []
+        this.props.associatedGroups.forEach(group => {
+            // debugger
+            group.users.forEach(user => {
+                // debugger
+                let associatedUser = usersToInvite.filter(invitee => invitee._id === user)
+                if (associatedUser.length > 0) {
+                    filteredUsers.push(associatedUser)
+                }
+                
+                // debugger
+            })
+        })
+
+        let flag = {};
+        let associatedUsers = [];
+        filteredUsers.forEach(user => {
+            // debugger
+            if (!flag[user[0]._id]) {
+                flag[user[0]._id] = true;
+                associatedUsers.push(user)
+            }
+        })
+
+        return associatedUsers;
+    }
+
     render() {
         if (this.props.usersToInvite.length === 0) return null;
-        
+        let associatedUsers = this.findAssociatedUsers(this.props.usersToInvite)
+        console.log(associatedUsers);
         return (
-            <div className="user-search">
-                <div className='invite-search'>
+            <div>
+            <div className='invite-search'>
                     <input type="text" placeholder='search' value={this.state.query} onChange={this.updateQuery} />
-                </div>
+            </div>
+            <div className="user-search">
                 <ul className="user-search-dropdown">
+                    
                     {
                         this.props.usersToInvite.filter(user => {
                             let idx = (user.email.length - this.state.query.length) * -1
@@ -63,6 +95,7 @@ class UserSearch extends React.Component {
                     }
                 </ul>
             </div>
+            </div>
         )
     }
 }
@@ -72,7 +105,8 @@ const mapStateToProps = (state, ownProps) => ({
         Object.values(state.entities.users.byId),
         ownProps.participants,
         ownProps.invitedUsers
-    )
+    ),
+    associatedGroups: Object.values(state.entities.groups.byId)
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -10,6 +10,7 @@ class GroupIndex extends React.Component {
     }
 
     render() {
+        debugger
         if (this.props.groups.length === 0) {
             return (
                 <section className="problem-index-problems-section">
@@ -22,6 +23,7 @@ class GroupIndex extends React.Component {
             )
         }
         else {
+            debugger
             return (
                 <section className="problem-index-problems-section">
                     <div className="problem-index-problems-list-div">
@@ -50,8 +52,12 @@ const mapStateToProps = state => ({
     groups: selectGroupsWhereCurrentUserParticipant(
         Object.values(state.entities.groups.byId),
         state.session.user.id
-    )
+    ),
+    // groupIds: Object.values(state.entities.groups.byId),
+    userIds: Object.values(state.entities.users.byId)
 });
+
+//Object.values(this.props.userIds).filter(group => group._id === '6192cab6e21c95f005ea8358')[0].email
 
 const mapDispatchToProps = dispatch => ({
     fetchUserGroups: () => dispatch(fetchCurrentUserGroups())
