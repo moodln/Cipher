@@ -1,11 +1,14 @@
 # Cipher
 
+[Live site!](https://cipher-mern.herokuapp.com/#/)
+
 ###  GOOGLE DOCS meets CODECADEMY meets ZOOM
 
-[live site](https://cipher-mern.herokuapp.com/#/)
+### Table of Contents
 
 
-# Background and Overview 
+# Background and Overview
+Cipher was inspired by our desire for a coding environment in which you can practice the driver/navigator roles from a shared code editor and over video chat from the same application.
 Have you ever been working with someone on a coding project, and noticed that your computer is running into overdrive?
 Cipher is here to help you focus on your work without worrying about your computer crashing!
 Cipher provides an environment for developers to collaborate with one another on coding projects, while video streaming.
@@ -15,7 +18,7 @@ Cipher will allow you to:
   - collaborate with colleagues/potential employees instantly with video streaming and automatic screen sharing
 
 
-# Functionality & MVP 
+# Functionality & MVPs
 
 1. User Authentication
 2. Collaborative text area, where all users can contribute to the same document with live updates
@@ -32,26 +35,34 @@ Cipher will allow you to:
 
 
 
-# Technologies & Technical Challenges 
+# Technologies & Technical Challenges
+- MongoDB
+- Express.js
+- Node.js
+- React
+- Redux
+- Axios
+- Socket.io and Socket.io-client
+- Monaco Editor API
 
 #### Backend: MongoDB/Express and Websocket
 
 
-#### Frontend: React/Node.js 
+#### Frontend: React/Node.js
 
 
 
-# Group Members & Work Breakdown 
+# Group Members & Work Breakdown
 
 #### Madeline Wilson (Backend), Rebecca Foster (Flex), Pasan Dharmasena (Frontend), Maria Vaghani (Team Lead)
 
-### Day 1 
+### Day 1
   - Implement state shape and user auth (Maddie)
   - Create wireframe and work on splash page (Pasan)
   - Create basic routes (Rebecca)
       - (GET#api/documents/user/:user_id, GET#api/problems, GET#api/friends/user/:user_id)
   - Collect information on websockets and implement it (Maria)
-### Day 2 
+### Day 2
   - Test deployment to Heroku (All)
   - Finish problems routes, implement videochat feature (Maddie)
   - Work on problems index page, go through all components and make sure colors match (Pasan)
