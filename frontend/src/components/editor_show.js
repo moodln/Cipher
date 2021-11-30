@@ -14,6 +14,7 @@ function EditorShow(props) {
     // Code to receive event:
     let timeout;
     socket.on("editor-data", incomingData => {
+        console.log(`Incoming: ${incomingData}`)
         if (timeout) clearTimeout(timeout);
         timeout = setTimeout(() => {
             if (incomingData !== body) {
@@ -33,7 +34,8 @@ function EditorShow(props) {
                 editorRef.current.setValue(body);
                 editorRef.current.setPosition(cursorPosition);
             }
-            socket.emit("editor-data", body);
+            console.log(`Outgoing: ${body}`)
+            socket.emit("editor-data", { body, userId: props.userId, groupId: props.groupId });
         }
     }, [body, socket, editorRef]);
 
@@ -41,7 +43,6 @@ function EditorShow(props) {
         const data = editorRef.current.getValue();
         if (data !== body) {
             setBody(data);
-
         }
     }
 
