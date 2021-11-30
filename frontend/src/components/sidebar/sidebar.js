@@ -56,7 +56,7 @@ class Sidebar extends React.Component {
                             </svg>
                         </button>
                         <div className="sidebar-menu">
-                            <div className='invite-search'>
+                            <div className='problem-search'>
                                 <input type="text" placeholder='search' value={this.state.query} onChange={this.updateQuery} />
                             </div>
                             {
