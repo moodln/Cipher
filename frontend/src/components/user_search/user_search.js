@@ -22,6 +22,9 @@ class UserSearch extends React.Component {
 
     inviteCollaborator(inviteeId) {
         this.props.inviteUser(inviteeId, this.props.groupId)
+        this.setState({
+            query: ''
+        })
     }
 
     updateQuery(e) {
