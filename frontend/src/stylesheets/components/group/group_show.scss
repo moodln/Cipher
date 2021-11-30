@@ -19,9 +19,11 @@
     // gap: auto;
 
 }
+
 .group-bar-main{
     display: flex;
     width: 100%;
+    gap:10px;
     
 
     .group-show-bar {
@@ -107,9 +109,16 @@
         .editor-container {
             height: 92%;
             transition: height 0.5s ease-in;
+            
+            
+            .editor {
+                border: 1px solid $orange-light;
+                border-radius: 10px;
+                overflow: hidden;
+            }
         } 
     }
-
+}
 
 .group-show-bar .group-show-bar-participants h1 {
     margin-left: 0;
@@ -122,6 +131,7 @@
 
     .editor-container {
         height: 92%;
+        
     } 
 
 }
@@ -239,7 +249,6 @@
     
 
     .user-search-dropdown {
-
         z-index: 0 !important;
 
         .user-search-dropdown-item {
@@ -328,10 +337,17 @@
             .editor-container{
                 display: flex;
                 flex-direction: column-reverse;
+
+                .editor {
+                    border: 1px solid $orange-light;
+                    border-radius: 10px;
+                    overflow: hidden;
+                }
             }
 
             .editor-container section{
                 height: 90% !important;
+                // border: 1px solid $orange-light;
             }
         }
     }

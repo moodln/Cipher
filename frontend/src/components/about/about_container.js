@@ -6,4 +6,7 @@ const mapStateToProps = state => ({
     loggedIn: state.session.isAuthenticated
 });
 
-export default withRouter(About);
+const mapDispatchToProps = dispatch => ({
+});
+
+export default withRouter(connect(mapStateToProps)(About));
