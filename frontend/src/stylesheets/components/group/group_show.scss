@@ -113,9 +113,10 @@
         width: 100%;
         position: relative;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
         padding: 20px 0;
-        z-index: 0 !important;
+        z-index: 20 !important;
 
         button{
             position: relative;
@@ -124,12 +125,25 @@
             border-radius: 4px;
             transition: all 0.2s ease-in;
             // background-color: orange;
-            z-index: 0 !important;
+            z-index: 20 !important;
         }
 
         button:hover {
             color: $orange-light;
             // box-shadow: ;
+        }
+
+        .invite-search {
+            
+            input {
+                background: white;
+                padding: 10px;
+                color: black;
+                margin: 7px 10px;
+                width: 90%;
+                height: 1.5em;
+                border-radius: 2px;
+            }
         }
     }
 
@@ -175,13 +189,14 @@
     min-width: 100px;
     width: 90%;
     position: absolute;
-    top: 100%;
-    left: 5%;
+    // top: 100%;
+    left: 6%;
     z-index: 0 !important;
     padding: 10px 16px 10px 10px;
     background-color: $blue-darkest;
     border: 1px solid $orange-light;
     overflow-y: scroll;
+    
 
     .user-search-dropdown {
         z-index: 0 !important;

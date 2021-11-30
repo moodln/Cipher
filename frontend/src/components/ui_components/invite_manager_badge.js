@@ -2,19 +2,19 @@ import React from "react";
 import { connect } from "react-redux";
 import { inviteResolution } from "../../actions/invite_actions";
 
-const InviteManagerBadge = () => (
+const InviteManagerBadge = (props) => (
     <div className="notification-list">
         <div className="group-title">
-            {this.props.group}
+            {props.group}
         </div>
         <div className="buttons">
             <div className="button-styling">
-                <button onClick={() => this.props.acceptInvite(this.props.invite._id)}>
+                <button onClick={() => props.acceptInvite(props.invite._id)}>
                     Accept
                 </button>
             </div>
             <div className="button-styling">
-                <button onClick={() => this.props.declineInvite(this.props.invite._id)}>
+                <button onClick={() => props.declineInvite(props.invite._id)}>
                     Decline
                 </button>
             </div>
