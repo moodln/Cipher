@@ -24,6 +24,7 @@
 .group-bar-main{
     display: flex;
     width: 100%;
+    
 
     .group-show-bar {
         display: flex;
@@ -69,6 +70,7 @@
                 font-weight: 500;
                 margin-bottom: 10px;
                 text-shadow: 0 0 10px $blue-light;
+                transition: wall 0.5s ease-in;
             }
     
             p {
@@ -102,9 +104,11 @@
         width: 75%;
         flex-grow: 1;
         flex-shrink: 1;
+        transition: width 0.5s ease-in;
     
         .editor-container {
             height: 92%;
+            transition: height 0.5s ease-in;
         } 
     }
 }
@@ -123,7 +127,7 @@
         display: flex;
         justify-content: center;
         padding: 20px 0;
-        z-index: 20 !important;
+        z-index: 0 !important;
         font-size: 14px;
 
         button{
@@ -133,7 +137,7 @@
             border-radius: 4px;
             transition: all 0.2s ease-in;
             // background-color: orange;
-            z-index: 20 !important;
+            z-index: 0 !important;
         }
 
         button:hover {
@@ -187,7 +191,7 @@
     position: absolute;
     top: 100%;
     left: 5%;
-    z-index: 20 !important;
+    z-index: 0 !important;
     padding: 10px 16px 10px 10px;
     background-color: $blue-darkest;
     border: 1px solid $orange-light;
@@ -244,6 +248,10 @@
     .group-bar-main{
         flex-direction: column;
         width: 100%;
+        flex-shrink: 1;
+        flex-grow: 1;
+        justify-content: space-between;
+        // height: 95vh;
         
         .group-show-bar{
             display: flex;
@@ -252,6 +260,8 @@
             align-items: flex-start;
             min-width: 90%;
             height:150px;
+            // flex-shrink: 1;
+            // flex-grow: 1;
 
 
             .group-show-main-problem{
@@ -262,9 +272,11 @@
 
         .group-show-main{
             width: 90%;
-            // margin-top: 20px;
+            margin-top: 10%;
             // display: flex;
             // align-items: flex-start;
+            flex-shrink: 1;
+            flex-grow: 1;
 
             .editor-container{
                 display: flex;
@@ -298,6 +310,10 @@
             .group-show-bar-participants{
                 display: none;
             }
+        }
+
+        .group-show-main{
+            margin-top: 15%;
         }
     }
    
