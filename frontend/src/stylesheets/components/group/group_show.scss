@@ -14,92 +14,99 @@
     height: calc(100vh - 112px);
     width: 100%;
     display: flex;
+    justify-content: stretch;
+    // gap: auto;
 
     li {
         text-transform: capitalize;
     }
 }
-
-.group-show-bar {
+.group-bar-main{
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    width: 100%;
 
-    width: 25%;
-    max-width: 400px;
-    min-width: 200px;
-
-    // .invite-button {
-    //     width: 100%;
-    //     position: relative;
-    //     display: flex;
-    //     justify-content: center;
-    //     padding: 20px 0;
-    //     z-index: 0 !important;
-
-    //     button{
-    //         position: relative;
-    //         border: 1px solid $orange-light;
-    //         padding: 10px 20px;
-    //         border-radius: 4px;
-    //         transition: all 0.2s ease-in;
-    //         // background-color: orange;
-    //         z-index: 0 !important;
-    //     }
-
-    //     button:hover {
-    //         color: $orange-light;
-    //         // box-shadow: ;
-    //     }
-    // }
-
-    .group-show-main-problem {
+    .group-show-bar {
         display: flex;
         flex-direction: column;
-        padding: 10px;
-        margin-bottom: 40px;
-
-        .group-show-main-problem-title {
-            font-size: 24px;
-            font-weight: 500;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px $blue-light;
-        }
-
-        p {
-            font-size: 16px;
-        }
-    }
-
-    .group-show-bar-participants, .group-show-bar-invited {
-        display: flex;
-        flex-direction: column;
-        padding: 10px;
-
-        h1 {
-            font-size: 20px;
-        }
-
-        ul {
-            height: 200px;
-            width: 150px;
-            overflow-y: scroll;
-
-            li {
+        align-items: flex-start;
+    
+        width: 25%;
+        max-width: 400px;
+        min-width: 200px;
+    
+        // .invite-button {
+        //     width: 100%;
+        //     position: relative;
+        //     display: flex;
+        //     justify-content: center;
+        //     padding: 20px 0;
+        //     z-index: 0 !important;
+    
+        //     button{
+        //         position: relative;
+        //         border: 1px solid $orange-light;
+        //         padding: 10px 20px;
+        //         border-radius: 4px;
+        //         transition: all 0.2s ease-in;
+        //         // background-color: orange;
+        //         z-index: 0 !important;
+        //     }
+    
+        //     button:hover {
+        //         color: $orange-light;
+        //         // box-shadow: ;
+        //     }
+        // }
+    
+        .group-show-main-problem {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            margin-bottom: 40px;
+    
+            .group-show-main-problem-title {
+                font-size: 24px;
+                font-weight: 500;
+                margin-bottom: 10px;
+                text-shadow: 0 0 10px $blue-light;
+            }
+    
+            p {
                 font-size: 16px;
             }
         }
+    
+        .group-show-bar-participants, .group-show-bar-invited {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+    
+            h1 {
+                font-size: 20px;
+            }
+    
+            ul {
+                height: 200px;
+                width: 150px;
+                overflow-y: scroll;
+    
+                li {
+                    font-size: 16px;
+                }
+            }
+        }
     }
-}
-
-.group-show-main {
-    height: 100%;
-    width: 70%;
-    max-width: 2200px;
-
-    .editor-container {
-        height: 92%;
-    } 
+    
+    .group-show-main {
+        height: 100%;
+        width: 75%;
+        flex-grow: 1;
+        flex-shrink: 1;
+    
+        .editor-container {
+            height: 92%;
+        } 
+    }
 }
 
 .group-show-cams{
@@ -108,14 +115,16 @@
     width: 20%;
     max-width: 300px;
     min-width: 100px;
+    padding-left: 10px;
 
     .invite-button {
-        width: 100%;
+        width: 90%;
         position: relative;
         display: flex;
         justify-content: center;
         padding: 20px 0;
-        z-index: 0 !important;
+        z-index: 20 !important;
+        font-size: 14px;
 
         button{
             position: relative;
@@ -124,7 +133,7 @@
             border-radius: 4px;
             transition: all 0.2s ease-in;
             // background-color: orange;
-            z-index: 0 !important;
+            z-index: 20 !important;
         }
 
         button:hover {
@@ -136,6 +145,7 @@
     .cams{
         height: 90%;
         max-height: 1015px;
+        z-index: 0;
     }
 }
 
@@ -177,14 +187,14 @@
     position: absolute;
     top: 100%;
     left: 5%;
-    z-index: 0 !important;
+    z-index: 20 !important;
     padding: 10px 16px 10px 10px;
     background-color: $blue-darkest;
     border: 1px solid $orange-light;
     overflow-y: scroll;
 
     .user-search-dropdown {
-        z-index: 0 !important;
+        z-index: 20 !important;
         .user-search-dropdown-item {
             text-transform: capitalize;
             padding: 3px 0;
@@ -225,3 +235,71 @@
     background-color: $orange-light;
     box-shadow: -7px 0 9px -5px $orange-light;
 }
+
+
+
+@media only screen and (max-width: 1000px) {
+
+
+    .group-bar-main{
+        flex-direction: column;
+        width: 100%;
+        
+        .group-show-bar{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            min-width: 90%;
+            height:150px;
+
+
+            .group-show-main-problem{
+                min-width: 300px;
+                margin-right: 20px;
+            }
+        }
+
+        .group-show-main{
+            width: 90%;
+            // margin-top: 20px;
+            // display: flex;
+            // align-items: flex-start;
+
+            .editor-container{
+                display: flex;
+                flex-direction: column-reverse;
+            }
+
+            .editor-container section{
+                height: 90% !important;
+            }
+        }
+    }
+    .group-show-cams{
+        width: 25%;
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+
+@media only screen and (max-width: 700px) {
+    .group-bar-main{
+        .group-show-bar{
+
+            height:110px;
+            .group-show-main-problem-title{
+                display: none;
+            }
+
+            .group-show-bar-participants{
+                display: none;
+            }
+        }
+    }
+   
+}
+  
