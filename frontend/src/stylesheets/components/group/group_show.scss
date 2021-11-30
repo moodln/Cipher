@@ -14,12 +14,10 @@
     height: calc(100vh - 112px);
     width: 100%;
     display: flex;
+
     justify-content: stretch;
     // gap: auto;
 
-    li {
-        text-transform: capitalize;
-    }
 }
 .group-bar-main{
     display: flex;
@@ -111,6 +109,21 @@
             transition: height 0.5s ease-in;
         } 
     }
+
+
+.group-show-bar .group-show-bar-participants h1 {
+    margin-left: 0;
+}
+
+.group-show-main {
+    height: 100%;
+    width: 70%;
+    max-width: 2200px;
+
+    .editor-container {
+        height: 92%;
+    } 
+
 }
 
 .group-show-cams{
@@ -226,9 +239,10 @@
     
 
     .user-search-dropdown {
-        z-index: 1 !important;
+
+        z-index: 0 !important;
+
         .user-search-dropdown-item {
-            text-transform: capitalize;
             padding: 3px 0;
             overflow-x: hidden;
 

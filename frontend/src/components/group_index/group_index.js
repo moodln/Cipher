@@ -26,7 +26,7 @@ class GroupIndex extends React.Component {
                 <section className="problem-index-problems-section">
                     <div className="problem-index-problems-list-div">
                         <div className="problem-index-problems-header-div">
-                            <h1>Your Groups:</h1>
+                            <h1>Your Groups</h1>
                         </div>
                         <div className="problem-index-problems-div">
                             <ul className="problem-index-problems-list">
