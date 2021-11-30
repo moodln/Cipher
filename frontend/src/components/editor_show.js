@@ -64,7 +64,6 @@ function EditorShow(props) {
 
         if (data !== body) {
             setBody(data);
-
         }
     }
 
