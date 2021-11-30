@@ -8,6 +8,11 @@
         font-size: 30px;
         text-shadow: 0 0 10px $blue-light;
     }
+    span {
+        margin: 0px 10px;
+        font-size: 13px;
+        font-style: italic;
+    }
 }
 .group-show {
     background-color: $blue-darkest;

@@ -28,12 +28,14 @@ class GroupShow extends React.Component {
     if (!this.props.group) return null;
     if (!this.props.problem) return null;
     const { group } = this.props;
+    
 
     return (
       <div className="page-with-sidebar">
         <SidebarContainer />
         <div className="group-show-container">
           <h1>{this.props.group.title}</h1>
+          <span>Created: {new Date(this.props.problem.date).toDateString()}</span>
           <div className="group-show">
             <div className="group-bar-main">
               <div className="group-show-bar">
@@ -42,6 +44,7 @@ class GroupShow extends React.Component {
                     {this.props.problem.title}
                   </h2>
                   <p>{this.props.problem.body}</p>
+                
                 </div>
                 <div className="group-show-bar-participants">
                   <h1>Participants:</h1>
