@@ -19,7 +19,7 @@ class GroupShow extends React.Component {
   }
 
   exitFromGroupAndGoToProblemsPage(e) {
-    e.preventDefault();
+    // e.preventDefault();
     this.props.exitFromGroup(this.props.match.params.groupId)
     this.props.history.push("/problems");
   }
@@ -66,10 +66,10 @@ class GroupShow extends React.Component {
                 invitedUsers={this.props.invitedUsers.allIds} />
               <div className="cams"></div>
               <div className="save-btn-div">
-                <button className="group-save-btn leave-btn"
+                {/* <button className="group-save-btn leave-btn"
                   onClick={this.exitFromGroupAndGoToProblemsPage}>
                   LEAVE GROUP
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
