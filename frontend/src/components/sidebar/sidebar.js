@@ -69,8 +69,7 @@ class Sidebar extends React.Component {
                             {
                                 this.props.groups.map(group => (
                                     <div className="sidebar-list-item" key={group._id}>
-                                        <p>{group.title}</p>
-                                        <Link to={`/groups/${group._id}`}>go</Link>
+                                        <Link to={`/groups/${group._id}`}><p>{group.title}</p></Link>
                                     </div>
                                 ))
                             }
