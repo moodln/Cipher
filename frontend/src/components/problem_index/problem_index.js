@@ -64,7 +64,7 @@ class ProblemIndex extends React.Component {
 
                         <div className="problem-index-problems-list-div">
                             <div className="problem-index-problems-header-div">
-                                <h1>ALL PROBLEMS</h1>
+                                <h1>Problems</h1>
                             </div>
                             <div className="problem-index-problems-div">
                                 <ul className="problem-index-problems-list">
