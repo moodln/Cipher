@@ -1,6 +1,5 @@
 # <img src="https://user-images.githubusercontent.com/88195745/144111561-57ebc1ba-1a5d-4eb3-a2c2-0a8c92dce455.png" width="275" height="auto">
 
-[Live site!](https://cipher-mern.herokuapp.com/#/){:target="_blank" rel="noopener"}
 <a href="https://cipher-mern.herokuapp.com/#/" target="_blank" rel="noopener">Live Site!</a>
 
 ### Table of Contents
