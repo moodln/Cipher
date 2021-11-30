@@ -80,7 +80,7 @@ class UserSearch extends React.Component {
                     {
                         users.filter(user => {
                             let idx = (user.email.length - this.state.query.length) * -1
-                            
+                            // console.log(users)
                             if (this.state.query === '') {
                                 return user;
                             } else if (user.email.slice(0, idx).toLowerCase().includes(this.state.query.toLowerCase())) {

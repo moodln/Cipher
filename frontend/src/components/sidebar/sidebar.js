@@ -12,6 +12,7 @@ class Sidebar extends React.Component {
         }
         this.makeGroup = this.makeGroup.bind(this);
         this.updateQuery = this.updateQuery.bind(this);
+        this.filterTitle = this.filterTitle.bind(this);
     }
 
     componentDidMount() {
@@ -41,6 +42,22 @@ class Sidebar extends React.Component {
         })
     }
 
+            // console.log(typeof word)
+            // console.log(word.slice(0, idx))
+            // console.log(typeof this.state.query)
+            // console.log(splitTitle.join(' '))
+    filterTitle(splitTitle) {
+        debugger
+        return splitTitle.filter(word => {
+            let idx = (word.length - this.state.query.length) * -1;
+            debugger
+            
+            if (word.slice(0, idx).toLowerCase().includes(this.state.query.slice(0, idx).toLowerCase())) {
+                return true;
+            }            
+        })
+    }
+
     render() {
         if (!this.props.problems) return null;
 
@@ -61,19 +78,23 @@ class Sidebar extends React.Component {
                             </div>
                             {
                                 this.props.problems.filter(problem => {
-                                    let idx = (problem.title.length - this.state.query.length) * -1
+                                   let idx = (problem.title.length - this.state.query.length) * -1;
 
-                                    if (this.state.query === '') {
-                                        return problem;
-                                    } else if (problem.title.slice(0, idx).toLowerCase().includes(this.state.query.toLowerCase())) {
-                                        return problem;
-                                    }
-                                }).map(problem => {
+                                        if (this.state.query === '') {
+                                            return problem;
+                                        } else if (problem.title.toLowerCase().includes(this.state.query.toLowerCase())) {
+                                            
+                                            return problem;
+                                        }
+                                   
+                                })
+                                .map(result => {
+                                    // console.log(result)
                                     return (
                                         <div className="sidebar-list-item"
-                                            key={problem._id}
-                                            onClick={() => this.makeGroup(problem._id)}>
-                                            <p>{problem.title}</p>
+                                            key={result._id}
+                                            onClick={() => this.makeGroup(result._id)}>
+                                            <p>{result.title}</p>
                                         </div>
                                     )
                                 })
