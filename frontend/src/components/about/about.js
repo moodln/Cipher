@@ -56,7 +56,7 @@ class About extends React.Component {
                                 <h1>Welcome to Cipher</h1>
                             </div>
                             <div>
-                                <h4>Here's all you need to know</h4>
+                                <h4>This is a collaborative coding platform designed to help you ace DS&A problems</h4>
                             </div>
                         </div>
                     </section>
@@ -95,6 +95,10 @@ class About extends React.Component {
                                 <div className="splash-features-item-description right">
                                     {/* <h2>Groups & friends</h2> */}
                                     <h4>Work through the problem on your own or invite other collaborators
+                                    </h4>
+                                    <br></br>
+                                    <h4>
+                                        Collaborators will appear here if they have their cameras on
                                     </h4>
                                 </div>
                             </div>

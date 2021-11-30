@@ -149,7 +149,7 @@
     .cams{
         height: 90%;
         max-height: 1015px;
-        z-index: 0;
+        // z-index: 0;
     }
 }
 
@@ -191,14 +191,14 @@
     position: absolute;
     top: 100%;
     left: 5%;
-    z-index: 0 !important;
+    z-index: 1 !important;
     padding: 10px 16px 10px 10px;
     background-color: $blue-darkest;
     border: 1px solid $orange-light;
     overflow-y: scroll;
 
     .user-search-dropdown {
-        z-index: 20 !important;
+        z-index: 1 !important;
         .user-search-dropdown-item {
             text-transform: capitalize;
             padding: 3px 0;
