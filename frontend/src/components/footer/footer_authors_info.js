@@ -4,7 +4,7 @@ const FooterAuthorsInfo = props => {
     const links = {
         "Madeline Wilson": {
             github: "https://github.com/moodln",
-            linkedin: "https://github.com/moodln"
+            linkedin: "https://www.linkedin.com/in/madeline-wilson-044a19226/"
         },
         "Maria Vaghani": {
             github: "https://github.com/mariavaghani",
