@@ -1,25 +1,25 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Editor from "@monaco-editor/react";
-import { socket } from "../util/socket";
+// import { props.socket } from "../util/props.socket";
 
 function EditorShow(props) {
 
-    // let socket = io("http://localhost:3500");
-    // let socket = io();
-    // let socket = socket;
-    // socket.on("connect", () => {
+    // let props.socket = io("http://localhost:3500");
+    // let props.socket = io();
+    // let props.socket = props.socket;
+    // props.socket.on("connect", () => {
     //     console.log("You have successfully connected");
     // })
     // window.onbeforeunload = (event) => {
-    //     socket.close();
+    //     props.socket.close();
     // }
     const editorRef = useRef(null);
     const [body, setBody] = useState(props.document.body);
 
     // Code to receive event:
     let incomingTimeout;
-    socket.on("editor-data", incomingData => {
+    props.socket.on("editor-data", incomingData => {
         console.log('Incoming: ',incomingData);
 
         if (incomingData.userId === props.userId) return;
@@ -34,8 +34,13 @@ function EditorShow(props) {
         
     })
 
+    props.socket.on("user-connected", data => {
+        console.log('editor also gets user-connected');
+        
+    })
+
     function handleEditorDidMount(editor, monaco) {
-        socket.emit("join-editor", {groupId: props.groupId})
+        props.socket.emit("join-editor", {groupId: props.groupId})
 
         editorRef.current = editor;
     }
@@ -69,7 +74,7 @@ function EditorShow(props) {
         if (outgoingTimeout) clearTimeout(outgoingTimeout);
         outgoingTimeout = setTimeout(() => {
             console.log('Outgoing:', body);
-            socket.emit("editor-data", { body: body, userId: props.userId, groupId: props.groupId });
+            props.socket.emit("editor-data", { body: body, userId: props.userId, groupId: props.groupId });
         }, 750);
     }
 
