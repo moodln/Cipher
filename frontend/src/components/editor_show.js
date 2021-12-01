@@ -36,6 +36,7 @@ function EditorShow(props) {
 
     props.socket.on("user-connected", data => {
         console.log('editor also gets user-connected');
+        props.socket.emit("editor-data", { body: body, userId: props.userId, groupId: props.groupId });
         
     })
 

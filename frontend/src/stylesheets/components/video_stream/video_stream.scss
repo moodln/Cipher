@@ -29,6 +29,10 @@
     display: flex;
     flex-direction: column;
 
+    .video-first{
+      position: relative;
+    }
+
     video {
       width: 100%;
     }
