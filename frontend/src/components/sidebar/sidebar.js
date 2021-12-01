@@ -61,7 +61,6 @@ class Sidebar extends React.Component {
                             </div>
                             {
                                 this.props.problems.filter(problem => {
-                                   let idx = (problem.title.length - this.state.query.length) * -1;
                                         if (this.state.query === '') {
                                             return problem;
                                         } else if (problem.title.toLowerCase().includes(this.state.query.toLowerCase())) {
