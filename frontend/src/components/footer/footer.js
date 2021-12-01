@@ -12,7 +12,7 @@ class Footer extends React.Component {
                 <div className="footer-authors-container">
                     <div className="footer-authors">
                         <div className="footer-portraits">
-                            <img src={portraitMadeline} style={{ bottom: "-11px" }}
+                            <img src={portraitMadeline} style={{ bottom: "0px" }}
                                 alt="Photograph of Madeline Wilson" />
                         </div>
                         <FooterAuthorsInfo name={"Madeline Wilson"}/>

@@ -15,39 +15,39 @@ class About extends React.Component {
         // this.getProblems = this.getProblems.bind(this);
     }
 
-    getLogIn() {
-        if (!this.props.loggedIn) {
-            return (
-                <button>Login</button>
-            )
-        } else {
-            return null;
-        }
-    }
+    // getLogIn() {
+    //     if (!this.props.loggedIn) {
+    //         return (
+    //             <button>Login</button>
+    //         )
+    //     } else {
+    //         return null;
+    //     }
+    // }
 
-    getSignIn() {
-        if (!this.props.loggedIn) {
-            return (
-                <div className="nav-link-div">
-                    <button className="nav-link">Signup</button>
-                </div>
-            )
-        } else {
-            return null;
-        }
-    }
+    // getSignIn() {
+    //     if (!this.props.loggedIn) {
+    //         return (
+    //             <div className="nav-link-div">
+    //                 <button className="nav-link">Signup</button>
+    //             </div>
+    //         )
+    //     } else {
+    //         return null;
+    //     }
+    // }
 
-    getProblems() {
-        if (this.props.loggedIn) {
-            return (
-                <div className="nav-link-div">
-                    <button className="nav-link">Problems</button>
-                </div>
-            )
-        } else {
-            return null;
-        }
-    }
+    // getProblems() {
+    //     if (this.props.loggedIn) {
+    //         return (
+    //             <div className="nav-link-div">
+    //                 <button className="nav-link">Problems</button>
+    //             </div>
+    //         )
+    //     } else {
+    //         return null;
+    //     }
+    // }
 
 
     render() {
@@ -64,10 +64,10 @@ class About extends React.Component {
                 <div className="problem-index container">
                     <section className="problem-index-header">
                         <div className="problem-index-header-div">
-                            <div className="problem-intro">
+                            <div className="about-intro">
                                 <h1>Welcome to Cipher</h1>
                             </div>
-                            <div>
+                            <div className="about-intro-sub">
                                 <h4>This is a collaborative coding platform designed to help you ace DS&A problems</h4>
                             </div>
                         </div>
@@ -75,38 +75,49 @@ class About extends React.Component {
                     <section className="about-section">
                         <section className="about-features">
                             <div className="about-features-item">
-                                <div className="about-features-item-img-div left" >
+                                <div className="about-features-item-img-div" >
                                     <img src={login} alt="login or signup" />
                                 </div>
-                                <div className="about-features-item-description right">
+                                <div className="about-features-item-description">
                                     {/* <h2>Integrated coding environment</h2> */}
                                     <h4>
-                                        First, sign up and make an account or log in
+                                        First, log in or sign up and make an account
                                     </h4>
+                                    {
+                                        this.props.loggedIn ? (
+                                            null
+                                        ) : (
+                                            <div className="nav-link-div">
+                                                <Link to="/register" className="nav-link">Sign Up</Link>
+                                                <Link to="/login" className="nav-link">Log In</Link>
+                                            </div>
+                                        )
+                                    }
                                 </div>
                             </div>
-                            <div className="about-features-item">
-                                <div className="about-features-item-description left">
+                            <div className="about-features-item reverse">
+                                <div className="about-features-item-img-div" >
+                                    <img src={allProbs} alt="Get problems" />
+                                </div>
+                                <div className="about-features-item-description">
                                     {/* <h2>Live video</h2> */}
                                     <h4>
-                                        Pick a problem to get started/ make a group
+                                        Pick a problem to get started - problems are displayed on the home page and in the sidebar
                                     </h4>
                                     <br></br>
                                     <h4>
-                                        Choose from the problems page or from the side bar
+                                        Selecting a problem automatically creates a group
                                     </h4>
                                 </div>
-                                <div className="about-features-item-img-div right" >
-                                    <img src={allProbs} alt="Get problems" />
-                                </div>
+
                             </div>
                             <div className="about-features-item">
-                                <div className="about-features-item-img-div left" >
+                                <div className="about-features-item-img-div" >
                                     <img src={solve} alt="Solve problems" />
                                 </div>
-                                <div className="about-features-item-description right">
+                                <div className="about-features-item-description">
                                     {/* <h2>Groups & friends</h2> */}
-                                    <h4>Work through the problem on your own or invite other collaborators
+                                    <h4>Work through the problem on your own, or choose to invite collaborators
                                     </h4>
                                     <br></br>
                                     <h4>
@@ -114,38 +125,48 @@ class About extends React.Component {
                                     </h4>
                                 </div>
                             </div>
-                            <div className="about-features-item">
-                                <div className="about-features-item-description left">
-                                    {/* <h2>Live video</h2> */}
-                                    <h4>
-                                        If you receive an invitation from someone, you'll be notified here
-                                    </h4>
-                                    <br></br>
-                                </div>
-                                <div className="about-features-item-img-div right" >
+                            <div className="about-features-item reverse">
+                                <div className="about-features-item-img-div" >
                                     <img src={pending} alt="Pending Invites" />
                                 </div>
+                                <div className="about-features-item-description">
+                                    {/* <h2>Live video</h2> */}
+                                    <h4>
+                                        If you receive an invitation to collaborate with someone, you'll be notified here
+                                    </h4>
+                                    <br></br>
+                                </div>
+
                             </div>
                             <div className="about-features-item">
-                                <div className="about-features-item-img-div left" >
+                                <div className="about-features-item-img-div" >
                                     <img src={dashboard} alt="Dashboard" />
                                 </div>
-                                <div className="about-features-item-description right">
+                                <div className="about-features-item-description">
                                     {/* <h2>Groups & friends</h2> */}
                                     <h4>
-                                        To work on previously saved problems/ groups, go to your dashboard
+                                        Your dashboard holds all previously saved problems & groups
                                     </h4>
                                     <br></br>
                                     <h4>
-                                        You can also select your groups from the side bar
+                                        These can also be found in the side bar
                                     </h4>
                                 </div>
                             </div>
                         </section>
                         <div className="about-link">
-                            <div className="nav-link-div">
-                                <Link to="/problems" className="nav-link">Let's Get Started!</Link>
-                            </div>
+                            <h2>Let's Get Started!</h2>
+                            {
+                                this.props.loggedIn ? (
+                                    <div className="nav-link-div">
+                                        <Link to="/problems" className="nav-link">Problems</Link>
+                                    </div>
+                                ) : (
+                                    <div className="nav-link-div">
+                                        <Link to="/login" className="nav-link">Log In</Link>
+                                    </div>
+                                )
+                            }
                         </div>
                     </section>
                 </div>
