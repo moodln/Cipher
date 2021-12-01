@@ -83,9 +83,9 @@ After opening a particular problem, users can click "Invite a Collaborator" to s
 <img src="https://user-images.githubusercontent.com/88195745/144267371-184d69ce-66c3-4b0e-a3b4-8f42cec869af.gif" width="425"/> <img src="https://user-images.githubusercontent.com/88195745/144300244-d278b8dd-c371-422f-b570-47acb583a9d0.png" width="425"/> 
 
 
-<p float="left" align="middle">
-    <img src="https://user-images.githubusercontent.com/88195745/144267371-184d69ce-66c3-4b0e-a3b4-8f42cec869af.gif" height="350px" width="auto" />
-    <img src="https://user-images.githubusercontent.com/88195745/144300244-d278b8dd-c371-422f-b570-47acb583a9d0.png" width="350px" height="auto" />
+<p float="left">
+    <img src="https://user-images.githubusercontent.com/88195745/144267371-184d69ce-66c3-4b0e-a3b4-8f42cec869af.gif" align="middle" height="350px" width="auto" />
+    <img src="https://user-images.githubusercontent.com/88195745/144300244-d278b8dd-c371-422f-b570-47acb583a9d0.png" align="middle" width="350px" height="auto" />
 </p>
 
 
