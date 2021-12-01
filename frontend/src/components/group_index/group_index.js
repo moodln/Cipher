@@ -12,9 +12,9 @@ class GroupIndex extends React.Component {
     render() {
         if (this.props.groups.length === 0) {
             return (
-                <section className="problem-index-problems-section">
-                    <div className="problem-index-problems-list-div">
-                        <div className="problem-index-problems-header-div">
+                <section className="dashboard-index-problems-section">
+                    <div className="dashboard-index-problems-list-div">
+                        <div className="dashboard-index-problems-header-div">
                             <h1>You have not joined or created any groups yet!</h1>
                         </div>
                     </div>
@@ -23,13 +23,13 @@ class GroupIndex extends React.Component {
         }
         else {
             return (
-                <section className="problem-index-problems-section">
-                    <div className="problem-index-problems-list-div">
-                        <div className="problem-index-problems-header-div">
+                <section className="dashboard-index-problems-section">
+                    <div className="dashboard-index-problems-list-div">
+                        <div className="dashboard-index-problems-header-div">
                             <h1>Your Groups</h1>
                         </div>
-                        <div className="problem-index-problems-div">
-                            <ul className="problem-index-problems-list">
+                        <div className="dashboard-index-problems-div">
+                            <ul className="dashboard-index-problems-list">
                                 {
                                     this.props.groups.map(group => (
                                         <GroupIndexBadgeContainer

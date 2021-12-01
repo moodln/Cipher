@@ -1,0 +1,623 @@
+.dashboard-index {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    height: 100%;
+}
+
+.dashboard-index-header {
+    background-image: linear-gradient(to bottom, transparent, $blue-darkest),url("../../../assets/images/2nd_main3.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0% 83%;
+    width: 100%;
+    background-color: $blue-darkest;
+    padding-top: 50px;
+    transition: all 0.3s ease-in-out;
+
+
+    .dashboard-index-header-div {
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 20px auto;
+        transition: all 0.3s ease-in-out;
+
+        .dashboard-intro {
+            font-size: 30px;
+            margin-bottom: 30px;
+            font-weight: 500;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px white;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .dashboard-index-instructions {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 1020px;
+            transition: all 0.3s ease-in-out;
+
+            .dashboard-summary-item {
+                width: 25%;
+                margin: 20px 15px;
+                transition: all 0.3s ease-in-out;
+
+                .dashboard-summary-item-header {
+                    font-size: 22px;
+                    font-weight: 500;
+                    padding-bottom: 10px;
+                    text-shadow: 0 0 50px white;
+                    transition: all 0.3s ease-in-out;
+                }
+
+                .dashboard-summary-item-subtitle {
+                    font-size: 15px;
+                    line-height: 22px;
+                    color: rgb(211, 211, 211);
+                    transition: all 0.3s ease-in-out;
+                }
+            }
+        }
+    }
+}
+
+.dashboard-index-problems-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+
+    .dashboard-index-problems-header-div {        
+
+        h1 {
+            margin: 20px auto;
+            padding: 30px;
+            font-size: 25px;          
+        }
+        
+    }
+
+    .dashboard-index-problems-list-div {
+        width: 1020px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 70px;
+        transition: all 0.3s ease-in-out;
+
+        .dashboard-index-problems-div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+
+            .dashboard-index-problems-list {
+                flex-wrap: wrap;
+                display: flex;
+                justify-content: center;
+        
+        
+                .dashboard-card {
+                    flex: 1 0 33%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    height: 150px;
+                    min-height: 150px;
+                    width: 100%;
+                    max-width: 310px;
+                    padding: 27px;
+                    margin: 15px;
+                    border: 1px solid $orange-light;
+                    background-color: $blue-darkest;
+                    border-radius: 4px;
+                    transition: all 0.2s ease-in;
+
+                    .dashboard-name {
+                        font-size: 19px;
+                        text-shadow: 0 0 5px $blue-lightest;    
+                    }
+
+                    .dashboard-body {
+                        width: 230px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        height: 40px;
+                        padding: 10px 0;                        
+                    }
+                    
+                    .dashboard-link-div {
+                        display:flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+
+                        .dashboard-link {
+                            font-size: 14px;
+                            border: 1px solid $orange-light;
+                            padding: 3px 5px;
+                            border-radius: 3px;  
+                            transition: all 0.2s ease-in;  
+                        }
+
+                        .dashboard-link:hover {
+                            color: $orange-light;
+                        }
+                    }                   
+                }
+            }
+        }
+    }    
+}
+
+.dashboard-card:hover { 
+    transform: translate(4px, -4px);
+    box-shadow: -4px 4px 5px $orange-light;
+    cursor: pointer;  
+}
+
+@media only screen and (max-width: 1200px) {
+    .dashboard-index-header {
+        padding-top: 50px;
+    
+    
+        .dashboard-index-header-div {
+
+            margin: 30px auto;
+    
+            .dashboard-intro {
+                font-size: 30px;
+                margin-bottom: 30px;
+                font-weight: 500;
+
+            }
+    
+            .dashboard-index-instructions {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                width: 850px;
+    
+                .dashboard-summary-item {
+                    width: 25%;
+                    margin: 20px 10px;
+    
+                    .dashboard-summary-item-header {
+                        font-size: 22px;
+                        font-weight: 500;
+                        padding-bottom: 10px;
+ 
+                    }
+    
+                    .dashboard-summary-item-subtitle {
+                        font-size: 15px;
+                        line-height: 22px;
+
+                    }
+                }
+            }
+        }
+    }
+
+
+    .dashboard-index-problems-section {
+
+        width: 100%;
+        margin-top: 30px;
+    
+        .dashboard-index-problems-header-div {        
+    
+            h1 {
+                margin: 20px auto;
+                padding: 30px;
+                font-size: 25px;          
+            }
+            
+        }
+    
+        .dashboard-index-problems-list-div {
+            width: 700px;
+            margin: auto;
+ 
+            margin-bottom: 70px;
+    
+            .dashboard-index-problems-div {
+
+                width: 100%;
+    
+                .dashboard-index-problems-list {
+
+            
+            
+                    .dashboard-card {
+                        flex: 1 0 33%;
+        
+                        height: 170px;
+                        min-height: 170px;
+                        width: 100%;
+                        max-width: 350px;
+                        padding: 27px;
+                        margin: 10px;
+         
+    
+                        .dashboard-name {
+                            font-size: 19px;
+       
+                        }
+    
+                        .dashboard-body {
+                            width: 230px;
+
+                            height: 40px;
+                            padding: 10px 0;                        
+                        }
+                        
+                        .dashboard-link-div {
+
+    
+                            .dashboard-link {
+                                font-size: 14px;
+         
+                                padding: 3px 5px;
+                                border-radius: 3px;  
+                                transition: all 0.2s ease-in;  
+                            }
+
+                        }                   
+                    }
+                }
+            }
+        }    
+    }
+
+}
+
+@media only screen and (max-width: 920px) {
+    .dashboard-index-header {
+
+
+        padding-top: 50px;
+    
+    
+        .dashboard-index-header-div {
+
+            margin: 30px auto;
+    
+            .dashboard-intro {
+                font-size: 30px;
+                margin-bottom: 30px;
+                font-weight: 500;
+   
+            }
+    
+            .dashboard-index-instructions {
+   
+                width: 600px;
+    
+                .dashboard-summary-item {
+                    width: 25%;
+                    margin: 20px 10px;
+    
+                    .dashboard-summary-item-header {
+                        font-size: 22px;
+                        font-weight: 500;
+                        padding-bottom: 10px;
+                        text-shadow: 0 0 50px white;
+                    }
+    
+                    .dashboard-summary-item-subtitle {
+                        font-size: 15px;
+                        line-height: 22px;
+                        color: rgb(211, 211, 211);
+                        // display: none;
+                    }
+                }
+            }
+        }
+    }
+
+
+    .dashboard-index-problems-section {
+
+        width: 100%;
+        margin-top: 30px;
+    
+        .dashboard-index-problems-header-div {        
+            
+            h1 {
+                
+                margin: 20px auto;
+                padding: 30px;
+                font-size: 25px;           
+            }
+            
+        }
+    
+        .dashboard-index-problems-list-div {
+            width: 400px;
+            margin: auto;
+
+            margin-bottom: 70px;
+    
+            .dashboard-index-problems-div {
+
+                width: 100%;
+    
+                .dashboard-index-problems-list {
+    
+                    width: 100%;
+            
+            
+                    .dashboard-card {
+                        flex: 1 0 50%;
+
+                        height: 190px;
+                        min-height: 190px;
+                        width: 100%;
+                        max-width: 370px;
+                        padding: 27px;
+                        margin: 10px;
+                   
+    
+                        .dashboard-name {
+                            font-size: 24px;
+                    
+                        }
+    
+                        .dashboard-body {
+                            width: 250px;
+     
+                            height: 40px;
+                            padding: 10px 0;                        
+                        }
+                        
+                        .dashboard-link-div {
+       
+    
+                            .dashboard-link {
+                                font-size: 16px;
+                          
+                                padding: 6px 10px;
+                                border-radius: 3px;  
+                                transition: all 0.2s ease-in;  
+                            }
+    
+                            .dashboard-link:hover {
+                                color: $orange-light;
+                            }
+                        }                   
+                    }
+                }
+            }
+        }    
+    }
+
+}
+
+@media only screen and (max-width: 720px){
+    .dashboard-index-header { 
+    
+        .dashboard-index-header-div {       
+            margin: 30px auto;
+    
+            .dashboard-intro {
+                font-size: 30px;
+                margin-bottom: 30px;
+         
+            }
+    
+            .dashboard-index-instructions {           
+                width: 500px;
+    
+                .dashboard-summary-item {
+                    width: 100%;
+                    margin: 20px 10px;
+                    text-align: center;
+    
+                    .dashboard-summary-item-header {
+                        font-size: 20px;                    
+                        padding-bottom: 10px;
+               
+                        // text-align: center;
+                    }
+    
+                    .dashboard-summary-item-subtitle {
+                        font-size: 0px;
+                        line-height: 0px;
+               
+                        // display: none;
+                    }
+                }
+            }
+        }
+    }
+    .dashboard-index-problems-section {
+ 
+        width: 100%;
+        margin-top: 30px;
+    
+        .dashboard-index-problems-header-div {        
+            
+            h1 {
+                
+                margin: 20px auto;
+                padding: 30px;
+                font-size: 25px;            
+            }
+            
+        }
+    
+        .dashboard-index-problems-list-div {
+            width: 400px;
+            margin: auto;
+      
+            margin-bottom: 70px;
+    
+            .dashboard-index-problems-div {
+  
+                width: 100%;
+    
+                .dashboard-index-problems-list {
+    
+                    width: 85%;
+            
+            
+                    .dashboard-card {
+                        flex: 1 0 50%;
+                        height: 190px;
+                        min-height: 190px;
+                        width: 100%;
+                        max-width: 300px;
+                        padding: 27px;
+                        margin: 10px;
+     
+    
+                        .dashboard-name {
+                            font-size: 24px;
+              
+                        }
+    
+                        .dashboard-body {
+                            width: 250px;
+
+                            height: 40px;
+                            padding: 10px 0;                        
+                        }
+                        
+                        .dashboard-link-div {
+
+    
+                            .dashboard-link {
+                                font-size: 15px;
+                                border: 1px solid $orange-light;
+                                padding: 6px 10px;
+                                border-radius: 3px;  
+                                transition: all 0.2s ease-in;  
+                            }
+    
+                            .dashboard-link:hover {
+                                color: $orange-light;
+                            }
+                        }                   
+                    }
+                }
+            }
+        }    
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .dashboard-index-header { 
+    
+        .dashboard-index-header-div {       
+            margin: 30px 10px;
+    
+            .dashboard-intro {
+                font-size: 30px;
+                margin-bottom: 30px;
+         
+            }
+    
+            .dashboard-index-instructions {           
+                width: 200px;
+                justify-content: flex-end;
+    
+                .dashboard-summary-item {
+                    width: 90%;
+                    margin: 20px 5px;
+                    text-align: left;
+    
+                    .dashboard-summary-item-header {
+                        font-size: 18px;                    
+                        padding-bottom: 10px;
+               
+                        // text-align: center;
+                    }
+    
+                    .dashboard-summary-item-subtitle {
+               
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    .dashboard-index-problems-section { 
+        width: 100%;
+        margin-top: 30px;
+    
+        .dashboard-index-problems-header-div {        
+            
+            h1 {
+                
+                margin: 20px auto;
+                padding: 30px;
+                font-size: 25px;           
+            }
+            
+        }
+    
+        .dashboard-index-problems-list-div {
+            width: 100%;
+            margin: auto;
+      
+            margin-bottom: 70px;
+    
+            .dashboard-index-problems-div {
+  
+                width: 100%;
+    
+                .dashboard-index-problems-list {
+    
+                    width: 70%;
+            
+            
+                    .dashboard-card {
+                        flex: 1 0 100%;
+                        height: 190px;
+                        min-height: 190px;
+                        // width: auto;
+                        max-width: 300px;
+                        padding: 25px;
+                        margin: 10px;
+     
+    
+                        .dashboard-name {
+                            font-size: 20px;
+                            // width: 90%;
+              
+                        }
+    
+                        .dashboard-body {
+                            width: 90%;
+                            height: 20px;
+                            padding: 10px 0; 
+                            // display: none;                       
+                        }
+                        
+                        .dashboard-link-div {
+
+    
+                            .dashboard-link {
+                                font-size: 20px;
+                                border: 1px solid $orange-light;
+                                padding: 6px 10px;
+                                border-radius: 3px;  
+                                transition: all 0.2s ease-in;  
+                            }
+                        }                   
+                    }
+                }
+            }
+        }    
+    }
+    .group-participants{
+        display: none;
+    }
+}
