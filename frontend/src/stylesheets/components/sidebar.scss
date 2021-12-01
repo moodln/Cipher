@@ -17,6 +17,7 @@
         justify-content: flex-start;
         min-height: calc(100vh - 72px);
         top: 72px;
+        transition: all 0.3s ease-in-out;
 
         .sidebar-section{
             background-color: $blue-darkest;
@@ -25,6 +26,7 @@
             display: flex;
             flex-direction: row;
             justify-content: center;
+            transition: all 0.3s ease-in-out;
     
             .sidebar-button{
                 height: 70px;
@@ -200,4 +202,44 @@ box-shadow: inset 0 0 6px transparent;
 border-radius: 3px;
 background-color: $orange-light;
 box-shadow: -7px 0 9px -5px $orange-light;
+}
+
+@media only screen and (max-width: 550px) {
+    .sidebar-container{
+
+    
+        .sidebar-section-div{
+            position: sticky;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-height: calc(100vh - 72px);
+            top: 72px;
+
+            .sidebar-section{
+                background-color: $blue-darkest;
+                width: 0;
+                padding-top: 20px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                transition: all 0.3s ease-in-out;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    .sidebar-container{
+
+    
+        .sidebar-section-div{
+            position: sticky;
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-height: calc(100vh - 72px);
+            top: 72px;
+        }
+    }
 }

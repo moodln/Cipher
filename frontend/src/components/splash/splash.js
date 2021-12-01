@@ -52,8 +52,8 @@ const Splash = () => (
                         Choose a practice problem from your home page
                         to automatically open a new document where you
                         can begin practicing your JavaScript skills with
-                        our integrated Monaco Editor. With the use of web 
-                        sockets, multiple users can edit the same document, 
+                        our integrated Monaco Editor. With the use of web
+                        sockets, multiple users can edit the same document,
                         sending and receiving live updates as they and their
                         collaborators type.
                     </h4>
@@ -66,7 +66,10 @@ const Splash = () => (
                     </h4>
                 </div>
             </div>
-            <div className="splash-features-item">
+            <div className="splash-features-item reverse">
+                <div className="splash-features-item-img-div right" >
+                    <img src={graphic2} alt="Video graphic" />
+                </div>
                 <div className="splash-features-item-description left">
                     <h2>Live video</h2>
                     <h4>
@@ -77,9 +80,6 @@ const Splash = () => (
                         accept your incoming call and begin viewing your
                         lovely face.
                     </h4>
-                </div>
-                <div className="splash-features-item-img-div right" >
-                    <img src={graphic2} alt="Video graphic" />
                 </div>
             </div>
             <div className="splash-features-item">

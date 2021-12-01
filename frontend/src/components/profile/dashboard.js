@@ -6,10 +6,10 @@ import SidebarContainer from "../sidebar/sidebar_container";
 const Dashboard = props => (
     <div className="page-with-sidebar">
         <SidebarContainer />
-        <div className="problem-index container">
-            <section className="problem-index-header">
-                <div className="problem-index-header-div">
-                    <div className="problem-intro">
+        <div className="dashboard-index container">
+            <section className="dashboard-index-header">
+                <div className="dashboard-index-header-div">
+                    <div className="dashboard-intro">
                         <h1>Welcome, {props.currentUser.handle}</h1>
                     </div>
                 </div>
