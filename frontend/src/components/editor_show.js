@@ -30,7 +30,7 @@ function EditorShow(props) {
             if (incomingData.body !== body) {
                 setBody(incomingData.body);
             }
-            }, 750);
+        }, 750);
         
     })
 
