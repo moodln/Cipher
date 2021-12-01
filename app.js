@@ -52,7 +52,8 @@ io.on("connection", socket => {
   // if server receives event with name "editor-data", 
   // message will be broadcast to all other connected users
   socket.on("editor-data", data => {
-    debugger
+    // socket.join(data.groupId);
+    // socket.broadcast.to(data.groupId).emit("editor-data", data);
     socket.broadcast.emit("editor-data", data);
   })
 })
