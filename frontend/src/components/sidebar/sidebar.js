@@ -18,13 +18,16 @@ class Sidebar extends React.Component {
         this.props.fetchProblems();
         this.props.fetchUserGroups();
 
-        // window.addEventListener("scroll", () => {
-        //     if (window.scrollY > 10) {
-        //         document.querySelector(".sidebar-section-div").className = "sidebar-section-div side-glow";
-        //     } else {
-        //         document.querySelector(".sidebar-section-div").className = "sidebar-section-div";
-        //     }
-        // })
+        window.addEventListener("scroll", () => {
+            const sidebar = document.querySelector(".sidebar-section-div");
+            if (!sidebar) return;
+
+            if (window.scrollY > 10) {
+                sidebar.className = "sidebar-section-div side-glow";
+            } else {
+                sidebar.className = "sidebar-section-div";
+            }
+        })
     }
 
     makeGroup(problemId) {
@@ -56,18 +59,18 @@ class Sidebar extends React.Component {
                             </svg>
                         </button>
                         <div className="sidebar-menu">
-                            <div className='problem-search'>
-                                <input type="text" placeholder='search' value={this.state.query} onChange={this.updateQuery} />
+                            <div className="problem-search">
+                                <input type="text" placeholder="Search" value={this.state.query} onChange={this.updateQuery} />
                             </div>
                             {
                                 this.props.problems.filter(problem => {
                                    let idx = (problem.title.length - this.state.query.length) * -1;
-                                        if (this.state.query === '') {
-                                            return problem;
-                                        } else if (problem.title.toLowerCase().includes(this.state.query.toLowerCase())) {
-                                            
-                                            return problem;
-                                        }
+                                    if (this.state.query === "") {
+                                        return problem;
+                                    } else if (problem.title.toLowerCase().includes(this.state.query.toLowerCase())) {
+                                        
+                                        return problem;
+                                    }
                                 })
                                 .map(result => {
                                     return (
