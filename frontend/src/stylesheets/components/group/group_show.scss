@@ -68,13 +68,13 @@
         .group-show-main-problem {
             display: flex;
             flex-direction: column;
-            padding: 10px;
+            padding: 14px 10px 10px 10px;
             margin-bottom: 40px;
             transition: all 0.3s ease-in;
     
             .group-show-main-problem-title {
-                font-size: 24px;
-                font-weight: 500;
+                font-size: 22px;
+                // font-weight: 400;
                 margin-bottom: 10px;
                 text-shadow: 0 0 10px $blue-light;
                 transition: all 0.3s ease-in;
@@ -423,27 +423,28 @@
         display: flex;
         flex-direction: column;
         justify-content: stretch;
-        margin:0 10px;
+        // margin: 0 10px;
         // gap: auto;
     
     }
 
 
-    .group-bar-main{
+    .group-bar-main {
         width: 100%;
-        .group-show-bar{
+
+        .group-show-bar {
             height:110px;
 
-            .group-show-main-problem{
+            .group-show-main-problem {
                 min-width: 300px;
                 margin-right: 20px;
                 margin-bottom: 20px;
 
-                .group-show-main-problem-title{
+                .group-show-main-problem-title {
                     display: none;
                 }
     
-                .group-show-bar-participants{
+                .group-show-bar-participants {
                     display: none;
                 }
             }
