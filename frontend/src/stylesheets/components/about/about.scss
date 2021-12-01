@@ -1,11 +1,11 @@
-.problem-index {
+.about-index {
     display: flex;
     width: 100%;
     flex-direction: column;
     height: 100%;
 }
 
-.problem-index-header {
+.about-index-header {
     background-image: linear-gradient(to bottom, transparent, $blue-darkest),url("../../../assets/images/2nd_main3.png");
     background-size: cover;
     background-repeat: no-repeat;
@@ -15,7 +15,7 @@
     padding-top: 50px;
 
 
-    .problem-index-header-div {
+    .about-index-header-div {
         display:flex;
         flex-direction: column;
         align-items: center;
@@ -283,10 +283,10 @@
 
 @media only screen and (max-width: 600px) {
 
-    .problem-index-header {
+    .about-index-header {
     
     
-        .problem-index-header-div {
+        .about-index-header-div {
             display:flex;
             flex-direction: column;
             align-items: center;

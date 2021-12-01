@@ -61,9 +61,9 @@ class About extends React.Component {
                         null
                     )
                 }
-                <div className="problem-index container">
-                    <section className="problem-index-header">
-                        <div className="problem-index-header-div">
+                <div className="about-index container">
+                    <section className="about-index-header">
+                        <div className="about-index-header-div">
                             <div className="about-intro">
                                 <h1>Welcome to Cipher</h1>
                             </div>
