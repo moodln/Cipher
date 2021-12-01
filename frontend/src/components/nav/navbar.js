@@ -90,6 +90,7 @@ class NavBar extends React.Component {
                         </div>
 
                         <div className="nav-dropdown-content">
+                            <p className="nav-drop-name">Welcome, {this.props.currentUser.handle}</p>
                             <button className="nav-drop-link"
                                 onClick={this.handleClickDashboard}>Dashboard</button>
                             <button className="nav-drop-link"
