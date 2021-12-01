@@ -245,16 +245,16 @@ class VideoStream extends Component {
     const otherVideos = Object.values(this.state.videos).filter(stream => stream.id !== this.myVideoStream.id);
     return (
       <div id="video-grid">
-        <div className="video-icon-container">
-          <div className="video-icon-div" onClick={this.toggleVideo}>
-            {videoMuteBtn}
-          </div>
-          <div className="video-icon-div" onClick={this.toggleAudio}>
-            {audioMuteBtn}
-          </div>
-        </div>
         <ul>
-          <li key={ownVideo.id}>
+          <li className="video-first" key={ownVideo.id}>
+            <div className="video-icon-container">
+              <div className="video-icon-div" onClick={this.toggleVideo}>
+                {videoMuteBtn}
+              </div>
+              <div className="video-icon-div" onClick={this.toggleAudio}>
+                {audioMuteBtn}
+              </div>
+            </div>
             <video
               ref={video => {
                 if (video) { video.srcObject = ownVideo }
