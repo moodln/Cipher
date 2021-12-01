@@ -28,12 +28,15 @@ Cipher's frontend uses the React framework and Redux architecture for complex us
 WebSockets were implemented using Socket.io and Socket.io-client, with PeerJS providing peer-to-peer media streams and the Monaco Editor API providing a code editing environment.
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/88195745/144267371-184d69ce-66c3-4b0e-a3b4-8f42cec869af.gif" height="300px" width="auto" />
+    <img src="https://user-images.githubusercontent.com/88195745/144267371-184d69ce-66c3-4b0e-a3b4-8f42cec869af.gif" height="350px" width="auto" />
 </p>
 
 # Core Features and Technical Challenges
-1. User Authentication
-    - Users can Sign Up, Log In with a preexisting account, or click "Demo User" to easily explore the site.
+Since we had multiple components relying on the use of sockets
+
+
+- videos on reload, if one user reloads page, another person gets broken video stays as black screen
+- emitting websockets to specific group,
 2. Wide Selection of Pracice Problems
     - The database is populated with 60+ practice problems to choose from, all of which are visible from the problem index page that the user enters upon logging in.
     - Users can open the sidebar and type in the search to filter for problems that match their query.
