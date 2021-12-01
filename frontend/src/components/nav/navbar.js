@@ -16,13 +16,13 @@ class NavBar extends React.Component {
 
     logoutUser(e) {
         e.preventDefault();
-        this.props.logout()
+        this.props.logout();
         this.props.history.push("/");
     }
 
     componentDidMount() {
         window.addEventListener("scroll", () => {
-            if (window.scrollY > 40) {
+            if (window.scrollY > 30) {
                 document.querySelector(".navbar-section").className = "navbar-section container glow";
             }
             else {

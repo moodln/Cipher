@@ -92,11 +92,10 @@ io.on("connection", socket => {
   });
 
   socket.on("user-disconnected", data => {
-    console.log('user disconnected');
-    console.log(`data in user disconnect: `, data);
+    // console.log('user disconnected');
+    // console.log(`data in user disconnect: `, data);
     socket.broadcast.to(data.groupId).emit("user-disconnected", data);
-    socket.leave(data.groupId)
-
+    socket.leave(data.groupId);
   })
 });
 

@@ -33,12 +33,12 @@ class VideoStream extends Component {
   leaveThePage(e) {
     const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
     if (isFirefox) {
-      console.log('client on firefox');
+      // console.log('client on firefox');
 
       // e.preventDefault();
       // e.returnValue = "hey";
     }
-    console.log('reloading page and disconnecting user');
+    // console.log('reloading page and disconnecting user');
     this.componentCleanup();
     // alert("you are about to lose connection")
     // const msg = "wtf"
@@ -51,11 +51,12 @@ class VideoStream extends Component {
   }
 
   async componentCleanup() {
-    console.log('USER IS GOING TO DISCONNECT');
+    // console.log('USER IS GOING TO DISCONNECT');
 
     window.removeEventListener("beforeunload", this.leaveThePage);
     await this.props.socket.emit("user-disconnected", { userId: this.props.userId, streamId: this.myVideoStream.id, groupId: this.props.groupId })
     this.myVideoStream.getTracks().forEach(track => track.stop());
+    window.removeEventListener("beforeunload", this.leaveThePage);
     // this.props.socket.close();
     // console.log(`this.state.videos before unloading: `, this.state.videos);
     // console.log(`this.state.peers: `, this.state.peers);
@@ -103,6 +104,7 @@ class VideoStream extends Component {
         
         call.on("stream", (userVideoStream) => {
           console.log('call answered, streaming');
+          if (this.state.peers[userVideoStream.id]) return;
           const newPeers = Object.assign({}, this.state.peers);
           newPeers[userVideoStream.id] = call;
           this.setState({
@@ -197,21 +199,22 @@ class VideoStream extends Component {
   }
 
   connectToNewUser(id, stream) {
-    console.log(`stream.id we are connecting: `, stream.id);
+    // console.log(`stream.id we are connecting: `, stream.id);
     // console.log(`userId we are connecting: `, userId);
     // console.log(`this.myVideoStream connecting to new user: `, this.myVideoStream);
     // console.log(`id: `, id);
-
+    // debugger
     const call = this.peer.call(id, stream);
     call.on("stream", (userVideoStream) => {
-      console.log('I have answered call and received stream ', userVideoStream.id);
-
-      this.addVideoStream(userVideoStream);
+      // console.log('I have answered call and received stream ', userVideoStream.id);
+      // debugger
+      if (this.state.peers[userVideoStream.id]) return;
       const newPeers = Object.assign({}, this.state.peers);
       newPeers[userVideoStream.id] = call;
       this.setState({
         peers: newPeers
       })
+      this.addVideoStream(userVideoStream);
 
     });
     call.on("close", (streamId) => {
@@ -242,7 +245,7 @@ class VideoStream extends Component {
 
   addVideoStream(stream) {
     // console.log('adding user stream: ', userId);
-    console.log(`stream we are adding to videos: `, stream.id);
+    // console.log(`stream we are adding to videos: `, stream.id);
 
     // console.log(`this.props.userId: `, this.props.userId);
     const newVideos = Object.assign({}, this.state.videos);
@@ -300,6 +303,8 @@ class VideoStream extends Component {
     )
     const ownVideo = this.state.videos[this.myVideoStream.id]
     const otherVideos = Object.values(this.state.videos).filter(stream => stream.id !== this.myVideoStream.id);
+    
+    // debugger
     return (
       <div id="video-grid">
         <ul>
