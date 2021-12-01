@@ -10,22 +10,22 @@ class GroupIndexBadge extends React.Component {
     }
 
     goToGroupShowPage() {
-        
+
         this.props.history.push({ pathname: `/groups/${this.props.group._id}` })
-        
+
     }
 
     render() {
         const { group } = this.props;
-        
+
         return (
-            <li className="problem-card" onClick={this.goToGroupShowPage}>
-                <p className="problem-name">{group.title}</p>
+            <li className="dashboard-card" onClick={this.goToGroupShowPage}>
+                <p className="dashboard-name">{group.title}</p>
                 <p className="group-participants">Number of Participants:
                     <span> {group.users.length}</span>
                 </p>
-                <div className="problem-link-div">
-                    <button className="problem-link">OPEN</button>
+                <div className="dashboard-link-div">
+                    <button className="dashboard-link">OPEN</button>
                 </div>
             </li>
         )

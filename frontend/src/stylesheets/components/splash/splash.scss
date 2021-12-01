@@ -26,12 +26,14 @@
     box-shadow: $blue-lightest 0px 4px 6px -5px;
     padding-top: 40px;
     position: relative;
+    transition: all 0.3s ease-in-out;
 
     .splash-main-info-container{
         display:flex;
         flex-direction: column;
         align-items: center;
         padding: 300px 0;
+        transition: all 0.3s ease-in-out;
 
         .splash-main-header{
             color: white;
@@ -39,6 +41,7 @@
             font-weight: 700;
             font-size: 60px;
             text-shadow: 0 0 10px $blue-light;
+            transition: all 0.3s ease-in-out;
         }
 
         .splash-main-subtitle{
@@ -46,6 +49,7 @@
             color: white;
             padding: 5px 0;
             margin-bottom: 10px;
+            transition: all 0.3s ease-in-out;
         }
     }
 }
@@ -53,11 +57,11 @@
 .splash-summary{
     display:flex;
     flex-direction: row;
-    width: 75%;
-    justify-content: center;
-    align-items: flex-start;
+    width: 1000px;
+    gap: 30px;
     margin: 30px 0;
     padding: 50px 0;
+    transition: all 0.3s ease-in-out;
 
     .splash-summary-item{
         width: 35%;
@@ -65,18 +69,19 @@
         height: 170px;
         display:flex;
         flex-direction: column;
-        justify-content: flex-start;
         align-items: center;
         border-radius: 10px;
         padding: 30px 0;
         margin: 20px;
         box-shadow: $blue-light 0px 4px 6px -5px, $blue-light 0px 2px 6px -5px;
+        transition: all 0.3s ease-in-out;
 
         .splash-summary-item-header{
             color: rgb(240, 240, 233);
             font-size: 30px;
             font-weight: 700;
             padding-bottom: 10px;
+            transition: all 0.3s ease-in-out;
         }
 
         .splash-summary-item-subtitle{
@@ -85,6 +90,7 @@
             color: $blue-lightest;
             font-weight: 600;
             text-align: center;
+            transition: all 0.3s ease-in-out;
         }
     }
 }
@@ -117,48 +123,53 @@
 .splash-features{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    width: 70%;
+    width: 1100px;
     margin-top: 30px;
+    transition: all 0.3s ease-in-out;
 
     .splash-features-item{
-        display: grid;
-        grid-template-columns: 50% 50%;
+        gap: 40px;
         display: flex;
         flex-direction: row;
         justify-content: center;
-        padding: 60px 0;
+        padding: 40px 0;
+        flex-grow: 1;
+        flex-shrink: 1;
         // width: 100%;
+        transition: all 0.3s ease-in-out;
 
         .splash-features-item-img-div{
             // background-color: $blue-lightest;
             img{
-                width: 400px;
-                height: 400px; 
+                width: 550px;
+                height: 550px; 
+                transition: all 0.3s ease-in-out;
             }
         }
 
-        .right {
-            margin-left: 50px;
-        }
+        // .right {
+        //     margin-left: 50px;
+        // }
 
-        .left {
-            margin-right: 50px;
-        }
+        // .left {
+        //     margin-right: 50px;
+        // }
 
         .splash-features-item-description{
             display:flex;
             flex-direction: column;
             justify-content: center;
-            width: 40%;
-
+            width: 45%;
+            transition: all 0.3s ease-in-out;
             h2{
                 color: white;
                 font-size: 35px;
                 font-weight: 700;
                 padding-bottom: 10px;
                 text-shadow: 0 0 10px $blue-light;
-                text-align: center;
+                text-align: left;
             }
 
             h4{
@@ -167,9 +178,13 @@
                 padding: 5px 0;
                 margin-bottom: 5px;
                 line-height: 1.4em;
-                text-align: center;
+                text-align: left;
             }
         }
+    }
+
+    .reverse{
+        flex-direction: row-reverse;
     }
 }
 
@@ -186,4 +201,373 @@
     background-color: #4f89cc;
     text-shadow: 0 0 5px $blue-lightest;
     transition: all 0.05s ease-in;
+}
+
+
+@media only screen and (max-width: 1150px) {
+
+
+
+    .splash-summary{
+        display:flex;
+        flex-direction: row;
+        width: 800px;
+        gap:20px;
+        margin: 30px 0;
+        padding: 50px 0;
+    
+        .splash-summary-item{
+            width: 35%;
+            // min-height: 170px;
+            height: 170px;
+            display:flex;
+            flex-direction: column;
+            padding: 30px 0;
+            margin: 20px;
+    
+            .splash-summary-item-header{
+                font-size: 30px;
+                padding-bottom: 10px;
+            }
+    
+            .splash-summary-item-subtitle{
+                font-size: 18px;
+                margin-top: 5px;
+                text-align: center;
+            }
+        }
+    }
+
+
+
+    .splash-features{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 800px;
+        margin-top: 30px;
+    
+
+        .splash-features-item{
+            gap: 40px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding: 40px 0;
+            flex-grow: 1;
+            flex-shrink: 1;
+            // width: 100%;
+        
+
+            .splash-features-item-img-div{
+                // background-color: $blue-lightest;
+                img{
+                    width: 450px;
+                    height: 450px; 
+                
+                }
+            }
+
+            .splash-features-item-description{
+                width: 40%;
+            
+
+                h2{
+
+                    font-size: 35px;
+                   
+                }
+
+                h4{
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .reverse{
+            flex-direction: row-reverse;
+        }
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .splash-main{
+
+    
+        .splash-main-info-container{
+            padding: 250px 0;
+    
+            .splash-main-header{
+                color: white;
+                padding: 15px 0;
+                font-weight: 700;
+                font-size: 60px;
+            }
+    
+            .splash-main-subtitle{
+                font-size: 20px;
+                padding: 5px 0;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .splash-summary{
+        display:flex;
+        flex-direction: row;
+        width: 600px;
+        gap:10px;
+        margin: 30px 0;
+        padding: 50px 0;
+    
+        .splash-summary-item{
+            width: 35%;
+            // min-height: 170px;
+            height: 170px;
+            padding: 30px 0;
+            margin: 20px;
+            box-shadow: $blue-light 0px 0px 0px 0px, $blue-light 0px 0px 0px 0px;
+
+            .splash-summary-item-header{
+                font-size: 30px;
+                padding-bottom: 10px;
+            }
+    
+            .splash-summary-item-subtitle{
+                font-size: 16px;
+                margin-top: 5px;
+                text-align: center;
+            }
+        }
+    }
+
+
+    .splash-features{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 600px;
+        margin-top: 30px;
+
+
+        .splash-features-item{
+            gap: 40px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding: 40px 0;
+            flex-grow: 1;
+            flex-shrink: 1;
+            // width: 100%;
+            
+
+            .splash-features-item-img-div{
+                // background-color: $blue-lightest;
+                img{
+                    width: 400px;
+                    height: 400px; 
+                    
+                }
+            }
+            
+            .splash-features-item-description{
+                width: 35%;
+                
+
+                h2{
+
+                    font-size: 30px;
+                   
+                }
+
+                h4{
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .reverse{
+            flex-direction: row-reverse;
+        }
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    .splash-main{
+    
+        .splash-main-info-container{
+            padding: 250px 0;
+    
+            .splash-main-header{
+                color: white;
+                padding: 15px 0;
+                font-weight: 700;
+                font-size: 50px;
+            }
+    
+            .splash-main-subtitle{
+                font-size: 0px;
+                padding: 5px 0;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+
+    .splash-summary{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        width: 500px;
+        gap:10px;
+        margin: 30px 0;
+        padding: 40px 0;
+    
+        .splash-summary-item{
+            width: 45%;
+            // min-height: 170px;
+            height: 150px;
+            padding: 20px 0;
+            margin: 10px;
+            box-shadow: $blue-light 0px 0px 0px 0px, $blue-light 0px 0px 0px 0px;
+
+            .splash-summary-item-header{
+                font-size: 30px;
+                padding-bottom: 10px;
+            }
+    
+            .splash-summary-item-subtitle{
+                font-size: 18px;
+                margin-top: 0px;
+                text-align: center;
+            }
+        }
+    }
+
+    .splash-features{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 600px;
+        margin-top: 30px;
+ 
+
+        .splash-features-item{
+            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0;
+            flex-grow: 1;
+            flex-shrink: 1;
+            // width: 100%;
+
+
+            .splash-features-item-img-div{
+                // background-color: $blue-lightest;
+                img{
+                    width: 500px;
+                    height: 500px; 
+
+                }
+            }
+            
+            .splash-features-item-description{
+                width: 60%;
+
+                h2{
+                    font-size: 35px;
+                   
+                }
+
+                h4{
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .reverse{
+            flex-direction: column;
+        }
+    }
+}
+
+@media only screen and (max-width: 560px) {
+    .splash-main{
+    
+        .splash-main-info-container{
+            padding: 260px 0;
+    
+            .splash-main-header{
+                color: white;
+                padding: 15px 0;
+                font-weight: 700;
+                font-size: 45px;
+                text-align: center;
+
+            }
+    
+            .splash-main-subtitle{
+                font-size: 0px;
+                padding: 5px 0;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+
+
+    .splash-features{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        margin-top: 30px;
+ 
+
+        .splash-features-item{
+            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0;
+            flex-grow: 1;
+            flex-shrink: 1;
+            // width: 100%;
+
+
+            .splash-features-item-img-div{
+                // background-color: $blue-lightest;
+                // width: 90%;
+                img{
+                    width: 300px;
+                    height: 300px; 
+
+                }
+            }
+            
+            .splash-features-item-description{
+                width: 60%;
+
+                h2{
+                    font-size: 30px;
+                   
+                }
+
+                h4{
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .reverse{
+            flex-direction: column;
+        }
+    }
 }
