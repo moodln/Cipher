@@ -14,6 +14,7 @@
         font-style: italic;
     }
 }
+
 .group-show {
     background-color: $blue-darkest;
     height: calc(100vh - 112px);
@@ -115,10 +116,9 @@
             height: 92%;
             transition: height 0.5s ease-in;
             
-            
             .editor {
                 border: 1px solid $orange-light;
-                border-radius: 10px;
+                border-radius: 4px;
                 overflow: hidden;
             }
         } 
@@ -127,6 +127,10 @@
 
 .group-show-bar .group-show-bar-participants h1 {
     margin-left: 0;
+}
+
+.group-show-bar-participants ul li {
+    text-transform: capitalize;
 }
 
 .group-show-main {
@@ -177,13 +181,31 @@
         .invite-search {
             
             input {
-                background: white;
-                padding: 10px;
-                color: black;
-                margin: 6px 8px;
+                // background: white;
+                // padding: 10px;
+                // color: black;
+                // margin: 6px 8px;
+                // height: 1.5em;
+                margin: 8px;
                 width: 90%;
-                height: 1.5em;
                 border-radius: 2px;
+
+                padding: 6px;
+                color: #fff;
+                font-size: 14px;
+                
+                background-color: rgb(28, 35, 51);
+                border: 1px solid rgb(78, 85, 105);
+
+                &:hover {
+                    border-color: $blue-light;
+                    box-shadow: 0 0 5px $blue-light;
+                }
+
+                &:focus {
+                    border-color: $blue-lightest;
+                    box-shadow: 0 0 5px $blue-light;
+                }
             }
         }
 
@@ -285,6 +307,10 @@
     border-radius: 3px;
     background-color: $orange-light;
     box-shadow: -7px 0 9px -5px $orange-light;
+}
+
+.user-search::-webkit-scrollbar-corner {
+    background-color: $blue-darkest;
 }
 
 .participants-list::-webkit-scrollbar {
