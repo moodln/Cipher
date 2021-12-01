@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import UserNotificationsContainer from "../ui_components/user_notifications";
 
 class NavBar extends React.Component {

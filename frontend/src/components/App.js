@@ -1,6 +1,6 @@
 import React from "react";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import NavBarContainer from "./nav/navbar_container";
 import ProblemIndexContainer from "./problem_index/problem_index_container";
 import GroupShowContainer from "./group_show/group_show";
@@ -22,7 +22,7 @@ const App = () => (
 
         <ProtectedRoute exact path="/problems" component={ProblemIndexContainer} />
         <ProtectedRoute exact path="/groups/:groupId" component={GroupShowContainer} />
-        <ProtectedRoute exact path="/group/:groupId" component={GroupShowContainer} />
+        <Redirect exact from="/groups/reload/:groupId" to="/groups/:groupId" />
         <ProtectedRoute exact path="/dashboard" component={DashboardContainer} />
 
         <Route exact path="/about" component={AboutContainer} />

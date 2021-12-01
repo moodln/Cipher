@@ -20,7 +20,6 @@ class GroupShow extends React.Component {
   }
 
   exitFromGroupAndGoToProblemsPage(e) {
-    // e.preventDefault();
     this.props.exitFromGroup(this.props.match.params.groupId)
     this.props.history.push("/problems");
   }

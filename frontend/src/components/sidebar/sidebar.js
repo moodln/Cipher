@@ -7,8 +7,7 @@ class Sidebar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            query: '',
-            path: this.props.match.params.groupId
+            query: ''
         }
         this.makeGroup = this.makeGroup.bind(this);
         this.updateQuery = this.updateQuery.bind(this);
@@ -17,7 +16,7 @@ class Sidebar extends React.Component {
     componentDidMount() {
         this.props.fetchProblems();
         this.props.fetchUserGroups();
-        this.setState({path: this.props.match.params.groupId})
+        
 
         window.addEventListener("scroll", () => {
             const sidebar = document.querySelector(".sidebar-section-div");
@@ -31,20 +30,12 @@ class Sidebar extends React.Component {
         })
     }
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     debugger
-    //     if (prevState.path !== this.state.path) {
-    //         this.props.fetchProblems();
-    //         this.props.fetchUserGroups();
-    //     }
-    // }
+
 
     makeGroup(problemId) {
-        // debugger
         this.props.createGroupWithProblem(problemId)
             .then(groupResponse => {
-                this.props.history.push(`/groups/${groupResponse.data._id}`)
-                this.setState({path: groupResponse.data._id})
+                this.props.history.push(`/groups/reload/${groupResponse.data._id}`)
             })
     }
     
@@ -87,7 +78,6 @@ class Sidebar extends React.Component {
                                     return (
                                         <div className="sidebar-list-item"
                                             key={result._id}
-                                            key2={this.props.location.pathname}
                                             onClick={() => this.makeGroup(result._id)}>
                                             <p>{result.title}</p>
                                         </div>
