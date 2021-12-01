@@ -143,12 +143,34 @@
                 .problem-search {
                     background: white;
                     border-radius: 2px;
-                    width: 90%;
+                    width: 85%;
                     margin: 10px;
 
+                    // font-size: 14px;
+                    // width: 100%;
+                    // padding: 8px;
+                    // margin-bottom: 8px;
+                    
                     input {
-                        padding: 3px 10px;
-                        color: black;
+                        // padding: 3px 10px;
+                        // color: black;
+                        padding: 6px;
+                        color: #fff;
+                        width: 100%;
+                        font-size: 14px;
+                        
+                        background-color: rgb(28, 35, 51);
+                        border: 1px solid rgb(78, 85, 105);
+
+                        &:hover {
+                            border-color: $blue-light;
+                            box-shadow: 0 0 5px $blue-light;
+                        }
+
+                        &:focus {
+                            border-color: $blue-lightest;
+                            box-shadow: 0 0 5px $blue-light;
+                        }
                     }
                 }
 
@@ -165,12 +187,29 @@
                     cursor: pointer;
                     background: white;
                     border-radius: 2px;
-                    width: 90%;
+                    width: 85%;
                     margin: 10px;
-                    
+                        
                     input {
-                        padding: 3px 10px;
-                        color: black;
+                        // padding: 3px 10px;
+                        // color: black;
+                        color: #fff;
+                        padding: 6px;
+                        width: 100%;
+                        font-size: 14px;
+                        
+                        background-color: rgb(28, 35, 51);
+                        border: 1px solid rgb(78, 85, 105);
+
+                        &:hover {
+                            border-color: $blue-light;
+                            box-shadow: 0 0 5px $blue-light;
+                        }
+
+                        &:focus {
+                            border-color: $blue-lightest;
+                            box-shadow: 0 0 5px $blue-light;
+                        }
                     }
                 }
 
