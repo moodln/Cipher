@@ -91,7 +91,7 @@ class VideoStream extends Component {
         
         call.answer(stream);
         console.log('in call');
-        // console.log(`call: `, call);
+        // console.log(`call peer on call: `, call);
         
         call.on("stream", (userVideoStream) => {
           console.log('call answered, streaming');
