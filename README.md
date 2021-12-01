@@ -89,10 +89,10 @@ After opening a particular problem, users can click "Invite a Collaborator" to s
 
 # Future Directions
 - Messaging feature for work groups
-- Ability to post and rate solutions to problems
+- Ability to publicly post and rate solutions to problems
 
 # Authors
-- Madeline Wilson
-- Rebecca Foster
-- Maria Vaghani
-- Pasan Dharmasena
+- <a href="https://www.linkedin.com/in/madeline-wilson-044a19226/">Madeline Wilson</a>
+- <a href="https://www.linkedin.com/in/rebecca-foster-791448203/">Rebecca Foster</a>
+- <a href="https://www.linkedin.com/in/maria-vaghani/">Maria Vaghani</a>
+- <a href="https://www.linkedin.com/in/pasan-dharmasena-135507159/">Pasan Dharmasena</a>
