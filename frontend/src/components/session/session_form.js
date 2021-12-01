@@ -99,7 +99,7 @@ class SessionForm extends React.Component {
                             <input type="text"
                                 value={this.state.handle}
                                 placeholder="Handle"
-                                onChange={this.update('handle')} />
+                                onChange={this.update("handle")} />
                             </>
                         ) : (
                             <h1>Log in to Cipher</h1>

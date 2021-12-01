@@ -23,7 +23,6 @@ class GroupShow extends React.Component {
 
 
   exitFromGroupAndGoToProblemsPage(e) {
-    // e.preventDefault();
     this.props.exitFromGroup(this.props.match.params.groupId)
     this.props.history.push("/problems");
   }
@@ -44,9 +43,9 @@ class GroupShow extends React.Component {
             <div className="group-bar-main">
               <div className="group-show-bar">
                 <div className="group-show-main-problem">
-                  <h2 className="group-show-main-problem-title">
+                  {/* <h2 className="group-show-main-problem-title">
                     {this.props.problem.title}
-                  </h2>
+                  </h2> */}
                   <p>{this.props.problem.body}</p>
                 
                 </div>
