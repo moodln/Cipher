@@ -48,7 +48,7 @@ const http = require("http");
 const httpServer = http.createServer(app);
 const io = require("socket.io")(httpServer, {
   cors: {
-    origins: ["http://localhost:3000", "https://cipher-mern.herokuapp.com/"],//"*:*"
+    origins: "",//["http://localhost:3000", "https://cipher-mern.herokuapp.com/"],//"*:*"
     methods: ["GET", "POST"],
   }
 });
@@ -64,11 +64,11 @@ io.on("connection", socket => {
 
   // if server receives event with name "editor-data", 
   // message will be broadcast to all other connected users
-
+  
   socket.on("editor-data", data => {
     console.log(`data: `, data);
 
-    socket.join(data.groupId);
+    // socket.join(data.groupId);
     socket.broadcast.to(data.groupId).emit("editor-data", data);
   })
   socket.on("join-room", (data) => {
@@ -78,13 +78,13 @@ io.on("connection", socket => {
     socket.broadcast.to(data.groupId).emit("user-connected", data);
   });
 
-  socket.on("send-peer-data", (data) => {
+  // socket.on("send-peer-data", (data) => {
 
-    // socket.join(data.groupId);
-    console.log('sending peer data');
+  //   // socket.join(data.groupId);
+  //   console.log('sending peer data');
     
-    socket.broadcast.emit("send-peer-data", data);
-  });
+  //   socket.broadcast.emit("send-peer-data", data);
+  // });
 
   socket.on("user-disconnected", data => {
     console.log('user disconnected');
