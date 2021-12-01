@@ -16,6 +16,7 @@
     .footer-summary {
         width: 60%;
         margin: 20px 0;
+        transition: all 0.3s ease-in-out;
 
         p {
             font-size: 18px;
@@ -23,6 +24,7 @@
             line-height: 1.4em;
             letter-spacing: .03em;
             text-shadow: 0 0 16px $blue-lightest;
+            transition: all 0.3s ease-in-out;
         }
     }
 
@@ -52,6 +54,7 @@
             position: relative;
             border: 1px solid $blue-light;
             box-shadow: 0 0 5px $blue-light;
+            transition: all 0.3s ease-in-out;
 
             img {
                 width: 120%;
@@ -97,5 +100,57 @@
 @media all and (max-width: 1000px) {
     .footer-authors-info {
         display: none;
+    }
+}
+
+@media all and (max-width: 500px) {
+    .footer-authors-info {
+        display: none;
+    }
+
+    .footer-authors-container {
+        .footer-authors {
+
+            .footer-portraits{
+                height: 60px;
+                width: 60px;
+            }
+        }
+    }
+    .footer-section {
+        .footer-summary{
+            width: 76%;
+            p{
+                font-size: 16px;
+            }
+            
+        }
+    }
+}
+
+@media all and (max-width: 300px) {
+    .footer-authors-info {
+        display: none;
+    }
+
+    .footer-authors-container {
+        .footer-authors {
+
+            .footer-portraits{
+                height: 60px;
+                width: 60px;
+                display: none;
+            }
+        }
+    }
+
+    .footer-section {
+        .footer-summary{
+            width: 90%;
+            p{
+                font-size: 14px;
+            }
+            
+        }
     }
 }

@@ -69,13 +69,14 @@
             flex-direction: column;
             padding: 10px;
             margin-bottom: 40px;
+            transition: all 0.3s ease-in;
     
             .group-show-main-problem-title {
                 font-size: 24px;
                 font-weight: 500;
                 margin-bottom: 10px;
                 text-shadow: 0 0 10px $blue-light;
-                transition: wall 0.5s ease-in;
+                transition: all 0.3s ease-in;
             }
     
             p {
@@ -109,11 +110,11 @@
         width: 75%;
         flex-grow: 1;
         flex-shrink: 1;
-        transition: width 0.5s ease-in;
+        transition: width 0.3s ease-in;
     
         .editor-container {
             height: 92%;
-            transition: height 0.5s ease-in;
+            transition: height 0.3s ease-in;
             
             
             .editor {
@@ -303,12 +304,12 @@
 
 
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1080px) {
 
 
     .group-bar-main{
         flex-direction: column;
-        width: 100%;
+        width: 90%;
         flex-shrink: 1;
         flex-grow: 1;
         justify-content: space-between;
@@ -319,7 +320,7 @@
             flex-direction: row;
             justify-content: space-between;
             align-items: flex-start;
-            min-width: 90%;
+            min-width: 100%;
             height:150px;
             // flex-shrink: 1;
             // flex-grow: 1;
@@ -332,12 +333,12 @@
         }
 
         .group-show-main{
-            width: 90%;
+            width: 95%;
             margin-top: 10%;
             // display: flex;
             // align-items: flex-start;
-            flex-shrink: 1;
-            flex-grow: 1;
+            // flex-shrink: 1;
+            // flex-grow: 1;
 
             .editor-container{
                 display: flex;
@@ -368,6 +369,7 @@
 
 @media only screen and (max-width: 700px) {
     .group-bar-main{
+        width: 80%;
         .group-show-bar{
 
             height:110px;
@@ -381,7 +383,114 @@
         }
 
         .group-show-main{
-            margin-top: 15%;
+            margin-top: 5%;
+        }
+    }
+   
+}
+
+@media only screen and (max-width: 550px) {
+    .group-show {
+        background-color: $blue-darkest;
+        height: calc(100vh - 112px);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+        margin:0 10px;
+        // gap: auto;
+    
+    }
+
+
+    .group-bar-main{
+        width: 100%;
+        .group-show-bar{
+            height:110px;
+
+            .group-show-main-problem{
+                min-width: 300px;
+                margin-right: 20px;
+                margin-bottom: 20px;
+
+                .group-show-main-problem-title{
+                    display: none;
+                }
+    
+                .group-show-bar-participants{
+                    display: none;
+                }
+            }
+           
+        }
+
+        .group-show-main{
+            margin-top: 5%;
+        }
+    }
+    .group-show-cams{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 90%;
+        max-width: 550px;
+        min-width: 100px;
+        padding-left: 10px;
+    
+        .invite-button {
+            width: 20%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+            font-size: 14px;
+            z-index: 20 !important;
+    
+            button{
+                position: relative;
+                border: 1px solid $orange-light;
+                padding: 10px 10px;
+                border-radius: 4px;
+                transition: all 0.2s ease-in;
+                // background-color: orange;
+                z-index: 20 !important;
+            }
+    
+            button:hover {
+                color: $orange-light;
+                // box-shadow: ;
+            }
+    
+            .invite-search {
+                
+                input {
+                    background: white;
+                    padding: 10px;
+                    color: black;
+                    margin: 6px 0px;
+                    width: 100%;
+                    height: 1.5em;
+                    border-radius: 2px;
+                }
+            }
+    
+            .collaborator-message {
+                font-size: 12px;
+                text-align: center;
+                margin-bottom: 4px;
+                font-style: italic;
+                color: rgb(236, 204, 162);
+                letter-spacing: .6px;
+                position: sticky;
+                left: 7px;
+            }
+        }
+    
+        .cams{
+            width: 100%;
+            max-height: 1015px;
+            // z-index: 0;
         }
     }
    
