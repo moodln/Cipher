@@ -32,7 +32,57 @@ WebSockets were implemented using Socket.io and Socket.io-client, with PeerJS pr
 </p>
 
 # Core Features and Technical Challenges
-Since we had multiple components relying on the use of sockets
+
+## Collaborative Code Editor and Video Chat
+The collaborative code editor is implemented using the Monaco Editor API, Socket.io, and Socket.io-client. Multiple users within the same work group can edit the code document and receive each other's updates in a matter of seconds. The video chat feature is implemented using PeerJS, Socket.io, and Socket.io-client. While working on a problem, users can share their video with other developers in the work group and toggle their video and audio on and off with ease.
+
+**CHALLENGE:** Since multiple components relied on the use of WebSockets, we initially created instances of the socket for each one. When opening a problem to begin coding, the `VideoStream` component was the first to create the socket instance and establish the media stream connection between users. Subsequently, the `EditorShow` component created a new instance of the socket, which caused an endless cycle of errors to be thrown in the console. Updates to the code document would be sent out over the socket connection but would reach their destination out of order and more than a couple minutes later.
+
+**SOLUTION:** We ensured that only one socket instance was defined by creating a dedicated file to establish the socket connection (`export const socket = io();`) and importing that instance into both the `VideoStream` and `EditorShow` components.
+
+**CHALLENGE:** Futhermore, any time the content of the code editor or media stream was emitted over the socket, all users connected to the server would receive the data rather than only the users in that particular work group.
+
+**SOLUTION:** We added `groupId` and `userId` key-value pairs to the data object sent out over the socket. We also created socket events for `join-editor` and `join-room` based on the `groupId`, ensuring that the data was broadcast only to users within the work group from which the data originated. We used the `userId` to specify the id of the user from which the data originated. When any user within the work group received the data object over the socket, we matched the incoming `userId` against the current user's id. If they were a match, the incoming data could be ignored since that meant that the user receiving the data was also the user that sent the data.
+
+```javascript
+io.on("connection", socket => {
+  socket.on("join-editor", data => {
+    console.log('joining group editor');
+    socket.join(data.groupId);
+  })
+
+  socket.on("editor-data", data => {
+    socket.broadcast.to(data.groupId).emit("editor-data", data);
+  })
+
+  socket.on("join-room", data => {
+    socket.join(data.groupId);
+    socket.broadcast.to(data.groupId).emit("user-connected", data);
+  });
+
+  socket.on("user-disconnected", data => {
+    socket.broadcast.to(data.groupId).emit("user-disconnected", data);
+    socket.leave(data.groupId);
+  })
+});
+```
+
+```javascript
+socket.on("editor-data", incomingData => {
+    if (incomingData.userId === props.userId) return;
+    if (incomingData.body === editorRef.current.getValue()) return;
+
+    if (incomingTimeout) clearTimeout(incomingTimeout);
+    incomingTimeout = setTimeout(() => {
+        if (incomingData.body !== body) {
+            setBody(incomingData.body);
+        }
+    }, 750);
+})
+```
+
+because what was happening, my videos were the first that created the instance of the websocket on the client side, then editor created another instance and sent socket into error
+
 
 
 - videos on reload, if one user reloads page, another person gets broken video stays as black screen
