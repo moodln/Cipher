@@ -76,8 +76,8 @@ class Sidebar extends React.Component {
                                             
                                             return problem;
                                         }
-                                })
-                                    .map(result => {
+                                
+                                }).map(result => {
                                         return (
                                             <div className="sidebar-list-item"
                                                 key={result._id}
@@ -101,8 +101,17 @@ class Sidebar extends React.Component {
                             <div className="sidebar-list-item-top">
                                 <p>Your Groups</p>
                             </div>
+                            <div className="problem-search">
+                                <input type="text" placeholder="Search" value={this.state.query} onChange={this.updateQuery} />
+                            </div>
                             {
-                                this.props.groups.map(group => (
+                                this.props.groups.filter(group => {
+                                        if (this.state.query === '') {
+                                            return group;
+                                        } else if (group.title.toLowerCase().includes(this.state.query.toLowerCase())) { 
+                                            return group;
+                                        }
+                                }).map(group => (
                                     <div className="sidebar-list-item" key={group._id}>
                                         <Link to={`/groups/${group._id}`}><p>{group.title}</p></Link>
                                     </div>
