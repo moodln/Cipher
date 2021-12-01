@@ -18,7 +18,8 @@ class VideoStream extends Component {
       peers: {},
       videos: {},
       myVideoMuted: true,
-      myAudioMuted: true
+      myAudioMuted: true,
+      participants: {}
     }
     
   }
@@ -86,6 +87,13 @@ class VideoStream extends Component {
       // console.log('going to add own video');
       this.myVideoStream.getVideoTracks()[0].enabled = false;
       this.myVideoStream.getAudioTracks()[0].enabled = false;
+
+      const newParticipants = Object.assign({}, this.state.participants);
+      newParticipants[this.myVideoStream.id] = this.props.handle
+      this.setState({
+        participants: newParticipants
+      })
+
       this.addVideoStream(this.myVideoStream, this.myVideoStream.id);
       this.peer.on("call", (call) => {
         
@@ -110,27 +118,48 @@ class VideoStream extends Component {
         console.log('in user-connected sending my stream back to them');
         console.log(`this.myVideoStream.id: `, this.myVideoStream.id);
         console.log(`stream.id: `, stream.id);
-        
+        const newParticipants = Object.assign({}, this.state.participants);
+        newParticipants[data.streamId] = data.handle
+        this.setState({
+          participants: newParticipants
+        })
         // if (data.userId === this.props.userId) {
           
           this.connectToNewUser(data.id, this.myVideoStream);
+          console.log('connected user, sending all participants data');
+          this.props.socket.emit("send-peer-data", {
+            groupId: this.props.groupId,
+            participants: this.state.participants
+          })
         // } else {
-        //   // console.log('connected user, sending peer data');
         //   this.connectToNewUser(data.id, stream, data.userId)
           
         // }
       });
-      
+      this.props.socket.on("send-peer-data", data => {
+        const newParticipants = Object.assign({}, this.state.participants);
+        Object.keys(data.participants).forEach(streamId => {
+          newParticipants[streamId] = data.participants[streamId]
+          
+        });
+        this.setState({
+          participants: newParticipants
+        })
+      })
+
       this.props.socket.on("user-disconnected", (data) => {
         console.log(`streamId disconnecting: `, data.streamId);
-        const newVideos = Object.assign({}, this.state.videos);
         // delete newVideos[data.streamId]
         // this.setState({ videos: newVideos })
         // console.log('going to close user ');
-        const newPeers = Object.assign({}, this.state.peers);
         if (this.state.peers[data.streamId]) {
-          newPeers[data.streamId].close(data.streamId);
+          this.state.peers[data.streamId].close(data.streamId);
         }
+        const newPeers = Object.assign({}, this.state.peers);
+        const newVideos = Object.assign({}, this.state.videos);
+        const newParticipants = Object.assign({}, this.state.participants);
+
+        delete newParticipants[data.streamId]
         delete newPeers[data.streamId]
         Object.keys(this.state.videos).forEach(peerId => {
           if (peerId !== this.myVideoStream.id) {
@@ -141,7 +170,8 @@ class VideoStream extends Component {
         });
         this.setState({
           peers: newPeers,
-          videos: newVideos
+          videos: newVideos,
+          participants: newParticipants
         })
       });
       
@@ -154,7 +184,13 @@ class VideoStream extends Component {
       this.peer.on("open", (id) => {
         // console.log('joining room');
         // this.roomId = id;
-        this.props.socket.emit("join-room", { groupId: this.props.groupId, userId: this.props.userId, id});
+        this.props.socket.emit("join-room", { 
+          groupId: this.props.groupId,
+          userId: this.props.userId,
+          id,
+          streamId: this.myVideoStream.id,
+          handle: this.props.handle
+        });
       });
 
  
@@ -180,9 +216,23 @@ class VideoStream extends Component {
     });
     call.on("close", (streamId) => {
       console.log('in closing peer connection ', streamId);
-      let newVideos = Object.assign({}, this.state.videos);
-      delete newVideos[streamId]
-      this.setState({ videos: newVideos })
+      // const newPeers = Object.assign({}, this.state.peers);
+      // delete newPeers[streamId]
+      // const newVideos = Object.assign({}, this.state.videos);
+      // Object.keys(this.state.videos).forEach(peerId => {
+      //   if (peerId !== this.myVideoStream.id) {
+      //     if(!newPeers[peerId]) {
+      //       delete newVideos[peerId]
+      //     }
+      //   }
+      // });
+      // this.setState({
+      //   peers: newPeers,
+      //   videos: newVideos
+      // })
+      // let newVideos = Object.assign({}, this.state.videos);
+      // delete newVideos[streamId]
+      // this.setState({ videos: newVideos })
     });
     // console.log(`this.peer: `, this.peer);
     
@@ -222,8 +272,11 @@ class VideoStream extends Component {
 
   render() {
     if(!this.myVideoStream) return null;
+    if(!this.state.videos[this.myVideoStream.id]) return null;
     console.log(`this.state.videos in render: `, this.state.videos);
     console.log(`this.state.peers in render: `, this.state.peers);
+    console.log(`this.state.participants in render: `, this.state.participants);
+    
     const videoMuteBtn = this.state.myVideoMuted ? "unmute Video" : "mute Video"
     const audioMuteBtn = this.state.myAudioMuted ? "unmute Audio" : "mute Audio"
     const ownVideo = this.state.videos[this.myVideoStream.id]
@@ -245,6 +298,7 @@ class VideoStream extends Component {
               autoPlay={true}
             >
             </video>
+            {this.state.participants[this.myVideoStream.id]}
           </li>
           {
             otherVideos.map(stream => {
@@ -257,6 +311,7 @@ class VideoStream extends Component {
                     autoPlay={true}
                   >
                   </video>
+                  {this.state.participants[stream.id]}
                 </li>
               )
             })
