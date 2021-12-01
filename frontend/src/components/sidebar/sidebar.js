@@ -36,7 +36,7 @@ class Sidebar extends React.Component {
                 this.props.history.push(`/groups/${groupResponse.data._id}`)
             })
     }
-    
+
     updateQuery(e) {
         e.preventDefault();
         this.setState({
@@ -59,28 +59,31 @@ class Sidebar extends React.Component {
                             </svg>
                         </button>
                         <div className="sidebar-menu">
+                            <div className="sidebar-list-item-top">
+                                <p>Problems</p>
+                            </div>
                             <div className="problem-search">
                                 <input type="text" placeholder="Search" value={this.state.query} onChange={this.updateQuery} />
                             </div>
                             {
                                 this.props.problems.filter(problem => {
-                                   let idx = (problem.title.length - this.state.query.length) * -1;
+                                    let idx = (problem.title.length - this.state.query.length) * -1;
                                     if (this.state.query === "") {
                                         return problem;
                                     } else if (problem.title.toLowerCase().includes(this.state.query.toLowerCase())) {
-                                        
+
                                         return problem;
                                     }
                                 })
-                                .map(result => {
-                                    return (
-                                        <div className="sidebar-list-item"
-                                            key={result._id}
-                                            onClick={() => this.makeGroup(result._id)}>
-                                            <p>{result.title}</p>
-                                        </div>
-                                    )
-                                })
+                                    .map(result => {
+                                        return (
+                                            <div className="sidebar-list-item"
+                                                key={result._id}
+                                                onClick={() => this.makeGroup(result._id)}>
+                                                <p>{result.title}</p>
+                                            </div>
+                                        )
+                                    })
                             }
                         </div>
                     </div>
@@ -93,6 +96,9 @@ class Sidebar extends React.Component {
                             </svg>
                         </button>
                         <div className="sidebar-menu">
+                            <div className="sidebar-list-item-top">
+                                <p>Your Groups</p>
+                            </div>
                             {
                                 this.props.groups.map(group => (
                                     <div className="sidebar-list-item" key={group._id}>

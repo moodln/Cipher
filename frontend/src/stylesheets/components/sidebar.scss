@@ -92,6 +92,20 @@
 
 
                 }
+
+                .sidebar-list-item-top {
+                    color: white;
+                    padding: 12px 16px;
+                    margin: 5px 0;
+                    text-decoration: none;
+                    display: block;
+                    text-align: left;  
+                    border-bottom: 1px solid $orange-light;
+                    box-sizing: border-box;
+                    transition: all 0.2s ease-in;  
+                    text-shadow: 0 0 10px $blue-light;
+                    text-transform: uppercase;
+                }
             }
 
             .sidebar-section:hover {
