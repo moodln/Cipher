@@ -145,6 +145,10 @@ class VideoStream extends Component {
         })
       });
       
+    },
+    err => {
+      console.log(err);
+      alert("Your camera is busy with some other app or software")
     });
     
       this.peer.on("open", (id) => {
