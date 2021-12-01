@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
-import user_search from "../user_search/user_search";
 
 
 class Sidebar extends React.Component {
@@ -17,6 +16,7 @@ class Sidebar extends React.Component {
     componentDidMount() {
         this.props.fetchProblems();
         this.props.fetchUserGroups();
+        
 
         window.addEventListener("scroll", () => {
             const sidebar = document.querySelector(".sidebar-section-div");
@@ -30,10 +30,12 @@ class Sidebar extends React.Component {
         })
     }
 
+
+
     makeGroup(problemId) {
         this.props.createGroupWithProblem(problemId)
             .then(groupResponse => {
-                this.props.history.push(`/groups/${groupResponse.data._id}`)
+                this.props.history.push(`/groups/reload/${groupResponse.data._id}`)
             })
     }
 
@@ -46,6 +48,7 @@ class Sidebar extends React.Component {
 
     render() {
         if (!this.props.problems) return null;
+        if (!this.props.groups) return null;
 
         return (
             <div className="sidebar-container container">
@@ -67,13 +70,12 @@ class Sidebar extends React.Component {
                             </div>
                             {
                                 this.props.problems.filter(problem => {
-                                    let idx = (problem.title.length - this.state.query.length) * -1;
-                                    if (this.state.query === "") {
-                                        return problem;
-                                    } else if (problem.title.toLowerCase().includes(this.state.query.toLowerCase())) {
-
-                                        return problem;
-                                    }
+                                        if (this.state.query === '') {
+                                            return problem;
+                                        } else if (problem.title.toLowerCase().includes(this.state.query.toLowerCase())) {
+                                            
+                                            return problem;
+                                        }
                                 })
                                     .map(result => {
                                         return (
