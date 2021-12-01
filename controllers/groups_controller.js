@@ -28,9 +28,11 @@ const createGroup = (req, res) => {
 const getCurrUserGroups = (req, res) => {
     let allUsersId = [];
     const usersById = {};
-
+    
     Group.find({ users: req.user.id }, (err, groups) => {
         if (err) console.log(`error in getCurrUserGroups: `, err);
+        
+        
         const groupsById = {};
 
         Object.values(groups).forEach(group => {
@@ -43,14 +45,14 @@ const getCurrUserGroups = (req, res) => {
         });
 
         User.find({ "_id": { $in: allUsersId } }, (err, usersResult) => {
-            if (err) throw err;
+            if (err) console.log(`error in getCurrUserGroups: `, err);
             usersResult.forEach(user => {
                 usersById[user.id] = user;
             });
             res.json({ groupsById, allGroupsId, allUsersId, usersById })
         })
     })
-    .catch(err => console.log("errors: ", err));
+    // .catch(err => console.log("errors getCurrUserGroups: ", err));
 };
 
 const retrieveGroup = (req, res) => {
