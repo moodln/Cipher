@@ -34,7 +34,7 @@ WebSockets were implemented using Socket.io and Socket.io-client, with PeerJS pr
 # Core Features and Technical Challenges
 
 ## Collaborative Code Editor and Video Chat
-The collaborative code editor is implemented using the Monaco Editor API, Socket.io, and Socket.io-client. Multiple users within the same work group can edit the code document and receive each other's updates in a matter of seconds. The video chat feature is implemented using PeerJS, Socket.io, and Socket.io-client. While working on a problem, users can share their video with other developers in the work group and toggle their video and audio on and off with ease.
+The collaborative code editor is implemented using the Monaco Editor API, Socket.io, and Socket.io-client. Multiple users within the same work group can edit the code document and receive each other's updates in a matter of seconds. Clicking the "Save" button will save the user's current progress into the database to be retrieved later. The video chat feature is implemented using PeerJS, Socket.io, and Socket.io-client. While working on a problem, users can share their video with other developers in the work group and toggle their video and audio on and off with ease.
 
 **CHALLENGE:** Since multiple components relied on the use of WebSockets, we initially created instances of the socket for each one. When opening a problem to begin coding, the `VideoStream` component was the first to create the socket instance and establish the media stream connection between users. Subsequently, the `EditorShow` component created a new instance of the socket, which caused an endless cycle of errors to be thrown in the console. Updates to the code document would be sent out over the socket connection but would reach their destination out of order and more than a couple minutes later.
 
@@ -46,24 +46,24 @@ The collaborative code editor is implemented using the Monaco Editor API, Socket
 
 ```javascript
 io.on("connection", socket => {
-  socket.on("join-editor", data => {
-    console.log('joining group editor');
-    socket.join(data.groupId);
-  })
+    socket.on("join-editor", data => {
+        console.log('joining group editor');
+        socket.join(data.groupId);
+    })
 
-  socket.on("editor-data", data => {
-    socket.broadcast.to(data.groupId).emit("editor-data", data);
-  })
+    socket.on("editor-data", data => {
+        socket.broadcast.to(data.groupId).emit("editor-data", data);
+    })
 
-  socket.on("join-room", data => {
-    socket.join(data.groupId);
-    socket.broadcast.to(data.groupId).emit("user-connected", data);
-  });
+    socket.on("join-room", data => {
+        socket.join(data.groupId);
+        socket.broadcast.to(data.groupId).emit("user-connected", data);
+    });
 
-  socket.on("user-disconnected", data => {
-    socket.broadcast.to(data.groupId).emit("user-disconnected", data);
-    socket.leave(data.groupId);
-  })
+    socket.on("user-disconnected", data => {
+        socket.broadcast.to(data.groupId).emit("user-disconnected", data);
+        socket.leave(data.groupId);
+    })
 });
 ```
 
@@ -81,28 +81,17 @@ socket.on("editor-data", incomingData => {
 })
 ```
 
-because what was happening, my videos were the first that created the instance of the websocket on the client side, then editor created another instance and sent socket into error
+## Work Groups
+After opening a particular problem, users can click "Invite a Collaborator" to search for other developers to invite to the work group. When a user hovers over the notifications icon in the navigation bar, all invite requests sent by other developers are fetched from the database and displayed beside the "Accept" and "Reject" buttons.
 
 
-
-- videos on reload, if one user reloads page, another person gets broken video stays as black screen
-- emitting websockets to specific group,
 2. Wide Selection of Pracice Problems
     - The database is populated with 60+ practice problems to choose from, all of which are visible from the problem index page that the user enters upon logging in.
     - Users can open the sidebar and type in the search to filter for problems that match their query.
-3. Collaborative Editor (CRUD)
-    - Users can contribute to the same document with live updates.
-    - Clicking the "Save" button will save the user's current progress on the practice problem into the database to be retrieved later.
-4. Work Groups (CRUD)
-    - After opening a particular problem, users can click "Invite a Collaborator" to search for other developers to invite to the work group.
-    - When a user hovers over the notifications icon in the navigation bar, all invite requests sent by other developers are fetched from the database and displayed beside "Accept" and "Reject" buttons.
-5. Live Video Stream
-    - Upon entering a particular problem either from the problem index or the user's dashboard, the user will begin sharing their video with any other developers in the work group.
-    - Users can toggle their video on and off with ease.
 
 ## Future Directions
-6. Possible messaging feature: ratings, responses
-7. Embedded IDE and ability to compile code
+- Messaging feature for work groups
+- Ability to post and rate solutions to problems
 
 # Authors
 - Madeline Wilson
