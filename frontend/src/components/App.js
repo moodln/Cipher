@@ -22,6 +22,7 @@ const App = () => (
 
         <ProtectedRoute exact path="/problems" component={ProblemIndexContainer} />
         <ProtectedRoute exact path="/groups/:groupId" component={GroupShowContainer} />
+        <ProtectedRoute exact path="/group/:groupId" component={GroupShowContainer} />
         <ProtectedRoute exact path="/dashboard" component={DashboardContainer} />
 
         <Route exact path="/about" component={AboutContainer} />

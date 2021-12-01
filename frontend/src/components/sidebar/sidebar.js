@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
-import user_search from "../user_search/user_search";
 
 
 class Sidebar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            query: ''
+            query: '',
+            path: this.props.match.params.groupId
         }
         this.makeGroup = this.makeGroup.bind(this);
         this.updateQuery = this.updateQuery.bind(this);
@@ -27,10 +27,21 @@ class Sidebar extends React.Component {
         // })
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        debugger
+        if (prevState.path !== this.state.path) {
+            this.props.fetchProblems();
+            this.props.fetchUserGroups();
+            this.forceUpdate();
+        }
+    }
+
     makeGroup(problemId) {
+        // debugger
         this.props.createGroupWithProblem(problemId)
             .then(groupResponse => {
                 this.props.history.push(`/groups/${groupResponse.data._id}`)
+                this.setState({path: groupResponse.data._id})
             })
     }
     
@@ -43,6 +54,7 @@ class Sidebar extends React.Component {
 
     render() {
         if (!this.props.problems) return null;
+        if (!this.props.groups) return null;
 
         return (
             <div className="sidebar-container container">
@@ -61,7 +73,6 @@ class Sidebar extends React.Component {
                             </div>
                             {
                                 this.props.problems.filter(problem => {
-                                   let idx = (problem.title.length - this.state.query.length) * -1;
                                         if (this.state.query === '') {
                                             return problem;
                                         } else if (problem.title.toLowerCase().includes(this.state.query.toLowerCase())) {
@@ -73,6 +84,7 @@ class Sidebar extends React.Component {
                                     return (
                                         <div className="sidebar-list-item"
                                             key={result._id}
+                                            key2={this.props.location.pathname}
                                             onClick={() => this.makeGroup(result._id)}>
                                             <p>{result.title}</p>
                                         </div>
