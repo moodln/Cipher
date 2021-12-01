@@ -22,7 +22,6 @@ class ProblemIndex extends React.Component {
 
     render() {
         if (!this.props.problems) return null;
-
         return (
             <div className="page-with-sidebar">
                 <SidebarContainer />

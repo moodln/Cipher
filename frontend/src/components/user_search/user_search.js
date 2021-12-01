@@ -60,14 +60,14 @@ class UserSearch extends React.Component {
     render() {
         if (this.props.usersToInvite.length === 0) return null;
         let associatedUsers = this.findAssociatedUsers(this.props.usersToInvite);
-        let users = this.state.query === '' ? associatedUsers : this.props.usersToInvite;
-        let message = users.length > associatedUsers.length ? '' : 'recent collaborators';
+        let users = this.state.query === "" ? associatedUsers : this.props.usersToInvite;
+        let message = users.length > associatedUsers.length ? "" : "Recent collaborators";
 
         return (
             <div>
-            <div className='invite-search'>
+            <div className="invite-search">
                 <input type="text" 
-                    placeholder='search' 
+                    placeholder="Search" 
                     value={this.state.query} 
                     onChange={this.updateQuery} />
             </div>
