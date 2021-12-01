@@ -28,8 +28,10 @@ class Sidebar extends React.Component {
     }
 
     makeGroup(problemId) {
+        // debugger
         this.props.createGroupWithProblem(problemId)
             .then(groupResponse => {
+                // console.log(groupResponse);
                 this.props.history.push(`/groups/${groupResponse.data._id}`)
             })
     }
