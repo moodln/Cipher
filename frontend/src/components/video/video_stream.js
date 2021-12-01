@@ -217,11 +217,13 @@ class VideoStream extends Component {
 
 
   render() {
+    if(!this.myVideoStream) return null;
     console.log(`this.state.videos in render: `, this.state.videos);
     console.log(`this.state.peers in render: `, this.state.peers);
     const videoMuteBtn = this.state.myVideoMuted ? "unmute Video" : "mute Video"
     const audioMuteBtn = this.state.myAudioMuted ? "unmute Audio" : "mute Audio"
- 
+    const ownVideo = this.state.videos[this.myVideoStream.id]
+    const otherVideos = Object.values(this.state.videos).filter(stream => stream.id !== this.myVideoStream.id);
     return (
       <div id="video-grid">
         <div onClick={this.toggleVideo}>
@@ -231,8 +233,17 @@ class VideoStream extends Component {
           {audioMuteBtn}
         </div>
         <ul>
+          <li key={ownVideo.id}>
+            <video
+              ref={video => {
+                if (video) { video.srcObject = ownVideo }
+              }}
+              autoPlay={true}
+            >
+            </video>
+          </li>
           {
-            Object.values(this.state.videos).map(stream => {
+            otherVideos.map(stream => {
               return (
                 <li key={stream.id}>
                   <video
