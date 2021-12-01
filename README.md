@@ -87,7 +87,7 @@ After opening a particular problem, users can click "Invite a Collaborator" to s
          align="middle" width="350px" height="auto" />
 </p>
 
-## Future Directions
+# Future Directions
 - Messaging feature for work groups
 - Ability to post and rate solutions to problems
 
