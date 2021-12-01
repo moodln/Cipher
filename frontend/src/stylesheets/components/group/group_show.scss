@@ -130,6 +130,7 @@
     max-width: 300px;
     min-width: 100px;
     padding-left: 10px;
+    margin-right: 10px;
 
     .invite-button {
         width: 90%;
@@ -439,11 +440,11 @@
         max-width: 550px;
         min-width: 100px;
         padding-left: 10px;
-        margin-bottom: 20px;
-        height: 160px;
+        margin-bottom: 10px;
+        height: 150px;
     
         .invite-button {
-            width: 20%;
+            width: 50px;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -456,7 +457,8 @@
             button{
                 position: relative;
                 border: 1px solid $orange-light;
-                
+                width: 50px;
+                overflow-x: hidden;
                 padding: 10px 10px;
                 border-radius: 4px;
                 transition: all 0.2s ease-in;
