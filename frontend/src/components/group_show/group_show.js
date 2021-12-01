@@ -63,7 +63,8 @@ class GroupShow extends React.Component {
                 <EditorShow updateDocument={this.props.updateDocument}
                   document={this.props.group.document}
                   groupId={this.props.group._id}
-                  leaveGroup={this.exitFromGroupAndGoToProblemsPage} />
+                  leaveGroup={this.exitFromGroupAndGoToProblemsPage}
+                  userId={this.props.currentUserId} />
               </div>
             </div>
             <div className="group-show-cams">

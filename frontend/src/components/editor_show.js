@@ -16,23 +16,20 @@ function EditorShow(props) {
     const [body, setBody] = useState(props.document.body);
 
     // Code to receive event:
-    let timeout;
+    let incomingTimeout;
     socket.on("editor-data", incomingData => {
-        console.log(`incomingData: `, incomingData);
-        if (incomingData.userId !== props.userId) {
+        console.log(`Incoming: ${incomingData.body}`);
 
+        if (incomingData.userId === props.userId) return;
+        if (incomingData.body === editorRef.current.getValue()) return;
 
-            // if (timeout) clearTimeout(timeout);
-            // timeout = setTimeout(() => {
-
+        if (incomingTimeout) clearTimeout(incomingTimeout);
+        incomingTimeout = setTimeout(() => {
             if (incomingData.body !== body) {
-                // console.log(`incomingData.body: `, incomingData.body);
-                // console.log(`body: `, body);
-
                 setBody(incomingData.body);
             }
             // }, 750);
-        }
+        })
     })
 
     function handleEditorDidMount(editor, monaco) {
@@ -51,20 +48,23 @@ function EditorShow(props) {
                 console.log('going to EMIT body: ', newBody);
                 socket.emit("editor-data", { body: newBody, userId: props.userId, groupId: props.groupId });
             }
-            // console.log('going to EMIT body: ', body);
-            // socket.emit("editor-data", {body, userId: props.userId, groupId: props.groupId});
+
+            return () => {
+            }
         }
     }, [body]);
 
-    function handleEditorChange(e) {
-        // setBody(e);
+    let outgoingTimeout;
+    function handleEditorChange() {
         const data = editorRef.current.getValue();
-        // console.log(`data in handle change: `, data);
-        // console.log(`body: `, body);
+        if (data === body) return;
 
-        if (data !== body) {
-            setBody(data);
-        }
+        setBody(data);
+        if (outgoingTimeout) clearTimeout(outgoingTimeout);
+        outgoingTimeout = setTimeout(() => {
+            console.log(`Outgoing: ${body}`);
+            socket.emit("editor-data", { body: data, userId: props.userId, groupId: props.groupId });
+        }, 750);
     }
 
     function saveDocument() {
