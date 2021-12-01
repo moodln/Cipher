@@ -27,7 +27,7 @@ Cipher's frontend uses the React framework and Redux architecture for complex us
 
 WebSockets were implemented using Socket.io and Socket.io-client, with PeerJS providing peer-to-peer media streams and the Monaco Editor API providing a code editing environment.
 
-![Uploading 5w7x8s.gif…]()
+![user_selector](https://user-images.githubusercontent.com/88195745/144267371-184d69ce-66c3-4b0e-a3b4-8f42cec869af.gif)
 
 # Core Features and Technical Challenges
 1. User Authentication
