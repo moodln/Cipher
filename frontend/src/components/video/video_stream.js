@@ -22,10 +22,10 @@ class VideoStream extends Component {
     }
     
   }
-  async componentWillUnmount() {
+  componentWillUnmount() {
     // window.removeEventListener("beforeunload", this.leaveThePage);
     // console.log('unmounting');
-    await this.componentCleanup();
+    this.componentCleanup();
     
   }
   
@@ -53,7 +53,7 @@ class VideoStream extends Component {
     console.log('USER IS GOING TO DISCONNECT');
     
     window.removeEventListener("beforeunload", this.leaveThePage);
-    this.props.socket.emit("user-disconnected", { userId: this.props.userId, streamId: this.myVideoStream.id, groupId: this.props.groupId })
+    await this.props.socket.emit("user-disconnected", { userId: this.props.userId, streamId: this.myVideoStream.id, groupId: this.props.groupId })
     this.myVideoStream.getTracks().forEach(track => track.stop());
     // this.props.socket.close();
     // console.log(`this.state.videos before unloading: `, this.state.videos);
