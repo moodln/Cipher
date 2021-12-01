@@ -17,6 +17,7 @@ class Sidebar extends React.Component {
     componentDidMount() {
         this.props.fetchProblems();
         this.props.fetchUserGroups();
+        this.setState({path: this.props.match.params.groupId})
 
         window.addEventListener("scroll", () => {
             const sidebar = document.querySelector(".sidebar-section-div");
@@ -30,14 +31,13 @@ class Sidebar extends React.Component {
         })
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        debugger
-        if (prevState.path !== this.state.path) {
-            this.props.fetchProblems();
-            this.props.fetchUserGroups();
-            this.forceUpdate();
-        }
-    }
+    // componentDidUpdate(prevProps, prevState) {
+    //     debugger
+    //     if (prevState.path !== this.state.path) {
+    //         this.props.fetchProblems();
+    //         this.props.fetchUserGroups();
+    //     }
+    // }
 
     makeGroup(problemId) {
         // debugger
