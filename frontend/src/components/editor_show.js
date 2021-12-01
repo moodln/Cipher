@@ -1,24 +1,26 @@
+
 import React, { useState, useEffect, useRef } from "react";
-import io from "socket.io-client";
 import Editor from "@monaco-editor/react";
+import { socket } from "../util/socket";
 
 function EditorShow(props) {
 
-    let socket = io();
+    // let socket = io("http://localhost:3500");
+    // let socket = io();
+    // let socket = socket;
     // socket.on("connect", () => {
     //     console.log("You have successfully connected");
     // })
-    window.onbeforeunload = (event) => {
-        socket.close();
-    }
-
+    // window.onbeforeunload = (event) => {
+    //     socket.close();
+    // }
     const editorRef = useRef(null);
     const [body, setBody] = useState(props.document.body);
 
     // Code to receive event:
     let incomingTimeout;
     socket.on("editor-data", incomingData => {
-        console.log(`Incoming: ${incomingData.body}`);
+        console.log('Incoming: ',incomingData);
 
         if (incomingData.userId === props.userId) return;
         if (incomingData.body === editorRef.current.getValue()) return;
@@ -28,11 +30,13 @@ function EditorShow(props) {
             if (incomingData.body !== body) {
                 setBody(incomingData.body);
             }
-            // }, 750);
-        })
+            }, 750);
+        
     })
 
     function handleEditorDidMount(editor, monaco) {
+        socket.emit("join-editor", {groupId: props.groupId})
+
         editorRef.current = editor;
     }
 
@@ -42,11 +46,10 @@ function EditorShow(props) {
 
             if (editorRef.current.getValue() !== body) {
                 const cursorPosition = editorRef.current.getPosition();
+                // console.log('setting value at 10');
+                
                 editorRef.current.setValue(body);
                 editorRef.current.setPosition(cursorPosition);
-                const newBody = editorRef.current.getValue()
-                console.log('going to EMIT body: ', newBody);
-                socket.emit("editor-data", { body: newBody, userId: props.userId, groupId: props.groupId });
             }
 
             return () => {
@@ -55,15 +58,18 @@ function EditorShow(props) {
     }, [body]);
 
     let outgoingTimeout;
-    function handleEditorChange() {
+    function handleEditorChange(value, e) {
+        console.log(`value: `, value);
+        console.log(`e: `, e);
+        
         const data = editorRef.current.getValue();
         if (data === body) return;
 
         setBody(data);
         if (outgoingTimeout) clearTimeout(outgoingTimeout);
         outgoingTimeout = setTimeout(() => {
-            console.log(`Outgoing: ${body}`);
-            socket.emit("editor-data", { body: data, userId: props.userId, groupId: props.groupId });
+            console.log('Outgoing:', body);
+            socket.emit("editor-data", { body: body, userId: props.userId, groupId: props.groupId });
         }, 750);
     }
 

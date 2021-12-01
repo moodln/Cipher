@@ -48,8 +48,9 @@ const http = require("http");
 const httpServer = http.createServer(app);
 const io = require("socket.io")(httpServer, {
   cors: {
-    origins: "",//["http://localhost:3000", "https://cipher-mern.herokuapp.com/"],//"*:*"
+    origins: ["http://localhost:3000", "https://cipher-mern.herokuapp.com/"],//"*:*"
     methods: ["GET", "POST"],
+    transports: ['websocket'],
   }
 });
 const peerServer = ExpressPeerServer(httpServer, {
@@ -57,17 +58,20 @@ const peerServer = ExpressPeerServer(httpServer, {
   path: "/"
 });
 app.use("/peerjs", peerServer);
-
+// app.use(cors());
 
 
 io.on("connection", socket => {
-
+  
   // if server receives event with name "editor-data", 
   // message will be broadcast to all other connected users
-  
-  socket.on("editor-data", data => {
-    console.log(`data: `, data);
-
+  socket.on("join-editor", data => {
+    console.log('joining group editor');
+    socket.join(data.groupId)
+  })
+  socket.on("editor-data", (data) => {
+    
+    
     // socket.join(data.groupId);
     socket.broadcast.to(data.groupId).emit("editor-data", data);
   })
