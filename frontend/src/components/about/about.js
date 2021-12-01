@@ -10,48 +10,10 @@ import solve from "../../assets/images/solve_problem.png";
 class About extends React.Component {
     constructor(props) {
         super(props);
-        // this.getLogIn = this.getLogIn.bind(this);
-        // this.getSign = this.getSignIn.bind(this);
-        // this.getProblems = this.getProblems.bind(this);
     }
-
-    // getLogIn() {
-    //     if (!this.props.loggedIn) {
-    //         return (
-    //             <button>Login</button>
-    //         )
-    //     } else {
-    //         return null;
-    //     }
-    // }
-
-    // getSignIn() {
-    //     if (!this.props.loggedIn) {
-    //         return (
-    //             <div className="nav-link-div">
-    //                 <button className="nav-link">Signup</button>
-    //             </div>
-    //         )
-    //     } else {
-    //         return null;
-    //     }
-    // }
-
-    // getProblems() {
-    //     if (this.props.loggedIn) {
-    //         return (
-    //             <div className="nav-link-div">
-    //                 <button className="nav-link">Problems</button>
-    //             </div>
-    //         )
-    //     } else {
-    //         return null;
-    //     }
-    // }
 
 
     render() {
-        // console.log(this.props);
         return (
             <div className="page-with-sidebar">
                 {
