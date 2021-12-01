@@ -439,6 +439,8 @@
         max-width: 550px;
         min-width: 100px;
         padding-left: 10px;
+        margin-bottom: 20px;
+        height: 160px;
     
         .invite-button {
             width: 20%;
@@ -454,6 +456,7 @@
             button{
                 position: relative;
                 border: 1px solid $orange-light;
+                
                 padding: 10px 10px;
                 border-radius: 4px;
                 transition: all 0.2s ease-in;
@@ -493,7 +496,11 @@
     
         .cams{
             width: 100%;
-            max-height: 1015px;
+            // max-height: 1015px;
+            height: 150px;
+            overflow-x: scroll;
+            overflow-y: hidden;
+
             // z-index: 0;
         }
     }

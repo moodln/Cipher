@@ -1,6 +1,32 @@
 #video-grid {
   width: 100%;
-  video {
+
+  ul{
+    display: flex;
+    flex-direction: column;
+
+    video {
+      width: 100%;
+    }
+  }
+}
+
+
+@media only screen and (max-width: 550px){
+
+  #video-grid {
     width: 100%;
+  
+    ul{
+      display: flex;
+      flex-direction: row;
+      padding: 5px 5px;
+
+      video {
+        width: 120px;
+        max-width: 120px;
+      }
+    }
+   
   }
 }
