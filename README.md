@@ -83,6 +83,11 @@ After opening a particular problem, users can click "Invite a Collaborator" to s
 <img src="https://user-images.githubusercontent.com/88195745/144267371-184d69ce-66c3-4b0e-a3b4-8f42cec869af.gif" float="left" height="350px" width="auto" />
 <img src="https://user-images.githubusercontent.com/88195745/144300244-d278b8dd-c371-422f-b570-47acb583a9d0.png" float="right" width="350px" height="auto" />
 
+
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+![](https://user-images.githubusercontent.com/88195745/144267371-184d69ce-66c3-4b0e-a3b4-8f42cec869af.gif)  |  ![](https://user-images.githubusercontent.com/88195745/144300244-d278b8dd-c371-422f-b570-47acb583a9d0.png)
+
 ## Future Directions
 - Messaging feature for work groups
 - Ability to post and rate solutions to problems
