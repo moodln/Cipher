@@ -21,7 +21,7 @@
 }
 
 .nav-link-div {
-    margin-right: 30px;
+    margin-right: 20px;
     margin-top: 10px;
     display: flex;
 
@@ -40,11 +40,11 @@
     .nav-link-profile-drop {
         position: relative;
         background-color: $blue-darkest;
-        transition: all 0.2s ease-in;
         display: flex;
         justify-content: center;
-        width: 82px;
-        // padding: 20px;
+        width: 50px;
+        margin: 0 10px;
+        transition: all 0.2s ease-in;
 
         .nav-link-profile-img-div {
             // background-color: $blue-light;
@@ -72,19 +72,17 @@
             flex-direction: column;
             position: absolute;
             background-color: $blue-darkest;
-            background-clip: content-box;
+            border-top: 5px solid transparent;
+            border-bottom: 1px solid $blue-lightest;    
             min-width: 160px;
+            min-height: 132px;
             border-radius: 3px;
             z-index: -1;
-            right: 0px;
-            top: calc(100%);
-            border-top: 5px solid transparent;
-            box-shadow: $blue-light 0px 4px 6px -5px, $blue-light 0px 2px 6px -5px;            
-            transform: scaleY(0.5) translateY(-20px);
+            top: calc(50%);
+            right: 0px;     
             opacity: 0;
             pointer-events: none;
-            transform-origin: top;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
 
             .nav-drop-link {
                 color: white;
@@ -107,11 +105,11 @@
     .nav-link-profile-drop-visible {
         position: relative;
         background-color: $blue-darkest;
-        transition: all 0.2s ease-in;
         display: none;
         justify-content: center;
-        width: 82px;
-        // padding: 20px;
+        width: 50px;
+        margin: 0 10px;
+        transition: all 0.2s ease-in;
 
         .nav-link-profile-img-div {
             // background-color: $blue-light;
@@ -139,19 +137,17 @@
             flex-direction: column;
             position: absolute;
             background-color: $blue-darkest;
-            background-clip: content-box;
+            border-top: 5px solid transparent;
+            border-bottom: 1px solid $blue-lightest;    
             min-width: 160px;
+            min-height: 132px;
             border-radius: 3px;
             z-index: -1;
-            right: 0px;
-            top: calc(100%);
-            border-top: 5px solid transparent;
-            box-shadow: $blue-light 0px 4px 6px -5px, $blue-light 0px 2px 6px -5px;            
-            transform: scaleY(0.5) translateY(-20px);
+            top: calc(50%);
+            right: 0px;     
             opacity: 0;
             pointer-events: none;
-            transform-origin: top;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
 
             .nav-drop-link {
                 color: white;
@@ -167,10 +163,11 @@
     .nav-link-profile-drop:hover {
        
         .nav-dropdown-content {
-            z-index: 1;
             opacity: 1;
+            z-index: 3 !important;
+            top: calc(100%);
             pointer-events: all;
-            transform: scaleY(1) translateY(0px);
+            // top: 0;
         }
 
         .nav-link-profile-img-div {
@@ -186,10 +183,10 @@
     .nav-link-profile-drop-visible:hover {
        
         .nav-dropdown-content {
-            z-index: 1;
             opacity: 1;
+            z-index: 3 !important;
+            top: calc(100%);
             pointer-events: all;
-            transform: scaleY(1) translateY(0px);
         }
 
         .nav-link-profile-img-div {
@@ -232,65 +229,28 @@
 
     .nav-link-div{
 
-
-        .nav-link-profile-drop-visible {
-            position: relative;
-            background-color: $blue-darkest;
-            transition: all 0.2s ease-in;
+        .nav-link-profile-drop-visible{
             display: flex;
-            justify-content: center;
-            width: 82px;
-            // padding: 20px;
+        }
+        .nav-link-profile-drop-visible:hover {
+
+            
+            .nav-dropdown-content {
+                opacity: 1;
+                z-index: 3 !important;
+                top: calc(100%);
+                pointer-events: all;
+            }
     
             .nav-link-profile-img-div {
-                // background-color: $blue-light;
-                box-sizing: border-box;
-                border: 2px solid transparent;
-                width: 50px;
-                height: 50px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                cursor: pointer;
-                transition: all 0.2s ease-in;
+                border: 2px solid $blue-lightest;
     
                 svg {
                     height: 40px;
                     width: 40px;
-                    fill: white;
-                    transition: all 0.2s ease-in;
+                    fill: $blue-lightest;
                 }
             }
-            
-            
-            .nav-dropdown-content {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                background-color: $blue-darkest;
-                background-clip: content-box;
-                min-width: 160px;
-                border-radius: 3px;
-                z-index: -1;
-                right: 0px;
-                top: calc(100%);
-                border-top: 5px solid transparent;
-                box-shadow: $blue-light 0px 4px 6px -5px, $blue-light 0px 2px 6px -5px;            
-                transform: scaleY(0.5) translateY(-20px);
-                opacity: 0;
-                pointer-events: none;
-                transform-origin: top;
-                transition: all 0.3s ease;
-    
-                .nav-drop-link {
-                    color: white;
-                    padding: 12px 16px;
-                    text-decoration: none;
-                    display: block;
-                    text-align: left;   
-                    transition: all 0.2s ease-in;             
-                }
-            }        
         }
     
     }
