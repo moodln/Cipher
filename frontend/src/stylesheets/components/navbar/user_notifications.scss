@@ -5,7 +5,7 @@
     justify-content: center;
     width: 50px;
     margin: 0 10px;
-    transition: all 0.2s ease-in;
+    transition: all 0.2s ease;
 
     .notification-img{
         box-sizing: border-box;
@@ -16,14 +16,14 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        transition: all 0.2s ease-in;
+        transition: all 0.2s ease;
 
         svg {
             height: 35px;
             width: 35px;
             margin: 5px;
             fill: white;
-            transition: all 0.2s ease-in;
+            transition: all 0.2s ease;
         }
     }
     .color {
@@ -114,7 +114,7 @@
                 border-radius: 3px;
                 padding: 4px;
                 font-size: 12px;
-                transition: all 0.3s ease-in;
+                transition: all 0.3s ease;
             }
 
             .button-styling:first-child:hover {
@@ -134,7 +134,7 @@
             font-size: 12px;
             background-color: $blue-darkest;
             box-shadow: $blue-light 0px 4px 6px -5px;
-            transition: all 0.3s ease-in;
+            transition: all 0.3s ease;
             font-stretch: semi-expanded;
         }
     }

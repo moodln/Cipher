@@ -7,9 +7,9 @@ import pending from "../../assets/images/pending.png";
 import dashboard from "../../assets/images/dashboardB.png";
 import solve from "../../assets/images/solve_problem.png";
 
-const About = () => (
+const About = props => (
     <div className="page-with-sidebar">
-        {this.props.loggedIn ? <SidebarContainer /> : null}
+        {props.loggedIn ? <SidebarContainer /> : null}
         <div className="about-index container">
             <section className="about-index-header">
                 <div className="about-index-header-div">
@@ -33,7 +33,7 @@ const About = () => (
                                 First, log in or sign up and make an account
                             </h4>
                             {
-                                this.props.loggedIn ? (
+                                props.loggedIn ? (
                                     null
                                 ) : (
                                     <div className="nav-link-div">
@@ -106,7 +106,7 @@ const About = () => (
                 <div className="about-link">
                     <h2 id="about-link-title">Get Started</h2>
                     {
-                        this.props.loggedIn ? (
+                        props.loggedIn ? (
                             <div className="about-link-div">
                                 <Link to="/problems" className="about-link-a">PROBLEMS</Link>
                             </div>
