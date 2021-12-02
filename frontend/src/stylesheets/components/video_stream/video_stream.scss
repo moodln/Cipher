@@ -6,14 +6,17 @@
   .video-icon-container{
     position: absolute;
     display: flex;
+    // display: none;
     flex-direction: row;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 19;
     padding: 4px;
-    border-radius: 3px;
+    padding-right: 10px;
+    // border-radius: 3px;
     gap: 10px;
-    bottom: 5px;
-    left: 3px;
+    bottom: 0px;
+    left: 0px;
+    clip-path: polygon(0 0, 75% 0%, 100% 100%, 0% 100%);
 
     .video-icon-div {
 
@@ -33,9 +36,27 @@
       position: relative;
     }
 
-    video {
-      width: 100%;
+    .video-others{
+      position: relative;
     }
+
+    .video-item {
+      width: 100%;
+      position: relative;
+    }
+
+    .video-name{
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 19;
+      padding: 4px;
+      padding-left: 10px;
+      gap: 10px;
+      top: 0px;
+      right: 0px;  
+      clip-path: polygon(0 0, 100% 0%, 100% 100%, 25% 100%);
+    }
+
   }
 }
 

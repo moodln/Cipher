@@ -153,6 +153,8 @@ class VideoStream extends Component {
           
           this.connectToNewUser(data.id, this.myVideoStream);
           // console.log('connected user, sending all participants data');
+          // console.log(`this.state.participants: `, this.state.participants);
+          
           this.props.socket.emit("send-peer-data", {
             groupId: this.props.groupId,
             participants: this.state.participants
@@ -162,19 +164,19 @@ class VideoStream extends Component {
         const newParticipants = Object.assign({}, this.state.participants);
         Object.keys(data.participants).forEach(streamId => {
           newParticipants[streamId] = data.participants[streamId]
-          
         });
         this.setState({
           participants: newParticipants
         })
+        
       })
-
       this.props.socket.on("connected-user-handle", data => {
         const newParticipants = Object.assign({}, this.state.participants);
         newParticipants[data.streamId] = data.handle
         this.setState({
           participants: newParticipants
         })
+        
       })
 
       this.props.socket.on("user-disconnected", (data) => {
@@ -189,14 +191,32 @@ class VideoStream extends Component {
         const newVideos = Object.assign({}, this.state.videos);
         const newParticipants = Object.assign({}, this.state.participants);
 
-        delete newParticipants[data.streamId]
-        delete newPeers[data.streamId]
-        Object.keys(this.state.videos).forEach(peerId => {
-          if (peerId !== this.myVideoStream.id) {
-            if(!newPeers[peerId]) {
-              delete newVideos[peerId]
-            }
+        this.props.socket.on("user-disconnected", (data) => {
+          // console.log(`streamId disconnecting: `, data.streamId);
+          // delete newVideos[data.streamId]
+          // this.setState({ videos: newVideos })
+          // console.log('going to close user ');
+          if (this.state.peers[data.streamId]) {
+            this.state.peers[data.streamId].close(data.streamId);
           }
+          const newPeers = Object.assign({}, this.state.peers);
+          const newVideos = Object.assign({}, this.state.videos);
+          const newParticipants = Object.assign({}, this.state.participants);
+
+          delete newParticipants[data.streamId]
+          delete newPeers[data.streamId]
+          Object.keys(this.state.videos).forEach(peerId => {
+            if (peerId !== this.myVideoStream.id) {
+              if (!newPeers[peerId]) {
+                delete newVideos[peerId]
+              }
+            }
+          });
+          this.setState({
+            peers: newPeers,
+            videos: newVideos,
+            participants: newParticipants
+          })
         });
         this.setState({
           peers: newPeers,
@@ -244,6 +264,7 @@ class VideoStream extends Component {
       this.setState({
         peers: newPeers
       })
+      this.addVideoStream(userVideoStream);
 
     });
     call.on("close", (streamId) => {
@@ -289,9 +310,6 @@ class VideoStream extends Component {
     // console.log(`this.state.videos in render: `, Object.keys(this.state.videos));
     // console.log(`this.state.peers in render: `, this.state.peers);
     // console.log(`this.state.participants in render: `, this.state.participants);
-    Object.values(this.state.videos).forEach(stream => {
-      stream.getVideoTracks().forEach(track => console.log(`track: `, track))
-    });
     const audioMuteBtn = this.state.myAudioMuted ?
       (
         <svg xmlns="http://www.w3.org/2000/svg" fill="white" className="video-icon bi bi-mic-mute-fill" viewBox="0 0 16 16">
@@ -315,6 +333,8 @@ class VideoStream extends Component {
     )
     const ownVideo = this.state.videos[this.myVideoStream.id]
     const otherVideos = Object.values(this.state.videos).filter(stream => stream.id !== this.myVideoStream.id);
+
+    // debugger
     return (
       <div id="video-grid">
         <ul>
@@ -327,14 +347,16 @@ class VideoStream extends Component {
                 {audioMuteBtn}
               </div>
             </div>
-            <video
+            <video className="video-item"
               ref={video => {
                 if (video) { video.srcObject = ownVideo }
               }}
               autoPlay={true}
             >
             </video>
-            {this.state.participants[this.myVideoStream.id]}
+            <div className="video-name">
+              <p>{this.state.participants[this.myVideoStream.id]}</p>
+            </div>
           </li>
           {
             otherVideos.map(stream => {
@@ -347,7 +369,9 @@ class VideoStream extends Component {
                     autoPlay={true}
                   >
                   </video>
-                  {this.state.participants[stream.id]}
+                  <div className="video-name">
+                    <p>{this.state.participants[stream.id]}</p>
+                  </div>
                 </li>
               )
             })
