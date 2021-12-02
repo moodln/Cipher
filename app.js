@@ -85,13 +85,11 @@ io.on("connection", socket => {
   // if server receives event with name "editor-data", 
   // message will be broadcast to all other connected users
   socket.on("join-editor", data => {
-    console.log('joining group editor');
     socket.join(data.groupId)
   })
   socket.on("editor-data", (data) => {
     
     
-    // socket.join(data.groupId);
     socket.broadcast.to(data.groupId).emit("editor-data", data);
   })
   socket.on("join-room", (data) => {
@@ -102,14 +100,13 @@ io.on("connection", socket => {
   });
 
   socket.on("newUser", (userId) => {
-    console.log('going to add user', onlineUsers)
     addUser(userId, socket.id);
   });
 
   socket.on("sendNotification", ({sender, receiver, group}) => {
-    const receiverUser = getUser(receiver)
-    console.log('in send notification', 'sender:', sender, 'receiver:', receiver, 'group:', group, 'usersOnline:', onlineUsers)
-    console.log('receiverUser', receiverUser)
+    // const receiverUser = getUser(receiver)
+    // console.log('in send notification', 'sender:', sender, 'receiver:', receiver, 'group:', group, 'usersOnline:', onlineUsers)
+    // console.log('receiverUser', receiverUser)
     socket.broadcast.emit("receiveNotification", {
       sender, 
       group
