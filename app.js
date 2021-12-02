@@ -80,7 +80,8 @@ io.on("connection", socket => {
     
     socket.join(data.groupId);
     
-    socket.broadcast.to(data.groupId).emit("user-connected", data);
+    // socket.broadcast.to(data.groupId).emit("user-connected", data);
+    socket.broadcast.to(data.groupId).emit("ping-to-user", data);
   });
 
   socket.on("send-peer-data", (data) => {
