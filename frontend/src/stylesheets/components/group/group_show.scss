@@ -61,25 +61,35 @@
             }
         }
     
-        .group-show-bar-participants, .group-show-bar-invited {
+        .group-show-bar-participants-div{
             display: flex;
             flex-direction: column;
-            padding: 10px;
-    
-            h1 {
-                font-size: 20px;
-            }
-    
-            ul {
-                height: 200px;
-                width: 150px;
-                overflow-y: scroll;
-    
-                li {
-                    font-size: 16px;
+            width: 50%;
+            height: auto;
+            max-height: 600px;
+            transition: all 0.3s ease-in;
+            .group-show-bar-participants {
+                display: flex;
+                flex-direction: column;
+                padding: 10px;
+        
+                h1 {
+                    font-size: 20px;
+                }
+        
+                ul {
+                    max-height: 200px;
+                    height: 100px;
+                    width: 100%;
+                    overflow-y: scroll;
+        
+                    li {
+                        font-size: 16px;
+                    }
                 }
             }
         }
+        
     }
     
     .group-show-main {
@@ -326,16 +336,16 @@
     background-color: $blue-darkest;
 }
 
-.group-show-bar::-webkit-scrollbar {
+.group-show-main-problem::-webkit-scrollbar {
     width: 0.25em;
     height: 0.25em;
 }
    
-.group-show-bar::-webkit-scrollbar-track {
+.group-show-main-problem::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px transparent;
 }
    
-.group-show-bar::-webkit-scrollbar-thumb {
+.group-show-main-problem::-webkit-scrollbar-thumb {
     border-radius: 3px;
     background-color: $orange-light;
     box-shadow: -7px 0 9px -5px $orange-light;
@@ -366,13 +376,24 @@
             height:170px;
             // flex-shrink: 1;
             // flex-grow: 1;
-            overflow-x: hidden;
-            overflow-y: scroll;
 
 
             .group-show-main-problem{
                 min-width: 300px;
-                margin-right: 20px;
+                margin-right: 15px;
+                overflow-x: hidden;
+                overflow-y: scroll;
+            }
+            .group-show-bar-participants-div{
+                height: 200px;
+                width: 25%;
+                .group-show-bar-participants{
+                    height: 50%;
+
+                    h1{
+                        font-size: 18px;
+                    }
+                }
             }
         }
 
@@ -418,12 +439,15 @@
         .group-show-bar{
 
             height:120px;
-            .group-show-main-problem-title{
-                display: none;
+
+            .group-show-main-problem{
+                margin-right: 5px;
             }
 
-            .group-show-bar-participants{
-                display: none;
+            .group-show-bar-participants-div{
+                .group-show-bar-participants{
+                    display: none;
+                }
             }
         }
 
