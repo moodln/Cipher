@@ -7,6 +7,7 @@ import portraitPasan from "../../assets/images/portrait_pasan.jpeg";
 
 class Footer extends React.Component {
     render() {
+        const currYear = new Date().getFullYear();
         return (
             <section className="footer-section">
                 <div className="footer-authors-container">
@@ -50,7 +51,7 @@ class Footer extends React.Component {
                     </p>
                 </div>
 
-                <h4>&#169; 2021 Cipher</h4>
+                <h4>&#169; {currYear} Cipher</h4>
             </section>
         )
     }
