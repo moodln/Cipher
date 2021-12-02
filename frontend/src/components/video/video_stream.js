@@ -19,8 +19,12 @@ class VideoStream extends Component {
       videos: {},
       myVideoMuted: true,
       myAudioMuted: true,
-      participants: {}
+      participants: {},
+      newPeerId: undefined,
+      streamCreated: false,
+      streamSent: false
     }
+
 
   }
   componentWillUnmount() {
@@ -30,31 +34,63 @@ class VideoStream extends Component {
 
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log(`prevState.newPeerId: `, prevState.newPeerId);
+    console.log(`this.state.newPeerId: `, this.state.newPeerId);
+    console.log(`this.myPeerId: `, this.myPeerId);
+    
+    // If we have a snapshot value, we've just added new items.
+    // Adjust scroll so these new items don't push the old ones out of view.
+    // (snapshot here is the value returned from getSnapshotBeforeUpdate)
+    if (this.state.streamCreated && !this.state.streamSent && this.state.newPeerId && this.myVideoStream) {
+      console.log('SENDING JOIN ROOM FOR THE FIRST TIME');
+      console.log(`this.state.newPeerId: `, this.state.newPeerId);
+      
+      this.props.socket.emit("join-room", { 
+        groupId: this.props.groupId,
+        userId: this.props.userId,
+        id: this.state.newPeerId,
+        // streamId: this.myVideoStream.id,
+        // handle: this.props.handle
+      });
+      this.setState({
+        streamSent: true
+      })
+    }
+    if (prevState.newPeerId !== this.state.newPeerId && this.state.newPeerId && this.myVideoStream) {
+      console.log('SENDING JOIN ROOM TO NEW USER');
+      console.log(`this.state.newPeerId: `, this.state.newPeerId);
+      
+      this.props.socket.emit("join-room", { 
+        groupId: this.props.groupId,
+        userId: this.props.userId,
+        id: this.state.newPeerId,
+        // streamId: this.myVideoStream.id,
+        // handle: this.props.handle
+      });
+    }
+  }
+
   leaveThePage(e) {
     const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
-    if (isFirefox) {
-      console.log('client on firefox');
-
-      // e.preventDefault();
-      // e.returnValue = "hey";
-    }
-    console.log('reloading page and disconnecting user');
+    // console.log('reloading page and disconnecting user');
     this.componentCleanup();
     // alert("you are about to lose connection")
     // const msg = "wtf"
     // return msg
     // this.componentCleanup();
-    if (isFirefox) {
-      e.returnValue = "hey";
-      // return null;
-    }
+    // if (isFirefox) {
+    //   e.returnValue = "hey";
+    //   // return null;
+    // }
   }
 
-  async componentCleanup() {
-    console.log('USER IS GOING TO DISCONNECT');
+  componentCleanup() {
+    // console.log('USER IS GOING TO DISCONNECT');
 
     window.removeEventListener("beforeunload", this.leaveThePage);
-    await this.props.socket.emit("user-disconnected", { userId: this.props.userId, streamId: this.myVideoStream.id, groupId: this.props.groupId })
+    this.peer.disconnect();
+    this.props.socket.emit("user-disconnected", { userId: this.props.userId, streamId: this.myVideoStream.id, groupId: this.props.groupId })
     this.myVideoStream.getTracks().forEach(track => track.stop());
     
     // this.setState({
@@ -87,6 +123,8 @@ class VideoStream extends Component {
       debug: 0,
     });
 
+    
+
 
     navigator.mediaDevices.getUserMedia({
       audio: true,
@@ -94,6 +132,18 @@ class VideoStream extends Component {
     })
     .then((stream) => {
       console.log('2. going to add own video');
+      console.log(`this.state.newPeerId: `, this.state.newPeerId);
+      console.log(`this.myPeerId: `, this.myPeerId);
+    
+
+      // const sendPeerId = this.myPeerId ? this.myPeerId : this
+      // this.props.socket.emit("join-room", { 
+      //   groupId: this.props.groupId,
+      //   userId: this.props.userId,
+      //   id: this.state.newPeerId,
+      //   // streamId: this.myVideoStream.id,
+      //   // handle: this.props.handle
+      // });
       this.myVideoStream = stream;
       this.myVideoStream.getVideoTracks()[0].enabled = false;
       this.myVideoStream.getAudioTracks()[0].enabled = false;
@@ -101,13 +151,14 @@ class VideoStream extends Component {
       const newParticipants = Object.assign({}, this.state.participants);
       newParticipants[this.myVideoStream.id] = this.props.handle
       this.setState({
-        participants: newParticipants
+        participants: newParticipants,
+        streamCreated: true
       })
 
 
       this.addVideoStream(this.myVideoStream);
       this.peer.on("call", (call) => {
-        console.log('WILL SEND MY HANDLE FROM HERE', this.props.handle);
+        // console.log('WILL SEND MY HANDLE FROM HERE', this.props.handle);
         call.answer(this.myVideoStream);
         this.props.socket.emit("connected-user-handle", {
           groupId: this.props.groupId,
@@ -118,7 +169,7 @@ class VideoStream extends Component {
         // console.log(`call peer on call: `, call);
         
         call.on("stream", (userVideoStream) => {
-          console.log('call answered, streaming');
+          // console.log('call answered, streaming');
           const newPeers = Object.assign({}, this.state.peers);
           newPeers[userVideoStream.id] = call;
           this.setState({
@@ -132,10 +183,12 @@ class VideoStream extends Component {
       
       this.props.socket.on("user-connected", (data) => {
         console.log('in user-connected sending my stream back to them');
-          console.log(`this.myVideoStream that i am going to send: `, this.myVideoStream.id);
+        // console.log(`this.myVideoStream that i am going to send: `, this.myVideoStream.id);
+        // console.log(`data.userId received: `, data.userId);
+        console.log(`data.id received: `, data.id);
           
           this.connectToNewUser(data.id, this.myVideoStream);
-          console.log('connected user, sending all participants data');
+          // console.log('connected user, sending all participants data');
           this.props.socket.emit("send-peer-data", {
             groupId: this.props.groupId,
             participants: this.state.participants
@@ -187,6 +240,8 @@ class VideoStream extends Component {
           participants: newParticipants
         })
       });
+
+      
       
     },
     err => {
@@ -197,14 +252,18 @@ class VideoStream extends Component {
     this.peer.on("open", (id) => {
       console.log('joining room');
       console.log(`peer connection id when joining room: `, id);
+      this.peer.connect(id)
+      this.setState({
+        newPeerId: id
+      })
       // setTimeout(() => {
-        this.props.socket.emit("join-room", { 
-          groupId: this.props.groupId,
-          userId: this.props.userId,
-          id,
-          // streamId: this.myVideoStream.id,
-          // handle: this.props.handle
-        });
+        // this.props.socket.emit("join-room", { 
+        //   groupId: this.props.groupId,
+        //   userId: this.props.userId,
+        //   id,
+        //   // streamId: this.myVideoStream.id,
+        //   // handle: this.props.handle
+        // });
         
       // }, 5000);
       // this.roomId = id;
@@ -218,8 +277,14 @@ class VideoStream extends Component {
     // console.log(`userId we are connecting: `, userId);
     // console.log(`this.myVideoStream connecting to new user: `, this.myVideoStream);
     console.log(`peer connection id: `, id);
-
+    // this.peer.connect(id)
+    console.log(`my peer id: `, this.peer.id);
+    console.log(`my peer: `, this.peer);
+    // debugger
     const call = this.peer.call(id, stream);
+    if (!call) {
+      window.location.reload(true);
+    }
     call.on("stream", (userVideoStream) => {
       console.log('I have answered call and received stream ', userVideoStream.id);
 
@@ -273,9 +338,11 @@ class VideoStream extends Component {
     if(!this.myVideoStream) return null;
     if(!this.state.videos[this.myVideoStream.id]) return null;
     console.log(`this.state.videos in render: `, Object.keys(this.state.videos));
-    console.log(`this.state.peers in render: `, Object.keys(this.state.peers));
+    console.log(`this.state.peers in render: `, this.state.peers);
     console.log(`this.state.participants in render: `, this.state.participants);
-    
+    Object.values(this.state.videos).forEach(stream => {
+      stream.getVideoTracks().forEach(track => console.log(`track: `, track))
+    });
     const audioMuteBtn = this.state.myAudioMuted ?
       (
         <svg xmlns="http://www.w3.org/2000/svg" fill="white" className="video-icon bi bi-mic-mute-fill" viewBox="0 0 16 16">

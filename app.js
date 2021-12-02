@@ -77,11 +77,12 @@ io.on("connection", socket => {
   })
   socket.on("join-room", (data) => {
     console.log(`data.userId joinging stream: `, data.userId);
+    console.log(`id of a peer joining(?): `, data.id);
     
     socket.join(data.groupId);
     
-    // socket.broadcast.to(data.groupId).emit("user-connected", data);
-    socket.broadcast.to(data.groupId).emit("ping-to-user", data);
+    socket.broadcast.to(data.groupId).emit("user-connected", data);
+    // socket.broadcast.to(data.groupId).emit("ping-to-user", data);
   });
 
   socket.on("send-peer-data", (data) => {

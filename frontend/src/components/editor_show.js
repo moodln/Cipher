@@ -21,16 +21,18 @@ function EditorShow(props) {
     let incomingTimeout;
     props.socket.on("editor-data", incomingData => {
         // console.log('Incoming: ',incomingData);
+        if (editorRef.current) {
 
-        if (incomingData.userId === props.userId) return;
-        if (incomingData.body === editorRef.current.getValue()) return;
-
-        if (incomingTimeout) clearTimeout(incomingTimeout);
-        incomingTimeout = setTimeout(() => {
-            if (incomingData.body !== body) {
-                setBody(incomingData.body);
-            }
-            }, 750);
+            if (incomingData.userId === props.userId) return;
+            if (incomingData.body === editorRef.current.getValue()) return;
+    
+            if (incomingTimeout) clearTimeout(incomingTimeout);
+            incomingTimeout = setTimeout(() => {
+                if (incomingData.body !== body) {
+                    setBody(incomingData.body);
+                }
+                }, 750);
+        }
         
     })
 
