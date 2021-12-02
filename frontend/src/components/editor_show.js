@@ -14,6 +14,7 @@ function EditorShow(props) {
     // window.onbeforeunload = (event) => {
     //     props.socket.close();
     // }
+    
     const editorRef = useRef(null);
     const [body, setBody] = useState(props.document.body);
 
@@ -63,6 +64,16 @@ function EditorShow(props) {
     }
 
     useEffect(() => {
+        window.addEventListener("beforeunload", saveDocument);
+     // componentDidMount events
+     return () => {
+       // componentWillUnmount events
+        saveDocument()
+        window.removeEventListener("beforeunload", saveDocument);
+     }
+   }, []);
+
+    useEffect(() => {
 
         if (editorRef.current) {
 
@@ -75,9 +86,11 @@ function EditorShow(props) {
             }
 
             return () => {
+                
             }
         }
     }, [body]);
+
 
     let outgoingTimeout;
     function handleEditorChange(value, e) {
@@ -89,7 +102,7 @@ function EditorShow(props) {
 
         setBody(data);
         if (outgoingTimeout) clearTimeout(outgoingTimeout);
-        debugger
+        // debugger
         outgoingTimeout = setTimeout(() => {
             // console.log('Outgoing:', body);
             props.socket.emit("editor-data", { body: body, userId: props.userId, groupId: props.groupId });
@@ -97,7 +110,9 @@ function EditorShow(props) {
     }
 
     function saveDocument() {
-        props.updateDocument(props.document, body, props.groupId);
+        if (editorRef.current) {
+            props.updateDocument(props.document, editorRef.current.getValue(), props.groupId);
+        }
     }
 
     const options = {
