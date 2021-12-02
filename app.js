@@ -118,7 +118,13 @@ io.on("connection", socket => {
     // socket.join(data.groupId);
     console.log('sending peer data');
     
-    socket.broadcast.emit("send-peer-data", data);
+    socket.broadcast.to(data.groupId).emit("send-peer-data", data);
+  });
+
+  socket.on("connected-user-handle", (data) => {
+    console.log('connected user is sending their handle back');
+    
+    socket.broadcast.to(data.groupId).emit("connected-user-handle", data);
   });
 
   socket.on("user-disconnected", data => {
