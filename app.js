@@ -113,13 +113,13 @@ io.on("connection", socket => {
     })
   })
 
-  // socket.on("send-peer-data", (data) => {
+  socket.on("send-peer-data", (data) => {
 
-  //   // socket.join(data.groupId);
-  //   console.log('sending peer data');
+    // socket.join(data.groupId);
+    console.log('sending peer data');
     
-  //   socket.broadcast.emit("send-peer-data", data);
-  // });
+    socket.broadcast.emit("send-peer-data", data);
+  });
 
   socket.on("user-disconnected", data => {
     removeUser(socket.id);
