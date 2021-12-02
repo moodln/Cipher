@@ -150,8 +150,8 @@ class VideoStream extends Component {
         // console.log(`data.id received: `, data.id);
           
           this.connectToNewUser(data.id, this.myVideoStream);
-          // console.log('connected user, sending all participants data');
-          // console.log(`this.state.participants: `, this.state.participants);
+          console.log('connected user, sending all participants data');
+          console.log(`this.state.participants: `, this.state.participants);
           
           this.props.socket.emit("send-peer-data", {
             groupId: this.props.groupId,
@@ -159,6 +159,8 @@ class VideoStream extends Component {
           })
       });
       this.props.socket.on("send-peer-data", data => {
+        console.log('recieving peer data ', data.participants);
+        
         const newParticipants = Object.assign({}, this.state.participants);
         Object.keys(data.participants).forEach(streamId => {
           newParticipants[streamId] = data.participants[streamId]
