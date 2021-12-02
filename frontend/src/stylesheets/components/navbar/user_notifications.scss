@@ -8,6 +8,12 @@
     position: relative;
     background-color: $blue-darkest;
     transition: all 0.2s ease-in;
+
+    .color {
+        svg {
+            fill: $orange-dark;
+        }
+    }
    
     svg {
         margin: 5px;
@@ -15,6 +21,7 @@
         width: 35px;
         border: 2px solid transparent;
         cursor: pointer;
+        fill: white;
         transition: all 0.2s ease-in;
     }
 
