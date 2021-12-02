@@ -82,118 +82,118 @@ class VideoStream extends Component {
       audio: true,
       video: true,
     })
-    .then((stream) => {
-      this.myVideoStream = stream;
-      // console.log('going to add own video');
-      this.myVideoStream.getVideoTracks()[0].enabled = false;
-      this.myVideoStream.getAudioTracks()[0].enabled = false;
+      .then((stream) => {
+        this.myVideoStream = stream;
+        // console.log('going to add own video');
+        this.myVideoStream.getVideoTracks()[0].enabled = false;
+        this.myVideoStream.getAudioTracks()[0].enabled = false;
 
-      const newParticipants = Object.assign({}, this.state.participants);
-      newParticipants[this.myVideoStream.id] = this.props.handle
-      this.setState({
-        participants: newParticipants
-      })
-
-      this.addVideoStream(this.myVideoStream);
-      this.peer.on("call", (call) => {
-        
-        call.answer(stream);
-        console.log('in call');
-        // console.log(`call peer on call: `, call);
-        
-        call.on("stream", (userVideoStream) => {
-          console.log('call answered, streaming');
-          const newPeers = Object.assign({}, this.state.peers);
-          newPeers[userVideoStream.id] = call;
-          this.setState({
-            peers: newPeers,
-          })
-
-          this.addVideoStream(userVideoStream);
-
-        });
-      });
-      
-      this.props.socket.on("user-connected", (data) => {
-        console.log('in user-connected sending my stream back to them');
-        console.log(`this.myVideoStream.id: `, this.myVideoStream.id);
-        console.log(`stream.id: `, stream.id);
         const newParticipants = Object.assign({}, this.state.participants);
-        newParticipants[data.streamId] = data.handle
+        newParticipants[this.myVideoStream.id] = this.props.handle
         this.setState({
           participants: newParticipants
         })
-        // if (data.userId === this.props.userId) {
-          
+
+        this.addVideoStream(this.myVideoStream);
+        this.peer.on("call", (call) => {
+
+          call.answer(stream);
+          console.log('in call');
+          // console.log(`call peer on call: `, call);
+
+          call.on("stream", (userVideoStream) => {
+            console.log('call answered, streaming');
+            const newPeers = Object.assign({}, this.state.peers);
+            newPeers[userVideoStream.id] = call;
+            this.setState({
+              peers: newPeers,
+            })
+
+            this.addVideoStream(userVideoStream);
+
+          });
+        });
+
+        this.props.socket.on("user-connected", (data) => {
+          console.log('in user-connected sending my stream back to them');
+          console.log(`this.myVideoStream.id: `, this.myVideoStream.id);
+          console.log(`stream.id: `, stream.id);
+          const newParticipants = Object.assign({}, this.state.participants);
+          newParticipants[data.streamId] = data.handle
+          this.setState({
+            participants: newParticipants
+          })
+          // if (data.userId === this.props.userId) {
+
           this.connectToNewUser(data.id, this.myVideoStream);
           console.log('connected user, sending all participants data');
           this.props.socket.emit("send-peer-data", {
             groupId: this.props.groupId,
             participants: this.state.participants
           })
-        // } else {
-        //   this.connectToNewUser(data.id, stream, data.userId)
-          
-        // }
-      });
-      this.props.socket.on("send-peer-data", data => {
-        const newParticipants = Object.assign({}, this.state.participants);
-        Object.keys(data.participants).forEach(streamId => {
-          newParticipants[streamId] = data.participants[streamId]
-          
+          // } else {
+          //   this.connectToNewUser(data.id, stream, data.userId)
+
+          // }
         });
-        this.setState({
-          participants: newParticipants
+        this.props.socket.on("send-peer-data", data => {
+          const newParticipants = Object.assign({}, this.state.participants);
+          Object.keys(data.participants).forEach(streamId => {
+            newParticipants[streamId] = data.participants[streamId]
+
+          });
+          this.setState({
+            participants: newParticipants
+          })
         })
-      })
 
-      this.props.socket.on("user-disconnected", (data) => {
-        console.log(`streamId disconnecting: `, data.streamId);
-        // delete newVideos[data.streamId]
-        // this.setState({ videos: newVideos })
-        // console.log('going to close user ');
-        if (this.state.peers[data.streamId]) {
-          this.state.peers[data.streamId].close(data.streamId);
-        }
-        const newPeers = Object.assign({}, this.state.peers);
-        const newVideos = Object.assign({}, this.state.videos);
-        const newParticipants = Object.assign({}, this.state.participants);
-
-        delete newParticipants[data.streamId]
-        delete newPeers[data.streamId]
-        Object.keys(this.state.videos).forEach(peerId => {
-          if (peerId !== this.myVideoStream.id) {
-            if(!newPeers[peerId]) {
-              delete newVideos[peerId]
-            }
+        this.props.socket.on("user-disconnected", (data) => {
+          console.log(`streamId disconnecting: `, data.streamId);
+          // delete newVideos[data.streamId]
+          // this.setState({ videos: newVideos })
+          // console.log('going to close user ');
+          if (this.state.peers[data.streamId]) {
+            this.state.peers[data.streamId].close(data.streamId);
           }
-        });
-        this.setState({
-          peers: newPeers,
-          videos: newVideos,
-          participants: newParticipants
-        })
-      });
-      
-      this.peer.on("open", (id) => {
-        // console.log('joining room');
-        // this.roomId = id;
-        this.props.socket.emit("join-room", { 
-          groupId: this.props.groupId,
-          userId: this.props.userId,
-          id,
-          streamId: this.myVideoStream.id,
-          handle: this.props.handle
-        });
-      });
-    },
-    err => {
-      console.log(err);
-      alert("Your camera is busy with some other app or software")
-    });
-    
+          const newPeers = Object.assign({}, this.state.peers);
+          const newVideos = Object.assign({}, this.state.videos);
+          const newParticipants = Object.assign({}, this.state.participants);
 
- 
+          delete newParticipants[data.streamId]
+          delete newPeers[data.streamId]
+          Object.keys(this.state.videos).forEach(peerId => {
+            if (peerId !== this.myVideoStream.id) {
+              if (!newPeers[peerId]) {
+                delete newVideos[peerId]
+              }
+            }
+          });
+          this.setState({
+            peers: newPeers,
+            videos: newVideos,
+            participants: newParticipants
+          })
+        });
+
+        this.peer.on("open", (id) => {
+          // console.log('joining room');
+          // this.roomId = id;
+          this.props.socket.emit("join-room", {
+            groupId: this.props.groupId,
+            userId: this.props.userId,
+            id,
+            streamId: this.myVideoStream.id,
+            handle: this.props.handle
+          });
+        });
+      },
+        err => {
+          console.log(err);
+          alert("Your camera is busy with some other app or software")
+        });
+
+
+
   }
 
   connectToNewUser(id, stream) {
@@ -271,12 +271,12 @@ class VideoStream extends Component {
 
 
   render() {
-    if(!this.myVideoStream) return null;
-    if(!this.state.videos[this.myVideoStream.id]) return null;
+    if (!this.myVideoStream) return null;
+    if (!this.state.videos[this.myVideoStream.id]) return null;
     console.log(`this.state.videos in render: `, this.state.videos);
     console.log(`this.state.peers in render: `, this.state.peers);
     console.log(`this.state.participants in render: `, this.state.participants);
-    
+
     const audioMuteBtn = this.state.myAudioMuted ?
       (
         <svg xmlns="http://www.w3.org/2000/svg" fill="white" className="video-icon bi bi-mic-mute-fill" viewBox="0 0 16 16">
@@ -312,14 +312,16 @@ class VideoStream extends Component {
                 {audioMuteBtn}
               </div>
             </div>
-            <video
+            <video className="video-item"
               ref={video => {
                 if (video) { video.srcObject = ownVideo }
               }}
               autoPlay={true}
             >
             </video>
-            {this.state.participants[this.myVideoStream.id]}
+            <div className="video-name">
+              <p>{this.state.participants[this.myVideoStream.id]}</p>
+            </div>
           </li>
           {
             otherVideos.map(stream => {
@@ -332,7 +334,9 @@ class VideoStream extends Component {
                     autoPlay={true}
                   >
                   </video>
-                  {this.state.participants[stream.id]}
+                  <div className="video-name">
+                    <p>{this.state.participants[stream.id]}</p>
+                  </div>
                 </li>
               )
             })
