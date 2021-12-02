@@ -126,7 +126,7 @@ function EditorShow(props) {
                 className="editor"
                 defaultLanguage="javascript"
                 defaultValue={body}
-                theme="my-theme"
+                theme="hc-black"
                 options={options}
                 onMount={handleEditorDidMount}
                 onChange={handleEditorChange} />
