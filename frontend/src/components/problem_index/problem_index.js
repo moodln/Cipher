@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { socket } from "../../util/socket";
 import SidebarContainer from "../sidebar/sidebar_container";
 
 class ProblemIndex extends React.Component {
@@ -10,6 +11,10 @@ class ProblemIndex extends React.Component {
     }
 
     componentDidMount() {
+        
+        if (socket) {
+            socket.close();
+        }
         this.props.fetchProblems();
     }
 

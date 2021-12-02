@@ -2,10 +2,14 @@ import React from "react"
 import { connect } from "react-redux"
 import { fetchCurrentUserGroups } from "../../actions/group_actions";
 import { selectGroupsWhereCurrentUserParticipant } from "../../selectors/groups_selector";
+import { socket } from "../../util/socket";
 import GroupIndexBadgeContainer from "./group_index_badge";
 
 class GroupIndex extends React.Component {
     componentDidMount() {
+      if (socket.connected) {
+        socket.close();
+      }
         this.props.fetchUserGroups();
     }
 
