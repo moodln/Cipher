@@ -28,6 +28,7 @@ class GroupShow extends React.Component {
   }
 
   render() {
+    
     if (!this.props.group) return null;
     if (!this.props.problem) return null;
     const { group } = this.props;
@@ -54,6 +55,16 @@ class GroupShow extends React.Component {
                   <ul className="participants-list">
                     {
                       this.props.participants.map(user => (
+                        <li key={user["_id"]}>{user.handle}</li>
+                      ))
+                    }
+                  </ul>
+                </div>
+                <div className="group-show-bar-participants">
+                  <h1>Invited Users:</h1>
+                  <ul className="participants-list">
+                    {
+                      Object.values(this.props.invitedUsers.byId).map(user => (
                         <li key={user["_id"]}>{user.handle}</li>
                       ))
                     }

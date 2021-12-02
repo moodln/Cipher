@@ -22,7 +22,7 @@ class Sidebar extends React.Component {
             const sidebar = document.querySelector(".sidebar-section-div");
             if (!sidebar) return;
 
-            if (window.scrollY > 10) {
+            if (window.scrollY > 30) {
                 sidebar.className = "sidebar-section-div side-glow";
             } else {
                 sidebar.className = "sidebar-section-div";
