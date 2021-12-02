@@ -339,7 +339,7 @@ class VideoStream extends Component {
           {
             otherVideos.map(stream => {
               return (
-                <li key={stream.id}>
+                <li key={stream.id} className="video-list-item">
                   <video className="video-item"
                     ref={video => {
                       if (video) { video.srcObject = stream }

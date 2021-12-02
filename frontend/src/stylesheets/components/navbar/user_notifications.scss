@@ -9,10 +9,14 @@
     background-color: $blue-darkest;
     transition: all 0.2s ease-in;
 
-    .color {
-        svg {
-            fill: $orange-dark;
-        }
+    .notification-img {
+        border: 2px solid transparent;
+        transition: all .2s ease;
+    }
+
+    .color svg {
+        fill: $orange-dark;
+        transition: all .2s ease;
     }
    
     svg {
@@ -22,11 +26,8 @@
         border: 2px solid transparent;
         cursor: pointer;
         fill: white;
-        transition: all 0.2s ease-in;
+        transition: all 0.2s ease;
     }
-
-    
-
 }
 
 .notification-dropdown { 
@@ -55,12 +56,10 @@
         opacity: 1;
         pointer-events: all;
         transform: scaleY(1) translateY(0px);
-
-
     }
 
     .notification-img {
-        border: 2px solid $blue-lightest;
+        border-color: $blue-lightest;
 
         svg {
             margin: 5px;
@@ -69,12 +68,9 @@
             fill: $blue-lightest;
         }
     }
-
 }
 
-
 .notification-dropdown {
-
     p {
             text-align: center;
             margin-bottom: 4px;
@@ -84,7 +80,6 @@
     .no-notifications-message {
         padding: 10px;
         font-size: 13px;
-        
 
         p {
             margin: 3px;
@@ -119,7 +114,6 @@
                 transition: all 0.3s ease-in;
             }
 
-
             .button-styling:first-child:hover {
                 border: 0.5px solid #20a542;
             }
@@ -127,8 +121,6 @@
             .button-styling:last-child:hover {
                 border: 0.5px solid $orange-light;
             }
-             
-
         }
 
         .button-styling:hover {
@@ -142,11 +134,5 @@
             transition: all 0.3s ease-in;
             font-stretch: semi-expanded;
         }
-
-
-
     }
 }
-
-
-

@@ -61,12 +61,10 @@ app.use("/peerjs", peerServer);
 
 
 io.on("connection", socket => {
-  console.log('socket online!!!');
-  
   // if server receives event with name "editor-data", 
   // message will be broadcast to all other connected users
   socket.on("join-editor", data => {
-    console.log('joining group editor');
+    // console.log('joining group editor');
     socket.join(data.groupId)
   })
   socket.on("editor-data", (data) => {
@@ -75,8 +73,8 @@ io.on("connection", socket => {
     socket.broadcast.to(data.groupId).emit("editor-data", data);
   })
   socket.on("join-room", (data) => {
-    console.log(`data.userId joinging stream: `, data.userId);
-    console.log(`id of a peer joining(?): `, data.id);
+    // console.log(`data.userId joinging stream: `, data.userId);
+    // console.log(`id of a peer joining(?): `, data.id);
     
     socket.join(data.groupId);
     
@@ -85,14 +83,14 @@ io.on("connection", socket => {
 
   socket.on("send-peer-data", (data) => {
 
-    console.log('sending peer data');
-    console.log(`data: `, data);
+    // console.log('sending peer data');
+    // console.log(`data: `, data);
     
     socket.broadcast.to(data.groupId).emit("send-peer-data", data);
   });
   socket.on("connected-user-handle", (data) => {
 
-    console.log('connected user is sending their handle back');
+    // console.log('connected user is sending their handle back');
     
     socket.broadcast.to(data.groupId).emit("connected-user-handle", data);
   });
