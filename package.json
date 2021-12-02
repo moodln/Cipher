@@ -1,7 +1,7 @@
 {
-  "name": "maria-twitter",
+  "name": "Cipher",
   "version": "1.0.0",
-  "description": "this is my not so first mern project",
+  "description": "Cipher is a MERN stack web application where developers can collaborate with one another on coding projects over video chat. It was inspired by our desire to practice the driver/navigator roles from a shared code editing environment while viewing the faces of the people we're collaborating with.",
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
