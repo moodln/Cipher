@@ -9,9 +9,7 @@ import solve from "../../assets/images/solve_problem.png";
 
 const About = () => (
     <div className="page-with-sidebar">
-        {
-            this.props.loggedIn ? <SidebarContainer /> : null
-        }
+        {this.props.loggedIn ? <SidebarContainer /> : null}
         <div className="about-index container">
             <section className="about-index-header">
                 <div className="about-index-header-div">
