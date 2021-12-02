@@ -72,7 +72,6 @@ io.on("connection", socket => {
   socket.on("editor-data", (data) => {
     
     
-    // socket.join(data.groupId);
     socket.broadcast.to(data.groupId).emit("editor-data", data);
   })
   socket.on("join-room", (data) => {
@@ -82,7 +81,6 @@ io.on("connection", socket => {
     socket.join(data.groupId);
     
     socket.broadcast.to(data.groupId).emit("user-connected", data);
-    // socket.broadcast.to(data.groupId).emit("ping-to-user", data);
   });
 
   socket.on("send-peer-data", (data) => {
