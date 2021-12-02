@@ -58,10 +58,10 @@ const peerServer = ExpressPeerServer(httpServer, {
   path: "/"
 });
 app.use("/peerjs", peerServer);
-// app.use(cors());
 
 
 io.on("connection", socket => {
+  console.log('socket online!!!');
   
   // if server receives event with name "editor-data", 
   // message will be broadcast to all other connected users
@@ -84,20 +84,29 @@ io.on("connection", socket => {
 
   socket.on("send-peer-data", (data) => {
 
-    // socket.join(data.groupId);
     console.log('sending peer data');
     console.log(`data: `, data);
     
     socket.broadcast.to(data.groupId).emit("send-peer-data", data);
+  });
+  socket.on("connected-user-handle", (data) => {
+
+    console.log('connected user is sending their handle back');
+    
+    socket.broadcast.to(data.groupId).emit("connected-user-handle", data);
   });
 
   socket.on("user-disconnected", data => {
     console.log('user disconnected');
     console.log(`data in user disconnect: `, data);
     socket.broadcast.to(data.groupId).emit("user-disconnected", data);
-    socket.leave(data.groupId)
+    socket.disconnect()
 
   })
+});
+
+io.on("connect_error", (err) => {
+  console.log(`connect_error due to ${err.message}`);
 });
 
 

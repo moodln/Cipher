@@ -17,7 +17,9 @@ class GroupShow extends React.Component {
   }
 
   componentDidMount() {
-
+    // if (socket === null) {
+      socket.connect();
+    // }
     this.props.fetchGroup(this.props.match.params.groupId)
   }
 

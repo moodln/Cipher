@@ -3,8 +3,13 @@ import { Link } from "react-router-dom";
 import graphic1 from "../../assets/images/graphic_1.png";
 import graphic2 from "../../assets/images/graphic_2.png";
 import graphic3 from "../../assets/images/graphic_3.png";
+import { socket } from "../../util/socket";
 
-const Splash = () => (
+const Splash = () => {
+    if (socket !== null) {
+    socket.close();
+    }
+    return (
     <div className="splash-section container">
         <section className="splash-main">
             <div className="splash-main-info-container">
@@ -104,6 +109,6 @@ const Splash = () => (
             </div>
         </section>
     </div>
-);
+)};
 
 export default Splash;

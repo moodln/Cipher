@@ -56,6 +56,12 @@ class VideoStream extends Component {
     window.removeEventListener("beforeunload", this.leaveThePage);
     await this.props.socket.emit("user-disconnected", { userId: this.props.userId, streamId: this.myVideoStream.id, groupId: this.props.groupId })
     this.myVideoStream.getTracks().forEach(track => track.stop());
+    
+    this.setState({
+      peers: {},
+      videos: {},
+      participants: {}
+    })
     // this.props.socket.close();
     // console.log(`this.state.videos before unloading: `, this.state.videos);
     // console.log(`this.state.peers: `, this.state.peers);
@@ -63,6 +69,8 @@ class VideoStream extends Component {
 
 
   componentDidMount() {
+    console.log('1. MOUNTING VIDEO STREAM');
+    
     window.addEventListener("beforeunload", this.leaveThePage);
     // console.log(`this.props.participants: `, this.props.participants);
 
@@ -83,8 +91,8 @@ class VideoStream extends Component {
       video: true,
     })
     .then((stream) => {
+      console.log('2. going to add own video');
       this.myVideoStream = stream;
-      // console.log('going to add own video');
       this.myVideoStream.getVideoTracks()[0].enabled = false;
       this.myVideoStream.getAudioTracks()[0].enabled = false;
 
@@ -96,7 +104,12 @@ class VideoStream extends Component {
 
       this.addVideoStream(this.myVideoStream);
       this.peer.on("call", (call) => {
-        
+        console.log('WILL SEND MY HANDLE FROM HERE', this.props.handle);
+        this.props.socket.emit("connected-user-handle", {
+          groupId: this.props.groupId,
+          streamId: this.myVideoStream.id,
+          handle: this.props.handle
+        })
         call.answer(stream);
         console.log('in call');
         // console.log(`call peer on call: `, call);
@@ -116,14 +129,13 @@ class VideoStream extends Component {
       
       this.props.socket.on("user-connected", (data) => {
         console.log('in user-connected sending my stream back to them');
-        console.log(`this.myVideoStream.id: `, this.myVideoStream.id);
-        console.log(`stream.id: `, stream.id);
-        const newParticipants = Object.assign({}, this.state.participants);
-        newParticipants[data.streamId] = data.handle
-        this.setState({
-          participants: newParticipants
-        })
+        // const newParticipants = Object.assign({}, this.state.participants);
+        // newParticipants[data.streamId] = data.handle
+        // this.setState({
+        //   participants: newParticipants
+        // })
         // if (data.userId === this.props.userId) {
+          console.log(`this.myVideoStream that i am going to send: `, this.myVideoStream.id);
           
           this.connectToNewUser(data.id, this.myVideoStream);
           console.log('connected user, sending all participants data');
@@ -142,6 +154,14 @@ class VideoStream extends Component {
           newParticipants[streamId] = data.participants[streamId]
           
         });
+        this.setState({
+          participants: newParticipants
+        })
+      })
+
+      this.props.socket.on("connected-user-handle", data => {
+        const newParticipants = Object.assign({}, this.state.participants);
+        newParticipants[data.streamId] = data.handle
         this.setState({
           participants: newParticipants
         })
@@ -175,24 +195,24 @@ class VideoStream extends Component {
         })
       });
       
-      this.peer.on("open", (id) => {
-        // console.log('joining room');
-        // this.roomId = id;
-        this.props.socket.emit("join-room", { 
-          groupId: this.props.groupId,
-          userId: this.props.userId,
-          id,
-          streamId: this.myVideoStream.id,
-          handle: this.props.handle
-        });
-      });
     },
     err => {
       console.log(err);
       alert("Your camera is busy with some other app or software")
     });
     
-
+    this.peer.on("open", (id) => {
+      console.log('joining room');
+      // this.roomId = id;
+      this.props.socket.emit("join-room", { 
+        groupId: this.props.groupId,
+        userId: this.props.userId,
+        id,
+        // streamId: this.myVideoStream.id,
+        // handle: this.props.handle
+      });
+    });
+    
  
   }
 
@@ -242,7 +262,7 @@ class VideoStream extends Component {
 
   addVideoStream(stream) {
     // console.log('adding user stream: ', userId);
-    console.log(`stream we are adding to videos: `, stream.id);
+    console.log(`3. stream we are adding to videos: `, stream.id);
 
     // console.log(`this.props.userId: `, this.props.userId);
     const newVideos = Object.assign({}, this.state.videos);
@@ -273,8 +293,8 @@ class VideoStream extends Component {
   render() {
     if(!this.myVideoStream) return null;
     if(!this.state.videos[this.myVideoStream.id]) return null;
-    console.log(`this.state.videos in render: `, this.state.videos);
-    console.log(`this.state.peers in render: `, this.state.peers);
+    console.log(`this.state.videos in render: `, Object.keys(this.state.videos));
+    console.log(`this.state.peers in render: `, Object.keys(this.state.peers));
     console.log(`this.state.participants in render: `, this.state.participants);
     
     const audioMuteBtn = this.state.myAudioMuted ?
@@ -291,11 +311,11 @@ class VideoStream extends Component {
       )
     const videoMuteBtn = this.state.myVideoMuted ? (
       <svg xmlns="http://www.w3.org/2000/svg" fill="white" className="video-icon bi bi-camera-video-off-fill" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M10.961 12.365a1.99 1.99 0 0 0 .522-1.103l3.11 1.382A1 1 0 0 0 16 11.731V4.269a1 1 0 0 0-1.406-.913l-3.111 1.382A2 2 0 0 0 9.5 3H4.272l6.69 9.365zm-10.114-9A2.001 2.001 0 0 0 0 5v6a2 2 0 0 0 2 2h5.728L.847 3.366zm9.746 11.925-10-14 .814-.58 10 14-.814.58z" />
+        <path fillRule="evenodd" d="M10.961 12.365a1.99 1.99 0 0 0 .522-1.103l3.11 1.382A1 1 0 0 0 16 11.731V4.269a1 1 0 0 0-1.406-.913l-3.111 1.382A2 2 0 0 0 9.5 3H4.272l6.69 9.365zm-10.114-9A2.001 2.001 0 0 0 0 5v6a2 2 0 0 0 2 2h5.728L.847 3.366zm9.746 11.925-10-14 .814-.58 10 14-.814.58z" />
       </svg>
     ) : (
       <svg xmlns="http://www.w3.org/2000/svg" fill="white" className="video-icon bi bi-camera-video-fill" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z" />
+        <path fillRule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z" />
       </svg>
     )
     const ownVideo = this.state.videos[this.myVideoStream.id]
