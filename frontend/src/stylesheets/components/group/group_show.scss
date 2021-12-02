@@ -8,7 +8,8 @@
         font-size: 30px;
         text-shadow: 0 0 10px $blue-light;
     }
-    span {
+
+    .group-show-date {
         margin: 0px 10px;
         font-size: 13px;
         font-style: italic;
@@ -97,7 +98,7 @@
             .editor {
                 border: 1px solid $orange-light;
                 border-radius: 4px;
-                // overflow: hidden;
+                overflow: hidden;
             }
         } 
     }
@@ -370,12 +371,12 @@
 
                 .editor {
                     border: 1px solid $orange-light;
-                    border-radius: 10px;
-                    // overflow: hidden;
+                    border-radius: 4px;
+                    overflow: hidden;
                 }
             }
 
-            .editor-container section{
+            .editor-container section {
                 height: 90% !important;
                 // border: 1px solid $orange-light;
             }
@@ -475,7 +476,7 @@
             font-size: 14px;
             z-index: 20 !important;
     
-            button{
+            button {
                 position: relative;
                 border: 1px solid $orange-light;
                 width: 50px;
