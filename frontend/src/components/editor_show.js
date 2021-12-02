@@ -20,7 +20,7 @@ function EditorShow(props) {
     // Code to receive event:
     let incomingTimeout;
     props.socket.on("editor-data", incomingData => {
-        console.log('Incoming: ',incomingData);
+        console.log('Incoming: ', incomingData);
 
         if (incomingData.userId === props.userId) return;
         if (incomingData.body === editorRef.current.getValue()) return;
@@ -31,17 +31,31 @@ function EditorShow(props) {
                 setBody(incomingData.body);
             }
         }, 750);
-        
+
     })
 
     props.socket.on("user-connected", data => {
         console.log('editor also gets user-connected');
         props.socket.emit("editor-data", { body: body, userId: props.userId, groupId: props.groupId });
-        
+
     })
 
     function handleEditorDidMount(editor, monaco) {
-        props.socket.emit("join-editor", {groupId: props.groupId})
+        monaco.editor.defineTheme('myTheme', {
+            base: 'vs-dark',
+            inherit: true,
+            rules: [{ background: '0E1525' }],
+            colors: {
+                'editor.background': '#0E1525',
+                'editor.lineHighlightBackground': '#0000FF20',
+                'editorLineNumber.activeForeground': "#FFFFFF",
+                'editor.selectionBackground': "#BFFE7B10",
+                'editor.inactiveSelectionBackground': "#FFFFFF"
+            }
+        });
+        monaco.editor.setTheme('myTheme');
+
+        props.socket.emit("join-editor", { groupId: props.groupId })
 
         editorRef.current = editor;
     }
@@ -53,7 +67,7 @@ function EditorShow(props) {
             if (editorRef.current.getValue() !== body) {
                 const cursorPosition = editorRef.current.getPosition();
                 // console.log('setting value at 10');
-                
+
                 editorRef.current.setValue(body);
                 editorRef.current.setPosition(cursorPosition);
             }
@@ -67,7 +81,7 @@ function EditorShow(props) {
     function handleEditorChange(value, e) {
         console.log(`value: `, value);
         console.log(`e: `, e);
-        
+
         const data = editorRef.current.getValue();
         if (data === body) return;
 
@@ -85,9 +99,24 @@ function EditorShow(props) {
 
     const options = {
         fontSize: "16px",
-        letterSpacing: "1em"
+        letterSpacing: "1em",
+        lineDecorationsWidth: "0px",
+        minimap: {
+            enabled: true,
+            scale: 1,
+            size: "actual"
+        },
+        padding: {
+            top: '10px',
+            bottom: '10px'
+        },
+        revealHorizontalRightPadding: "20px",
+        showUnused: true,
+        wordWrap: "wordWrapColumn",
+        wordWrapColumn: '100'
     };
-
+    //wordSeparators???
+    //wordWrap
     function leaveGroup() {
         props.leaveGroup()
     }
@@ -97,7 +126,7 @@ function EditorShow(props) {
                 className="editor"
                 defaultLanguage="javascript"
                 defaultValue={body}
-                theme="vs-dark"
+                theme="my-theme"
                 options={options}
                 onMount={handleEditorDidMount}
                 onChange={handleEditorChange} />
