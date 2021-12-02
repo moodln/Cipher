@@ -17,7 +17,7 @@ function EditorShow(props) {
         if (editorRef.current) {
             if (incomingData.userId === props.userId) return;
             if (incomingData.body === editorRef.current.getValue()) return;
-    
+
             if (incomingTimeout) clearTimeout(incomingTimeout);
             incomingTimeout = setTimeout(() => {
                 if (incomingData.body !== body) {
@@ -64,7 +64,7 @@ function EditorShow(props) {
         if (outgoingTimeout) clearTimeout(outgoingTimeout);
         outgoingTimeout = setTimeout(() => {
             props.socket.emit(
-                "editor-data", { 
+                "editor-data", {
                 body: editorRef.current.getValue(),
                 userId: props.userId,
                 groupId: props.groupId
@@ -104,7 +104,7 @@ function EditorShow(props) {
             <Editor className="editor"
                 defaultLanguage="javascript"
                 defaultValue={body}
-                theme="my-theme"
+                theme="hc-black"
                 options={options}
                 onMount={handleEditorDidMount}
                 onChange={handleEditorChange} />

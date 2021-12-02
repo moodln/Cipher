@@ -11,12 +11,9 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 19;
     padding: 6px;
-    // padding-right: 10px;
-    // border-radius: 3px;
     gap: 10px;
     bottom: 0px;
     left: 0px;
-    // clip-path: polygon(0 0, 75% 0%, 100% 100%, 0% 100%);
 
     .video-icon-div {
       cursor: pointer;
@@ -63,11 +60,11 @@
       background-color: rgba(0, 0, 0, 0.5);
       z-index: 19;
       padding: 4px;
-      // padding-left: 10px;
       gap: 10px;
       top: 0px;
       right: 0px;  
-      // clip-path: polygon(0 0, 100% 0%, 100% 100%, 25% 100%);
+      border-radius: 3px;
+      // clip-path: polygon(0 0, 100% 0%, 100% 100%, 25px 100%);
     }
 
   }
