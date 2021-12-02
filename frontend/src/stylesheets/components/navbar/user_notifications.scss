@@ -1,32 +1,37 @@
 .notification-badge {
-    height: 50px;
-    width: 82px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
     background-color: $blue-darkest;
+    display: flex;
+    justify-content: center;
+    width: 50px;
+    margin: 0 10px;
     transition: all 0.2s ease-in;
 
+    .notification-img{
+        box-sizing: border-box;
+        border: 2px solid transparent;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.2s ease-in;
+
+        svg {
+            height: 35px;
+            width: 35px;
+            margin: 5px;
+            fill: white;
+            transition: all 0.2s ease-in;
+        }
+    }
     .color {
         svg {
             fill: $orange-dark;
+            transition: all .2s ease;
         }
     }
-   
-    svg {
-        margin: 5px;
-        height: 35px;
-        width: 35px;
-        border: 2px solid transparent;
-        cursor: pointer;
-        fill: white;
-        transition: all 0.2s ease-in;
-    }
-
-    
-
 }
 
 .notification-dropdown { 
@@ -34,33 +39,30 @@
     flex-direction: column;
     position: absolute;
     background-color: $blue-darkest;
-    background-clip: content-box;
+    border-top: 5px solid transparent;
+    border-bottom: 1px solid $blue-lightest;    
     min-width: 160px;
+    // min-height: 132px;
     border-radius: 3px;
     z-index: -1;
-    right: 0px;
-    top: calc(100%);
-    border-top: 5px solid transparent;
-    box-shadow: $blue-light 0px 4px 6px -5px, $blue-light 0px 2px 6px -5px;            
-    transform: scaleY(0.5) translateY(-20px);
+    top: calc(50%);
+    right: 0px;     
     opacity: 0;
     pointer-events: none;
-    transform-origin: top;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 .notification-badge:hover {
+
     .notification-dropdown {
-        z-index: 1;
         opacity: 1;
+        z-index: 3 !important;
+        top: calc(100%);
         pointer-events: all;
-        transform: scaleY(1) translateY(0px);
-
-
     }
 
     .notification-img {
-        border: 2px solid $blue-lightest;
+        border-color: $blue-lightest;
 
         svg {
             margin: 5px;
@@ -69,12 +71,9 @@
             fill: $blue-lightest;
         }
     }
-
 }
 
-
 .notification-dropdown {
-
     p {
             text-align: center;
             margin-bottom: 4px;
@@ -84,7 +83,6 @@
     .no-notifications-message {
         padding: 10px;
         font-size: 13px;
-        
 
         p {
             margin: 3px;
@@ -119,7 +117,6 @@
                 transition: all 0.3s ease-in;
             }
 
-
             .button-styling:first-child:hover {
                 border: 0.5px solid #20a542;
             }
@@ -127,8 +124,6 @@
             .button-styling:last-child:hover {
                 border: 0.5px solid $orange-light;
             }
-             
-
         }
 
         .button-styling:hover {
@@ -142,11 +137,5 @@
             transition: all 0.3s ease-in;
             font-stretch: semi-expanded;
         }
-
-
-
     }
 }
-
-
-

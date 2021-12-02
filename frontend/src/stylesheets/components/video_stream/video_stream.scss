@@ -3,19 +3,28 @@
   position: relative;
 
 
-  .video-icon-container{
+  .video-icon-container {
     position: absolute;
     display: flex;
+    // display: none;
     flex-direction: row;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 19;
-    padding: 4px;
-    border-radius: 3px;
+    padding: 6px;
     gap: 10px;
-    bottom: 5px;
-    left: 3px;
+    bottom: 0px;
+    left: 0px;
 
     .video-icon-div {
+      cursor: pointer;
+
+      svg {
+        transition: all .2s ease;
+      }
+
+      svg:hover {
+        fill: $blue-lightest;
+      }
 
       .video-icon {
         height: 20px;
@@ -25,17 +34,39 @@
 
   }
 
-  ul{
+  ul {
     display: flex;
     flex-direction: column;
 
-    .video-first{
+    .video-first {
       position: relative;
     }
 
-    video {
-      width: 100%;
+    .video-others {
+      position: relative;
     }
+
+    .video-list-item {
+      position: relative;
+    }
+
+    .video-item {
+      width: 100%;
+      position: relative;
+    }
+
+    .video-name {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 19;
+      padding: 4px;
+      gap: 10px;
+      top: 0px;
+      right: 0px;  
+      border-radius: 3px;
+      // clip-path: polygon(0 0, 100% 0%, 100% 100%, 25px 100%);
+    }
+
   }
 }
 
@@ -45,7 +76,7 @@
   #video-grid {
     width: 100%;
 
-    .video-icon-container{
+    .video-icon-container {
       position: absolute;
       display: flex;
       flex-direction: row;
@@ -53,9 +84,18 @@
       z-index: 19;
       gap: 5px;
       bottom: 5px;
-      left: 3px;
+      left: 5px;
   
       .video-icon-div {
+        cursor: pointer;
+
+        svg {
+          transition: all .2s ease;
+        }
+
+        svg:hover {
+          fill: $blue-lightest;
+        }
   
         .video-icon {
           height: 16px;
@@ -65,7 +105,7 @@
   
     }
   
-    ul{
+    ul {
       display: flex;
       flex-direction: row;
       padding: 5px 5px;

@@ -1,9 +1,9 @@
-.page-with-sidebar{
+.page-with-sidebar {
     display: flex;
     flex-direction: row;   
 }
 
-.sidebar-container{
+.sidebar-container {
     // display: flex;
     // flex-direction: column;
     // justify-content: flex-start;
@@ -11,7 +11,7 @@
     position: relative;
     z-index: 25;
 
-    .sidebar-section-div{
+    .sidebar-section-div {
         position: sticky;
         display: flex;
         flex-direction: column;
@@ -20,7 +20,7 @@
         top: 72px;
         transition: all 0.3s ease-in-out;
 
-        .sidebar-section{
+        .sidebar-section {
             background-color: $blue-darkest;
             width: 100px;
             padding-top: 20px;
@@ -29,7 +29,7 @@
             justify-content: center;
             transition: all 0.3s ease-in-out;
     
-            .sidebar-button{
+            .sidebar-button {
                 height: 70px;
                 width: 70px;
                 box-sizing: border-box;
@@ -41,7 +41,7 @@
                 transition: all 0.3s ease-in;  
                 z-index: 6 !important;
 
-                svg{
+                svg {
                     height: 30px;
                     width: 30px;
                     fill: white;
@@ -49,7 +49,7 @@
                 }
             }
     
-            .sidebar-menu{
+            .sidebar-menu {
                 display: flex;
                 flex-direction: column;
                 height: calc(100vh - 72px);
@@ -110,16 +110,16 @@
 
             .sidebar-section:hover {
 
-                .sidebar-button{
+                .sidebar-button {
                     transform: translate(2px, -2px);
                     border: 1px solid $orange-light;
                     box-shadow: -2px 2px 5px $orange-light;  
                     
-                    svg{
+                    svg {
                         fill: $orange-light;                    
                     }
                 }
-                .sidebar-menu{
+                .sidebar-menu {
                     opacity: 1;
                     z-index: 3 !important;
                     left: calc(80%);
@@ -127,7 +127,7 @@
 
                 }
             }
-            .sidebar-button:hover{
+            .sidebar-button:hover {
                 transform: translate(2px, -2px);
                 border: 1px solid $orange-light;
                 box-shadow: -2px 2px 5px $orange-light;  
@@ -138,7 +138,7 @@
 
             }
             
-            .sidebar-button:focus{
+            .sidebar-button:focus {
                 transform: translate(2px, -2px);
                 border: 1px solid $orange-light;
                 box-shadow: -2px 2px 5px $orange-light;  
@@ -149,7 +149,7 @@
 
             }
 
-            .sidebar-button:hover + .sidebar-menu{
+            .sidebar-button:hover + .sidebar-menu {
                 opacity: 1;
                 z-index: 3 !important;
                 left: calc(80%);
@@ -238,7 +238,7 @@
   
 }
 
-.side-glow{
+.side-glow {
     background-color: $blue-darkest;
     box-shadow: $orange-light 5px 0px 6px -5px;
     transition: all 0.5s ease-in;
