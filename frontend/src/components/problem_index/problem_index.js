@@ -11,9 +11,9 @@ class ProblemIndex extends React.Component {
     }
 
     componentDidMount() {
-        if (socket !== null) {
-            socket.close();
-        }
+        // if (socket !== null) {
+        //     socket.close();
+        // }
         this.props.fetchProblems();
     }
 

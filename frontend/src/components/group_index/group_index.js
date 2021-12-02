@@ -7,9 +7,9 @@ import GroupIndexBadgeContainer from "./group_index_badge";
 
 class GroupIndex extends React.Component {
     componentDidMount() {
-      if (socket !== null) {
-        socket.close();
-      }
+      // if (socket !== null) {
+      //   socket.close();
+      // }
         this.props.fetchUserGroups();
     }
 

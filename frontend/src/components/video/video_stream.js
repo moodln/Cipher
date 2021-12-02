@@ -57,11 +57,11 @@ class VideoStream extends Component {
     await this.props.socket.emit("user-disconnected", { userId: this.props.userId, streamId: this.myVideoStream.id, groupId: this.props.groupId })
     this.myVideoStream.getTracks().forEach(track => track.stop());
     
-    this.setState({
-      peers: {},
-      videos: {},
-      participants: {}
-    })
+    // this.setState({
+    //   peers: {},
+    //   videos: {},
+    //   participants: {}
+    // })
     // this.props.socket.close();
     // console.log(`this.state.videos before unloading: `, this.state.videos);
     // console.log(`this.state.peers: `, this.state.peers);
@@ -105,12 +105,12 @@ class VideoStream extends Component {
       this.addVideoStream(this.myVideoStream);
       this.peer.on("call", (call) => {
         console.log('WILL SEND MY HANDLE FROM HERE', this.props.handle);
-        this.props.socket.emit("connected-user-handle", {
-          groupId: this.props.groupId,
-          streamId: this.myVideoStream.id,
-          handle: this.props.handle
-        })
-        call.answer(stream);
+        call.answer(this.myVideoStream);
+        // this.props.socket.emit("connected-user-handle", {
+        //   groupId: this.props.groupId,
+        //   streamId: this.myVideoStream.id,
+        //   handle: this.props.handle
+        // })
         console.log('in call');
         // console.log(`call peer on call: `, call);
         
@@ -203,6 +203,8 @@ class VideoStream extends Component {
     
     this.peer.on("open", (id) => {
       console.log('joining room');
+      console.log(`peer connection id when joining room: `, id);
+      
       // this.roomId = id;
       this.props.socket.emit("join-room", { 
         groupId: this.props.groupId,
@@ -220,7 +222,7 @@ class VideoStream extends Component {
     console.log(`stream.id we are connecting: `, stream.id);
     // console.log(`userId we are connecting: `, userId);
     // console.log(`this.myVideoStream connecting to new user: `, this.myVideoStream);
-    // console.log(`id: `, id);
+    console.log(`peer connection id: `, id);
 
     const call = this.peer.call(id, stream);
     call.on("stream", (userVideoStream) => {

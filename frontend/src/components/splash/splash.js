@@ -6,9 +6,9 @@ import graphic3 from "../../assets/images/graphic_3.png";
 import { socket } from "../../util/socket";
 
 const Splash = () => {
-    if (socket !== null) {
-    socket.close();
-    }
+    // if (socket !== null) {
+    // socket.close();
+    // }
     return (
     <div className="splash-section container">
         <section className="splash-main">

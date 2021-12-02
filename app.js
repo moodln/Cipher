@@ -76,7 +76,8 @@ io.on("connection", socket => {
     socket.broadcast.to(data.groupId).emit("editor-data", data);
   })
   socket.on("join-room", (data) => {
-
+    console.log(`data.userId joinging stream: `, data.userId);
+    
     socket.join(data.groupId);
     
     socket.broadcast.to(data.groupId).emit("user-connected", data);
@@ -100,7 +101,7 @@ io.on("connection", socket => {
     console.log('user disconnected');
     console.log(`data in user disconnect: `, data);
     socket.broadcast.to(data.groupId).emit("user-disconnected", data);
-    socket.disconnect()
+    socket.leave(data.groupId)
 
   })
 });
