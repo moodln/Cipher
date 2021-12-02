@@ -28,6 +28,7 @@ export const inviteUserToGroup = (inviteeId, groupId) => dispatch => {
 export const fetchCurrentUserInvites = () => dispatch => {
     return InviteApiUtil.fetchCurrentUserInvites()
         .then(invitesResponse => dispatch(receiveInvites(invitesResponse.data)))
+        .catch(err => console.log(err))
 };
 
 export const inviteResolution = (inviteId, response) => dispatch => {
