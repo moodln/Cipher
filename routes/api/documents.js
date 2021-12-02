@@ -45,7 +45,7 @@ router.put("/:id", (req, res) => {
                     Group.findById( req.body.groupId, (err, groupResult) => {
                         groupResult.document = documentResult;
                         groupResult.save();
-                        console.log(`groupResult: `, groupResult);
+                        // console.log(`groupResult: `, groupResult);
                         
                         res.json({documentResult, groupResult})
                     })

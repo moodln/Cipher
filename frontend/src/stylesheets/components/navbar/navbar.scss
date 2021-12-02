@@ -259,23 +259,4 @@
     .nav-link{
         display:none;
     }
-    
-}
-
-.about-link-div {
-    margin-top: 15px;
-}
-
-.about-link-a {
-    background-color: $blue-lightest;
-    color: white;
-    padding: 15px 30px;
-    border-radius: 3px;
-    font-weight: 600;
-}
-
-.about-link-a:hover {
-    background-color: #4f89cc;
-    text-shadow: 0 0 5px $blue-lightest;
-    transition: all 0.05s ease-in;
 }

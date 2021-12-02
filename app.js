@@ -48,9 +48,9 @@ const http = require("http");
 const httpServer = http.createServer(app);
 const io = require("socket.io")(httpServer, {
   cors: {
-    origins: ["http://localhost:3000", "https://cipher-mern.herokuapp.com/"],//"*:*"
+    origins: ["http://localhost:3000", "https://cipher-mern.herokuapp.com/"],
     methods: ["GET", "POST"],
-    transports: ['websocket'],
+    transports: ["websocket"],
   }
 });
 const peerServer = ExpressPeerServer(httpServer, {
