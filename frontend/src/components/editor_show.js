@@ -46,6 +46,17 @@ function EditorShow(props) {
     }
 
     useEffect(() => {
+        window.addEventListener("beforeunload", saveDocument);
+     // componentDidMount events
+     return () => {
+       // componentWillUnmount events
+        saveDocument()
+        window.removeEventListener("beforeunload", saveDocument);
+     }
+   }, []);
+
+    useEffect(() => {
+
         if (editorRef.current) {
             if (editorRef.current.getValue() !== body) {
                 const cursorPosition = editorRef.current.getPosition();
@@ -54,6 +65,7 @@ function EditorShow(props) {
             }
         }
     }, [body]);
+
 
     let outgoingTimeout;
     function handleEditorChange(value, e) {
@@ -73,7 +85,9 @@ function EditorShow(props) {
     }
 
     function saveDocument() {
-        props.updateDocument(props.document, body, props.groupId);
+        if (editorRef.current) {
+            props.updateDocument(props.document, editorRef.current.getValue(), props.groupId);
+        }
     }
 
     function leaveGroup() {
