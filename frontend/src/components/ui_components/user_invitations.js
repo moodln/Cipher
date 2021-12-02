@@ -4,6 +4,16 @@ import { selectCurrentUserInvites } from "../../selectors/invites_selector";
 import InviteManagerBadgeContainer from "./invite_manager_badge";
 
 class UserInvitations extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.notifications !== this.props.notifications) {
+            this.props.fetchInvites()
+        }
+    }
+
     render() {
         const numberOfInvites = this.props.invites.length > 1 ? (
             <p>You have {this.props.invites.length} pending invites!</p>

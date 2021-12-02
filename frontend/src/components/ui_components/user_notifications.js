@@ -3,24 +3,46 @@ import { connect } from "react-redux"
 import { fetchCurrentUserInvites } from "../../actions/invite_actions";
 import { selectCurrentUserInvites } from "../../selectors/invites_selector"
 import UserInvitationsContainer from "./user_invitations";
+import { socket } from "../../util/socket";
 
 export class UserNotifications extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            displayUserInvites: false
+            displayUserInvites: false,
+            notifications: undefined
         }
     }
 
     componentDidMount() {
         this.props.fetchUserInvites();
+        socket.emit("newUser", this.props.currentUser.id)
+        this.receiveSocket();
     }
 
+
+    receiveSocket() {
+        socket.on("receiveNotification", (data) => {
+            this.setState({
+                notifications: this.props.invites.push(data)
+            })
+        })
+    }
+
+
     render() {
-        if (!this.props.invites) return null; 
+        if (!this.props.invites) {
+            return null
+        } else {
+            if (this.state.notifications === undefined && this.props.invites !== []) {
+                this.setState({
+                    notifications: this.props.invites
+                })
+            }
+        } 
         let color;
         this.props.invites.length === 0 ? color = '' : color = 'color';
-
+        console.log('invites', this.props.invites)
         return (
             <div onClick={() => this.setState({ displayUserInvites: !this.state.displayUserInvites })}>
                 <div className="notification-badge">
@@ -32,7 +54,7 @@ export class UserNotifications extends React.Component {
                         </svg>
                     </div>
                     <div className="notification-dropdown">
-                        <UserInvitationsContainer />
+                        <UserInvitationsContainer fetchInvites={this.props.fetchUserInvites} notifications={this.state.notifications} />
                     </div>
                 </div>
             </div>
@@ -40,10 +62,11 @@ export class UserNotifications extends React.Component {
     }
 }
 const mapStateToProps = state => ({
-        invites: selectCurrentUserInvites(
+    invites: selectCurrentUserInvites(
             state.entities.invites.byId,
             state.session.user.id
-    )
+    ),
+    currentUser: state.session.user
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -60,6 +60,25 @@ const peerServer = ExpressPeerServer(httpServer, {
 app.use("/peerjs", peerServer);
 // app.use(cors());
 
+let onlineUsers = [];
+
+const addUser = (userId, socketId) => {
+    if (!onlineUsers.some(user => user.userId === userId)) {
+        onlineUsers.push({
+            userId, 
+            socketId
+        })
+    }
+}
+
+const removeUser = (socketId) => {
+  onlineUsers = onlineUsers.filter(user => user.socketId !== socketId)
+
+}
+
+const getUser = (userId)=> {
+        return onlineUsers.find(user => user.userId === userId)
+}
 
 io.on("connection", socket => {
   
@@ -82,6 +101,21 @@ io.on("connection", socket => {
     socket.broadcast.to(data.groupId).emit("user-connected", data);
   });
 
+  socket.on("newUser", (userId) => {
+    console.log('going to add user', onlineUsers)
+    addUser(userId, socket.id);
+  });
+
+  socket.on("sendNotification", ({sender, receiver, group}) => {
+    const receiverUser = getUser(receiver)
+    console.log('in send notification', 'sender:', sender, 'receiver:', receiver, 'group:', group, 'usersOnline:', onlineUsers)
+    console.log('receiverUser', receiverUser)
+    socket.broadcast.emit("receiveNotification", {
+      sender, 
+      group
+    })
+  })
+
   // socket.on("send-peer-data", (data) => {
 
   //   // socket.join(data.groupId);
@@ -91,6 +125,7 @@ io.on("connection", socket => {
   // });
 
   socket.on("user-disconnected", data => {
+    removeUser(socket.id);
     console.log('user disconnected');
     console.log(`data in user disconnect: `, data);
     socket.broadcast.to(data.groupId).emit("user-disconnected", data);
