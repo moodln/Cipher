@@ -39,7 +39,7 @@ class GroupShow extends React.Component {
         <SidebarContainer />
         <div className="group-show-container">
           <h1>{this.props.group.title}</h1>
-          <span>Created: {new Date(this.props.problem.date).toDateString()}</span>
+          <span className="group-show-date">Created: {new Date(this.props.problem.date).toDateString()}</span>
           <div className="group-show">
             <div className="group-bar-main">
               <div className="group-show-bar">

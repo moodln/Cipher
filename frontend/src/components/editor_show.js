@@ -20,7 +20,7 @@ function EditorShow(props) {
     // Code to receive event:
     let incomingTimeout;
     props.socket.on("editor-data", incomingData => {
-        console.log('Incoming: ', incomingData);
+        // console.log('Incoming: ',incomingData);
 
         if (incomingData.userId === props.userId) return;
         if (incomingData.body === editorRef.current.getValue()) return;
@@ -35,7 +35,7 @@ function EditorShow(props) {
     })
 
     props.socket.on("user-connected", data => {
-        console.log('editor also gets user-connected');
+        // console.log('editor also gets user-connected');
         props.socket.emit("editor-data", { body: body, userId: props.userId, groupId: props.groupId });
 
     })
@@ -79,16 +79,17 @@ function EditorShow(props) {
 
     let outgoingTimeout;
     function handleEditorChange(value, e) {
-        console.log(`value: `, value);
-        console.log(`e: `, e);
-
+        // console.log(`value: `, value);
+        // console.log(`e: `, e);
+        
         const data = editorRef.current.getValue();
         if (data === body) return;
 
         setBody(data);
         if (outgoingTimeout) clearTimeout(outgoingTimeout);
+        debugger
         outgoingTimeout = setTimeout(() => {
-            console.log('Outgoing:', body);
+            // console.log('Outgoing:', body);
             props.socket.emit("editor-data", { body: body, userId: props.userId, groupId: props.groupId });
         }, 750);
     }
@@ -120,10 +121,10 @@ function EditorShow(props) {
     function leaveGroup() {
         props.leaveGroup()
     }
+
     return (
         <div className="editor-container">
-            <Editor
-                className="editor"
+            <Editor className="editor"
                 defaultLanguage="javascript"
                 defaultValue={body}
                 theme="hc-black"
@@ -134,9 +135,7 @@ function EditorShow(props) {
                 <button className="group-save-btn save-btn"
                     onClick={saveDocument}>Save</button>
                 <button className="group-save-btn leave-btn"
-                    onClick={leaveGroup}>
-                    LEAVE GROUP
-                </button>
+                    onClick={leaveGroup}>LEAVE GROUP</button>
             </div>
         </div>
     )
