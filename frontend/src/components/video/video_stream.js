@@ -20,9 +20,9 @@ class VideoStream extends Component {
       participants: {},
       newPeerId: undefined,
       streamCreated: false,
-      streamSent: false
     }
-
+    
+    this.streamSent = false;
 
   }
   componentWillUnmount() {
@@ -34,7 +34,7 @@ class VideoStream extends Component {
     // console.log(`this.state.newPeerId: `, this.state.newPeerId);
     // console.log(`this.myPeerId: `, this.myPeerId);
     
-    if (this.state.streamCreated && !this.state.streamSent && this.state.newPeerId && this.myVideoStream) {
+    if (this.state.streamCreated && !this.streamSent && this.state.newPeerId && this.myVideoStream) {
       // console.log('SENDING JOIN ROOM FOR THE FIRST TIME');
       // console.log(`this.state.newPeerId: `, this.state.newPeerId);
       
@@ -43,9 +43,7 @@ class VideoStream extends Component {
         userId: this.props.userId,
         id: this.state.newPeerId,
       });
-      this.setState({
-        streamSent: true
-      })
+      this.streamSent = true
     }
     if (prevState.newPeerId !== this.state.newPeerId && this.state.newPeerId && this.myVideoStream) {
       // console.log('SENDING JOIN ROOM TO NEW USER');
@@ -77,7 +75,7 @@ class VideoStream extends Component {
     // console.log('USER IS GOING TO DISCONNECT');
 
     window.removeEventListener("beforeunload", this.leaveThePage);
-    this.peer.disconnect();
+    // this.peer.disconnect();
     this.props.socket.emit("user-disconnected", { userId: this.props.userId, streamId: this.myVideoStream.id, groupId: this.props.groupId })
     this.myVideoStream.getTracks().forEach(track => track.stop());
     
@@ -136,11 +134,11 @@ class VideoStream extends Component {
           // console.log('call answered, streaming');
           const newPeers = Object.assign({}, this.state.peers);
           newPeers[userVideoStream.id] = call;
+          this.addVideoStream(userVideoStream);
           this.setState({
             peers: newPeers,
           })
 
-          this.addVideoStream(userVideoStream);
 
         });
       });
@@ -190,33 +188,14 @@ class VideoStream extends Component {
         const newPeers = Object.assign({}, this.state.peers);
         const newVideos = Object.assign({}, this.state.videos);
         const newParticipants = Object.assign({}, this.state.participants);
-
-        this.props.socket.on("user-disconnected", (data) => {
-          // console.log(`streamId disconnecting: `, data.streamId);
-          // delete newVideos[data.streamId]
-          // this.setState({ videos: newVideos })
-          // console.log('going to close user ');
-          if (this.state.peers[data.streamId]) {
-            this.state.peers[data.streamId].close(data.streamId);
-          }
-          const newPeers = Object.assign({}, this.state.peers);
-          const newVideos = Object.assign({}, this.state.videos);
-          const newParticipants = Object.assign({}, this.state.participants);
-
-          delete newParticipants[data.streamId]
-          delete newPeers[data.streamId]
-          Object.keys(this.state.videos).forEach(peerId => {
-            if (peerId !== this.myVideoStream.id) {
-              if (!newPeers[peerId]) {
-                delete newVideos[peerId]
-              }
+        delete newParticipants[data.streamId]
+        delete newPeers[data.streamId]
+        Object.keys(this.state.videos).forEach(peerId => {
+          if (peerId !== this.myVideoStream.id) {
+            if (!newPeers[peerId]) {
+              delete newVideos[peerId]
             }
-          });
-          this.setState({
-            peers: newPeers,
-            videos: newVideos,
-            participants: newParticipants
-          })
+          }
         });
         this.setState({
           peers: newPeers,
@@ -224,9 +203,7 @@ class VideoStream extends Component {
           participants: newParticipants
         })
       });
-
-      
-      
+        
     },
     err => {
       console.log(err);
@@ -269,6 +246,7 @@ class VideoStream extends Component {
     });
     call.on("close", (streamId) => {
       // console.log('in closing peer connection ');
+      // this.peer.disconnect();
     });
 
   }
@@ -361,7 +339,7 @@ class VideoStream extends Component {
           {
             otherVideos.map(stream => {
               return (
-                <li key={stream.id}>
+                <li key={stream.id} className="video-list-item">
                   <video className="video-item"
                     ref={video => {
                       if (video) { video.srcObject = stream }

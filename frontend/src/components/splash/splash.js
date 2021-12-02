@@ -52,7 +52,7 @@ const Splash = () => {
                     <img src={graphic1} alt="Coding graphic" />
                 </div>
                 <div className="splash-features-item-description right">
-                    <h2>Integrated coding environment</h2>
+                    <h2>Integrated Coding Environment</h2>
                     <h4>
                         Choose a practice problem from your home page
                         to automatically open a new document where you
@@ -76,7 +76,7 @@ const Splash = () => {
                     <img src={graphic2} alt="Video graphic" />
                 </div>
                 <div className="splash-features-item-description left">
-                    <h2>Live video</h2>
+                    <h2>Live Video Chat</h2>
                     <h4>
                         Collaborative code requires communication, and
                         communication requires face-to-face interaction.
@@ -92,7 +92,7 @@ const Splash = () => {
                     <img src={graphic3} alt="Groups and friends graphic" />
                 </div>
                 <div className="splash-features-item-description right">
-                    <h2>Groups & friends</h2>
+                    <h2>Work Groups</h2>
                     <h4>Browse from a list of users to
                         invite other developers to join your group. When
                         they accept your invitation, you can begin

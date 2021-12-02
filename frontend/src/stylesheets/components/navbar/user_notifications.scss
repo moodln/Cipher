@@ -29,6 +29,7 @@
     .color {
         svg {
             fill: $orange-dark;
+            transition: all .2s ease;
         }
     }
 }
@@ -61,7 +62,7 @@
     }
 
     .notification-img {
-        border: 2px solid $blue-lightest;
+        border-color: $blue-lightest;
 
         svg {
             margin: 5px;
@@ -72,9 +73,7 @@
     }
 }
 
-
 .notification-dropdown {
-
     p {
             text-align: center;
             margin-bottom: 4px;
@@ -84,7 +83,6 @@
     .no-notifications-message {
         padding: 10px;
         font-size: 13px;
-        
 
         p {
             margin: 3px;
@@ -119,7 +117,6 @@
                 transition: all 0.3s ease-in;
             }
 
-
             .button-styling:first-child:hover {
                 border: 0.5px solid #20a542;
             }
@@ -142,6 +139,3 @@
         }
     }
 }
-
-
-
