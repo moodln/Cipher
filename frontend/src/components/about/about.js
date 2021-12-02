@@ -117,15 +117,15 @@ class About extends React.Component {
                             </div>
                         </section>
                         <div className="about-link">
-                            <h2>Let's Get Started!</h2>
+                            <h2 id="about-link-title">Get Started</h2>
                             {
                                 this.props.loggedIn ? (
-                                    <div className="nav-link-div">
-                                        <Link to="/problems" className="nav-link">Problems</Link>
+                                    <div className="about-link-div">
+                                        <Link to="/problems" className="about-link-a">PROBLEMS</Link>
                                     </div>
                                 ) : (
-                                    <div className="nav-link-div">
-                                        <Link to="/login" className="nav-link">Log In</Link>
+                                    <div className="about-link-div">
+                                        <Link to="/login" className="about-link-a">LOGIN</Link>
                                     </div>
                                 )
                             }
@@ -137,7 +137,5 @@ class About extends React.Component {
         )
     }
 }
-
-
 
 export default About;
