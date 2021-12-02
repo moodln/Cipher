@@ -58,6 +58,7 @@ const peerServer = ExpressPeerServer(httpServer, {
   path: "/"
 });
 app.use("/peerjs", peerServer);
+// app.use(cors());
 
 let onlineUsers = [];
 
@@ -80,10 +81,10 @@ const getUser = (userId)=> {
 }
 
 io.on("connection", socket => {
+  
   // if server receives event with name "editor-data", 
   // message will be broadcast to all other connected users
   socket.on("join-editor", data => {
-    // console.log('joining group editor');
     socket.join(data.groupId)
   })
   socket.on("editor-data", (data) => {
@@ -92,9 +93,7 @@ io.on("connection", socket => {
     socket.broadcast.to(data.groupId).emit("editor-data", data);
   })
   socket.on("join-room", (data) => {
-    // console.log(`data.userId joinging stream: `, data.userId);
-    // console.log(`id of a peer joining(?): `, data.id);
-    
+
     socket.join(data.groupId);
     
     socket.broadcast.to(data.groupId).emit("user-connected", data);
@@ -105,7 +104,7 @@ io.on("connection", socket => {
   });
 
   socket.on("sendNotification", ({sender, receiver, group}) => {
-    // const receiverUser = getUser(receiver)
+    const receiverUser = getUser(receiver)
     // console.log('in send notification', 'sender:', sender, 'receiver:', receiver, 'group:', group, 'usersOnline:', onlineUsers)
     // console.log('receiverUser', receiverUser)
     socket.broadcast.emit("receiveNotification", {
@@ -115,31 +114,21 @@ io.on("connection", socket => {
   })
 
   // socket.on("send-peer-data", (data) => {
-  socket.on("send-peer-data", (data) => {
 
-    // console.log('sending peer data');
-    // console.log(`data: `, data);
+  //   // socket.join(data.groupId);
+  //   console.log('sending peer data');
     
-    socket.broadcast.to(data.groupId).emit("send-peer-data", data);
-  });
-  socket.on("connected-user-handle", (data) => {
-
-    // console.log('connected user is sending their handle back');
-    
-    socket.broadcast.to(data.groupId).emit("connected-user-handle", data);
-  });
+  //   socket.broadcast.emit("send-peer-data", data);
+  // });
 
   socket.on("user-disconnected", data => {
     removeUser(socket.id);
-    // console.log('user disconnected');
-    // console.log(`data in user disconnect: `, data);
+    console.log('user disconnected');
+    console.log(`data in user disconnect: `, data);
     socket.broadcast.to(data.groupId).emit("user-disconnected", data);
-    socket.leave(data.groupId);
-  })
-});
+    socket.leave(data.groupId)
 
-io.on("connect_error", (err) => {
-  console.log(`connect_error due to ${err.message}`);
+  })
 });
 
 
