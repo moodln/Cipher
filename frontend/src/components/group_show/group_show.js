@@ -28,10 +28,11 @@ class GroupShow extends React.Component {
   }
 
   render() {
+
     if (!this.props.group) return null;
     if (!this.props.problem) return null;
     const { group } = this.props;
-    
+
 
     return (
       <div className="page-with-sidebar">
@@ -47,17 +48,29 @@ class GroupShow extends React.Component {
                     {this.props.problem.title}
                   </h2> */}
                   <p>{this.props.problem.body}</p>
-                
+
                 </div>
-                <div className="group-show-bar-participants">
-                  <h1>Participants:</h1>
-                  <ul className="participants-list">
-                    {
-                      this.props.participants.map(user => (
-                        <li key={user["_id"]}>{user.handle}</li>
-                      ))
-                    }
-                  </ul>
+                <div className="group-show-bar-participants-div">
+                  <div className="group-show-bar-participants">
+                    <h1>Participants:</h1>
+                    <ul className="participants-list">
+                      {
+                        this.props.participants.map(user => (
+                          <li key={user["_id"]}>{user.handle}</li>
+                        ))
+                      }
+                    </ul>
+                  </div>
+                  <div className="group-show-bar-participants">
+                    <h1>Invited Users:</h1>
+                    <ul className="participants-list">
+                      {
+                        Object.values(this.props.invitedUsers.byId).map(user => (
+                          <li key={user["_id"]}>{user.handle}</li>
+                        ))
+                      }
+                    </ul>
+                  </div>
                 </div>
               </div>
 
@@ -75,12 +88,12 @@ class GroupShow extends React.Component {
                 participants={group.users}
                 invitedUsers={this.props.invitedUsers.allIds} />
               <div className="cams">
-                <VideoStreamContainer 
+                <VideoStreamContainer
                   groupId={this.props.group._id}
-                  userId={this.props.currentUserId} 
+                  userId={this.props.currentUserId}
                   participants={this.props.participants}
                   socket={socket}
-                  handle={this.props.currentUserHandle}/>
+                  handle={this.props.currentUserHandle} />
               </div>
               <div className="save-btn-div">
                 {/* <button className="group-save-btn leave-btn"

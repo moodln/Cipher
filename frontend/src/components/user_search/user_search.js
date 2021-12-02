@@ -27,6 +27,14 @@ class UserSearch extends React.Component {
         })
     }
 
+    userPopUp(userHandle) {
+        return (
+            <div className='user-popup'>
+                {userHandle}
+            </div>
+        )
+    }
+
     updateQuery(e) {
         e.preventDefault();
         this.setState({
@@ -80,7 +88,6 @@ class UserSearch extends React.Component {
                     {
                         users.filter(user => {
                             let idx = (user.email.length - this.state.query.length) * -1
-                            // console.log(users)
                             if (this.state.query === '') {
                                 return user;
                             } else if (user.email.slice(0, idx).toLowerCase().includes(this.state.query.toLowerCase())) {
@@ -90,7 +97,10 @@ class UserSearch extends React.Component {
                             <li className="user-search-dropdown-item"
                                 key={user["_id"]}
                                 onClick={() => this.inviteCollaborator(user._id)}>
-                                {user.email}
+                                <span 
+                                    onClick={() => this.userPopUp(user.handle)}>
+                                    {user.email}
+                                </span>
                             </li>
                         ))
                     }
