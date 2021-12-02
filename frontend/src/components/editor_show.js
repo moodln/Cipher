@@ -81,13 +81,13 @@ function EditorShow(props) {
     function handleEditorChange(value, e) {
         // console.log(`value: `, value);
         // console.log(`e: `, e);
-        
+
         const data = editorRef.current.getValue();
         if (data === body) return;
 
         setBody(data);
         if (outgoingTimeout) clearTimeout(outgoingTimeout);
-        debugger
+        // debugger
         outgoingTimeout = setTimeout(() => {
             // console.log('Outgoing:', body);
             props.socket.emit("editor-data", { body: body, userId: props.userId, groupId: props.groupId });

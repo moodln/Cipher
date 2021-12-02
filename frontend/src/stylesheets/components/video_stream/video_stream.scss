@@ -50,11 +50,12 @@
       background-color: rgba(0, 0, 0, 0.5);
       z-index: 19;
       padding: 4px;
-      padding-left: 10px;
+      padding-left: 20px;
+      padding-bottom: 7px;
       gap: 10px;
       top: 0px;
       right: 0px;  
-      clip-path: polygon(0 0, 100% 0%, 100% 100%, 25% 100%);
+      clip-path: polygon(0 0, 100% 0%, 100% 100%, 25px 100%);
     }
 
   }
