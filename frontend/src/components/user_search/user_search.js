@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { inviteUserToGroup } from "../../actions/invite_actions";
 import { fetchUsersToInvite } from "../../actions/user_actions";
 import { selectUsersToInvite } from "../../selectors/users_selector";
+import { socket } from "../../util/socket";
 
 class UserSearch extends React.Component {
     constructor(props) {
@@ -25,15 +26,13 @@ class UserSearch extends React.Component {
         this.setState({
             query: ''
         })
+        socket.emit("sendNotification", {
+            sender: this.props.currentUser.id,
+            receiver: inviteeId,
+            group: this.props.groupId
+        })
     }
 
-    userPopUp(userHandle) {
-        return (
-            <div className='user-popup'>
-                {userHandle}
-            </div>
-        )
-    }
 
     updateQuery(e) {
         e.preventDefault();
@@ -97,10 +96,7 @@ class UserSearch extends React.Component {
                             <li className="user-search-dropdown-item"
                                 key={user["_id"]}
                                 onClick={() => this.inviteCollaborator(user._id)}>
-                                <span 
-                                    onClick={() => this.userPopUp(user.handle)}>
                                     {user.email}
-                                </span>
                             </li>
                         ))
                     }
@@ -117,7 +113,8 @@ const mapStateToProps = (state, ownProps) => ({
         ownProps.participants,
         ownProps.invitedUsers
     ),
-    associatedGroups: Object.values(state.entities.groups.byId)
+    associatedGroups: Object.values(state.entities.groups.byId),
+    currentUser: state.session.user
 });
 
 const mapDispatchToProps = dispatch => ({
