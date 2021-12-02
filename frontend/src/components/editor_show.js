@@ -4,7 +4,6 @@ import Editor from "@monaco-editor/react";
 // import { props.socket } from "../util/props.socket";
 
 function EditorShow(props) {
-
     // let props.socket = io("http://localhost:3500");
     // let props.socket = io();
     // let props.socket = props.socket;
@@ -14,6 +13,7 @@ function EditorShow(props) {
     // window.onbeforeunload = (event) => {
     //     props.socket.close();
     // }
+    
     const editorRef = useRef(null);
     const [body, setBody] = useState(props.document.body);
 
