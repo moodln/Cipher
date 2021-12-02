@@ -79,7 +79,8 @@ class GroupShow extends React.Component {
                   groupId={this.props.group._id}
                   userId={this.props.currentUserId} 
                   participants={this.props.participants}
-                  socket={socket}/>
+                  socket={socket}
+                  handle={this.props.currentUserHandle}/>
               </div>
               <div className="save-btn-div">
                 {/* <button className="group-save-btn leave-btn"
@@ -114,7 +115,8 @@ const mapStateToProps = (state, ownProps) => {
       state.entities.invites.byId,
       groupId
     ),
-    currentUserId: state.session.user.id
+    currentUserId: state.session.user.id,
+    currentUserHandle: state.session.user.handle
   }
 }
 
