@@ -108,7 +108,7 @@ const currentUser = (req, res, next) => (
 
 const searchForUsersToInvite = (req, res) => {
     User.find({ id: { "$nin": req.headers.usersingroup } }, (err, users) => {
-        console.log(`users: `, users);
+        // console.log(`users: `, users);
 
         const usersById = {};
 

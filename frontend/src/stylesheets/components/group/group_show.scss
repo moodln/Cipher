@@ -89,8 +89,7 @@
                     }
                 }
             }
-        }
-        
+        }        
     }
     
     .group-show-main {
@@ -128,9 +127,12 @@
     height: 100%;
     width: 70%;
     max-width: 2200px;
+    margin-top: 1%;
+    transition: all 0.3s ease-in-out;
 
     .editor-container {
         height: 92%;
+        transition: all 0.3s ease-in-out;
         
     } 
 
@@ -382,6 +384,7 @@
 
 
             .group-show-main-problem{
+                max-height: 230px;
                 min-width: 300px;
                 margin-right: 15px;
                 overflow-x: hidden;
@@ -444,6 +447,7 @@
             height:120px;
 
             .group-show-main-problem{
+                max-height: 160px;
                 margin-right: 5px;
             }
 
@@ -455,7 +459,8 @@
         }
 
         .group-show-main{
-            margin-top: 5%;
+            // height: 90%;
+            margin-top: 12%;
         }
     }
    
@@ -483,6 +488,7 @@
             width: 95%;
 
             .group-show-main-problem {
+                max-height: 140px;
                 min-width: 300px;
                 margin-right: 20px;
                 margin-bottom: 20px;
