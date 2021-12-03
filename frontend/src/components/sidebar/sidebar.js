@@ -11,6 +11,7 @@ class Sidebar extends React.Component {
         }
         this.makeGroup = this.makeGroup.bind(this);
         this.updateQuery = this.updateQuery.bind(this);
+        this.redirectToUserGroup = this.redirectToUserGroup.bind(this);
     }
 
     componentDidMount() {
@@ -37,6 +38,10 @@ class Sidebar extends React.Component {
             .then(groupResponse => {
                 this.props.history.push(`/groups/reload/${groupResponse.data._id}`)
             })
+    }
+
+    redirectToUserGroup(groupId) {
+        this.props.history.push(`/groups/reload/${groupId}`)
     }
 
     updateQuery(e) {
@@ -112,12 +117,15 @@ class Sidebar extends React.Component {
                                             return group;
                                         }
                                 }).map(group => (
-                                    <div className="sidebar-list-item" key={group._id}>
-                                        <Link to={`/groups/${group._id}`}><p>{group.title}</p></Link>
+                                    <div className="sidebar-list-item" 
+                                        key={group._id}
+                                        onClick={() => this.redirectToUserGroup(group._id)}>
+                                            <p>{group.title}</p>
                                     </div>
                                 ))
                             }
                         </div>
+                        {/* <Link to={`/groups/${group._id}`}><p>{group.title}</p></Link> */}
                     </div>
                     <div className="sidebar-section">
                         <Link to="/about">
