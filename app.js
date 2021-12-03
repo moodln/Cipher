@@ -48,9 +48,9 @@ const http = require("http");
 const httpServer = http.createServer(app);
 const io = require("socket.io")(httpServer, {
   cors: {
-    origins: ["http://localhost:3000", "https://cipher-mern.herokuapp.com/"],//"*:*"
+    origins: ["http://localhost:3000", "https://cipher-mern.herokuapp.com/"],
     methods: ["GET", "POST"],
-    transports: ['websocket'],
+    transports: ["websocket"],
   }
 });
 const peerServer = ExpressPeerServer(httpServer, {
@@ -113,18 +113,24 @@ io.on("connection", socket => {
     })
   })
 
-  // socket.on("send-peer-data", (data) => {
+  socket.on("send-peer-data", (data) => {
 
-  //   // socket.join(data.groupId);
-  //   console.log('sending peer data');
+    // socket.join(data.groupId);
+    // console.log('sending peer data');
     
-  //   socket.broadcast.emit("send-peer-data", data);
-  // });
+    socket.broadcast.to(data.groupId).emit("send-peer-data", data);
+  });
+
+  socket.on("connected-user-handle", (data) => {
+    // console.log('connected user is sending their handle back');
+    
+    socket.broadcast.to(data.groupId).emit("connected-user-handle", data);
+  });
 
   socket.on("user-disconnected", data => {
     removeUser(socket.id);
-    console.log('user disconnected');
-    console.log(`data in user disconnect: `, data);
+    // console.log('user disconnected');
+    // console.log(`data in user disconnect: `, data);
     socket.broadcast.to(data.groupId).emit("user-disconnected", data);
     socket.leave(data.groupId)
 

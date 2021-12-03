@@ -91,7 +91,7 @@ class SessionForm extends React.Component {
     render() {
         return (
             <div className="session container">
-                <form className="session-form" onSubmit={this.handleSubmit}>
+                <form className="session-form">
                     {
                         this.props.formType === "SIGN UP" ? (
                             <>
@@ -99,7 +99,7 @@ class SessionForm extends React.Component {
                             <input type="text"
                                 value={this.state.handle}
                                 placeholder="Handle"
-                                onChange={this.update("handle")} />
+                                onChange={this.update('handle')} />
                             </>
                         ) : (
                             <h1>Log in to Cipher</h1>
@@ -127,7 +127,8 @@ class SessionForm extends React.Component {
 
                     <input className="session-form-submit"
                         type="submit"
-                        value="Submit" />
+                        value="Submit" 
+                        onClick={this.handleSubmit}/>
                     <input className="session-form-submit demo-login" 
                         type="button"
                         value="Demo Login"
