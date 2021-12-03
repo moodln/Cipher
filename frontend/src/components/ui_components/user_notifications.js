@@ -42,7 +42,7 @@ export class UserNotifications extends React.Component {
         } 
         let color;
         this.props.invites.length === 0 ? color = '' : color = 'color';
-        console.log('invites', this.props.invites)
+        // console.log('invites', this.props.invites)
         return (
             <div onClick={() => this.setState({ displayUserInvites: !this.state.displayUserInvites })}>
                 <div className="notification-badge">
