@@ -11,10 +11,9 @@ class ProblemIndex extends React.Component {
     }
 
     componentDidMount() {
-        
-        if (socket) {
-            socket.close();
-        }
+        socket.on("connect_error", (err) => {
+            console.log(`connect_error due to ${err.message}`);
+        });
         this.props.fetchProblems();
     }
 

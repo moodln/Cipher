@@ -18,6 +18,7 @@ export class UserNotifications extends React.Component {
         this.props.fetchUserInvites();
         socket.emit("newUser", this.props.currentUser.id)
         this.receiveSocket();
+
     }
 
 
@@ -27,6 +28,9 @@ export class UserNotifications extends React.Component {
                 notifications: this.props.invites.push(data)
             })
         })
+        socket.on("connect_error", (err) => {
+            console.log(`connect_error due to ${err.message}`);
+        });
     }
 
 
@@ -42,7 +46,6 @@ export class UserNotifications extends React.Component {
         } 
         let color;
         this.props.invites.length === 0 ? color = '' : color = 'color';
-        // console.log('invites', this.props.invites)
         return (
             <div onClick={() => this.setState({ displayUserInvites: !this.state.displayUserInvites })}>
                 <div className="notification-badge">

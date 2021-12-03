@@ -11,6 +11,10 @@ function EditorShow(props) {
 
     })
 
+    props.socket.on("connect_error", (err) => {
+        console.log(`connect_error due to ${err.message}`);
+    });
+
     // Code to receive event:
     let incomingTimeout;
     props.socket.on("editor-data", incomingData => {

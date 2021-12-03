@@ -10,10 +10,13 @@ import DashboardContainer from "./profile/dashboard";
 import Splash from "./splash/splash";
 import Footer from "./footer/footer";
 import AboutContainer from "./about/about_container";
+import ScrollToTop from "./scroll_to_top";
+import NotFound from "./not_found";
 
 const App = () => (
   <div className="page-container">
     <div className="main-content">
+      <ScrollToTop />
       <NavBarContainer />
       <Switch>
         <AuthRoute exact path="/" component={Splash} />
@@ -26,6 +29,7 @@ const App = () => (
         <ProtectedRoute exact path="/dashboard" component={DashboardContainer} />
 
         <Route exact path="/about" component={AboutContainer} />
+        <NotFound />
       </Switch>
     </div>
     <Footer />
