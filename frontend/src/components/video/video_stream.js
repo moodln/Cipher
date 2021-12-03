@@ -169,7 +169,7 @@ class VideoStream extends Component {
       });
       
       this.props.socket.on("user-connected", (data) => {
-        console.log('in user-connected sending my stream back to them');
+        // console.log('in user-connected sending my stream back to them');
         // console.log(`this.myVideoStream that i am going to send: `, this.myVideoStream.id);
         // console.log(`data.userId received: `, data.userId);
         // console.log(`data.id received: `, data.id);
