@@ -7,9 +7,6 @@ import GroupIndexBadgeContainer from "./group_index_badge";
 
 class GroupIndex extends React.Component {
     componentDidMount() {
-    //   if (socket.connected) {
-    //     socket.close();
-    //   }
         socket.on("connect_error", (err) => {
             console.log(`connect_error due to ${err.message}`);
         });
