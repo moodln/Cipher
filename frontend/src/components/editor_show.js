@@ -7,8 +7,9 @@ function EditorShow(props) {
     const [body, setBody] = useState(props.document.body);
 
     props.socket.on("user-connected", data => {
-        props.socket.emit("editor-data", { body: body, userId: props.userId, groupId: props.groupId });
-
+        if (editorRef.current) {
+            props.socket.emit("editor-data", { body: editorRef.current.getValue(), userId: props.userId, groupId: props.groupId });
+        }
     })
 
     props.socket.on("connect_error", (err) => {
