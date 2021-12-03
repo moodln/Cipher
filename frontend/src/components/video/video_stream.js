@@ -76,9 +76,11 @@ class VideoStream extends Component {
 
     window.removeEventListener("beforeunload", this.leaveThePage);
     // this.peer.disconnect();
-    this.props.socket.emit("user-disconnected", { userId: this.props.userId, streamId: this.myVideoStream.id, groupId: this.props.groupId })
-    this.myVideoStream.getTracks().forEach(track => track.stop());
-    
+    if (this.myVideoStream) {
+      this.props.socket.emit("user-disconnected", { userId: this.props.userId, streamId: this.myVideoStream.id, groupId: this.props.groupId })
+      this.myVideoStream.getTracks().forEach(track => track.stop());
+      // this.peer = undefined;
+    }
   }
 
 
