@@ -13,6 +13,10 @@ Cipher is a MERN stack web application where developers can collaborate with one
 
 Cipher provides a selection of 60+ practice problems. Clicking on a problem automatically creates and opens an empty code document, where users can begin writing JavaScript code from within the Monaco Editor while sharing their video with other developers in the work group. Invitations to join others' work groups appear in the navigation bar. Navigating to the dashboard allows the user to view all of the work groups to which they belong.
 
+<p align="middle">
+    <img src="https://user-images.githubusercontent.com/88195745/144934342-5cb2e980-7e44-4e16-9352-2f14d330c7a6.jpg" width="700px" />
+</p>
+
 # Technologies
 - MongoDB
 - Express
