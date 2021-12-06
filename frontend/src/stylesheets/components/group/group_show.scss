@@ -377,7 +377,7 @@
     box-shadow: -7px 0 9px -5px $orange-light;
 }
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1080px) {
 
 
     .group-bar-main{

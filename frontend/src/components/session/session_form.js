@@ -79,7 +79,7 @@ class SessionForm extends React.Component {
             <ul className="session-form-errors">
                 {
                     Object.keys(this.state.errors).map((error, idx) => (
-                        <li key={`error-${idx}`}>
+                        <li className="session-errors" key={`error-${idx}`}>
                             {this.state.errors[error]}
                         </li>
                     ))
@@ -95,17 +95,17 @@ class SessionForm extends React.Component {
                     {
                         this.props.formType === "SIGN UP" ? (
                             <>
-                            <h1>Sign up for Cipher</h1>
-                            <input type="text"
-                                value={this.state.handle}
-                                placeholder="Handle"
-                                onChange={this.update('handle')} />
+                                <h1>Sign up for Cipher</h1>
+                                <input type="text"
+                                    value={this.state.handle}
+                                    placeholder="Handle"
+                                    onChange={this.update('handle')} />
                             </>
                         ) : (
                             <h1>Log in to Cipher</h1>
                         )
                     }
-                    
+
                     <input type="text"
                         value={this.state.email}
                         placeholder="Email"
@@ -127,9 +127,9 @@ class SessionForm extends React.Component {
 
                     <input className="session-form-submit"
                         type="submit"
-                        value="Submit" 
-                        onClick={this.handleSubmit}/>
-                    <input className="session-form-submit demo-login" 
+                        value="Submit"
+                        onClick={this.handleSubmit} />
+                    <input className="session-form-submit demo-login"
                         type="button"
                         value="Demo Login"
                         onClick={this.handleDemoLogin} />
