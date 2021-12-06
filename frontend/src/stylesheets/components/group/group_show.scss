@@ -31,13 +31,15 @@
     display: flex;
     width: 100%;
     gap:10px;
+    margin-bottom: 30px;
     
 
     .group-show-bar {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-    
+        overflow-y: scroll;
+        overflow-x: hidden;
         width: 25%;
         max-width: 400px;
         min-width: 200px;
@@ -360,6 +362,20 @@
     background-color: $blue-darkest;
 }
 
+.group-show-bar::-webkit-scrollbar {
+    width: 0.25em;
+    height: 0.25em;
+}
+   
+.group-show-bar::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px transparent;
+}
+   
+.group-show-bar::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: $orange-light;
+    box-shadow: -7px 0 9px -5px $orange-light;
+}
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1080px) {
 

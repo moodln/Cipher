@@ -18,6 +18,7 @@ export class UserNotifications extends React.Component {
         this.props.fetchUserInvites();
         socket.emit("newUser", this.props.currentUser.id)
         this.receiveSocket();
+
     }
 
 
@@ -27,6 +28,9 @@ export class UserNotifications extends React.Component {
                 notifications: this.props.invites.push(data)
             })
         })
+        socket.on("connect_error", (err) => {
+            console.log(`connect_error due to ${err.message}`);
+        });
     }
 
 

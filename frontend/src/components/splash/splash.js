@@ -6,9 +6,10 @@ import graphic3 from "../../assets/images/graphic_3.png";
 import { socket } from "../../util/socket";
 
 const Splash = () => {
-    if (socket) {
-    socket.close();
-    }
+    socket.on("connect_error", (err) => {
+        console.log(`connect_error due to ${err.message}`);
+    });
+
     return (
     <div className="splash-section container">
         <section className="splash-main">
