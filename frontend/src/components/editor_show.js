@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Editor from "@monaco-editor/react";
 
 function EditorShow(props) {
@@ -50,18 +50,26 @@ function EditorShow(props) {
         props.socket.emit("join-editor", { groupId: props.groupId });
     }
 
+    const saveDocument = useCallback(() => {
+        if (editorRef.current) {
+            props.updateDocument(
+                props.document,
+                editorRef.current.getValue(),
+                props.groupId
+            );
+        }
+    }, [props]);
+
     useEffect(() => {
         window.addEventListener("beforeunload", saveDocument);
-     // componentDidMount events
-     return () => {
-       // componentWillUnmount events
-        saveDocument()
-        window.removeEventListener("beforeunload", saveDocument);
-     }
-   }, []);
+        // componentDidMount events
+        return () => { // componentWillUnmount events
+            saveDocument();
+            window.removeEventListener("beforeunload", saveDocument);
+        }
+   }, [saveDocument]);
 
     useEffect(() => {
-
         if (editorRef.current) {
             if (editorRef.current.getValue() !== body) {
                 const cursorPosition = editorRef.current.getPosition();
@@ -70,7 +78,6 @@ function EditorShow(props) {
             }
         }
     }, [body]);
-
 
     let outgoingTimeout;
     function handleEditorChange(value, e) {
@@ -87,12 +94,6 @@ function EditorShow(props) {
                 groupId: props.groupId
             });
         }, 750);
-    }
-
-    function saveDocument() {
-        if (editorRef.current) {
-            props.updateDocument(props.document, editorRef.current.getValue(), props.groupId);
-        }
     }
 
     function leaveGroup() {
