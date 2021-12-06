@@ -33,7 +33,7 @@ WebSockets were implemented using Socket.io and Socket.io-client, with PeerJS pr
 Multiple users within the same work group can edit the code document and receive each other's updates in a matter of seconds. Clicking the "Save" button will save the user's current progress into the database to be retrieved later. While working on a problem, users can share their video with other developers in the work group and toggle their video and audio on and off with ease.
 
 <p align="middle">
-    <img src="https://user-images.githubusercontent.com/88195745/144934074-f2bfc90f-971c-4275-8ac9-3e8eb50d6ef2.png" width="400px" />
+    <img src="https://user-images.githubusercontent.com/88195745/144934074-f2bfc90f-971c-4275-8ac9-3e8eb50d6ef2.png" width="700px" />
 </p>
 
 #### **CHALLENGE:**
