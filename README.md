@@ -13,6 +13,10 @@ Cipher is a MERN stack web application where developers can collaborate with one
 
 Cipher provides a selection of 60+ practice problems. Clicking on a problem automatically creates and opens an empty code document, where users can begin writing JavaScript code from within the Monaco Editor while sharing their video with other developers in the work group. Invitations to join others' work groups appear in the navigation bar. Navigating to the dashboard allows the user to view all of the work groups to which they belong.
 
+<p align="middle">
+    <img src="https://user-images.githubusercontent.com/88195745/144934342-5cb2e980-7e44-4e16-9352-2f14d330c7a6.jpg" width="700px" />
+</p>
+
 # Technologies
 - MongoDB
 - Express
@@ -32,13 +36,21 @@ WebSockets were implemented using Socket.io and Socket.io-client, with PeerJS pr
 ## Collaborative Code Editor and Video Chat
 Multiple users within the same work group can edit the code document and receive each other's updates in a matter of seconds. Clicking the "Save" button will save the user's current progress into the database to be retrieved later. While working on a problem, users can share their video with other developers in the work group and toggle their video and audio on and off with ease.
 
-**CHALLENGE:** Since multiple components relied on the use of WebSockets, we initially created instances of the socket for each one. When opening a problem to begin coding, the `VideoStream` component was the first to create the socket instance and establish the media stream connection between users. Subsequently, the `EditorShow` component created a new instance of the socket, which caused an endless cycle of errors to be thrown in the console. Updates to the code document would be sent out over the socket connection but would reach their destination out of order and more than a couple minutes later.
+<p align="middle">
+    <img src="https://user-images.githubusercontent.com/88195745/144934074-f2bfc90f-971c-4275-8ac9-3e8eb50d6ef2.png" width="700px" />
+</p>
 
-**SOLUTION:** We ensured that only one socket instance was defined by creating a dedicated file to establish the socket connection (`export const socket = io();`) and importing that instance into both the `VideoStream` and `EditorShow` components.
+#### **CHALLENGE:**
+Since multiple components relied on the use of WebSockets, we initially created instances of the socket for each one. When opening a problem to begin coding, the `VideoStream` component was the first to create the socket instance and establish the media stream connection between users. Subsequently, the `EditorShow` component created a new instance of the socket, which caused an endless cycle of errors to be thrown in the console. Updates to the code document would be sent out over the socket connection but would reach their destination out of order and more than a couple minutes later.
 
-**CHALLENGE:** Futhermore, any time the content of the code editor or media stream was emitted over the socket, all users connected to the server would receive the data rather than only the users in that particular work group.
+#### **SOLUTION:**
+We ensured that only one socket instance was defined by creating a dedicated file to establish the socket connection (`export const socket = io();`) and importing that instance into both the `VideoStream` and `EditorShow` components.
 
-**SOLUTION:** We added `groupId` and `userId` key-value pairs to the data object sent out over the socket. We also created socket events for `join-editor` and `join-room` based on the `groupId`, ensuring that the data was broadcast only to users within the work group from which the data originated. We used the `userId` to specify the id of the user from which the data originated. When any user within the work group received the data object over the socket, we matched the incoming `userId` against the current user's id. If they were a match, the incoming data could be ignored since that meant that the user receiving the data was also the user that sent the data.
+#### **CHALLENGE:**
+Futhermore, any time the content of the code editor or media stream was emitted over the socket, all users connected to the server would receive the data rather than only the users in that particular work group.
+
+#### **SOLUTION:**
+We added `groupId` and `userId` key-value pairs to the data object sent out over the socket. We also created socket events for `join-editor` and `join-room` based on the `groupId`, ensuring that the data was broadcast only to users within the work group from which the data originated. We used the `userId` to specify the id of the user from which the data originated. When any user within the work group received the data object over the socket, we matched the incoming `userId` against the current user's id. If they were a match, the incoming data could be ignored since that meant that the user receiving the data was also the user that sent the data.
 
 ```javascript
 io.on("connection", socket => {
