@@ -69,7 +69,6 @@ class UserSearch extends React.Component {
         let associatedUsers = this.findAssociatedUsers(this.props.usersToInvite);
         let users = this.state.query === "" ? associatedUsers : this.props.usersToInvite;
         let message = users.length > associatedUsers.length ? "" : "Recent collaborators";
-        debugger
 
         return (
             <div>
